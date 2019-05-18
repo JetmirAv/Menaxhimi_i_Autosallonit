@@ -1,3 +1,15 @@
 .header {
-    height: 50px;
+	-fx-font-family: "Ubuntu";
+	-fx-box-sizing: border-bos;
+    -fx-border-color: black; 
+    -fx-height: 50px; 
+    -fx-padding: 10px 15px
+}	
+
+.logOut {
+	-fx-pref-height: 30px;
+	-fx-pref-width: 30px;	
+	-fx-max-height: 30px;
+	-fx-max-width: 30px;	
+	
 }
