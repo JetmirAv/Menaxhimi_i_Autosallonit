@@ -24,7 +24,7 @@ public class Main extends Application {
 		
 		Scene scene = new Scene(mainWindow, 800, 100);
 		primaryStage.setScene(scene);
-		primaryStage.setMaximized(true);
+//		primaryStage.setMaximized(true);
 		primaryStage.show();
 	}
 	
