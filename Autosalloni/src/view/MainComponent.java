@@ -29,7 +29,7 @@ public class MainComponent {
 	GridPane pane = new GridPane();
 	pane.setHgap(35);
 	pane.setVgap(20);
-	//pane.getStylesheets().add("mainComponent.css");
+    pane.getStylesheets().add(MainComponent.class.getResource("mainComponent.css").toExternalForm());
 	FileInputStream userPath;
 	try {
 		userPath = new FileInputStream(component + "/src/img/user.png");
