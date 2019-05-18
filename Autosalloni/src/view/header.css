@@ -1,10 +1,19 @@
 .header {
-	-fx-font-family: "Ubuntu";
 	-fx-box-sizing: border-bos;
     -fx-border-color: black; 
     -fx-height: 50px; 
-    -fx-padding: 10px 15px
+    -fx-padding: 10px 15px;
+    -fx-font-family: "Titillium Web";
 }	
+
+.userFullName {
+	-fx-font-size: 18px;
+	-fx-font-weight: 300;
+}
+.userRole {
+	-fx-font-size: 12px;
+	-fx-font-weight: 200;	
+}
 
 .logOut {
 	-fx-pref-height: 30px;

@@ -4,6 +4,7 @@ package view;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
@@ -13,6 +14,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 
 
 
@@ -22,7 +24,8 @@ public class Header{
 
 		FileInputStream logOutPath = new FileInputStream(current + "/src/img/power.png"); 	
 		FileInputStream UserImgPath = new FileInputStream(current + "/src/img/profile.jpg"); 	
-	
+
+		
 		//The logOut image and styling 
 		Image logOut = new Image(logOutPath);
 		ImageView logOutView = new ImageView(logOut);
@@ -45,10 +48,11 @@ public class Header{
 		
 		
 		//Box that will contain the users name and role
-		VBox userBox = new VBox(10);
-		userBox.setTranslateY(7);
+		VBox userBox = new VBox(5);
+		userBox.setTranslateY(5);
 		Label userFullName = new Label(fullName);
 		Label userRole = new Label(role);
+		userFullName.getStyleClass().add("userFullName");
 		userBox.getChildren().addAll(userFullName, userRole);
 		userBox.setOnMouseEntered(e -> {
 			userBox.setCursor(Cursor.HAND);
