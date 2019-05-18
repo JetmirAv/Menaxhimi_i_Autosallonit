@@ -11,13 +11,16 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		String current = new java.io.File( "." ).getCanonicalPath();
+		String component = new java.io.File( "." ).getCanonicalPath();
 		Font.class.getResource(current + "/src/fonts/knk.woff");
 		
 		
 		BorderPane mainWindow = new BorderPane();
 		try {
 			mainWindow.setTop(Header.display("Jetmir Avdullahu", "Super Admin", current));	
-	
+	        mainWindow.setCenter(MainComponent.display("Name" , "Trainers","Email","Website","Address",component));
+
+		
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
