@@ -18,6 +18,7 @@ public class Main extends Application {
 		try {
 			mainWindow.setTop(Header.display("Jetmir Avdullahu", "Super Admin", current));	
 	        mainWindow.setCenter(MainComponent.display("Name" , "Trainers","Email","Website","Address",current));
+	        mainWindow.setLeft(Sidebar.display(current));
 
 		
 		} catch (Exception e) {

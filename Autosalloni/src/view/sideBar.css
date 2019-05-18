@@ -1,0 +1,34 @@
+.sideBarBtn 
+{
+    -fx-background-color: #d3d3d3;
+    -fx-text-fill: #35382E;
+    -fx-font-family: Arial;
+    -fx-border: none; 
+    
+}
+
+.sideBarBtn:hover 
+{
+    -fx-background-color: lightblue;
+}
+
+.sideBarLbl
+{
+	-fx-font-weight:bold;
+}
+
+.settingsBtn
+{
+    -fx-padding: 35px;
+}
+
+.logoImg
+{
+	 -fx-padding:0 0 0 70px;
+	 
+}
+
+
+
+
+
