@@ -26,7 +26,7 @@ public class Header{
 	public static HBox display(String fullName, String role, String current) throws IOException {
 
 		FileInputStream logOutPath = new FileInputStream(current + "/src/img/power.png"); 	
-		FileInputStream UserImgPath = new FileInputStream(current + "/src/img/profile.jpg"); 	
+		FileInputStream UserImgPath = new FileInputStream(current + "/src/img/user.png"); 	
 
 		
 		//The logOut image and styling 
@@ -38,7 +38,7 @@ public class Header{
 		Label labelLogOut = new Label();
 		labelLogOut.getStyleClass().add("logout");
 		labelLogOut.setGraphic(logOutView);
-		labelLogOut.setTranslateY(-20);
+		labelLogOut.setTranslateY(-25);
 		labelLogOut.setOnMouseEntered(e -> {
 			labelLogOut.setCursor(Cursor.HAND);
 		});
