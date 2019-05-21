@@ -14,6 +14,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 
 import javafx.css.*;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 
 public class Sidebar {
 	
@@ -45,6 +47,7 @@ public class Sidebar {
 		dashboardBtn.setPrefWidth(200);
 		dashboardBtn.setPrefHeight(50);
 		dashboardBtn.getStyleClass().add("sideBarBtn");
+		
 		
 		
 		Label librariesLbl = new Label("Libraries");
@@ -84,6 +87,8 @@ public class Sidebar {
 		manufacturersBtn.setGraphic(manufacturerView);
 		manufacturersBtn.setPrefWidth(200);
 		manufacturersBtn.setPrefHeight(50);
+		//Per me bo align ne te majt
+		manufacturersBtn.setAlignment(Pos.CENTER_LEFT);
 		manufacturersBtn.getStyleClass().add("sideBarBtn");
 		
 		Button reportsBtn = new Button("Reports");
@@ -106,8 +111,9 @@ public class Sidebar {
 		
 		VBox vbox = new VBox(7);
 		//vbox.getChildren().add(new ImageView(logoImg));
+		vbox.setPadding(new Insets(25, 5, 5, 15));
 		vbox.getChildren().addAll(hbox,dashboardBtn,librariesLbl,storesBtn,carsBtn,clientsLbl,usersBtn,manufacturersBtn,reportsBtn,settingsBtn);		
-		vbox.setStyle("-fx-background-color:#d3d3d3");
+		vbox.setStyle("-fx-background-color:#EFF0F3");
 		vbox.getStylesheets().add(Sidebar.class.getResource("sideBar.css").toExternalForm());
 
 	
