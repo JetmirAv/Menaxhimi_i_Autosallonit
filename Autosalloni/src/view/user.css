@@ -1,0 +1,23 @@
+
+.root{
+	-fx-background-color: #D8D8D8;
+
+	
+}
+
+#textField {
+  -fx-background-image:url('../img/search.png');
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: right center;
+  -fx-font-size:15px;
+
+}
+.firstContent{
+	
+		-fx-background-color: white;
+}
+
+.comboBoxGlobal{
+  -fx-font-size:15px;
+
+}
