@@ -3,6 +3,7 @@ public class Stores {
 	
 	private int id;
 	private String name;
+	private String address;
 	private String route;
 	private String city;
 	private String postal;
@@ -12,10 +13,11 @@ public class Stores {
 	private String updatetimedAt;
 	
 	
-	public Stores(int id, String name, String route, String city, String postal, String state, String phoneNumber,
+	public Stores(int id, String name,String address, String route, String city, String postal, String state, String phoneNumber,
 			String createdAt, String updatetimedAt) {
 		this.id = id;
 		this.name = name;
+		this.address=address;
 		this.route = route;
 		this.city = city;
 		this.postal = postal;
@@ -25,6 +27,15 @@ public class Stores {
 		this.updatetimedAt = updatetimedAt;
 	}
 
+	public String getAddress() {
+		return address;
+	}
+	
+	public void setAddress(String address) {
+		this.address=address;
+	}
+	
+	
 
 	public int getId() {
 		return id;
@@ -114,11 +125,5 @@ public class Stores {
 	public void setUpdatetimedAt(String updatetimedAt) {
 		this.updatetimedAt = updatetimedAt;
 	}
-	
-	
-	
-	
-	
-	
 	
 }
