@@ -1,3 +1,20 @@
-.AdminSite{
+.vbox{
 	-fx-border-color: black;
+}
+.fonts{
+	-fx-font-size:15;
+	-fx-text-align:center;
+	-fx-margin-top:30px;
+
+}
+.mainContent{
+	-fx-border-color: #d3d3d3;
+	-fx-border-radius: 2%;
+    -fx-background-color: #EFF0F3;
+   
+}
+.users{
+	
+	-fx-background-color: white;
+	-fx-background-radius: 5px;
 }
