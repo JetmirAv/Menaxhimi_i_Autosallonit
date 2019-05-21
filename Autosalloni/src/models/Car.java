@@ -33,13 +33,13 @@ public class Car {
 			private Date createdAt;
 			private Date updatetimedAt;
 			
-			public Car(int id ,int manufacturerId ,String model,String bodyNumber,int yearOfProd ,int seats ,
+			public Car(int manufacturerId ,String model,String bodyNumber,int yearOfProd ,int seats ,
 					int doors,boolean roof ,boolean alarm ,boolean central ,boolean airbag ,boolean autonomus,
 					boolean navigator,boolean climate,int fuelTypeId,int fuelCapacity,double fuelConsumption,
 					boolean hidraulic,String engineModel,double enginePower,int hoursePower,int maxspeed,
 					double seconds0to100,boolean isAutomatic,int gears,String tireModel,int tireSize,String additionalDesc,
-					boolean is4x4 ,String createdAt,String updatetimedAt) {
-				this.id=id;
+					boolean is4x4) {
+				
 				this.manufacturerId=manufacturerId;
 				this.model=model;
 				this.bodyNumber=bodyNumber;
@@ -67,9 +67,7 @@ public class Car {
 				this.tireModel=tireModel;
 				this.tireSize=tireSize;
 				this.additionalDesc=additionalDesc;
-				this.is4x4=is4x4;
-				this.createdAt= new Date();
-				this.updatetimedAt=new Date();			
+				this.is4x4=is4x4;			
 			}
 
 			public int getId() {

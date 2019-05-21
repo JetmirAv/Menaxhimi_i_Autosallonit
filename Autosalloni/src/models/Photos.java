@@ -9,6 +9,8 @@ public class Photos {
 	private int carId;
 	private Date createdAt;
 	private Date updatedAt;
+	
+	
 
 	
 	public Photos(String path, int carId) {
