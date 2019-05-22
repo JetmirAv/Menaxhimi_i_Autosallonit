@@ -17,7 +17,9 @@ public class Main extends Application {
 		try {
 			content.getChildren().addAll(
 					Header.display("Jetmir Avdullahu", "Super Admin", current),
-					MainComponent.display("Name" , "Trainers","Email","Website","Address",current));
+					Filter.display(Main.class.getName()),
+					MainComponent.display("Name" , "Trainers","Email","Website","Address",current),
+					Pagination.display(122));
 //			mainWindow.setTop(Header.display("Jetmir Avdullahu", "Super Admin", current));	
 //	        mainWindow.setCenter(MainComponent.display("Name" , "Trainers","Email","Website","Address",current));
 	        mainWindow.setCenter(content);
@@ -31,7 +33,7 @@ public class Main extends Application {
 		
 		Scene scene = new Scene(mainWindow, 800, 800);
 		scene.getStylesheets().add("https://fonts.googleapis.com/css?family=Titillium+Web:200,300,400,700&display=swap");
-		
+		scene.getStylesheets().add(Main.class.getResource("header.css").toExternalForm());
 		primaryStage.setScene(scene);
 		primaryStage.setMaximized(true);
 		primaryStage.show();
