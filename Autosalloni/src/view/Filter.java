@@ -25,8 +25,8 @@ public class Filter {
 		
 		TextField txtSearch = new TextField();
 		
-		ComboBox<String> selectManufacturer = new ComboBox();
-		ComboBox<String> selectFuel = new ComboBox();
+		ComboBox<String> selectManufacturer = new ComboBox<>();
+		ComboBox<String> selectFuel = new ComboBox<>();
 		selectManufacturer.setPrefWidth(180);
 		selectFuel.setPrefWidth(180);
 		
