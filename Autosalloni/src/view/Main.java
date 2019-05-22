@@ -18,7 +18,7 @@ public class Main extends Application {
 			content.getChildren().addAll(
 					Header.display("Jetmir Avdullahu", "Super Admin", current),
 					Filter.display(Main.class.getName()),
-					MainComponent.display("Name" , "Trainers","Email","Website","Address",current),
+					Dashboard.display(),
 					Pagination.display(122));
 //			mainWindow.setTop(Header.display("Jetmir Avdullahu", "Super Admin", current));	
 //	        mainWindow.setCenter(MainComponent.display("Name" , "Trainers","Email","Website","Address",current));
