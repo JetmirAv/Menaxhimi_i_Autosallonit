@@ -18,7 +18,7 @@ import javafx.scene.shape.Circle;
 
 public class MainComponent {
 
-	public static VBox display(String name, String trainers, String email,String website,String address,String current )  throws IOException {
+	public static VBox display(String Name , String Trainers,String Email,String Website,String Address,String current )  throws IOException {
 	
 	
 	
@@ -33,128 +33,172 @@ public class MainComponent {
 	
 	hbox.getStyleClass().add("AdminSite");
 	
-	HBox nrOfUsers = new HBox(60);
-	Label lb0 =new Label("Number of users:");
-	lb0.getStyleClass().add("fonts");
 	
-	nrOfUsers.getChildren().add(lb0);
-	Label lbl1 = new Label("Logo");
-	lbl1.setMinWidth(60);
-   	lbl1.getStyleClass().add("fonts");
-	Label lbl2 = new Label("Name");
-	lbl2.setMinWidth(60);
-	lbl2.getStyleClass().add("fonts");
-	Label lbl3 = new Label("Trainers");
-   	lbl3.getStyleClass().add("fonts");
-   	lbl3.setMinWidth(60);
-   	Label lbl4 = new Label("Email");
-   	lbl4.getStyleClass().add("fonts");
-   	lbl4.setMinWidth(60);
-   	Label lbl5 = new Label("Website");
-   	lbl5.getStyleClass().add("fonts");
-   	lbl5.setMinWidth(60);
-   	Label lbl6 = new Label("Address");
-   	lbl6.getStyleClass().add("fonts");
-   	lbl6.setMinWidth(60);
+	
+	Label logoLabel = new Label("Logo");
+	logoLabel.setMinWidth(60);
+	logoLabel.getStyleClass().add("fonts");
+	Label nameLabel = new Label("First name");
+	nameLabel.setMinWidth(60);
+	nameLabel.getStyleClass().add("fonts");
+	Label surnameLabel = new Label("Last name");
+	surnameLabel.getStyleClass().add("fonts");
+	surnameLabel.setMinWidth(60);
+   	Label emailLabel = new Label("Email");
+   	emailLabel.getStyleClass().add("fonts");
+   	emailLabel.setMinWidth(60);
+   	Label birthdayLabel = new Label("Birthday");
+   	birthdayLabel.getStyleClass().add("fonts");
+   	birthdayLabel.setMinWidth(60);
+   	Label genderLabel = new Label("Gender");
+   	genderLabel .getStyleClass().add("fonts");
+   	genderLabel .setMinWidth(60);
+   	Label stateLabel = new Label("State");
+   	stateLabel.getStyleClass().add("fonts");
+   	stateLabel.setMinWidth(60);
+   	Label addressLabel = new Label("Address");
+   	addressLabel.getStyleClass().add("fonts");
+   	addressLabel.setMinWidth(60);
+   	Label phoneNumberLabel = new Label("Phone Number");
+   	phoneNumberLabel.getStyleClass().add("fonts");
+   	phoneNumberLabel.setMinWidth(60);
    	
-	hbox.getChildren().addAll(lbl1,lbl2,lbl3,lbl4,lbl5,lbl6);
-    tHeader.getChildren().addAll(nrOfUsers,hbox);
-    tHeader.setPadding(new Insets(0,0,0,15));
+   	
+	hbox.getChildren().addAll(logoLabel,nameLabel,surnameLabel,emailLabel,birthdayLabel,genderLabel
+			,stateLabel,addressLabel,phoneNumberLabel);
+    tHeader.getChildren().addAll(hbox);
+    tHeader.setPadding(new Insets(0,0,5,15));
      
     //First user
     
 	HBox userHBox = new HBox(60);
-	userHBox.setPadding(new Insets(3,0,3,15));
+	userHBox.setPadding(new Insets(3,0,3,30));
 	Circle circle=new Circle();
     circle.setRadius(15);
 	circle.setFill(new ImagePattern(img));
 	hbox.setAlignment(Pos.TOP_LEFT);
    
-	Label uLbl1 = new Label("Name");
-	uLbl1.setPadding(new Insets(4,20,0,30));
-	uLbl1.setMinWidth(60);
-	uLbl1.getStyleClass().add("fonts");
-	Label uLbl2 = new Label("Trainers");
-	uLbl2.setPadding(new Insets(4,0,0,0));
-	uLbl2.setMinWidth(60);
-	uLbl2.setAlignment(Pos.CENTER);
-   	Label uLbl3 = new Label("Email");
-	uLbl3.setPadding(new Insets(4,0,0,0));
-    uLbl3.getStyleClass().add("fonts");
-   	uLbl3.setMinWidth(60);
-   	Label uLbl4 = new Label("Website");
-	uLbl4.setPadding(new Insets(4,0,0,0));
-    uLbl4.getStyleClass().add("fonts");
-   	uLbl4.setMinWidth(60);
-   	Label uLbl5 = new Label("Address");
-	uLbl5.setPadding(new Insets(4,0,0,0));
-    uLbl5.getStyleClass().add("fonts");
-   	uLbl5.setMinWidth(60);
+	Label userNameLabel = new Label("First name");
+	userNameLabel.setMinWidth(60);
+	userNameLabel.getStyleClass().add("fonts");
+	Label userSurnameLabel = new Label("Last name");
+	userSurnameLabel.getStyleClass().add("fonts");
+	userSurnameLabel.setMinWidth(60);
+   	Label userEmailLabel = new Label("Email");
+   	userEmailLabel.getStyleClass().add("fonts");
+   	userEmailLabel.setMinWidth(60);
+   	Label userBirthdayLabel = new Label("Birthday");
+   	userBirthdayLabel.getStyleClass().add("fonts");
+   	userBirthdayLabel.setMinWidth(60);
+   	Label userGenderLabel = new Label("Gender");
+   	userGenderLabel.getStyleClass().add("fonts");
+   	userGenderLabel.setMinWidth(60);
+   	Label userStateLabel = new Label("State");
+   	userStateLabel.getStyleClass().add("fonts");
+   	userStateLabel.setMinWidth(60);
+   	Label userAddressLabel = new Label("Address");
+   	userAddressLabel.getStyleClass().add("fonts");
+   	userAddressLabel.setMinWidth(60);
+   	Label userPhoneNumberLabel = new Label("Phone Number");
+   	userPhoneNumberLabel.getStyleClass().add("fonts");
+   	userPhoneNumberLabel.setMinWidth(60);
    	
-    //Second user
-   	
-   	HBox suserHBox = new HBox(60);
-	suserHBox.setPadding(new Insets(3,0,3,15));
-	suserHBox.getStyleClass().add("users");
-	Circle u2Circle=new Circle();
-	u2Circle.setRadius(15);
-	u2Circle.setFill(new ImagePattern(img));
+    HBox firstUserHBox = new HBox(60);
+   	userHBox.getChildren().addAll(userNameLabel,userSurnameLabel,userEmailLabel,userBirthdayLabel
+   			,userGenderLabel,userStateLabel,userAddressLabel,userPhoneNumberLabel);
+   	firstUserHBox.getChildren().addAll(circle,userHBox);
+   	firstUserHBox.setPadding(new Insets(0,0,0,15));
     
-   	Label u2Lbl1 = new Label("Name");
-	u2Lbl1.setPadding(new Insets(4,20,0,30));
-	u2Lbl1.setMinWidth(60);
-	Label u2Lbl2 = new Label("Trainers");
-	u2Lbl2.setPadding(new Insets(4,0,0,0));
-	u2Lbl2.setMinWidth(60);
-	Label u2Lbl3 = new Label("Email");
-	u2Lbl3.setPadding(new Insets(4,0,0,0));
-    u2Lbl3.setMinWidth(60);
-   	Label u2Lbl4 = new Label("Website");
-	u2Lbl4.setPadding(new Insets(4,0,0,0));
-    u2Lbl4.setMinWidth(60);
-   	Label u2Lbl5 = new Label("Address");
-	u2Lbl5.setPadding(new Insets(4,0,0,0));
-    u2Lbl5.setMinWidth(60);
+  //Second user
+    
+  	HBox user2HBox = new HBox(60);
+  	user2HBox.setPadding(new Insets(3,0,3,30));
+  	Circle user2Circle=new Circle();
+  	user2Circle.setRadius(15);
+  	user2Circle.setFill(new ImagePattern(img));
+  	 
+  	Label user2NameLabel = new Label("First name");
+  	user2NameLabel.setMinWidth(60);
+  	user2NameLabel.getStyleClass().add("fonts");
+  	Label user2SurnameLabel = new Label("Last name");
+  	user2SurnameLabel.getStyleClass().add("fonts");
+  	user2SurnameLabel.setMinWidth(60);
+    Label user2EmailLabel = new Label("Email");
+    user2EmailLabel.getStyleClass().add("fonts");
+    user2EmailLabel.setMinWidth(60);
+    Label user2BirthdayLabel = new Label("Birthday");
+    user2BirthdayLabel.getStyleClass().add("fonts");
+    user2BirthdayLabel.setMinWidth(60);
+    Label user2GenderLabel = new Label("Gender");
+    user2GenderLabel.getStyleClass().add("fonts");
+    user2GenderLabel.setMinWidth(60);
+    Label user2StateLabel = new Label("State");
+    user2StateLabel.getStyleClass().add("fonts");
+    user2StateLabel.setMinWidth(60);
+    Label user2AddressLabel = new Label("Address");
+    user2AddressLabel.getStyleClass().add("fonts");
+    user2AddressLabel.setMinWidth(60);
+    Label user2PhoneNumberLabel = new Label("Phone Number");
+    user2PhoneNumberLabel.getStyleClass().add("fonts");
+    user2PhoneNumberLabel.setMinWidth(60);
+     	
+      HBox secondUserHBox = new HBox(60);
+     	user2HBox.getChildren().addAll(user2NameLabel,user2SurnameLabel,user2EmailLabel,user2BirthdayLabel
+     			,user2GenderLabel,user2StateLabel,user2AddressLabel,user2PhoneNumberLabel);
+     	secondUserHBox.getChildren().addAll(user2Circle,user2HBox);
+     	secondUserHBox.setPadding(new Insets(0,0,0,15));
    	
     //Third user
-   	
-   	HBox thUserHBox = new HBox(60);
-	thUserHBox.setPadding(new Insets(3,0,3,15));
-	thUserHBox.getStyleClass().add("users");
-	Circle u3Circle=new Circle();
-	u3Circle.setRadius(15);
-	u3Circle.setFill(new ImagePattern(img));
-    
-   	Label u3Lbl1 = new Label("Name");
-	u3Lbl1.setPadding(new Insets(4,22,0,30));
-	Label u3Lbl2 = new Label("Trainers");
-	u3Lbl2.setPadding(new Insets(4,4,0,0));
-	u3Lbl2.setAlignment(Pos.CENTER);
-   	Label u3Lbl3 = new Label("Email");
-	u3Lbl3.setPadding(new Insets(4,0,0,0));
-   	u3Lbl3.setMinWidth(60);
-   	Label u3Lbl4 = new Label("Website");
-	u3Lbl4.setPadding(new Insets(4,0,0,0));
-	u3Lbl4.setMinWidth(60);
-   	Label u3Lbl5 = new Label("Address");
-	u3Lbl5.setPadding(new Insets(4,0,0,0));
-    u3Lbl5.setMinWidth(60);
-   	
-   	userHBox.getChildren().addAll(circle,uLbl1,uLbl2,uLbl3,uLbl4,uLbl5);
-   	suserHBox.getChildren().addAll(u2Circle,u2Lbl1,u2Lbl2,u2Lbl3,u2Lbl4,u2Lbl5);
-   	thUserHBox.getChildren().addAll(u3Circle,u3Lbl1,u3Lbl2,u3Lbl3,u3Lbl4,u3Lbl5);
+     	//Second user
+        
+      	HBox user3HBox = new HBox(60);
+      	user3HBox.setPadding(new Insets(3,0,3,30));
+      	Circle user3Circle=new Circle();
+      	user3Circle.setRadius(15);
+      	user3Circle.setFill(new ImagePattern(img));
+      	 
+      	Label user3NameLabel = new Label("First name");
+      	user3NameLabel.setMinWidth(60);
+      	user3NameLabel.getStyleClass().add("fonts");
+      	Label user3SurnameLabel = new Label("Last name");
+      	user3SurnameLabel.getStyleClass().add("fonts");
+      	user3SurnameLabel.setMinWidth(60);
+        Label user3EmailLabel = new Label("Email");
+        user3EmailLabel.getStyleClass().add("fonts");
+        user3EmailLabel.setMinWidth(60);
+        Label user3BirthdayLabel = new Label("Birthday");
+        user3BirthdayLabel.getStyleClass().add("fonts");
+        user3BirthdayLabel.setMinWidth(60);
+        Label user3GenderLabel = new Label("Gender");
+        user3GenderLabel.getStyleClass().add("fonts");
+        user3GenderLabel.setMinWidth(60);
+        Label user3StateLabel = new Label("State");
+        user3StateLabel.getStyleClass().add("fonts");
+        user3StateLabel.setMinWidth(60);
+        Label user3AddressLabel = new Label("Address");
+        user3AddressLabel.getStyleClass().add("fonts");
+        user3AddressLabel.setMinWidth(60);
+        Label user3PhoneNumberLabel = new Label("Phone Number");
+        user3PhoneNumberLabel.getStyleClass().add("fonts");
+        user3PhoneNumberLabel.setMinWidth(60);
+         	
+          HBox thirdUserHBox = new HBox(60);
+         	user3HBox.getChildren().addAll(user3NameLabel,user3SurnameLabel,user3EmailLabel,user3BirthdayLabel
+         			,user3GenderLabel,user3StateLabel,user3AddressLabel,user3PhoneNumberLabel);
+         	thirdUserHBox.getChildren().addAll(user3Circle,user3HBox);
+         	thirdUserHBox.setPadding(new Insets(0,0,0,15));
 
 	
-	userHBox.getStyleClass().add("fonts");
-	userHBox.getStyleClass().add("users");
+   	firstUserHBox.getStyleClass().add("fonts");
+   	firstUserHBox.getStyleClass().add("users");
 	
-	suserHBox.getStyleClass().add("fonts");
-	suserHBox.getStyleClass().add("users");
+   	secondUserHBox.getStyleClass().add("fonts");
+   	secondUserHBox.getStyleClass().add("users");
 
-	thUserHBox.getStyleClass().add("fonts");
-	thUserHBox.getStyleClass().add("users");
+   	thirdUserHBox.getStyleClass().add("fonts");
+   	thirdUserHBox.getStyleClass().add("users");
 	
-	vbox.getChildren().addAll(tHeader,userHBox,suserHBox,thUserHBox);
+	vbox.getChildren().addAll(tHeader,firstUserHBox,secondUserHBox,thirdUserHBox);
 	vbox.setPadding(new Insets(20,20,20,20));
 	vbox.getStyleClass().add("mainContent");
 	return vbox; 
