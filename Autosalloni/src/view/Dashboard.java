@@ -11,6 +11,7 @@ import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.PieChart;
 import javafx.scene.chart.XYChart;
+import javafx.scene.chart.XYChart.Data;
 import javafx.scene.chart.XYChart.Series;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
@@ -21,12 +22,6 @@ import javafx.scene.paint.Color;
 public class Dashboard {
 
 	public static VBox display() {
-
-//		ObservableList<PieChart.Data> usersChartData = 
-//				FXCollections.observableArrayList(
-//						new PieChart.Data("Total", 75),
-//						new PieChart.Data("This Month", 25));
-		
 		
 		ObservableList<PieChart.Data> usersChartData= FXCollections.observableArrayList();
 		usersChartData.add(new PieChart.Data("Total", 75));
@@ -35,8 +30,6 @@ public class Dashboard {
 		PieChart usersPieChart = new PieChart(usersChartData);
 		usersPieChart.setTitle("Users");
 
-
-		
 		ObservableList<PieChart.Data> carsChartData= FXCollections.observableArrayList();
 		carsChartData.add(new PieChart.Data("Total", 75));
 		carsChartData.add(new PieChart.Data("This Month", 25));
@@ -44,19 +37,12 @@ public class Dashboard {
 		PieChart carsPieChart = new PieChart(carsChartData);
 		carsPieChart.setTitle("Cars");
 
-
 		HBox pieChartBox = new HBox(20);
 		pieChartBox.setAlignment(Pos.CENTER);
 		pieChartBox.getChildren().addAll(usersPieChart, carsPieChart);
-
-		
-		
-		
-		
-		
 		
 		NumberAxis xAxis = new NumberAxis();
-		xAxis.setLabel("Year");
+		xAxis.setLabel("Month");
 		xAxis.setAutoRanging(false);
 		xAxis.setLowerBound(1);
 		xAxis.setUpperBound(12);
@@ -69,18 +55,18 @@ public class Dashboard {
         profitChart.setTitle("Profit in year " + Calendar.getInstance().get(Calendar.YEAR));
         
 	    Series<Number, Number> profitChartData = new Series<Number, Number>();	
-		profitChartData.getData().add(new XYChart.Data(1, 23));
-		profitChartData.getData().add(new XYChart.Data(2, 12));
-		profitChartData.getData().add(new XYChart.Data(3, 50));
-		profitChartData.getData().add(new XYChart.Data(4, 10));
-		profitChartData.getData().add(new XYChart.Data(5, 5));
-		profitChartData.getData().add(new XYChart.Data(6, 30));
-		profitChartData.getData().add(new XYChart.Data(7, 55));
-		profitChartData.getData().add(new XYChart.Data(8, 70));
-		profitChartData.getData().add(new XYChart.Data(9, 62));
-		profitChartData.getData().add(new XYChart.Data(10, 11));
-		profitChartData.getData().add(new XYChart.Data(11, 0));
-		profitChartData.getData().add(new XYChart.Data(12, 12));
+		profitChartData.getData().add(new Data<Number, Number>(1, 23));
+		profitChartData.getData().add(new Data<Number, Number>(2, 12));
+		profitChartData.getData().add(new Data<Number, Number>(3, 30));
+		profitChartData.getData().add(new Data<Number, Number>(4, 40));
+		profitChartData.getData().add(new Data<Number, Number>(5, 12));
+		profitChartData.getData().add(new Data<Number, Number>(6, 50));
+		profitChartData.getData().add(new Data<Number, Number>(7, 55));
+		profitChartData.getData().add(new Data<Number, Number>(8, 70));
+		profitChartData.getData().add(new Data<Number, Number>(9, 62));
+		profitChartData.getData().add(new Data<Number, Number>(10, 11));
+		profitChartData.getData().add(new Data<Number, Number>(11, 0));
+		profitChartData.getData().add(new Data<Number, Number>(12, 12));
 
 		profitChart.getData().add(profitChartData);
 		
