@@ -1,0 +1,36 @@
+.forgotPassBtn
+{
+    -fx-background-color: transparent;
+    -fx-border: none;
+    -fx-padding: 15px 32px;
+}
+.forgotPassBtn:hover , .forgotPassBtn:focus
+{
+    -fx-background-color: -fx-shadow-highlight-color, -fx-body-color;
+    -fx-background-insets:  0, 0, 1, 1;
+    -fx-background-radius: 1px, 1px, 1px, 1px;
+    -fx-text-fill: -fx-text-base-color;
+}
+
+#passField {
+  -fx-background-image:url('//icons/eye.png');
+  -fx-background-repeat: no-repeat;
+  -fx-background-position: right center;
+  -fx-font-size: 20;
+}
+
+.signUpBtn
+{
+    -fx-background-color: transparent;
+    -fx-border: none;
+	-fx-padding:0 5px 5px 10px;
+    -fx-text-decoration: underline;
+	-fx-text-fill:#5DA4C7;
+}
+.signUpBtn:hover, .signUpBtn:focus 
+{
+    -fx-background-color: #4E87A6;
+    -fx-background-insets:  0, 0, 1, 1;
+    -fx-background-radius: 1px, 1px, 1px, 1px;
+    -fx-text-fill: white;
+}
