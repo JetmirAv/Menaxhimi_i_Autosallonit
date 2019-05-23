@@ -24,29 +24,29 @@ public class Stores {
 		
 		// Declare Photos
 		 
-		 FileInputStream storePhoto,cityPhoto,postalPhoto,routePhoto;
-		 storePhoto = new FileInputStream(current + "/src/img/warehouse.png");
-		 cityPhoto = new FileInputStream(current + "/src/img/city.png");
-		 postalPhoto = new FileInputStream(current + "/src/img/postal.png");
-		 routePhoto = new FileInputStream(current + "/src/img/route.png");
+		     FileInputStream storePhoto,cityPhoto,postalPhoto,routePhoto;
+		     storePhoto = new FileInputStream(current + "/src/img/warehouse.png");
+		     cityPhoto = new FileInputStream(current + "/src/img/city.png");
+		     postalPhoto = new FileInputStream(current + "/src/img/postal.png");
+		     routePhoto = new FileInputStream(current + "/src/img/route.png");
 	 	 
-	 	// Object of icons
-         Image storeObj = new Image(storePhoto);   	 
-         Image cityObj = new Image(cityPhoto);
-         Image postalObj = new Image(postalPhoto);
-         Image routeObj = new Image(routePhoto);
+	 	  // Object of icons
+             Image storeObj = new Image(storePhoto);   	 
+             Image cityObj = new Image(cityPhoto);
+             Image postalObj = new Image(postalPhoto);
+             Image routeObj = new Image(routePhoto);
          
     	 
     	 
-    	     VBox paneForPhoto1 = new VBox(15);
-    	     Label totalNumberOfStorage = new Label("NUMBER OF STORAGE : 10");
-    	     totalNumberOfStorage.setStyle("-fx-text-fill:black ; -fx-font-size:12px;");
-    	     TextField textFieldSearch = new TextField ();
-    	     textFieldSearch.setPromptText("Search...");
-    	     StackPane spForIcon = new StackPane();
-    	     spForIcon.getChildren().add(textFieldSearch);
-    	     textFieldSearch.setMaxWidth(150);
-    	     textFieldSearch.setId("textField");
+    	      VBox paneForPhoto1 = new VBox(15);
+    	      Label totalNumberOfStorage = new Label("NUMBER OF STORAGE : 10");
+    	      totalNumberOfStorage.setStyle("-fx-text-fill:black ; -fx-font-size:12px;");
+    	      TextField textFieldSearch = new TextField ();
+    	      textFieldSearch.setPromptText("Search...");
+    	      StackPane spForIcon = new StackPane();
+    	      spForIcon.getChildren().add(textFieldSearch);
+    	      textFieldSearch.setMaxWidth(150);
+    	      textFieldSearch.setId("textField");
     	     
     	      	 
              
@@ -54,11 +54,11 @@ public class Stores {
             ImageView image = new ImageView(storeObj);  
     	     
     	 	// Inside the First Photo 
-    	     VBox vbPane = new VBox();
-    		     GridPane gridFirstContent = new GridPane();
-    		     gridFirstContent.setPadding(new Insets(10,10,10,10));
-    		     gridFirstContent.setVgap(25);
-    		     gridFirstContent.setHgap(17);
+    	      VBox vbPane = new VBox();
+    		  GridPane gridFirstContent = new GridPane();
+    		  gridFirstContent.setPadding(new Insets(10,10,10,10));
+    		  gridFirstContent.setVgap(25);
+    		  gridFirstContent.setHgap(17);
     	        
     	      Label storage = new Label("STORAGE");
     	      storage.setFont(Font.font("Arial", FontWeight.BOLD,15));
@@ -376,7 +376,7 @@ public class Stores {
     	     paneFirstRow.getChildren().addAll(paneForPhoto1,paneForPhoto2,pane3,pane4,pane5);
     	     
     	     VBox finalVbox = new VBox(10);
-    	     finalVbox.getChildren().addAll(paneFirstRow);
+    	     finalVbox.getChildren().addAll(totalCars,searchAndLocation,paneFirstRow);
   
 	         paneFirstRow.getStylesheets().add(Header.class.getResource("cars.css").toExternalForm());
 

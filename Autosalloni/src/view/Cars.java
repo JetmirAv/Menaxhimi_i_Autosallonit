@@ -24,35 +24,37 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 public class Cars {
 	
-	public static VBox display(String current) throws IOException {
+	    public static VBox display(String current) throws IOException {
 	
 	     
 
 		// Declare Photos
 		 
-		 FileInputStream carPhoto,iconFuels,gearsPhoto,wheelPhoto;
-	 	 carPhoto = new FileInputStream(current + "/src/img/car1.png");
-	 	 iconFuels = new FileInputStream(current + "/src/img/iconFuels.png");
-	 	 gearsPhoto = new FileInputStream(current + "/src/img/gears.png");
-	 	 wheelPhoto = new FileInputStream(current + "/src/img/wheel.png");
+		    FileInputStream carPhoto,iconFuels,gearsPhoto,wheelPhoto,searchIcon;
+	 	    carPhoto = new FileInputStream(current + "/src/img/car1.png");
+	 	    iconFuels = new FileInputStream(current + "/src/img/iconFuels.png");
+	 	    gearsPhoto = new FileInputStream(current + "/src/img/gears.png");
+	 	    wheelPhoto = new FileInputStream(current + "/src/img/wheel.png");
+	 	    searchIcon = new FileInputStream(current + "/src/img/search.png");
 	 	 
 	 	// Object of icons
-         Image carObj = new Image(carPhoto);   	 
-         Image iconFuelsObj = new Image(iconFuels);
-         Image gearsPhotoObj = new Image(gearsPhoto);
-         Image wheelPhotoObj = new Image(wheelPhoto);
+            Image carObj = new Image(carPhoto);   	 
+            Image iconFuelsObj = new Image(iconFuels);
+            Image gearsPhotoObj = new Image(gearsPhoto);
+            Image wheelPhotoObj = new Image(wheelPhoto);
+            Image iconForSearch = new Image(searchIcon);
          
     	 
     	 
-    	     VBox paneForPhoto1 = new VBox(15);
-    	     Label totalNumbersOfCars = new Label("Total numbers of cars : 78 CARS");
-    	     totalNumbersOfCars.setStyle("-fx-text-fill:black ; -fx-font-size:12px;");
-    	     TextField textFieldSearch = new TextField ();
-    	     textFieldSearch.setPromptText("Search...");
-    	     StackPane spForIcon = new StackPane();
-    	     spForIcon.getChildren().add(textFieldSearch);
-    	     textFieldSearch.setMaxWidth(150);
-    	     textFieldSearch.setId("textField");
+    	    VBox paneForPhoto1 = new VBox(15);
+    	    Label totalNumbersOfCars = new Label("Total numbers of cars : 78 CARS");
+    	    totalNumbersOfCars.setStyle("-fx-text-fill:black ; -fx-font-size:12px;");
+    	    TextField textFieldSearch = new TextField ();
+    	    textFieldSearch.setPromptText("Search...");
+    	    StackPane spForIcon = new StackPane();
+    	    spForIcon.getChildren().add(textFieldSearch);
+    	    textFieldSearch.setMaxWidth(150);
+       	    textFieldSearch.setId("textField");
     	     
     	      	 
              
@@ -61,15 +63,15 @@ public class Cars {
     	     
     	 	// Inside the First Photo 
     	     VBox vbPane = new VBox();
-    		     GridPane gridFirstContent = new GridPane();
-    		     gridFirstContent.setPadding(new Insets(10,10,10,10));
-    		     gridFirstContent.setVgap(25);
-    		     gridFirstContent.setHgap(17);
+    		 GridPane gridFirstContent = new GridPane();
+    	     gridFirstContent.setPadding(new Insets(10,10,10,10));
+    	     gridFirstContent.setVgap(25);
+    		 gridFirstContent.setHgap(17);
     	        
-    	      Label carView = new Label("CAR VIEW");
-    	      carView.setFont(Font.font("Arial", FontWeight.BOLD,15));
-    	      gridFirstContent.getStyleClass().add("firstContent");
-    	      gridFirstContent.setConstraints(carView,0,0);
+    	     Label carView = new Label("CAR VIEW");
+    	     carView.setFont(Font.font("Arial", FontWeight.BOLD,15));
+    	     gridFirstContent.getStyleClass().add("firstContent");
+    	     gridFirstContent.setConstraints(carView,0,0);
     	     
     	    // IconFuel
     	     HBox iconAtLabel1 = new HBox(7);
@@ -383,7 +385,7 @@ public class Cars {
     	     paneFirstRow.getChildren().addAll(paneForPhoto1,paneForPhoto2,pane3,pane4,pane5);
     	     
     	     VBox finalVbox = new VBox(10);
-    	     finalVbox.getChildren().addAll(paneFirstRow);
+    	     finalVbox.getChildren().addAll(totalCars,searchAndLocation,paneFirstRow);
   
 	         paneFirstRow.getStylesheets().add(Header.class.getResource("cars.css").toExternalForm());
 
