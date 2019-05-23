@@ -8,15 +8,24 @@
 .userBox {
 }
 .userFullName {
-	-fx-font-size: 18px;
+	-fx-font-size: 160%;
 	-fx-font-weight: 300;
 }
 .userRole {
-	-fx-font-size: 12px;
+	-fx-font-size: 100%;
 	-fx-font-weight: 200;	
 }
 
 .logOut {
 	-fx-background-color: black;
 	-fx-padding: 200px;
+}
+
+.filterText {
+	-fx-font-size: 18px;
+}
+
+.dashboardText {
+	-fx-font-family: "Titillium Web";
+	-fx-font-size:250%;
 }

@@ -1,19 +1,15 @@
 package view;
 
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
 import java.io.FileInputStream;
 import java.io.IOException;
 
-import javafx.css.*;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 
@@ -35,7 +31,9 @@ public class Sidebar {
 		
 		HBox hbox = new HBox();
 		Image logoImg = new Image(logoPath);
-		hbox.getChildren().add(new ImageView(logoImg));
+		ImageView logoImgView = new ImageView(logoImg);
+		logoImgView.setPreserveRatio(true);
+		hbox.getChildren().add(logoImgView);
 		hbox.setPrefWidth(200);
 		hbox.setPrefHeight(80);
 		hbox.getStyleClass().add("logoImg");
@@ -114,17 +112,42 @@ public class Sidebar {
 		settingsBtn.getStyleClass().add("sideBarBtn");
 		
 		
+		VBox menuBox = new VBox(10);
+		menuBox.setStyle("-fx-background-color:#EFF0F3");
+		menuBox.getChildren().addAll(dashboardBtn,librariesLbl,storesBtn,carsBtn,clientsLbl,usersBtn,manufacturersBtn,reportsBtn,settingsBtn);
 		
-		VBox vbox = new VBox(7);
-		//vbox.getChildren().add(new ImageView(logoImg));
-		vbox.setPadding(new Insets(25, 5, 5, 15));
-		vbox.getChildren().addAll(hbox,dashboardBtn,librariesLbl,storesBtn,carsBtn,clientsLbl,usersBtn,manufacturersBtn,reportsBtn,settingsBtn);		
-		vbox.setStyle("-fx-background-color:#EFF0F3");
-		vbox.getStylesheets().add(Sidebar.class.getResource("sideBar.css").toExternalForm());
+		VBox sideBar = new VBox(30);
+		sideBar.setAlignment(Pos.TOP_CENTER);
+		
+		//sideBar.getChildren().add(new ImageView(logoImg));
+		sideBar.setPadding(new Insets(25, 5, 5, 15));
+		sideBar.getChildren().addAll(logoImgView, menuBox);		
+		sideBar.setStyle("-fx-background-color:#EFF0F3");
+		sideBar.getStylesheets().add(Sidebar.class.getResource("sideBar.css").toExternalForm());
 
-	
-	
-		return vbox;
+		
+		//Responsive
+		menuBox.prefWidthProperty().bind(sideBar.widthProperty().divide(20).multiply(19));
+		hbox.prefWidthProperty().bind(menuBox.widthProperty());
+		logoImgView.fitWidthProperty().bind(hbox.widthProperty().divide(4));
+		carsBtn.prefWidthProperty().bind(menuBox.widthProperty().subtract(5));
+		dashboardBtn.prefWidthProperty().bind(menuBox.widthProperty().subtract(5));
+		storesBtn.prefWidthProperty().bind(menuBox.widthProperty().subtract(5));
+		usersBtn.prefWidthProperty().bind(menuBox.widthProperty().subtract(5));
+		manufacturersBtn.prefWidthProperty().bind(menuBox.widthProperty().subtract(5));
+		settingsBtn.prefWidthProperty().bind(menuBox.widthProperty().subtract(5));
+		reportsBtn.prefWidthProperty().bind(menuBox.widthProperty().subtract(5));
+		
+//		userHBox.prefWidthProperty().bind(header.widthProperty().divide(7));
+//		userHBox.prefHeightProperty().bind(header.widthProperty());
+//		userBox.prefWidthProperty().bind(userHBox.widthProperty().divide(5).multiply(4));
+//		profileCir.radiusProperty().bind(userHBox.widthProperty().divide(6));
+//		userFullName.scaleXProperty().bind(userBox.widthProperty().divide(100));
+//		userRole.scaleXProperty().bind(userBox.widthProperty().divide(100));
+
+		
+		
+		return sideBar;
 	
 	}
 
