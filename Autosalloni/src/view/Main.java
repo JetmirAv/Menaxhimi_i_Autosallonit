@@ -1,5 +1,7 @@
 package view;
 
+import java.io.IOException;
+
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
@@ -18,7 +20,7 @@ public class Main extends Application {
 			content.getChildren().addAll(
 					Header.display("Jetmir Avdullahu", "Super Admin", current),
 					Filter.display(Main.class.getName()),
-					Dashboard.display(),
+					SignUp.display(current),
 					Pagination.display(122));
 //			mainWindow.setTop(Header.display("Jetmir Avdullahu", "Super Admin", current));	
 //	        mainWindow.setCenter(MainComponent.display("Name" , "Trainers","Email","Website","Address",current));
@@ -39,8 +41,7 @@ public class Main extends Application {
 		primaryStage.show();
 	}
 	
-	public static void main(String[] args) {
-
+	public static void main(String[] args) throws IOException {
 		launch(args);
 	}
 

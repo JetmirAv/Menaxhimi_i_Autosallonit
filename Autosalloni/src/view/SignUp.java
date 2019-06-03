@@ -17,6 +17,12 @@ import javafx.scene.text.Text;
 
 public class SignUp {
 	
+	public static TextField nameField;
+	public static TextField lastnameField;
+	public static TextField emailField;
+	public static TextField passField;
+	
+	
 	public static VBox display(String current) throws IOException
 	{
 		FileInputStream autoPath = new FileInputStream(current + "/src/img/auto.png");
@@ -31,10 +37,10 @@ public class SignUp {
 		vbox.setAlignment(Pos.CENTER);
 
 		HBox hbox = new HBox();
-		TextField nameField = new TextField();
+		nameField = new TextField();
 		nameField.setPromptText("First Name");
 		nameField.setPrefWidth(237);
-		TextField lastnameField = new TextField();
+		lastnameField = new TextField();
 		lastnameField.setPromptText("Last Name");
 		lastnameField.setPrefWidth(237);
 		hbox.getChildren().addAll(nameField,lastnameField);
@@ -43,14 +49,14 @@ public class SignUp {
 		vbox.getChildren().add(hbox);
 
 		
-		TextField emailField = new TextField();
+		emailField = new TextField();
 		emailField.setPromptText("Email");
 		emailField.setPrefWidth(500);
 		emailField.setMaxWidth(500);
 		vbox.getChildren().add(emailField);
 
 		
-		TextField passField = new TextField();
+		passField = new TextField();
 		passField.setPromptText("Password");
 		passField.setPrefWidth(500);
 		passField.setMaxWidth(500);
@@ -75,6 +81,8 @@ public class SignUp {
 		signInBtn.setCursor(Cursor.HAND);
 		});
 		
+		signUpBtn.setOnAction(new controller.SignUpController());
+		
 		signInBtn.setStyle("    -fx-background-color: transparent;\r\n" + 
 				"    -fx-border: none;\r\n" + 
 				"	-fx-padding:0 5px 5px 10px;\r\n" +  
@@ -87,8 +95,6 @@ public class SignUp {
 				"    -fx-background-position: center center;\r\n" + 
 				"    -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0); \r\n" + 
 				"");
-		
-		
 		return vbox;
 	}
 

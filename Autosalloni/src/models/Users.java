@@ -1,8 +1,11 @@
 package models;
-import java.util.Date;
 
-public class Users 
-{
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+
+public class Users {
 	private int id;
 	private int roleId;
 	private String name;
@@ -18,12 +21,10 @@ public class Users
 	private String phoneNumber;
 	private Date createdAt;
 	private Date updatetimedAt;
-	
-	
-	public Users(int id, int roleId, String name, String surname, String email, String password, Date birthday, char gendre,
-					String address, String city, String state, String postal, String phoneNumber, Date createdAt,
-					Date updatetimedAt) 
-	{
+
+	public Users(int id, int roleId, String name, String surname, String email, String password, Date birthday,
+			char gendre, String address, String city, String state, String postal, String phoneNumber, Date createdAt,
+			Date updatetimedAt) {
 		this.id = id;
 		this.roleId = roleId;
 		this.name = name;
@@ -40,167 +41,188 @@ public class Users
 		this.createdAt = createdAt;
 		this.updatetimedAt = updatetimedAt;
 	}
-	
-	
-	public int getId()
-	{
+
+	public int getId() {
 		return id;
 	}
-	
-	public void setId(int id)
-	{
+
+	public void setId(int id) {
 		this.id = id;
 	}
-	
-	public int getRoleId() 
-	{
+
+	public int getRoleId() {
 		return roleId;
 	}
-	
-	public void setRoleId(int roleId)
-	{
+
+	public void setRoleId(int roleId) {
 		this.roleId = roleId;
 	}
-	
-	public String getName()
-	{
+
+	public String getName() {
 		return name;
 	}
-	
-	public void setName()
-	{
+
+	public void setName() {
 		this.name = name;
 	}
-	
-	public String getSurname() 
-	{
+
+	public String getSurname() {
 		return surname;
 	}
-	
-	public void setSurname(String surname)
-	{
+
+	public void setSurname(String surname) {
 		this.surname = surname;
 	}
-	
-	public String getEmail()
-	{
+
+	public String getEmail() {
 		return email;
 	}
-	
-	public void setEmail(String email)
-	{
+
+	public void setEmail(String email) {
 		this.email = email;
 	}
-	
-	public String getPassword()
-	{
+
+	public String getPassword() {
 		return password;
 	}
-	
-	public void setPassword(String password)
-	{
+
+	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-	public Date getBirthday() 
-	{
+
+	public Date getBirthday() {
 		return birthday;
 	}
-	
-	public void setBirthday(Date birthday) 
-	{
+
+	public void setBirthday(Date birthday) {
 		this.birthday = birthday;
 	}
-	
-	public char getGendre() 
-	{
+
+	public char getGendre() {
 		return gendre;
 	}
-	
-	public void setGendre(char gendre)
-	{
+
+	public void setGendre(char gendre) {
 		this.gendre = gendre;
 	}
-	
-	public String getAddress()
-	{
+
+	public String getAddress() {
 		return address;
 	}
-	
-	public void setAddress(String address)
-	{
+
+	public void setAddress(String address) {
 		this.address = address;
 	}
-	
-	public String getCity()
-	{
+
+	public String getCity() {
 		return city;
 	}
-	
-	public void setCity(String city)
-	{
+
+	public void setCity(String city) {
 		this.city = city;
 	}
-	
-	public String getState() 
-	{
+
+	public String getState() {
 		return state;
 	}
-	
-	public void setState(String state) 
-	{
+
+	public void setState(String state) {
 		this.state = state;
 	}
-	
-	public String getPostal() 
-	{
+
+	public String getPostal() {
 		return postal;
 	}
-	
-	public void setPostal(String postal) 
-	
+
+	public void setPostal(String postal)
+
 	{
 		this.postal = postal;
 	}
-	
-	public String getPhoneNumber()
-	{
+
+	public String getPhoneNumber() {
 		return phoneNumber;
 	}
-	
-	public void setPhoneNumber(String phoneNumber) 
-	{
+
+	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
-	
-	public Date getCreatedAt()
-	{
+
+	public Date getCreatedAt() {
 		return createdAt;
 	}
-	
-	public void setCreatedAt(Date createdAt) 
-	{
+
+	public void setCreatedAt(Date createdAt) {
 		this.createdAt = createdAt;
 	}
-	
-	public Date updatetimedAt() 
-	{
+
+	public Date updatetimedAt() {
 		return updatetimedAt;
 	}
-	
-	public void setUpdatedAt(Date updatetimedAt)
-	{
+
+	public void setUpdatedAt(Date updatetimedAt) {
 		this.updatetimedAt = updatetimedAt;
 	}
-	
-	
+
 	@Override
-	public String toString() 
-	{
+	public String toString() {
 		return "Users [id=" + id + ", roleId=" + roleId + ", surname=" + surname + ", email=" + email + ", password="
 				+ password + ", birthday=" + birthday + ", gendre=" + gendre + ", address=" + address + ", city=" + city
 				+ ", state=" + state + ", postal=" + postal + ", phoneNumber=" + phoneNumber + ", createdAt="
 				+ createdAt + ", updatetimedAt=" + updatetimedAt + "]";
 	}
 
+	public static boolean create(String name, String surname, String email, String password, Date birthday, String gendre,
+			String address, String city, String state, String postal, String phoneNumber) throws SQLException {
+		
+		String query = "insert into users (roleId, name, surname, email, password," + 
+				" birthday, gendre, address, city, state, postal, phoneNumber) values (?,?,?,?,?,?,?,?,?,?,?,?)";
+		PreparedStatement stm = DatabaseConfig.getConnection().prepareStatement(query);
+		
+		stm.setInt(1, 2);
+		stm.setString(2,name);
+		stm.setString(3,surname);
+		stm.setString(4,email);
+		stm.setString(5,password);
+		stm.setDate(6, birthday);
+		stm.setString(7, gendre);
+		stm.setString(8,address);
+		stm.setString(9,city);
+		stm.setString(10,state);
+		stm.setString(11,postal);
+		stm.setString(12,phoneNumber);
+		
+		return stm.executeUpdate() > 0;
+	}
+	public static boolean update(int id, String name, String surname, String email, String password, Date birthday, String gendre,
+			String address, String city, String state, String postal, String phoneNumber) throws SQLException {
+		
+		String query = "update users set name=?, surname=?, email=?, password=?," + 
+				" birthday=?, gendre=?, address=?, city=?, state=?, postal=?, phoneNumber=? where id = ?";
+		PreparedStatement stm = DatabaseConfig.getConnection().prepareStatement(query);
+		
+		stm.setInt(1, 2);
+		stm.setString(2,name);
+		stm.setString(3,surname);
+		stm.setString(4,email);
+		stm.setString(5,password);
+		stm.setDate(6, birthday);
+		stm.setString(7, gendre);
+		stm.setString(8,address);
+		stm.setString(9,city);
+		stm.setString(10,state);
+		stm.setString(11,postal);
+		stm.setString(12,phoneNumber);
+		stm.setInt(13,id);
+		
+		return stm.executeUpdate() > 0;
+	}
+
+	public static boolean delete(int id) throws SQLException {
+		String query = "delete from users where id = ?";
+		PreparedStatement stm = DatabaseConfig.getConnection().prepareStatement(query);
+		stm.setInt(1, id);
+		return stm.executeUpdate() > 0;
+	}
+	
 }
