@@ -1,19 +1,22 @@
 package models;
 
+import java.util.Date;
+
 public class FuelType {
 
 	private int id;
 	private String name;
 	private String description;
-	private String createdAt;
-	private String updatetimedAt;
+	private Date createdAt;
+	private Date updatedAt;
+	
 	
 	public FuelType(int id, String name, String description, String createdAt, String updatetimedAt) {
 		this.id = id;
 		this.name = name;
 		this.description = description;
-		this.createdAt = createdAt;
-		this.updatetimedAt = updatetimedAt;
+		this.createdAt = new Date();
+		this.updatedAt = new Date();
 	}
 
 	public int getId() {
@@ -40,20 +43,20 @@ public class FuelType {
 		this.description = description;
 	}
 
-	public String getCreatedAt() {
+	public Date getCreatedAt() {
 		return createdAt;
 	}
 
-	public void setCreatedAt(String createdAt) {
+	public void setCreatedAt(Date createdAt) {
 		this.createdAt = createdAt;
 	}
 
-	public String getUpdatetimedAt() {
-		return updatetimedAt;
+	public Date getUpdatetimedAt() {
+		return updatedAt;
 	}
 
-	public void setUpdatetimedAt(String updatetimedAt) {
-		this.updatetimedAt = updatetimedAt;
+	public void setUpdatetimedAt(Date updatedAt) {
+		this.updatedAt = updatedAt;
 	}
 	
 	
