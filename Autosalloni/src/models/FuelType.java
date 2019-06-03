@@ -11,7 +11,7 @@ public class FuelType {
 	private Date updatedAt;
 	
 	
-	public FuelType(int id, String name, String description, String createdAt, String updatetimedAt) {
+	public FuelType(int id, String name, String description) {
 		this.id = id;
 		this.name = name;
 		this.description = description;

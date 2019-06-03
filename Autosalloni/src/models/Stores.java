@@ -1,4 +1,8 @@
 package models;
+
+import java.util.Date;
+
+
 public class Stores {
 	
 	private int id;
@@ -9,12 +13,11 @@ public class Stores {
 	private String postal;
 	private String state;
 	private String phoneNumber;
-	private String createdAt;
-	private String updatetimedAt;
+	private Date createdAt;
+	private Date updatedAt;
 	
 	
-	public Stores(int id, String name,String address, String route, String city, String postal, String state, String phoneNumber,
-			String createdAt, String updatetimedAt) {
+	public Stores(int id, String name,String address, String route, String city, String postal, String state, String phoneNumber) {
 		this.id = id;
 		this.name = name;
 		this.address=address;
@@ -23,8 +26,8 @@ public class Stores {
 		this.postal = postal;
 		this.state = state;
 		this.phoneNumber = phoneNumber;
-		this.createdAt = createdAt;
-		this.updatetimedAt = updatetimedAt;
+		this.createdAt = new Date();
+		this.updatedAt = new Date();
 	}
 
 	public String getAddress() {
@@ -107,23 +110,21 @@ public class Stores {
 	}
 
 
-	public String getCreatedAt() {
+	public Date getCreatedAt() {
 		return createdAt;
 	}
 
-
-	public void setCreatedAt(String createdAt) {
+	public void setCreatedAt(Date createdAt) {
 		this.createdAt = createdAt;
 	}
 
-
-	public String getUpdatetimedAt() {
-		return updatetimedAt;
+	public Date getUpdatedAt() {
+		return updatedAt;
 	}
 
-
-	public void setUpdatetimedAt(String updatetimedAt) {
-		this.updatetimedAt = updatetimedAt;
+	public void setUpdatedAt(Date updatedAt) {
+		this.updatedAt = updatedAt;
 	}
+
 	
 }
