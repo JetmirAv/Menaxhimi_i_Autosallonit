@@ -8,13 +8,8 @@ public class DatabaseConfig {
 	private static Connection dbConnection;	
 	private final static String host = "localhost";
 	private final static String user = "root";
-<<<<<<< HEAD
 	private final static String password = "Password1234!";
 	private final static String dbName = "proj_knk";
-=======
-	private final static String password = "";
-	private final static String dbName = "autosalloni";
->>>>>>> 2b9d3d59133830f4a5b73b38163fd07013ebd709
 	
 	public static Connection getConnection() {
 		if(dbConnection == null) {
