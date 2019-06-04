@@ -1,5 +1,6 @@
 package view;
 
+import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -40,7 +41,7 @@ public class Sidebar {
 		hbox.setPrefHeight(80);
 		hbox.getStyleClass().add("logoImg");
 		
-		Button dashboardBtn = new Button("Dashboard");
+		Button dashboardBtn = new Button("_Dashboard");
 		Image dashboardImg = new Image(dashboardPath);
 		ImageView dashboardView = new ImageView(dashboardImg);
 		dashboardBtn.setGraphic(dashboardView);
@@ -48,13 +49,16 @@ public class Sidebar {
 		dashboardBtn.setPrefHeight(50);
 		dashboardBtn.setAlignment(Pos.CENTER_LEFT);
 		dashboardBtn.getStyleClass().add("sideBarBtn");
+		dashboardBtn.setOnMouseEntered(e -> {
+			dashboardBtn.setCursor(Cursor.HAND);
+			});
 		
 		
 		
 		Label librariesLbl = new Label("Libraries");
 		librariesLbl.getStyleClass().add("sideBarLbl");
 		
-		Button storesBtn = new Button("Stores");
+		Button storesBtn = new Button("_Stores");
 		Image storesImg = new Image(storePath);
 		ImageView storesView = new ImageView(storesImg);
 		storesBtn.setGraphic(storesView);
@@ -62,8 +66,11 @@ public class Sidebar {
 		storesBtn.setPrefHeight(50);
 		storesBtn.setAlignment(Pos.CENTER_LEFT);
 		storesBtn.getStyleClass().add("sideBarBtn");
+		storesBtn.setOnMouseEntered(e -> {
+			storesBtn.setCursor(Cursor.HAND);
+			});
 		
-		Button carsBtn = new Button("Cars");
+		Button carsBtn = new Button("_Cars");
 		Image carImg = new Image(carPath);
 		ImageView carView = new ImageView(carImg);
 		carsBtn.setGraphic(carView);
@@ -71,12 +78,15 @@ public class Sidebar {
 		carsBtn.setPrefHeight(50);
 		carsBtn.setAlignment(Pos.CENTER_LEFT);
 		carsBtn.getStyleClass().add("sideBarBtn");
+		carsBtn.setOnMouseEntered(e -> {
+			carsBtn.setCursor(Cursor.HAND);
+			});
 		
 		
 		Label clientsLbl = new Label("Clients");
 		clientsLbl.getStyleClass().add("sideBarLbl");
 		
-		Button usersBtn = new Button("Users");
+		Button usersBtn = new Button("_Users");
 		Image usersImg = new Image(userPath);
 		ImageView usersView = new ImageView(usersImg);
 		usersBtn.setGraphic(usersView);
@@ -84,8 +94,11 @@ public class Sidebar {
 		usersBtn.setPrefHeight(50);
 		usersBtn.setAlignment(Pos.CENTER_LEFT);
 		usersBtn.getStyleClass().add("sideBarBtn");
+		usersBtn.setOnMouseEntered(e -> {
+			usersBtn.setCursor(Cursor.HAND);
+			});
 		
-		Button manufacturersBtn = new Button("Manufacturer");
+		Button manufacturersBtn = new Button("_Manufacturer");
 		Image manufacturerImg = new Image(manufacturerPath);
 		ImageView manufacturerView = new ImageView(manufacturerImg);
 		manufacturersBtn.setGraphic(manufacturerView);
@@ -94,8 +107,11 @@ public class Sidebar {
 		//Per me bo align ne te majt
 		manufacturersBtn.setAlignment(Pos.CENTER_LEFT);
 		manufacturersBtn.getStyleClass().add("sideBarBtn");
+		manufacturersBtn.setOnMouseEntered(e -> {
+			manufacturersBtn.setCursor(Cursor.HAND);
+			});
 		
-		Button reportsBtn = new Button("Reports");
+		Button reportsBtn = new Button("_Reports");
 		Image reportsImg = new Image(reportsPath);
 		ImageView reportsView = new ImageView(reportsImg);
 		reportsBtn.setGraphic(reportsView);
@@ -103,8 +119,11 @@ public class Sidebar {
 		reportsBtn.setPrefHeight(50);
 		reportsBtn.setAlignment(Pos.CENTER_LEFT);
 		reportsBtn.getStyleClass().add("sideBarBtn");
+		reportsBtn.setOnMouseEntered(e -> {
+			reportsBtn.setCursor(Cursor.HAND);
+			});
 		
-		Button settingsBtn = new Button("Settings");
+		Button settingsBtn = new Button("_Settings");
 		Image settingsImg = new Image(settingsPath);
 		ImageView settingsView = new ImageView(settingsImg);
 		settingsBtn.setGraphic(settingsView);
@@ -112,6 +131,9 @@ public class Sidebar {
 		settingsBtn.setPrefHeight(50);
 		settingsBtn.setAlignment(Pos.CENTER_LEFT);
 		settingsBtn.getStyleClass().add("sideBarBtn");
+		settingsBtn.setOnMouseEntered(e -> {
+			settingsBtn.setCursor(Cursor.HAND);
+			});
 		
 		
 		
@@ -121,10 +143,12 @@ public class Sidebar {
 		vbox.getChildren().addAll(hbox,dashboardBtn,librariesLbl,storesBtn,carsBtn,clientsLbl,usersBtn,manufacturersBtn,reportsBtn,settingsBtn);		
 		vbox.setStyle("-fx-background-color:#EFF0F3");
 		vbox.getStylesheets().add(Sidebar.class.getResource("sideBar.css").toExternalForm());
-
+		VBox sidebarVbox = new VBox();
+		sidebarVbox.getChildren().addAll(vbox);
+		sidebarVbox.setAlignment(Pos.CENTER_LEFT);
 	
 	
-		return vbox;
+		return sidebarVbox;
 	
 	}
 

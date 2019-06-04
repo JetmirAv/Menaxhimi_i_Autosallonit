@@ -1,5 +1,7 @@
 package models;
 
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.Date;
 
 
@@ -125,6 +127,62 @@ public class Stores {
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
+	
+	
+	public static boolean create(String name , String address , String city , String postal 
+			, String state , String phoneNumber) throws SQLException {
 
+	
+	String query = "insert into stores (name , address  , city , postal , state , phoneNumber)"+" values (?,?,?,?,?,?)";	
+	PreparedStatement stm = DatabaseConfig.getConnection().prepareStatement(query);
+	
+    
+	stm.setString(1,name);
+	stm.setString(2,address);
+	stm.setString(3,city);
+	stm.setString(4,postal);
+	stm.setString(5,state);
+	stm.setString(6, phoneNumber);
+
+	return stm.executeUpdate() > 0;
+	
+	}
+	
+	
+	public static boolean update(String name , String address , String city , String postal , String state , 
+			String phoneNumber ) throws SQLException {
+		
+		String query = "update stores set name=?, address=?, city=?, postal=?," + 
+				" state=?, phoneNumber=?  where id = ?";
+		PreparedStatement stm = DatabaseConfig.getConnection().prepareStatement(query);	
+	
+		stm.setString(1, name);
+		stm.setString(2, address);
+		stm.setString(3, city);
+		stm.setString(4, postal);
+		stm.setString(5, state);
+		stm.setString(6, phoneNumber);
+		
+		
+		return stm.executeUpdate() > 0;
+		
+	}
+
+	
+	public static boolean delete(int id) throws SQLException {
+		String query = "delete from stores where id = ?";
+		PreparedStatement stm = DatabaseConfig.getConnection().prepareStatement(query);
+		stm.setInt(1, id);
+		return stm.executeUpdate() > 0;
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	
 	
 }
