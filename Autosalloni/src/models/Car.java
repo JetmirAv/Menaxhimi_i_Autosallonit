@@ -458,6 +458,13 @@ public class Car {
 	}
 	
 	
+	public static boolean getTotalNumberOfCars() throws SQLException {
+		String query = "Select count(*) from car;
+		PreparedStatement stm = DatabaseConfig.getConnection().prepareStatement(query);
+		return stm.executeUpdate() > 0;
+		
+	}
+	
 	
 	
 	
