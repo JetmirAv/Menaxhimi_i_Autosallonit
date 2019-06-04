@@ -2,6 +2,7 @@ package models;
 
 import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 
@@ -62,7 +63,7 @@ public class Users {
 		return name;
 	}
 
-	public void setName() {
+	public void setName(String name) {
 		this.name = name;
 	}
 
@@ -225,4 +226,46 @@ public class Users {
 		return stm.executeUpdate() > 0;
 	}
 	
+	public static int count(boolean thisMonth) throws SQLException {
+		String query = "select count(*) from users;";
+		if(thisMonth) {
+			query = "select COUNT(*) from users where"
+					+ " MONTH(createdAt) = MONTH(CURRENT_DATE)  AND"
+						+ " YEAR(createdAt) = YEAR(CURRENT_DATE)";
+		}
+		
+		PreparedStatement stm = DatabaseConfig.getConnection().prepareStatement(query);
+	
+		ResultSet queryResult = stm.executeQuery();
+		queryResult.next();
+		return queryResult.getInt(1);
+	}
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

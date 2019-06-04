@@ -20,7 +20,8 @@ public class Main extends Application {
 			content.getChildren().addAll(
 					Header.display("Jetmir Avdullahu", "Super Admin", current),
 					Filter.display(Main.class.getName()),
-					SignUp.display(current),
+//					SignUp.display(current),
+					Dashboard.display(),
 					Pagination.display(122));
 //			mainWindow.setTop(Header.display("Jetmir Avdullahu", "Super Admin", current));	
 //	        mainWindow.setCenter(MainComponent.display("Name" , "Trainers","Email","Website","Address",current));
@@ -33,11 +34,12 @@ public class Main extends Application {
 			e.printStackTrace();
 		}
 		
-		Scene scene = new Scene(mainWindow, 800, 800);
+		Scene scene = new Scene(mainWindow, 1440, 800);
 		scene.getStylesheets().add("https://fonts.googleapis.com/css?family=Titillium+Web:200,300,400,700&display=swap");
 		scene.getStylesheets().add(Main.class.getResource("header.css").toExternalForm());
 		primaryStage.setScene(scene);
-		primaryStage.setMaximized(true);
+		primaryStage.setResizable(false);
+//		primaryStage.setMaximized(true);
 		primaryStage.show();
 	}
 	

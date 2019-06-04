@@ -9,7 +9,7 @@ public class DatabaseConfig {
 	private final static String host = "localhost";
 	private final static String user = "root";
 	private final static String password = "Password1234!";
-	private final static String dbName = "autosalloni";
+	private final static String dbName = "proj_knk";
 	
 	public static Connection getConnection() {
 		if(dbConnection == null) {
