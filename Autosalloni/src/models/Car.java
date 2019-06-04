@@ -435,6 +435,28 @@ public class Car {
 		
 		
 	}
+	
+	
+	public static boolean getTireModel(int id) throws SQLException {
+		String query = "Select tireModel from car where id = ?";
+		PreparedStatement stm = DatabaseConfig.getConnection().prepareStatement(query);
+		stm.setInt(1, id);
+		return stm.executeUpdate() > 0;
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 
 }
