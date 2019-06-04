@@ -8,7 +8,7 @@ public class DatabaseConfig {
 	private static Connection dbConnection;	
 	private final static String host = "localhost";
 	private final static String user = "root";
-	private final static String password = "Password1234!";
+	private final static String password = "";
 	private final static String dbName = "autosalloni";
 	
 	public static Connection getConnection() {
