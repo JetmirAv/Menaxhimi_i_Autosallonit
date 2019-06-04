@@ -1,4 +1,6 @@
 package models;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.Date;
 public class Car {
             private int id;
@@ -327,6 +329,102 @@ public class Car {
 						"additionalDesc="+additionalDesc+"is4x4="+is4x4+"createdAt="+createdAt+"updatetimedAt="+updatetimedAt + "]";
 			
 			 }
-			}
+			
+	
+	public static boolean create(int manufacturerId ,String model,String bodyNumber,int yearOfProd ,int seats ,
+			int doors,boolean roof ,boolean alarm ,boolean central ,boolean airbag ,boolean autonomus,
+			boolean navigator,boolean climate,int fuelTypeId,int fuelCapacity,double fuelConsumption,
+			boolean hidraulic,String engineModel,double enginePower,int hoursePower,int maxspeed,
+			double seconds0to100,boolean isAutomatic,int gears,String tireModel,int tireSize,String additionalDesc,
+			boolean is4x4) throws SQLException {
 
+	
+	String query = "insert into car (manufacturerId ,model,bodyNumber,yearOfProd ,seats ,\r\n" + 
+			"			doors,roof ,alarm ,central ,airbag ,autonomus,\r\n" + 
+			"			navigator,climate,fuelTypeId,fuelCapacity,fuelConsumption,\r\n" + 
+			"			hidraulic,engineModel,enginePower,hoursePower,maxspeed,\r\n" + 
+			"			seconds0to100,isAutomatic,gears,tireModel,tireSize,additionalDesc,is4x4)"+
+			"			values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+	
+	PreparedStatement stm = DatabaseConfig.getConnection().prepareStatement(query);
+	
+    
+	stm.setInt(1, manufacturerId);
+	stm.setString(2,model);
+	stm.setString(3,bodyNumber);
+	stm.setInt(4,yearOfProd);
+	stm.setInt(5,seats);
+	stm.setInt(6, doors);
+	stm.setBoolean(7, roof);
+	stm.setBoolean(8,alarm);
+	stm.setBoolean(9, central);
+	stm.setBoolean(10,airbag);
+	stm.setBoolean(11, autonomus);
+	stm.setBoolean(12,navigator);
+	stm.setBoolean(13, climate);
+	stm.setInt(14,fuelTypeId);
+	stm.setInt(15,fuelCapacity);
+	stm.setDouble(16,fuelConsumption);
+	stm.setBoolean(17,hidraulic);
+	stm.setString(18,engineModel);
+	stm.setDouble(19,enginePower);
+	stm.setInt(20,hoursePower);
+	stm.setInt(21,maxspeed);
+	stm.setDouble(22,seconds0to100);
+	stm.setBoolean(23,isAutomatic);
+	stm.setInt(24,gears);
+	stm.setString(25,tireModel);
+	stm.setString(26,additionalDesc);
+	stm.setBoolean(27,is4x4);
+	
+	
+	return stm.executeUpdate() > 0;
+}
+	public static boolean update(int manufacturerId ,String model,String bodyNumber,int yearOfProd ,int seats ,
+			int doors,boolean roof ,boolean alarm ,boolean central ,boolean airbag ,boolean autonomus,
+			boolean navigator,boolean climate,int fuelTypeId,int fuelCapacity,double fuelConsumption,
+			boolean hidraulic,String engineModel,double enginePower,int hoursePower,int maxspeed,
+			double seconds0to100,boolean isAutomatic,int gears,String tireModel,int tireSize,String additionalDesc,
+			boolean is4x4) throws SQLException{ 
+		
+		String query = "manufacturerId=? ,model=?,bodyNumber=?,yearOfProd=? ,seats=? ,\r\n" + 
+				"			doors=?,roof=? ,alarm=? ,central=? ,airbag=? ,autonomus=?,\r\n" + 
+				"			navigator=?,climate=?,fuelTypeId=?,fuelCapacity=?,fuelConsumption=? \r\n" + 
+				"			hidraulic=?,engineModel=?,enginePower=?,hoursePower=?,maxspeed=?,\r\n" + 
+				"			seconds0to100=?,isAutomatic=?,gears=?,tireModel=?,tireSize=?,additionalDesc=?,is4x4";
+		PreparedStatement stm = DatabaseConfig.getConnection().prepareStatement(query);
+		
+		stm.setInt(1, manufacturerId);
+		stm.setString(2,model);
+		stm.setString(3,bodyNumber);
+		stm.setInt(4,yearOfProd);
+		stm.setInt(5,seats);
+		stm.setInt(6, doors);
+		stm.setBoolean(7, roof);
+		stm.setBoolean(8,alarm);
+		stm.setBoolean(9, central);
+		stm.setBoolean(10,airbag);
+		stm.setBoolean(11, autonomus);
+		stm.setBoolean(12,navigator);
+		stm.setBoolean(13, climate);
+		stm.setInt(14,fuelTypeId);
+		stm.setInt(15,fuelCapacity);
+		stm.setDouble(16,fuelConsumption);
+		stm.setBoolean(17,hidraulic);
+		stm.setString(18,engineModel);
+		stm.setDouble(19,enginePower);
+		stm.setInt(20,hoursePower);
+		stm.setInt(21,maxspeed);
+		stm.setDouble(22,seconds0to100);
+		stm.setBoolean(23,isAutomatic);
+		stm.setInt(24,gears);
+		stm.setString(25,tireModel);
+		stm.setString(26,additionalDesc);
+		stm.setBoolean(27,is4x4);
+		
+		return stm.executeUpdate() > 0;
+	}
+
+
+}
 
