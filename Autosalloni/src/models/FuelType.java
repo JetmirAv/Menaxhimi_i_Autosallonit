@@ -1,5 +1,7 @@
 package models;
 
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.Date;
 
 public class FuelType {
@@ -58,6 +60,23 @@ public class FuelType {
 	public void setUpdatetimedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
 	}
+	
+	
+	
+	public static boolean selectFuelType(int id) throws SQLException {
+		String query = "select ft.name from fuelType ft inner join car c on c.fuelTypeId=ft.id where c.id=?;"; 
+
+		PreparedStatement stm = DatabaseConfig.getConnection().prepareStatement(query);
+		stm.setInt(1, id);
+		return stm.executeUpdate() > 0;
+		
+	}
+	
+	
+	
+	
+	
+	
 	
 	
 	
