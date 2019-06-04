@@ -1,5 +1,7 @@
 package models;
 
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.Date;
 
 public class Card 
@@ -111,5 +113,30 @@ public class Card
 		return "Card [id=" + id + ", userId=" + userId + ", number=" + number + ", expMonth=" + expMonth + ", expYear="
 				+ expYear + ", code=" + code + ", createdAt=" + createdAt + ", updatetimedAt=" + updatetimedAt + "]";
 	}
+	
+	
+	public static boolean insertCard(String number, int expMonth, int expYear, int code) throws SQLException {
+		
+		String query = "insert into card (userId, number, expMonth, expYear, code) values (?,?,?,?,?)";
+		PreparedStatement stm = DatabaseConfig.getConnection().prepareStatement(query);
+		
+		stm.setInt(1,userId); //first parameter in the query
+		stm.setString(2,number);
+		stm.setInt(3,expMonth);
+		stm.setInt(4,expYear);
+		stm.setInt(5,code);
+		
+		return stm.executeUpdate() > 0;
+	}
+	
+	public static boolean deleteCard(int id) throws SQLException {
+		String query = "delete from card where id = ?";
+		PreparedStatement stm = DatabaseConfig.getConnection().prepareStatement(query);
+		stm.setInt(1, id);
+		return stm.executeUpdate() > 0;
+	}
+	
+	
+	
 
 }
