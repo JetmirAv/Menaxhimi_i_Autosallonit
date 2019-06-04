@@ -447,6 +447,17 @@ public class Car {
 	}
 	
 	
+
+	public static boolean getEngineModel(int id) throws SQLException {
+		String query = "Select engineModel from car where id = ?";
+		PreparedStatement stm = DatabaseConfig.getConnection().prepareStatement(query);
+		stm.setInt(1, id);
+		return stm.executeUpdate() > 0;
+		
+		
+	}
+	
+	
 	
 	
 	
