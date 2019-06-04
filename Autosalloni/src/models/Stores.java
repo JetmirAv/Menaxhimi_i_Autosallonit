@@ -165,8 +165,18 @@ public class Stores {
 		
 		
 		return stm.executeUpdate() > 0;
+		
 	}
 
+	
+	public static boolean delete(int id) throws SQLException {
+		String query = "delete from stores where id = ?";
+		PreparedStatement stm = DatabaseConfig.getConnection().prepareStatement(query);
+		stm.setInt(1, id);
+		return stm.executeUpdate() > 0;
+		
+		
+	}
 	
 	
 	
