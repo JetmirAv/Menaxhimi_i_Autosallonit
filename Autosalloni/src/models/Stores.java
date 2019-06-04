@@ -133,7 +133,7 @@ public class Stores {
 			, String state , String phoneNumber) throws SQLException {
 
 	
-	String query = "insert into stores (name , address  , city , postal , state , phoneNumber)"+"values (?,?,?,?,?,?)";	
+	String query = "insert into stores (name , address  , city , postal , state , phoneNumber)"+" values (?,?,?,?,?,?)";	
 	PreparedStatement stm = DatabaseConfig.getConnection().prepareStatement(query);
 	
     
@@ -147,4 +147,32 @@ public class Stores {
 	return stm.executeUpdate() > 0;
 	
 	}
+	
+	
+	public static boolean update(String name , String address , String city , String postal , String state , 
+			String phoneNumber ) throws SQLException {
+		
+		String query = "update stores set name=?, address=?, city=?, postal=?," + 
+				" state=?, phoneNumber=?  where id = ?";
+		PreparedStatement stm = DatabaseConfig.getConnection().prepareStatement(query);	
+	
+		stm.setString(1, name);
+		stm.setString(2, address);
+		stm.setString(3, city);
+		stm.setString(4, postal);
+		stm.setString(5, state);
+		stm.setString(6, phoneNumber);
+		
+		
+		return stm.executeUpdate() > 0;
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
 }
