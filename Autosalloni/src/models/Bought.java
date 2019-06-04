@@ -1,5 +1,9 @@
 package models;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Arrays;
 import java.util.Date;
 
 public class Bought {
@@ -71,6 +75,27 @@ public class Bought {
 	public String toString() {
 		return "Bought [id=" + id + ", stockId=" + stockId + ", userId=" + userId + ", price=" + price + ", createdAt="
 				+ createdAt + ", updatedAt=" + updatedAt + "]";
+	}
+	
+	public static Double[] profitThroughYear() throws SQLException {
+		
+		Double[] profit = new Double[12];
+		
+		String query = "SELECT MONTH(createdAt),SUM(price)"
+				+ " FROM bought WHERE YEAR(createdAt) = YEAR(CURRENT_DATE)"
+				+ " GROUP BY MONTH(createdAt)";
+		
+		PreparedStatement stm = DatabaseConfig.getConnection().prepareStatement(query);
+		
+		ResultSet result = stm.executeQuery();
+		
+		while(result.next()) {
+			profit[result.getInt(1)] = result.getDouble(2);
+			System.out.println("Column: " + result.getInt(1) 
+			+ " \nValue: " + result.getDouble(2));
+		}
+		
+		return profit;
 	}
 	
 	

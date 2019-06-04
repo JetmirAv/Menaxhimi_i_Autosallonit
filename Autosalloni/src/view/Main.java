@@ -20,8 +20,8 @@ public class Main extends Application {
 			content.getChildren().addAll(
 					Header.display("Jetmir Avdullahu", "Super Admin", current),
 					Filter.display(Main.class.getName()),
-//					SignUp.display(current),
-					Dashboard.display(),
+					SignUp.display(current),
+//					Dashboard.display(),
 					Pagination.display(122));
 //			mainWindow.setTop(Header.display("Jetmir Avdullahu", "Super Admin", current));	
 //	        mainWindow.setCenter(MainComponent.display("Name" , "Trainers","Email","Website","Address",current));
