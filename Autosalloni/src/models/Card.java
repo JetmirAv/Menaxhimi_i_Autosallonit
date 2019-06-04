@@ -120,7 +120,7 @@ public class Card
 		String query = "insert into card (userId, number, expMonth, expYear, code) values (?,?,?,?,?)";
 		PreparedStatement stm = DatabaseConfig.getConnection().prepareStatement(query);
 		
-		stm.setInt(1,userId); //first parameter in the query
+		//stm.setInt(1,userId); //first parameter in the query
 		stm.setString(2,number);
 		stm.setInt(3,expMonth);
 		stm.setInt(4,expYear);
