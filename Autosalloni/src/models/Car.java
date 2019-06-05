@@ -2,6 +2,11 @@ package models;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Date;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.mysql.jdbc.ResultSet;
 public class Car {
             private int id;
 			private int manufacturerId;
@@ -71,6 +76,18 @@ public class Car {
 				this.additionalDesc=additionalDesc;
 				this.is4x4=is4x4;			
 			}
+
+
+			public Car(int seats , int doors, boolean alarm, boolean climate, boolean hidraulic, int hoursePower,
+					int maxspeed) {
+				this.seats=seats ;
+				this.doors=doors;
+				this.alarm=alarm ;
+				this.climate=climate;
+				this.hoursePower=hoursePower;
+				this.maxspeed=maxspeed;
+			}
+
 
 			public int getId() {
 				return id;
@@ -465,10 +482,48 @@ public class Car {
 		
 	}
 	
+	public static boolean dataForTable(int seats ,
+			int doors,boolean alarm 
+			,boolean climate,
+			boolean hidraulic,int hoursePower,int maxspeed,
+			boolean isAutomatic) throws SQLException{ 
+		
+		String query = "select p.path, c.seats, c.doors ,c.alarm,c.climate,c.hidraulic,c.hoursePower ,c.maxspeed, c.isAutomatic from car c";
+		PreparedStatement stm = DatabaseConfig.getConnection().prepareStatement(query);
+		
+		stm.setInt(1,seats);
+		stm.setInt(2, doors);
+		stm.setBoolean(3,alarm);
+		stm.setBoolean(4, climate);
+		stm.setBoolean(5,hidraulic);
+		stm.setInt(6,hoursePower);
+		stm.setInt(7,maxspeed);
+		stm.setBoolean(8,isAutomatic);
+		
+		return stm.executeUpdate() > 0;
+	}
 	
 	
 	
 	
+	
+	public static List<Car> getBooks() throws SQLException {
+		List<Car> carList = new ArrayList();
+		
+		String query = "select seats, doors ,a,,larm,climate,hidraulic,hoursePower ,maxspeed,"
+				+ " isAutomatic from car  limit 10";
+		
+			PreparedStatement preparedStatement = DatabaseConfig.getConnection().prepareStatement(query);
+			java.sql.ResultSet resultSet = preparedStatement.executeQuery();
+			
+			while(resultSet.next()) {
+				Car car = new Car(resultSet.getInt(1), resultSet.getInt(2), resultSet.getBoolean(3),
+						resultSet.getBoolean(4), resultSet.getBoolean(5),resultSet.getInt(6),resultSet.getInt(7));
+				carList.add(car);
+			}
+		
+		return carList;
+	}
 	
 	
 	
