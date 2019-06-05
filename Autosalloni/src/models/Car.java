@@ -78,14 +78,14 @@ public class Car {
 			}
 
 
-			public Car(int seats , int doors, boolean alarm, boolean climate, boolean hidraulic, int hoursePower,
-					int maxspeed) {
+			public Car(int seats , int doors, boolean alarm, boolean climate, boolean hidraulic, int hoursePower,int maxspeed,boolean isAutomatic) {
 				this.seats=seats ;
 				this.doors=doors;
 				this.alarm=alarm ;
 				this.climate=climate;
 				this.hoursePower=hoursePower;
 				this.maxspeed=maxspeed;
+				this.isAutomatic=isAutomatic;
 			}
 
 
@@ -510,19 +510,25 @@ public class Car {
 	public static List<Car> getBooks() throws SQLException {
 		List<Car> carList = new ArrayList();
 		
-		String query = "select seats, doors ,a,,larm,climate,hidraulic,hoursePower ,maxspeed,"
-				+ " isAutomatic from car  limit 10";
+		String query = "select seats , doors , alarm , climate , hidraulic , hoursePower , maxspeed, isAutomatic from car  limit 10";
 		
-			PreparedStatement preparedStatement = DatabaseConfig.getConnection().prepareStatement(query);
-			java.sql.ResultSet resultSet = preparedStatement.executeQuery();
+		PreparedStatement preparedStatement = DatabaseConfig.getConnection().prepareStatement(query);
+		java.sql.ResultSet resultSet = preparedStatement.executeQuery();
 			
-			while(resultSet.next()) {
-				Car car = new Car(resultSet.getInt(1), resultSet.getInt(2), resultSet.getBoolean(3),
-						resultSet.getBoolean(4), resultSet.getBoolean(5),resultSet.getInt(6),resultSet.getInt(7));
-				carList.add(car);
-			}
+		while(resultSet.next()) {
+
+			Car car = new Car(resultSet.getInt(1),resultSet.getInt(2),resultSet.getBoolean(3)
+					      ,resultSet.getBoolean(4),resultSet.getBoolean(5),resultSet.getInt(6),resultSet.getInt(7),resultSet.getBoolean(8)); 
+					
+			
+			carList.add(car);
+			
+                  
+		
+		}
 		
 		return carList;
+
 	}
 	
 	
