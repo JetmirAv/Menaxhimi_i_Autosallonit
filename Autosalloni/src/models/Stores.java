@@ -180,6 +180,32 @@ public class Stores {
 	
 	
 	
+	public static boolean getCity(int id) throws SQLException {
+		String query = "Select city from stores where id = ?";
+		PreparedStatement stm = DatabaseConfig.getConnection().prepareStatement(query);
+		stm.setInt(1, id);
+		return stm.executeUpdate() > 0;
+			
+	}
+	
+	
+	
+	public static boolean getState(int id) throws SQLException {
+		String query = "Select state from stores where id = ?";
+		PreparedStatement stm = DatabaseConfig.getConnection().prepareStatement(query);
+		stm.setInt(1, id);
+		return stm.executeUpdate() > 0;
+			
+	}
+		
+	public static boolean getName(int id) throws SQLException {
+		String query = "Select name from stores where id = ?";
+		PreparedStatement stm = DatabaseConfig.getConnection().prepareStatement(query);
+		stm.setInt(1, id);
+		return stm.executeUpdate() > 0;
+			
+	}
+	
 	
 	
 	
