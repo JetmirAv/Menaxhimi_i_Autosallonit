@@ -1,15 +1,11 @@
 package view;
 
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -17,7 +13,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
-import javafx.scene.text.Font;
 
 
 
@@ -35,12 +30,12 @@ public class Header{
 		Image logOut = new Image(logOutPath);
 		ImageView logOutView = new ImageView(logOut);
 		logOutView.getStyleClass().add("logOut");
-		logOutView.setFitHeight(30);
-		logOutView.setFitWidth(30);
+		logOutView.setFitHeight(20);
+		logOutView.setFitWidth(20);
 		Label labelLogOut = new Label();
 		labelLogOut.getStyleClass().add("logout");
 		labelLogOut.setGraphic(logOutView);
-		labelLogOut.setTranslateY(-25);
+		labelLogOut.setTranslateY(-20);
 		labelLogOut.setOnMouseEntered(e -> {
 			labelLogOut.setCursor(Cursor.HAND);
 		});
@@ -48,7 +43,8 @@ public class Header{
 		
 		//Users Image load and styling
 		Image userImg = new Image(UserImgPath);
-		Circle profilCir = new Circle(30);
+		Circle profilCir = new Circle(20);
+		profilCir.setTranslateY(5);
 		profilCir.setFill(new ImagePattern(userImg));
 		
 		
@@ -76,9 +72,11 @@ public class Header{
 		HBox header = new HBox(); 
 		header.setSpacing(50);
 		header.setAlignment(Pos.BASELINE_RIGHT);
-		header.getStylesheets().add(Header.class.getResource("header.css").toExternalForm());
+		header.getStylesheets().add(
+				Header.class.getResource("header.css").toExternalForm());
 		header.getStyleClass().add("header");
 		header.getChildren().addAll(userHBox, labelLogOut);
+		header.setMaxHeight(20);
 		
 		return header;
 		

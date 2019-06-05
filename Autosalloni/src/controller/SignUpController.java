@@ -10,6 +10,7 @@ import java.util.Date;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import models.Bought;
 
 public class SignUpController implements EventHandler<ActionEvent> {
 
@@ -43,11 +44,7 @@ public class SignUpController implements EventHandler<ActionEvent> {
 				
 				System.out.println("Sukses");	
 			} else {
-				Double[] result = models.Bought.profitThroughYear();
-				for (int i=0; i<result.length; i++) {
-					System.out.println(result[i]);
-				}
-//				System.out.println(models.Users.count(false));
+				Bought.salesThroughMonths(0);
 				System.out.println("Error");
 			}
 			

@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 public class Bought {
 	
@@ -98,5 +99,58 @@ public class Bought {
 		return profit;
 	}
 	
+	public static Integer[] salesThroughMonths(int year) throws SQLException {
+		Integer[] res = new Integer[12];
+		String query = "select month(b.createdAt),"
+				+ " count(*) from bought b inner join stock s"
+				+ " on s.id=b.stockId where YEAR(b.createdAt)"
+				+ " = YEAR(current_date) - ? group by MONTH(b.createdAt)";
+		PreparedStatement stm = DatabaseConfig.getConnection().prepareStatement(query);
+		stm.setInt(1, year);
+		ResultSet result = stm.executeQuery();
+		
+		while(result.next()) {
+			res[result.getInt(1) - 1] = result.getInt(2);
+			System.out.println("Month: " + result.getInt(1) + " Bought: " + result.getInt(2) );
+		}
+		
+		return res;
+		
+	}
+	
+	public static void notifications(int limit, int offset) throws SQLException {
+		String query = "select u.name as 'Costumer',"
+				+ " st.name as 'Store',"
+				+ " m.name as 'Manufacturer',"
+				+ " c.model as 'Car model'"
+				+ " from bought b"
+				+ " inner join users u"
+				+ " on b.userId=u.id"
+				+ " inner join stock s"
+				+ " on b.stockId = s.id"
+				+ " inner join stores st"
+				+ " on s.storeId=st.id"
+				+ " inner join car c"
+				+ " on s.carId = c.id"
+				+ " inner join manufacturer m"
+				+ " on c.manufacturerId=m.id"
+				+ " limit ? offset ?";
+		
+		PreparedStatement stm = DatabaseConfig.getConnection().prepareStatement(query);
+		stm.setInt(1, limit);
+		stm.setInt(2, offset);
+		
+		ResultSet result = stm.executeQuery();
+		while(result.next()) {
+			System.out.println("Costumer: " + result.getString(1) + 
+					" Made a purchase on Store: " + result.getString(2) +
+					" from manufacturer: " + result.getString(3) + 
+					" model: " + result.getString(4));
+		}
+		System.out.println("");
+		System.out.println("");
+		
+		
+	}
 	
 }
