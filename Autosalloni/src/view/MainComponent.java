@@ -275,7 +275,7 @@ private static TableView table = new TableView();
 		
 		ObservableList<Users> userList = FXCollections.observableArrayList();
 		
-		for(int i = 0; i < 10; i++) {
+		for(int i = 0; i < user.size(); i++) {
 			userList.add(user.get(i));
 		}
 		table.setItems(userList);

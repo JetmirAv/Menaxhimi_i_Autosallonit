@@ -2,7 +2,9 @@ package models;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 
 public class Stores {
@@ -19,11 +21,11 @@ public class Stores {
 	private Date updatedAt;
 	
 	
-	public Stores(int id, String name,String address, String route, String city, String postal, String state, String phoneNumber) {
+	public Stores(int id, String name,String address, String city,String state, String postal,  String phoneNumber) {
 		this.id = id;
 		this.name = name;
 		this.address=address;
-		this.route = route;
+		//this.route = route;
 		this.city = city;
 		this.postal = postal;
 		this.state = state;
@@ -61,15 +63,15 @@ public class Stores {
 		this.name = name;
 	}
 
-
-	public String getRoute() {
-		return route;
-	}
-
-
-	public void setRoute(String route) {
-		this.route = route;
-	}
+//
+//	public String getRoute() {
+//		return route;
+//	}
+//
+//
+//	public void setRoute(String route) {
+//		this.route = route;
+//	}
 
 
 	public String getCity() {
@@ -206,7 +208,24 @@ public class Stores {
 			
 	}
 	
-	
+	public static List<Stores> getStores() throws SQLException {
+		List<Stores> storeList = new ArrayList();
+		String query = "select id, name , address , city , state , postal , phoneNumber , createdAt , updatetimedAt from stores  limit 10";
+		
+		PreparedStatement preparedStatement = DatabaseConfig.getConnection().prepareStatement(query);
+		java.sql.ResultSet resultSet = preparedStatement.executeQuery();
+			 
+		while(resultSet.next()) {
+
+			Stores store = new Stores(resultSet.getInt(1),resultSet.getString(2)
+					      ,resultSet.getString(3),resultSet.getString(4),resultSet.getString(5)
+					      ,resultSet.getString(6),resultSet.getString(7)); 
+			storeList.add(store);
+		}
+		
+		return storeList;
+
+	}
 	
 	
 	
