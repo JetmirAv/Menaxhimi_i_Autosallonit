@@ -8,6 +8,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -37,30 +38,99 @@ public class SignUp {
 		vbox.setAlignment(Pos.CENTER);
 
 		HBox hbox = new HBox();
-		nameField = new TextField();
+		TextField nameField = new TextField();
 		nameField.setPromptText("First Name");
-		nameField.setPrefWidth(237);
-		lastnameField = new TextField();
+		nameField.setPrefWidth(250);
+		TextField lastnameField = new TextField();
 		lastnameField.setPromptText("Last Name");
-		lastnameField.setPrefWidth(237);
+		lastnameField.setPrefWidth(250);
+		
 		hbox.getChildren().addAll(nameField,lastnameField);
 		hbox.setSpacing(20);
 		hbox.setAlignment(Pos.CENTER);
 		vbox.getChildren().add(hbox);
-
 		
-		emailField = new TextField();
+		
+		
+		//VBox vbox2 = new VBox();
+		HBox hbox2 = new HBox();
+		TextField birthdayField = new TextField();
+		birthdayField.setPromptText("Birthday");
+		birthdayField.setPrefWidth(220);
+		ChoiceBox<String> gendre = new ChoiceBox<>();
+		gendre.getItems().add("M");
+		gendre.getItems().add("F");
+		gendre.setPrefWidth(30);
+		gendre.setValue("M");
+		//emailField.setMaxWidth(500);
+		TextField phoneField = new TextField();
+		phoneField.setPromptText("Phone Number");
+		phoneField.setPrefWidth(220);
+		//phoneField.setMaxWidth(500);
+		hbox2.getChildren().addAll(birthdayField,gendre,phoneField);
+		hbox2.setSpacing(15);
+		hbox2.setAlignment(Pos.CENTER);
+		vbox.getChildren().add(hbox2);
+
+		HBox hbox3 = new HBox();
+		TextField emailField = new TextField();
 		emailField.setPromptText("Email");
-		emailField.setPrefWidth(500);
-		emailField.setMaxWidth(500);
-		vbox.getChildren().add(emailField);
+		emailField.setPrefWidth(250);
+		//emailField.setMaxWidth(500);
+		TextField passField = new TextField();
+		passField.setPromptText("Password");
+		passField.setPrefWidth(250);
+		//passField.setMaxWidth(500);
+		hbox3.getChildren().addAll(emailField,passField);
+		hbox3.setSpacing(20);
+		hbox3.setAlignment(Pos.CENTER);
+		vbox.getChildren().add(hbox3);
+		
+		HBox hbox4 = new HBox();
+		TextField addressField = new TextField();
+		addressField.setPromptText("Address");
+		addressField.setPrefWidth(160);
+		//emailField.setMaxWidth(500);
+		TextField cityField = new TextField();
+		cityField.setPromptText("City");
+		cityField.setPrefWidth(160);
+		TextField stateField = new TextField();
+		stateField.setPromptText("State");
+		stateField.setPrefWidth(160);
+		hbox4.getChildren().addAll(addressField,cityField,stateField);
+		hbox4.setSpacing(20);
+		hbox4.setAlignment(Pos.CENTER);
+		vbox.getChildren().add(hbox4);
 
 		
-		passField = new TextField();
-		passField.setPromptText("Password");
-		passField.setPrefWidth(500);
-		passField.setMaxWidth(500);
-		vbox.getChildren().add(passField);
+		
+		HBox hbox5 = new HBox();
+		TextField postalField = new TextField();
+		postalField.setPromptText("Postal Number");
+		postalField.setPrefWidth(250);
+		//emailField.setMaxWidth(500);
+		TextField cardField = new TextField();
+		cardField.setPromptText("Card Number");
+		cardField.setPrefWidth(250);
+		hbox5.getChildren().addAll(postalField,cardField);
+		hbox5.setSpacing(20);
+		hbox5.setAlignment(Pos.CENTER);
+		vbox.getChildren().add(hbox5);
+		
+		
+		
+		HBox hbox6 = new HBox();
+		TextField expMonthField = new TextField();
+		expMonthField.setPromptText("expMonth");
+		expMonthField.setPrefWidth(249);
+		//emailField.setMaxWidth(500);
+		TextField expYearField = new TextField();
+		expYearField.setPromptText("expYear");
+		expYearField.setPrefWidth(249);
+		hbox6.getChildren().addAll(expMonthField,expYearField);
+		hbox6.setSpacing(20);
+		hbox6.setAlignment(Pos.CENTER);
+		vbox.getChildren().add(hbox6);
 		
 
 		Button signUpBtn = new Button("Sign Up");
@@ -68,13 +138,14 @@ public class SignUp {
 		signUpBtn.setCursor(Cursor.HAND);
 		});
 		signUpBtn.setStyle("-fx-text-fill:white ;  -fx-background-color:#5DA4C7;");
-		signUpBtn.setPrefWidth(500);
-		signUpBtn.setMaxWidth(500);
+		signUpBtn.setPrefWidth(520);
+		signUpBtn.setMaxWidth(520);
 		vbox.getChildren().add(signUpBtn);
 
 		Text memberTxt = new Text("Already a member?");
 		vbox.getChildren().add(memberTxt);
 		memberTxt.setFill(Color.WHITE);
+
 
 		Button signInBtn = new Button("Sign In");
 		signInBtn.setOnMouseEntered(e -> {
