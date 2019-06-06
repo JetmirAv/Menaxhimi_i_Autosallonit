@@ -117,14 +117,14 @@ public class Card
 	
 	public static boolean insertCard(int userId, String number, int expMonth, int expYear, int code) throws SQLException {
 		
-		String query = "insert into card (userId, number, expMonth, expYear, code) values (?,?,?,?,?)";
+		String query = "insert into card ( number, expMonth, expYear, code) values (?,?,?,?)";
 		PreparedStatement stm = DatabaseConfig.getConnection().prepareStatement(query);
 		
-		stm.setInt(1,userId); //first parameter in the query //=>from token userId
-		stm.setString(2,number);
-		stm.setInt(3,expMonth);
-		stm.setInt(4,expYear);
-		stm.setInt(5,code);
+		 //first parameter in the query //=>from token userId
+		stm.setString(1,number);
+		stm.setInt(2,expMonth);
+		stm.setInt(3,expYear);
+		stm.setInt(4,code);
 		
 		return stm.executeUpdate() > 0;
 	}
@@ -139,22 +139,19 @@ public class Card
 		
 		PreparedStatement stm = DatabaseConfig.getConnection().prepareStatement(query);
 		
-		stm.setInt(1, id);    // => from token
-		stm.setInt(2, userId); //=> from token
-		stm.setString(3, number); 
-		stm.setInt(4,expMonth);
-		stm.setInt(5,expYear);
-		stm.setInt(6,code);
-		stm.setInt(7,id);		// => from token 
-		stm.setInt(8,userId);  // => from token
+		
+		
+		stm.setString(1, number); 
+		stm.setInt(2,expMonth);
+		stm.setInt(3,expYear);
+		stm.setInt(4,code);
+		stm.setInt(5,id);		 
+		stm.setInt(6,userId);  
 		
 		return stm.executeUpdate() > 0;
 	}
 	
-	public static boolean updateCard()
-	{
-		return stm.executeUpdate() > 0;
-	}
+
 	
 	public static boolean deleteCard(int id) throws SQLException {
 		String query = "delete from card where id = ?";
