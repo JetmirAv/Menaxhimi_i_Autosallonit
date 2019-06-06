@@ -6,7 +6,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.mysql.jdbc.ResultSet;
+
 public class Car {
             private int id;
 			private int manufacturerId;
@@ -39,7 +39,10 @@ public class Car {
 			private boolean is4x4 ;
 			private Date createdAt;
 			private Date updatetimedAt;
-			
+			public static ArrayList<String> modelA = new ArrayList<>();
+			public static ArrayList<String> bodyNumberA = new ArrayList<>();
+			public static ArrayList<String> engineModelA = new ArrayList<>();
+						
 			public Car(int manufacturerId ,String model,String bodyNumber,int yearOfProd ,int seats ,
 					int doors,boolean roof ,boolean alarm ,boolean central ,boolean airbag ,boolean autonomus,
 					boolean navigator,boolean climate,int fuelTypeId,int fuelCapacity,double fuelConsumption,
@@ -347,7 +350,7 @@ public class Car {
 			
 			 }
 			
-	
+	 
 	public static boolean create(int manufacturerId ,String model,String bodyNumber,int yearOfProd ,int seats ,
 			int doors,boolean roof ,boolean alarm ,boolean central ,boolean airbag ,boolean autonomus,
 			boolean navigator,boolean climate,int fuelTypeId,int fuelCapacity,double fuelConsumption,
@@ -395,7 +398,7 @@ public class Car {
 	stm.setBoolean(27,is4x4);
 	
 	
-	return stm.executeUpdate() > 0;
+	return stm.executeUpdate() > 0; 
 }
 	public static boolean update(int manufacturerId ,String model,String bodyNumber,int yearOfProd ,int seats ,
 			int doors,boolean roof ,boolean alarm ,boolean central ,boolean airbag ,boolean autonomus,
@@ -453,34 +456,8 @@ public class Car {
 		
 	}
 	
-	
-	public static boolean getTireModel(int id) throws SQLException {
-		String query = "Select tireModel from car where id = ?";
-		PreparedStatement stm = DatabaseConfig.getConnection().prepareStatement(query);
-		stm.setInt(1, id);
-		return stm.executeUpdate() > 0;
-		
-		
-	}
-	
-	
 
-	public static boolean getEngineModel(int id) throws SQLException {
-		String query = "Select engineModel from car where id = ?";
-		PreparedStatement stm = DatabaseConfig.getConnection().prepareStatement(query);
-		stm.setInt(1, id);
-		return stm.executeUpdate() > 0;
-		
-		
-	}
 	
-	
-	public static boolean getTotalNumberOfCars() throws SQLException {
-		String query = "Select count(*) from car";
-		PreparedStatement stm = DatabaseConfig.getConnection().prepareStatement(query);
-		return stm.executeUpdate() > 0;
-		
-	}
 	
 	public static boolean dataForTable(int seats ,
 			int doors,boolean alarm 
@@ -530,6 +507,43 @@ public class Car {
 		return carList;
 
 	}
+	
+	
+	    public static void  city() throws SQLException {
+	  	String query = "SELECT model , bodyNumber , engineModel  FROM Car limit 5";
+		
+		PreparedStatement preparedStatement = DatabaseConfig.getConnection().prepareStatement(query);
+		java.sql.ResultSet resultSet = preparedStatement.executeQuery();
+			 
+		while(resultSet.next()) {
+			modelA.add(resultSet.getString(1));
+			bodyNumberA.add(resultSet.getString(2));
+	        engineModelA.add(resultSet.getString(3));
+		}
+		
+
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
