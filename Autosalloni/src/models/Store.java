@@ -1,17 +1,18 @@
 package models;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 
-public class Stores {
+public class Store {
 	
 	private int id;
 	private String name;
-	private String address;
+	private String address; 
 	private String route;
 	private String city;
 	private String postal;
@@ -19,13 +20,15 @@ public class Stores {
 	private String phoneNumber;
 	private Date createdAt;
 	private Date updatedAt;
+	public static ArrayList<String> nameA = new ArrayList<>();
+	public static ArrayList<String> cityA = new ArrayList<>();
+	public static ArrayList<String> stateA = new ArrayList<>();
 	
 	
-	public Stores(int id, String name,String address, String city,String state, String postal,  String phoneNumber) {
+	public Store(int id, String name,String address, String city,String state, String postal,  String phoneNumber) {
 		this.id = id;
 		this.name = name;
 		this.address=address;
-		//this.route = route;
 		this.city = city;
 		this.postal = postal;
 		this.state = state;
@@ -62,16 +65,6 @@ public class Stores {
 	public void setName(String name) {
 		this.name = name;
 	}
-
-//
-//	public String getRoute() {
-//		return route;
-//	}
-//
-//
-//	public void setRoute(String route) {
-//		this.route = route;
-//	}
 
 
 	public String getCity() {
@@ -182,34 +175,10 @@ public class Stores {
 	
 	
 	
-	public static boolean getCity(int id) throws SQLException {
-		String query = "Select city from stores where id = ?";
-		PreparedStatement stm = DatabaseConfig.getConnection().prepareStatement(query);
-		stm.setInt(1, id);
-		return stm.executeUpdate() > 0;
 			
-	}
 	
-	
-	
-	public static boolean getState(int id) throws SQLException {
-		String query = "Select state from stores where id = ?";
-		PreparedStatement stm = DatabaseConfig.getConnection().prepareStatement(query);
-		stm.setInt(1, id);
-		return stm.executeUpdate() > 0;
-			
-	}
-		
-	public static boolean getName(int id) throws SQLException {
-		String query = "Select name from stores where id = ?";
-		PreparedStatement stm = DatabaseConfig.getConnection().prepareStatement(query);
-		stm.setInt(1, id);
-		return stm.executeUpdate() > 0;
-			
-	}
-	
-	public static List<Stores> getStores() throws SQLException {
-		List<Stores> storeList = new ArrayList();
+	public static List<Store> getStores() throws SQLException {
+		List<Store> storeList = new ArrayList();
 		String query = "select id, name , address , city , state , postal , phoneNumber , createdAt , updatetimedAt from stores  limit 10";
 		
 		PreparedStatement preparedStatement = DatabaseConfig.getConnection().prepareStatement(query);
@@ -217,7 +186,7 @@ public class Stores {
 			 
 		while(resultSet.next()) {
 
-			Stores store = new Stores(resultSet.getInt(1),resultSet.getString(2)
+			Store store = new Store(resultSet.getInt(1),resultSet.getString(2)
 					      ,resultSet.getString(3),resultSet.getString(4),resultSet.getString(5)
 					      ,resultSet.getString(6),resultSet.getString(7)); 
 			storeList.add(store);
@@ -228,6 +197,35 @@ public class Stores {
 	}
 	
 	
+	public static void  getDetailsOfStores() throws SQLException {
+		String query = "SELECT name , city , state  FROM Stores limit 5";
+		
+		PreparedStatement preparedStatement = DatabaseConfig.getConnection().prepareStatement(query);
+		java.sql.ResultSet resultSet = preparedStatement.executeQuery();
+			 
+		while(resultSet.next()) {
+			/*
+			 * System.out.println(resultSet.getString(1));
+			 * System.out.println(resultSet.getString(2));
+			 * System.out.println(resultSet.getString(3));
+			 */
+			
+			nameA.add(resultSet.getString(1));
+			cityA.add(resultSet.getString(2));
+	        stateA.add(resultSet.getString(3));
+		}
+		
+
+	}
 	
 	
+	/*
+	 * public static void main(String[] args) throws SQLException {
+	 * 
+	 * city();
+	 * 
+	 * for(int i=0 ; i<cityA.size();i++) { System.out.print(cityA.get(i));
+	 * 
+	 * } }
+	 */
 }
