@@ -4,6 +4,11 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 
 public class Users {
@@ -13,8 +18,10 @@ public class Users {
 	private String surname;
 	private String email;
 	private String password;
+	private String forgotPwToken;
 	private Date birthday;
 	private char gendre;
+	private String img;
 	private String address;
 	private String city;
 	private String state;
@@ -23,8 +30,8 @@ public class Users {
 	private Date createdAt;
 	private Date updatetimedAt;
 
-	public Users(int id, int roleId, String name, String surname, String email, String password, Date birthday,
-			char gendre, String address, String city, String state, String postal, String phoneNumber, Date createdAt,
+	public Users(int id, int roleId, String name, String surname, String email, String password,String forgotPwToken, Date birthday,
+			char gendre,String img,  String address, String city, String state, String postal, String phoneNumber, Date createdAt,
 			Date updatetimedAt) {
 		this.id = id;
 		this.roleId = roleId;
@@ -32,8 +39,10 @@ public class Users {
 		this.surname = surname;
 		this.email = email;
 		this.password = password;
+		this.forgotPwToken=forgotPwToken;
 		this.birthday = birthday;
 		this.gendre = gendre;
+		this.img = img;
 		this.address = address;
 		this.city = city;
 		this.state = state;
@@ -90,6 +99,15 @@ public class Users {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	public String getForgotPwToken() {
+		return forgotPwToken;
+	}
+
+	public void setForgotPwToken(String forgotPwToken) {
+		this.forgotPwToken = forgotPwToken;
+	}
+		
+	
 
 	public Date getBirthday() {
 		return birthday;
@@ -105,6 +123,13 @@ public class Users {
 
 	public void setGendre(char gendre) {
 		this.gendre = gendre;
+	}
+	public String getImg() {
+		return img;
+	}
+
+	public void setImg(String img) {
+		this.img = img;
 	}
 
 	public String getAddress() {
@@ -240,6 +265,32 @@ public class Users {
 		queryResult.next();
 		return queryResult.getInt(1);
 	}
+	
+	
+	
+	
+	public static List<Users> getUsers() throws SQLException {
+		List<Users> userList = new ArrayList();
+		String query = "select * from users  limit 10";
+		
+		PreparedStatement preparedStatement = DatabaseConfig.getConnection().prepareStatement(query);
+		java.sql.ResultSet resultSet = preparedStatement.executeQuery();
+			
+		while(resultSet.next()) {
+			
+			Users user = new Users(resultSet.getInt(1),resultSet.getInt(2),resultSet.getString(3)
+					      ,resultSet.getString(4),resultSet.getString(5),resultSet.getString(6)
+					      ,resultSet.getString(7),resultSet.getDate(8)
+					      ,resultSet.getString(9).charAt(0),resultSet.getString(10),resultSet.getString(11)
+					      ,resultSet.getString(12),resultSet.getString(13)
+					      ,resultSet.getString(14),resultSet.getString(15),resultSet.getDate(16),resultSet.getDate(17)); 
+			userList.add(user);
+		}
+		
+		return userList;
+
+	}
+
 	
 }
 
