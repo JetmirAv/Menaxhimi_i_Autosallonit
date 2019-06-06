@@ -18,8 +18,54 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import models.Car;
 
 public class CarsForm {
+	public static    String manufacturers[] = { "Aston-Martin","Audi","Bugatti","Chevrolet","Ford","Geely","Infiniti","Jeep" };
+	public static    ComboBox manufacturerComboBox =  new ComboBox(FXCollections.observableArrayList(manufacturers));
+
+	public static    String stores[] = { "Luke","Keith","Tanner","Hall","Aquila","Davis","Dexter"};
+	public static    ComboBox storesComboBox =  new ComboBox(FXCollections.observableArrayList(stores));
+
+	
+	public static    TextField txtForModel= new TextField();
+	public static    TextField txtForbodyNumber= new TextField();
+	public static    String years[] = { "2000","2001","2002","2003","2004","2005","2006","2007","2008","2009"
+                		,"2010","2011","2012","2013","2014","2015","2016","2017","2018","2019" };
+	public static    ComboBox yearOfProdComboBox =  new ComboBox(FXCollections.observableArrayList(years));
+	public static    String seats[] = { "2","4","6"};
+	public static    ComboBox seatsComboBox =  new ComboBox(FXCollections.observableArrayList(seats));
+	public static    String doors[] = { "2","4"};
+	public static    ComboBox doorsComboBox =  new ComboBox(FXCollections.observableArrayList(doors));
+	public static    String trueFalse[] = { "true","false"};
+	public static    ComboBox roofComboBox =  new ComboBox(FXCollections.observableArrayList(trueFalse));
+ 	public static    ComboBox alarmComboBox =  new ComboBox(FXCollections.observableArrayList(trueFalse));
+	public static    ComboBox centralComboBox =  new ComboBox(FXCollections.observableArrayList(trueFalse));
+	public static    ComboBox airbagComboBox =  new ComboBox(FXCollections.observableArrayList(trueFalse));
+	public static    ComboBox autonomusComboBox =  new ComboBox(FXCollections.observableArrayList(trueFalse));
+	public static    ComboBox navigatorComboBox =  new ComboBox(FXCollections.observableArrayList(trueFalse));
+	public static    ComboBox climateComboBox =  new ComboBox(FXCollections.observableArrayList(trueFalse));
+	public static    String fuelTypeId[] = { "Gasoline","Diesel","Natural gas","Hydrogen","Biodiesel"};
+	public static    ComboBox fuelTypeIdComboBox =  new ComboBox(FXCollections.observableArrayList(fuelTypeId));
+	private static    Spinner<Integer> fuelCapacity = new Spinner<>(0, 300, 0, 1);
+	public static    Spinner<Integer> fuelConsumption = new Spinner<>(0, 300, 0, 1);//min , max , start , increase
+	public static    ComboBox hidraulicComboBox =  new ComboBox(FXCollections.observableArrayList(trueFalse));
+	public static    TextField engineModel= new TextField();
+	public static    Spinner<Integer> enginePower= new Spinner<>(0, 300, 0, 1);
+	public static    Spinner<Integer> hoursePowerCapacity = new Spinner<>(0, 300, 0, 1);
+	public static    Spinner<Integer> maxspeed= new Spinner<>(0, 350, 0, 1);
+	public static    Spinner<Integer> seconds0to100= new Spinner<>(0, 300, 0, 1);
+	public static    ComboBox isAutomaticComboBox =  new ComboBox(FXCollections.observableArrayList(trueFalse));
+	public static    Spinner<Integer> gears= new Spinner<>(4, 7, 4, 1);
+	public static    String tireModel[] = { "summer","winter"};
+	public static    ComboBox tireModelComboBox =  new ComboBox(FXCollections.observableArrayList(tireModel));
+	public static    TextField tireSize= new TextField();
+	public static    TextField additionalDesc= new TextField();
+	public static    ComboBox is4x4ComboBox =  new ComboBox(FXCollections.observableArrayList(trueFalse));
+
+    
+    
+    
 	public static VBox display(String current )  throws IOException, SQLException {
 	    
 		VBox vbox=new VBox();
@@ -42,167 +88,129 @@ public class CarsForm {
         photoHBox.setPadding(new Insets(20,0,0,0));
 	    
         //First Row        
-	    Label manufacturerIdLabel = new Label("Manufacturer Id");
+	    Label storeLabel = new Label("Manufacturer Id");
+	    storeLabel.setMinWidth(60);
+
+        Label manufacturerIdLabel = new Label("Manufacturer Id");
 	    manufacturerIdLabel.setMinWidth(60);
-        String manufacturers[] = { "Aston-Martin","Audi","Bugatti","Chevrolet","Ford","Geely","Infiniti","Jeep" };
-        ComboBox manufacturerComboBox =  new ComboBox(FXCollections.observableArrayList(manufacturers));
         
         
 	    Label storeNameLabel = new Label("Model");
 		storeNameLabel.setMinWidth(60);
-        TextField txtForModel= new TextField();
 		
 
 	    Label bodyNumberLabel = new Label("Body Number");
 		storeNameLabel.setMinWidth(60);
-        TextField txtForbodyNumber= new TextField();
 
 	    Label yearOfProdLabel= new Label("Year of Production");
 	    manufacturerIdLabel.setMinWidth(60);
-        String years[] = { "2000","2001","2002","2003","2004","2005","2006","2007","2008","2009"
-        		,"2010","2011","2012","2013","2014","2015","2016","2017","2018","2019" };
-        ComboBox yearOfProdComboBox =  new ComboBox(FXCollections.observableArrayList(years));
 
         //Second row 
         Label seatsLabel= new Label("Seats");
 	    manufacturerIdLabel.setMinWidth(60);
-        String seats[] = { "2","4","6"};
-        ComboBox seatsComboBox =  new ComboBox(FXCollections.observableArrayList(seats));
         
 	    Label doorsLabel= new Label("Seats");
 	    manufacturerIdLabel.setMinWidth(60);
-        String doors[] = { "2","4"};
-        ComboBox doorsComboBox =  new ComboBox(FXCollections.observableArrayList(doors));
         
 	    Label roofLabel= new Label("Roof");
 	    manufacturerIdLabel.setMinWidth(60);
-        String roof[] = { "true","false"};
-        ComboBox roofComboBox =  new ComboBox(FXCollections.observableArrayList(roof));
         
 	    Label alarmLabel= new Label("Alarm");
 	    manufacturerIdLabel.setMinWidth(60);
-        String alarm[] = { "true","false"};
-        ComboBox alarmComboBox =  new ComboBox(FXCollections.observableArrayList(alarm));
 
 	    Label centralLabel= new Label("Central");
 	    manufacturerIdLabel.setMinWidth(60);
-        String central[] = { "true","false"};
-        ComboBox centralComboBox =  new ComboBox(FXCollections.observableArrayList(central));
 
 	    Label airbagLabel= new Label("Airbag");
 	    manufacturerIdLabel.setMinWidth(60);
-        String airbag[] = { "true","false"};
-        ComboBox airbagComboBox =  new ComboBox(FXCollections.observableArrayList(airbag));
 
 
         //Third Row
 	    Label autonomusLabel= new Label("Autonomus");
 	    autonomusLabel.setMinWidth(60);
-        String autonomus[] = { "true","false"};
-        ComboBox autonomusComboBox =  new ComboBox(FXCollections.observableArrayList(autonomus));
 
 	    Label navigatorLabel= new Label("Navigator");
 	    navigatorLabel.setMinWidth(60);
-        String navigator[] = { "true","false"};
-        ComboBox navigatorComboBox =  new ComboBox(FXCollections.observableArrayList(navigator));
 
 	    Label climateLabel= new Label("Climate");
 	    climateLabel.setMinWidth(60);
-        String climate[] = { "true","false"};
-        ComboBox climateComboBox =  new ComboBox(FXCollections.observableArrayList(climate));
         
 	    Label fuelTypeIdLabel= new Label("Fuel TypeId");
 	    fuelTypeIdLabel.setMinWidth(60);
-        String fuelTypeId[] = { "Gasoline","Diesel","Natural gas","Hydrogen","Biodiesel"};
-        ComboBox fuelTypeIdComboBox =  new ComboBox(FXCollections.observableArrayList(fuelTypeId));
 
 
         
         Label fuelCapacityLabel= new Label("Fuel capacity");
 	    climateLabel.setMinWidth(60);        
-        Spinner<Integer> fuelCapacity = new Spinner<>(0, 300, 0, 1);
         
         Label fuelConsumptionLabel= new Label("Fuel consumption");
         fuelConsumptionLabel.setMinWidth(60);        
-        Spinner<Integer> fuelConsumption = new Spinner<>(0, 300, 0, 1);//min , max , start , increase
         
         //Fourth Row
 	    Label hidraulicLabel= new Label("Hidraulic");
 	    climateLabel.setMinWidth(60);
-        String hidraulic[] = { "true","false"};
-        ComboBox hidraulicComboBox =  new ComboBox(FXCollections.observableArrayList(hidraulic));
         
 	    Label engineModelLabel = new Label("Engine Model");
 	    engineModelLabel.setMinWidth(60);
-        TextField engineModel= new TextField();
 
         Label enginePowerLabel= new Label("Engine Power");
         enginePowerLabel.setMinWidth(60);        
-        Spinner<Integer> enginePower= new Spinner<>(0, 300, 0, 1);
 
         Label hoursePowerLabel= new Label("Fuel capacity");
         hoursePowerLabel.setMinWidth(60);        
-        Spinner<Integer> hoursePowerCapacity = new Spinner<>(0, 300, 0, 1);
 
         Label maxspeedLabel= new Label("Max speed");
         maxspeedLabel.setMinWidth(60);        
-        Spinner<Integer> maxspeed= new Spinner<>(0, 350, 0, 1);
 
         Label seconds0to100Label= new Label("Seconds 0 to 100");
         seconds0to100Label.setMinWidth(60);        
-        Spinner<Integer> seconds0to100= new Spinner<>(0, 300, 0, 1);
         
         //fifth row
 	    Label isAutomaticLabel= new Label("Is Automatic");
 	    isAutomaticLabel.setMinWidth(60);
-        String isAutomatic[] = { "true","false"};
-        ComboBox isAutomaticComboBox =  new ComboBox(FXCollections.observableArrayList(isAutomatic));
 
         Label gearsLabel= new Label("Gears");
         gearsLabel.setMinWidth(60);        
-        Spinner<Integer> gears= new Spinner<>(4, 7, 4, 1);
 
 	    Label tireModelLabel= new Label("Tire model");
 	    tireModelLabel.setMinWidth(60);
-        String tireModel[] = { "summer","winter"};
-        ComboBox tireModelComboBox =  new ComboBox(FXCollections.observableArrayList(tireModel));
 
 	    Label tireSizeLabel = new Label("Tire size");
 	    engineModelLabel.setMinWidth(60);
-        TextField tireSize= new TextField();
 
 	    Label additionalDescLabel = new Label("Additional description");
 	    additionalDescLabel.setMinWidth(60);
-        TextField additionalDesc= new TextField();
 
 	    Label is4x4Label= new Label("Is 4x4");
 	    is4x4Label.setMinWidth(60);
-        String is4x4[] = { "true","false"};
-        ComboBox is4x4ComboBox =  new ComboBox(FXCollections.observableArrayList(is4x4));
 
         
         GridPane carsData= new GridPane();
         carsData.setVgap(10);
         carsData.setHgap(70);
-        carsData.setPadding(new Insets(20,0,0,20));
-
+        carsData.setPadding(new Insets(20,0,0,0));
+ 
         GridPane secondCarsData= new GridPane();
         secondCarsData.setVgap(10);
         secondCarsData.setHgap(60);
         secondCarsData.setPadding(new Insets(20,0,0,20));
 
         //first row
-        carsData.add(manufacturerIdLabel , 0,0);
-        carsData.add(storeNameLabel , 1,0);
-        carsData.add(bodyNumberLabel , 2,0);
-        carsData.add(yearOfProdLabel , 3,0);
+        carsData.add(storeLabel,0,0);
+        carsData.add(manufacturerIdLabel , 1,0);
+        carsData.add(storeNameLabel , 2,0);
+        carsData.add(bodyNumberLabel , 3,0);
+        carsData.add(yearOfProdLabel , 4,0);
+
 
       //second row
-        carsData.add(manufacturerComboBox, 0, 1);       
-        carsData.add(txtForModel, 1, 1);       
-        carsData.add(txtForbodyNumber, 2, 1);       
-        carsData.add(yearOfProdComboBox, 3, 1);       
+        carsData.add(storesComboBox, 0, 1);
+        carsData.add(manufacturerComboBox, 1, 1);       
+        carsData.add(txtForModel, 2, 1);       
+        carsData.add(txtForbodyNumber, 3, 1);       
+        carsData.add(yearOfProdComboBox, 4, 1);       
 
+        storesComboBox.getSelectionModel().selectFirst();
         manufacturerComboBox.setPrefWidth(124);
         txtForModel.setPrefWidth(124);
         txtForbodyNumber.setPrefWidth(124);
@@ -345,4 +353,17 @@ public class CarsForm {
 		return vbox;
 		
 	}
+	public void insertBook() {
+//		public static boolean addCar(int stockId,String manufacturerId ,String model,String bodyNumber,int yearOfProd ,int seats ,
+//				int doors,boolean roof ,boolean alarm ,boolean central ,boolean airbag ,boolean autonomus,
+//				boolean navigator,boolean climate,String fuelTypeId,int fuelCapacity,double fuelConsumption,
+//				boolean hidraulic,String engineModel,double enginePower,int hoursePower,int maxspeed,
+//				double seconds0to100,boolean isAutomatic,int gears,String tireModel,int tireSize,String additionalDesc,
+//				boolean is4x4)
+		
+		if(Car.addCar(titleTxt.getText(), authorTxt.getText(), Integer.parseInt(yearTxt.getText()), Integer.parseInt(pagesTxt.getText()))) {
+
+		}
+	}
+	
 }
