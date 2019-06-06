@@ -27,7 +27,7 @@ import models.Users;
 public class MainComponent {
 private static TableView table = new TableView();
 	
-	public static VBox display(String current )  throws IOException, SQLException {
+ 	public static VBox display(String current )  throws IOException, SQLException {
 	
 	
 //	

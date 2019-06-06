@@ -203,9 +203,7 @@ public class Users {
 		
 		String query = "insert into users (roleId, name, surname, email, password," + 
 				" birthday, gendre, address, city, state, postal, phoneNumber) values (?,?,?,?,?,?,?,?,?,?,?,?)";
-		//Shtohet qajo Statement.RETURN_GENERATED_KEYS
-		PreparedStatement stm = DatabaseConfig.getConnection().prepareStatement(query, 
-				Statement.RETURN_GENERATED_KEYS);
+		PreparedStatement stm = DatabaseConfig.getConnection().prepareStatement(query);
 		
 		stm.setInt(1, 2);
 		stm.setString(2,name);
@@ -220,13 +218,9 @@ public class Users {
 		stm.setString(11,postal);
 		stm.setString(12,phoneNumber);
 		
-		stm.executeUpdate();
+		return stm.executeUpdate() > 0;
 		
-		//Kjo shtohet
-		ResultSet resultKeys = stm.getGeneratedKeys();
-		resultKeys.next();
-		System.out.println(resultKeys.getInt(1));
-		return true;
+		
 		
 	}
 	public static boolean update(int id, String name, String surname, String email, String password, Date birthday, String gendre,

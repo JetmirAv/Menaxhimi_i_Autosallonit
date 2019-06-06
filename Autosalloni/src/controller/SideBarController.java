@@ -1,32 +1,75 @@
 package controller;
 
 
+import java.io.IOException;
+import java.sql.SQLException;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import view.Main;
-import view.Dashboard;
+import view.*;
+
+
+
 
 public class SideBarController implements EventHandler<ActionEvent>{
 
+	
 	@Override
 	public void handle(ActionEvent e) {
 		System.out.println(e.getTarget().toString().split("'")[1].split("'")[0]);
 		
+		String current = null;
+		try {
+			current = new java.io.File( "." ).getCanonicalPath();
+		} catch (IOException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
+		
+		
 		switch (e.getTarget().toString().split("'")[1].split("'")[0]) {
 		case "_Dashboard":
-				Main.mainWindow.setCenter(Dashboard.display());			
-			break;
-		case "_Cars":
 			Main.mainWindow.setCenter(Dashboard.display());			
 			break;
+		case "_Cars":		
+			try {
+				Main.mainWindow.setCenter(MainComponentCars.display(current));
+			} catch (IOException | SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			break;
+		case "_Stores":		
+			try {
+				Main.mainWindow.setCenter(MainComponentStores.display(current));
+			} catch (IOException | SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			break;	
 		case "_Users":
-			Main.mainWindow.setCenter(Dashboard.display());			
+			try {
+				Main.mainWindow.setCenter(MainComponent.display(current));
+			} catch (IOException | SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}			
 			break;
 		case "_Manufacturer":
-			Main.mainWindow.setCenter(Dashboard.display());			
+			try {
+				Main.mainWindow.setCenter(MainComponentStores.display(current));
+			} catch (IOException | SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}			
 			break;
 		case "_Settings":
-			Main.mainWindow.setCenter(Dashboard.display());			
+			try {
+				Main.mainWindow.setCenter(CreateUser.display(current));
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}			
 			break;
 		default:
 			break;

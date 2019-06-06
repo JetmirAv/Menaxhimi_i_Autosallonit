@@ -30,7 +30,7 @@ import models.DatabaseConfig;
 public class MainComponentCars {
 	
 private static    TableView table = new TableView();
-    
+     
 private static 	TextField logoTxt = new TextField();
 private static	TextField seatsTxt = new TextField();
 private static	TextField doorsTxt = new TextField();

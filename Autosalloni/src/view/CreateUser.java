@@ -33,7 +33,7 @@ public class CreateUser
 
 		HBox mainHbox = new HBox(200);
 		mainHbox.setPadding(new Insets(40,40,40,40));
-//		mainHbox.getChildren().add(signUpTxt);
+//		mainHbox.getChildren().add(signUpTxt); 
 //		firstVbox.setAlignment(Pos.CENTER);
 
 		VBox leftVbox = new VBox(8);

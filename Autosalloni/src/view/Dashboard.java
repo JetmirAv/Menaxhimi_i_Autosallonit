@@ -1,9 +1,7 @@
 package view;
 
-import java.awt.print.Book;
 import java.sql.SQLException;
 import java.util.Calendar;
-import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

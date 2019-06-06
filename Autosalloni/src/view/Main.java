@@ -3,7 +3,6 @@ package view;
 import java.io.IOException;
 
 import javafx.application.Application;
-import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
@@ -15,11 +14,11 @@ public class Main extends Application {
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		String current = new java.io.File( "." ).getCanonicalPath();
 		VBox content = new VBox();	
 //		BorderPane.setMargin(mainWindow.getCenter(), new Insets(20));
 
-		try {
+		try { 
+			String current = new java.io.File( "." ).getCanonicalPath();
 			mainWindow.setCenter(Dashboard.display());
 			mainWindow.setTop(Header.display("Jetmir Avdullahu", "Super Admin", current));
 			mainWindow.setLeft(Sidebar.display(current));

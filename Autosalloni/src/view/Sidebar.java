@@ -25,7 +25,7 @@ public class Sidebar {
 	public static Button manufacturersBtn = new Button("_Manufacturer");
 	public static Button reportsBtn = new Button("_Reports");
 	public static Button settingsBtn = new Button("_Settings");
-	
+	public static Button storesBtn = new Button("_Stores");
 	
 	public static VBox display(String current) throws IOException{
 	
@@ -39,7 +39,11 @@ public class Sidebar {
 		FileInputStream logoPath = new FileInputStream(current + "/src/img/logo.png");
 		
 		dashboardBtn.setOnAction(new controller.SideBarController());
-		
+		carsBtn.setOnAction(new controller.SideBarController());
+		usersBtn.setOnAction(new controller.SideBarController());
+		manufacturersBtn.setOnAction(new controller.SideBarController());
+		settingsBtn.setOnAction(new controller.SideBarController());
+		storesBtn.setOnAction(new controller.SideBarController());
 		
 		
 		HBox hbox = new HBox();
@@ -65,7 +69,6 @@ public class Sidebar {
 		Label librariesLbl = new Label("Libraries");
 		librariesLbl.getStyleClass().add("sideBarLbl");
 		
-		Button storesBtn = new Button("_Stores");
 		Image storesImg = new Image(storePath);
 		ImageView storesView = new ImageView(storesImg);
 		storesBtn.setGraphic(storesView);

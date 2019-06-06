@@ -18,7 +18,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
-import models.Stores;
+import models.Store;
 
 
 
@@ -250,9 +250,9 @@ public class MainComponentStores {
 	}
 	    	
 	public static void showStores() throws SQLException {
-		List<Stores> store = Stores.getStores();
+		List<Store> store = models.Store.getStores();
 		
-		ObservableList<Stores> storeList = FXCollections.observableArrayList();
+		ObservableList<Store> storeList = FXCollections.observableArrayList();
 		
 		for(int i = 0; i < store.size(); i++) {
 			storeList.add(store.get(i));

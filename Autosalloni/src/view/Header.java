@@ -19,7 +19,7 @@ import javafx.scene.shape.Circle;
 public class Header{
 
 	public static HBox display(String fullName, String role, String current) throws IOException {
-
+ 
 		FileInputStream logOutPath = 
                         new FileInputStream(current + "/src/img/power.png"); 	
 		FileInputStream UserImgPath 
