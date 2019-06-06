@@ -1,8 +1,10 @@
 package view;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javafx.application.Application;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
@@ -11,6 +13,7 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
 	public static BorderPane mainWindow = new BorderPane();
+	public static ArrayList<Node> history = new ArrayList<Node>();
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {

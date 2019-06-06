@@ -38,6 +38,9 @@ public class Header{
 		labelLogOut.setTranslateY(-20);
 		labelLogOut.setOnMouseEntered(e -> {
 			labelLogOut.setCursor(Cursor.HAND);
+			
+			Main.mainWindow.setCenter(Main.history.get(Main.history.size() - 1));
+			Main.history.remove(Main.history.size() - 1);
 		});
 		
 		
