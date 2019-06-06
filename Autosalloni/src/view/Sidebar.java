@@ -19,6 +19,13 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 
 public class Sidebar {
+	public static Button dashboardBtn = new Button("_Dashboard");
+	public static Button carsBtn = new Button("_Cars");
+	public static Button usersBtn = new Button("_Users");
+	public static Button manufacturersBtn = new Button("_Manufacturer");
+	public static Button reportsBtn = new Button("_Reports");
+	public static Button settingsBtn = new Button("_Settings");
+	
 	
 	public static VBox display(String current) throws IOException{
 	
@@ -31,6 +38,7 @@ public class Sidebar {
 		FileInputStream settingsPath = new FileInputStream(current + "/src/img/settings.png");
 		FileInputStream logoPath = new FileInputStream(current + "/src/img/logo.png");
 		
+		dashboardBtn.setOnAction(new controller.SideBarController());
 		
 		
 		
@@ -41,7 +49,6 @@ public class Sidebar {
 		hbox.setPrefHeight(80);
 		hbox.getStyleClass().add("logoImg");
 		
-		Button dashboardBtn = new Button("_Dashboard");
 		Image dashboardImg = new Image(dashboardPath);
 		ImageView dashboardView = new ImageView(dashboardImg);
 		dashboardBtn.setGraphic(dashboardView);
@@ -70,7 +77,6 @@ public class Sidebar {
 			storesBtn.setCursor(Cursor.HAND);
 			});
 		
-		Button carsBtn = new Button("_Cars");
 		Image carImg = new Image(carPath);
 		ImageView carView = new ImageView(carImg);
 		carsBtn.setGraphic(carView);
@@ -86,7 +92,6 @@ public class Sidebar {
 		Label clientsLbl = new Label("Clients");
 		clientsLbl.getStyleClass().add("sideBarLbl");
 		
-		Button usersBtn = new Button("_Users");
 		Image usersImg = new Image(userPath);
 		ImageView usersView = new ImageView(usersImg);
 		usersBtn.setGraphic(usersView);
@@ -98,7 +103,7 @@ public class Sidebar {
 			usersBtn.setCursor(Cursor.HAND);
 			});
 		
-		Button manufacturersBtn = new Button("_Manufacturer");
+		
 		Image manufacturerImg = new Image(manufacturerPath);
 		ImageView manufacturerView = new ImageView(manufacturerImg);
 		manufacturersBtn.setGraphic(manufacturerView);
@@ -111,7 +116,7 @@ public class Sidebar {
 			manufacturersBtn.setCursor(Cursor.HAND);
 			});
 		
-		Button reportsBtn = new Button("_Reports");
+		
 		Image reportsImg = new Image(reportsPath);
 		ImageView reportsView = new ImageView(reportsImg);
 		reportsBtn.setGraphic(reportsView);
@@ -123,7 +128,7 @@ public class Sidebar {
 			reportsBtn.setCursor(Cursor.HAND);
 			});
 		
-		Button settingsBtn = new Button("_Settings");
+		
 		Image settingsImg = new Image(settingsPath);
 		ImageView settingsView = new ImageView(settingsImg);
 		settingsBtn.setGraphic(settingsView);

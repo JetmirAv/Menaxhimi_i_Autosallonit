@@ -21,7 +21,11 @@ public class SignUpController implements EventHandler<ActionEvent> {
 	public void handle(ActionEvent e) {
 		try {
 			
-			int response = view.Modal.display( 1, "Title", "Confirm", "cancel");
+			
+			
+			int response = view.Modal.display( 1, "Title",
+					"Are you sure you want to create this user. And some other dummy tekst for testing this method", 
+					"Confirm", "cancel");
 			
 			
 			if(response == 0) {
@@ -41,14 +45,7 @@ public class SignUpController implements EventHandler<ActionEvent> {
 						SignUp.nameField.getText(),
 						SignUp.nameField.getText(), 
 						SignUp.nameField.getText());
-				
-				System.out.println("Sukses");	
-			} else {
-				Bought.salesThroughMonths(0);
-				System.out.println("Error");
-			}
-			
-			
+			}			
 			
 		} catch (SQLException | ParseException e1) {
 			e1.printStackTrace();

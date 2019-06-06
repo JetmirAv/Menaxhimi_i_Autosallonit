@@ -75,6 +75,10 @@ public class Dashboard {
 				}
 			}
 			profitChart.getData().add(profitChartData);
+			
+			
+			
+			
 
 			Integer[] thisYear = Bought.salesThroughMonths(0);
 			Integer[] lastYear = Bought.salesThroughMonths(1);
@@ -86,21 +90,22 @@ public class Dashboard {
 			xAxis.setLabel("Country");
 			yAxis.setLabel("Value");
 
-			XYChart.Series series1 = new XYChart.Series();
+			XYChart.Series<String, Number> series1 = new XYChart.Series<String, Number>();
 			series1.setName("" + String.valueOf((Calendar.getInstance().get(Calendar.YEAR))));
-			XYChart.Series series2 = new XYChart.Series();
+			XYChart.Series<String, Number> series2 = new XYChart.Series<String, Number>();
 			series2.setName("" + String.valueOf((Calendar.getInstance().get(Calendar.YEAR) - 1)));
 
 			for (int i = 0; i < thisYear.length; i++) {
 				if(thisYear[i] == null) {
-					series1.getData().add(new XYChart.Data(i, 0));					
+					series1.getData().add(new XYChart.Data<String, Number>(i + "", 0));					
 				} else {
-					series1.getData().add(new XYChart.Data(i, thisYear[i]));
+					series1.getData().add(new XYChart.Data<String, Number>(i+ "", thisYear[i]));
 				}
+//				
 				if(lastYear[i] == null) {
-					series2.getData().add(new XYChart.Data(i, 0));					
+					series2.getData().add(new XYChart.Data<String, Number>(i+ "", 0));					
 				} else {
-					series2.getData().add(new XYChart.Data(i, lastYear[i]));
+					series2.getData().add(new XYChart.Data<String, Number>(i+ "", lastYear[i]));
 				}
 			}
 

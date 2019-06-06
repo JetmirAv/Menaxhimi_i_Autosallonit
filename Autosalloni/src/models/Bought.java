@@ -92,8 +92,6 @@ public class Bought {
 		
 		while(result.next()) {
 			profit[result.getInt(1)] = result.getDouble(2);
-			System.out.println("Column: " + result.getInt(1) 
-			+ " \nValue: " + result.getDouble(2));
 		}
 		
 		return profit;
@@ -111,7 +109,6 @@ public class Bought {
 		
 		while(result.next()) {
 			res[result.getInt(1) - 1] = result.getInt(2);
-			System.out.println("Month: " + result.getInt(1) + " Bought: " + result.getInt(2) );
 		}
 		
 		return res;

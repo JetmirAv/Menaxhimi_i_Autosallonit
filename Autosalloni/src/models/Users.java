@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 
 public class Users {
@@ -178,7 +179,9 @@ public class Users {
 		
 		String query = "insert into users (roleId, name, surname, email, password," + 
 				" birthday, gendre, address, city, state, postal, phoneNumber) values (?,?,?,?,?,?,?,?,?,?,?,?)";
-		PreparedStatement stm = DatabaseConfig.getConnection().prepareStatement(query);
+		//Shtohet qajo Statement.RETURN_GENERATED_KEYS
+		PreparedStatement stm = DatabaseConfig.getConnection().prepareStatement(query, 
+				Statement.RETURN_GENERATED_KEYS);
 		
 		stm.setInt(1, 2);
 		stm.setString(2,name);
@@ -193,7 +196,14 @@ public class Users {
 		stm.setString(11,postal);
 		stm.setString(12,phoneNumber);
 		
-		return stm.executeUpdate() > 0;
+		stm.executeUpdate();
+		
+		//Kjo shtohet
+		ResultSet resultKeys = stm.getGeneratedKeys();
+		resultKeys.next();
+		System.out.println(resultKeys.getInt(1));
+		return true;
+		
 	}
 	public static boolean update(int id, String name, String surname, String email, String password, Date birthday, String gendre,
 			String address, String city, String state, String postal, String phoneNumber) throws SQLException {
@@ -216,7 +226,9 @@ public class Users {
 		stm.setString(12,phoneNumber);
 		stm.setInt(13,id);
 		
+		
 		return stm.executeUpdate() > 0;
+		
 	}
 
 	public static boolean delete(int id) throws SQLException {
