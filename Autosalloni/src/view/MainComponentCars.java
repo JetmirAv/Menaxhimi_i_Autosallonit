@@ -133,87 +133,6 @@ private static	TextField isAutomaticTxt = new TextField();
 //	                ,car1ClimateLabel,car1HidraulicLabel
 //	                ,car1HoursePowerLabel,car1MaxspeedLabel
 //	                ,car1IsAutomaticLabel);
-//           
-//                    
-//                    
-//           car1HBox.setPadding(new Insets(4,0,0,90));
-//                    HBox secondHBox=new HBox();
-//                    secondHBox.getChildren().addAll(car1Circle,car1HBox);
-//                    secondHBox.setPadding(new Insets(0,0,0,15));
-//    
-//           //Second car
-//           HBox car2HBox=new HBox(60);
-//           Circle car2Circle=new Circle();
-//           car2Circle.setRadius(15);
-//           car2Circle.setFill(new ImagePattern(img));
-//           
-//           Label car2SeatsLabel = new Label("Seats");
-//           car2SeatsLabel.getStyleClass().add("fonts");
-//           car2SeatsLabel.setMinWidth(60);
-//           Label car2DoorsLabel = new Label("Doors");
-//           car2DoorsLabel.getStyleClass().add("fonts");
-//           car2DoorsLabel.setMinWidth(60);
-//           Label car2AlarmLabel = new Label("Alarm");
-//           car2AlarmLabel.setMinWidth(60);
-//       	   car2AlarmLabel.getStyleClass().add("fonts");
-//           Label car2ClimateLabel = new Label("Climate");
-//           car2ClimateLabel.setMinWidth(60);
-//           car2ClimateLabel.getStyleClass().add("fonts");
-//           Label car2HidraulicLabel = new Label("Hidraulic");
-//           car2HidraulicLabel.getStyleClass().add("fonts");
-//           car2HidraulicLabel.setMinWidth(60);
-//           Label car2HoursePowerLabel = new Label("Hourse Power");
-//           car2HoursePowerLabel.setMinWidth(60);
-//           car2HoursePowerLabel.getStyleClass().add("fonts");
-//           Label car2MaxspeedLabel = new Label("Max speed");
-//           car2MaxspeedLabel.setMinWidth(60);
-//           car2MaxspeedLabel.getStyleClass().add("fonts");
-//           Label car2IsAutomaticLabel = new Label("Is automatic");
-//           car2IsAutomaticLabel.getStyleClass().add("fonts");
-//           car2IsAutomaticLabel.setMinWidth(60);
-//           	
-//            
-//           car2HBox.getChildren().addAll(
-//                    car2SeatsLabel,car2DoorsLabel,car2AlarmLabel
-//                    ,car2ClimateLabel,car2HidraulicLabel,car2HoursePowerLabel
-//                    ,car2MaxspeedLabel,car2IsAutomaticLabel);
-//           
-//           
-//           car2HBox.setPadding(new Insets(4,0,0,30));
-//           HBox thirdHBox=new HBox(60);
-//           thirdHBox.getChildren().addAll(car2Circle,car2HBox);
-//           thirdHBox.setPadding(new Insets(0,0,0,15));
-//           
-//           HBox car3HBox=new HBox(60);
-//           Circle car3Circle=new Circle();
-//           car3Circle.setRadius(15);
-//           car3Circle.setFill(new ImagePattern(img));
-//           
-//           Label car3SeatsLabel = new Label("Seats");
-//           car3SeatsLabel.getStyleClass().add("fonts");
-//           car3SeatsLabel.setMinWidth(60);
-//           Label car3DoorsLabel = new Label("Doors");
-//           car3DoorsLabel.getStyleClass().add("fonts");
-//           car3DoorsLabel.setMinWidth(60);
-//           Label car3AlarmLabel = new Label("Alarm");
-//           car3AlarmLabel.setMinWidth(60);
-//           car3AlarmLabel.getStyleClass().add("fonts");
-//           Label car3ClimateLabel = new Label("Climate");
-//           car3ClimateLabel.setMinWidth(60);
-//           car3ClimateLabel.getStyleClass().add("fonts");
-//           Label car3HidraulicLabel = new Label("Hidraulic");
-//           car3HidraulicLabel.getStyleClass().add("fonts");
-//           car3HidraulicLabel.setMinWidth(60);
-//           Label car3HoursePowerLabel = new Label("Hourse Power");
-//           car3HoursePowerLabel.setMinWidth(60);
-//           car3HoursePowerLabel.getStyleClass().add("fonts");
-//           Label car3MaxspeedLabel = new Label("Max speed");
-//           car3MaxspeedLabel.setMinWidth(60);
-//           car3MaxspeedLabel.getStyleClass().add("fonts");
-//           Label car3IsAutomaticLabel = new Label("Is automatic");
-//           car3IsAutomaticLabel.getStyleClass().add("fonts");
-//           car3IsAutomaticLabel.setMinWidth(60);
-//              	
 //              
 //           car3HBox.getChildren().addAll(
 //                   car3SeatsLabel,car3DoorsLabel,car3AlarmLabel
@@ -237,21 +156,23 @@ private static	TextField isAutomaticTxt = new TextField();
 
 		  
 		 
-//  		TableColumn<String, Car> logoCol = new TableColumn<>("Logo");
-//  		logoCol.setCellValueFactory(new PropertyValueFactory("seats"));
-//  		logoCol.setPrefWidth(60);
+  		TableColumn<String, Car> logoCol = new TableColumn<>("Logo");
+  		logoCol.setCellValueFactory(new PropertyValueFactory("logo"));
+  		logoCol.setPrefWidth(60);
   		
   		TableColumn<String, Car> seatsCol = new TableColumn<>("Seats");
   		seatsCol.setCellValueFactory(new PropertyValueFactory("seats"));
-  		seatsCol.setPrefWidth(150);
+  		seatsCol.setPrefWidth(50);
   		
   		TableColumn<String, Car> doorsCol = new TableColumn<>("Doors");
   		doorsCol.setCellValueFactory(new PropertyValueFactory("doors"));
-  		doorsCol.setPrefWidth(150);
+  		doorsCol.setPrefWidth(50);
+
+
   		
   		TableColumn<String, Car> alarmCol = new TableColumn<>("Alarm");
   		alarmCol.setCellValueFactory(new PropertyValueFactory("alarm"));
-  		alarmCol.setPrefWidth(120);
+  		alarmCol.setPrefWidth(70);
   		
   		TableColumn<String, Car> climateCol = new TableColumn<>("Climate");
   		climateCol.setCellValueFactory(new PropertyValueFactory("climate"));
@@ -270,49 +191,43 @@ private static	TextField isAutomaticTxt = new TextField();
   		maxSpeedCol.setPrefWidth(120);
   		
   		TableColumn<String, Car> isAutomaticCol = new TableColumn<>("Is automatic");
-  		isAutomaticCol.setCellValueFactory(new PropertyValueFactory("isAutomatic"));
+   		isAutomaticCol.setCellValueFactory(new PropertyValueFactory("isAutomatic"));
   		isAutomaticCol.setPrefWidth(120);
   		
-//  		table.setRowFactory(tv -> {
-//            TableRow<Car> row = new TableRow<>();
-//  		
-//
-//            row.setOnMouseClicked(event -> {
-//            logoTxt.setText( String.valueOf(row.getItem().getSeats()));
-//            seatsTxt.setText(String.valueOf(row.getItem().getDoors()));
-//            doorsTxt.setText(String.valueOf(row.getItem().isAlarm()));
-//            alarmTxt.setText( String.valueOf(row.getItem().isAlarm()));
-//            climateTxt.setText( String.valueOf(row.getItem().isClimate()));                
-//            hidraulicTxt.setText(String.valueOf(row.getItem().isHidraulic()));
-//            horsePowerTxt.setText(String.valueOf(row.getItem().getHoursePower()));
-//            maxspeedTxt.setText(String.valueOf(row.getItem().getMaxspeed()));
-//            isAutomaticTxt.setText(String.valueOf(row.getItem().isAutomatic()));
-//
-//                });
-//                
-//
-//
-//                return row ;
-//        });
-//		
-  		
+	
+
+    table.getColumns().addAll(logoCol, seatsCol, doorsCol,alarmCol, climateCol
+    		, hidraulicCol,horsePowerCol, maxSpeedCol,isAutomaticCol);
+	
     
-    table.getColumns().addAll( seatsCol, doorsCol,alarmCol, climateCol
-    		, hidraulicCol,horsePowerCol, maxSpeedCol, isAutomaticCol);
-		
+    logoCol.getStyleClass().add("textToCenter");
+    seatsCol.getStyleClass().add("textToCenter");
+    doorsCol.getStyleClass().add("textToCenter");
+    alarmCol.getStyleClass().add("textToCenter");
+    climateCol.getStyleClass().add("textToCenter");
+    hidraulicCol.getStyleClass().add("textToCenter");
+    horsePowerCol.getStyleClass().add("textToCenter");
+    maxSpeedCol.getStyleClass().add("textToCenter");
+    isAutomaticCol.getStyleClass().add("textToCenter");
+
+    
+    
+    
     VBox vbox = new VBox();
     vbox.setSpacing(5);
     vbox.setPadding(new Insets(10, 0, 0, 10));
     vbox.getChildren().addAll( table);
-		
-		
-		
-		
+    table.setPrefSize( 200, 400 );
+    table.setPrefWidth(200);
+    vbox.getStylesheets().add(MainComponentCars.class.getResource("mainComponentCars.css").toExternalForm());
+
+    vbox.setPrefWidth(100);
+    showBooks();
 		return vbox; 
 	
 	}
 	    	
-	public void showBooks() throws SQLException {
+	public static void showBooks() throws SQLException {
 		List<Car> cars = Car.getBooks();
 		
 		ObservableList<Car> carList = FXCollections.observableArrayList();
@@ -320,7 +235,8 @@ private static	TextField isAutomaticTxt = new TextField();
 		for(int i = 0; i < 10; i++) {
 			carList.add(cars.get(i));
 		}
-		
 		table.setItems(carList);
+		
+
 	}
 }
