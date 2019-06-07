@@ -5,7 +5,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -32,8 +31,11 @@ import javafx.stage.Stage;
 
 public class Cars {
 
-	public static FlowPane display(String current) throws IOException, SQLException {
+	public static FlowPane display() throws IOException, SQLException {
  
+		
+		String current = new java.io.File(".").getCanonicalPath();
+
 	//	models.Car.city();
 		models.Car.merriTeDhenat();
 		ArrayList<models.Car> veturat = models.Car.kerret;
@@ -68,7 +70,7 @@ public class Cars {
 		paneFirstRow.setPadding(new Insets(0, 0, 0, 23));
 		paneFirstRow.setAlignment(Pos.CENTER);
 
-		for (int i = 0; i < 5; i++) {
+		for (int i = 1; i < 10; i++) {
 
 			
 			// Photo
@@ -82,24 +84,17 @@ public class Cars {
 			// Inside the First Photo
 			
 			
-			VBox VboxComplete = new VBox();
-			VboxComplete.setId(veturat.get(i).getId() + "");
-			VboxComplete.setOnMouseClicked(e -> {
+		     	VBox VboxComplete = new VBox();
+			    VboxComplete.setId(veturat.get(i).getId() + "");
+			    VboxComplete.setOnMouseClicked(e -> {	
 				String str = e.getSource().toString();
-				/*
-				 * char c = a.charAt(a.length()-2); int g = Character.getNumericValue(c);
-				 */
-				str = str.replaceAll("[^\\d+]", "");
-				int g = Integer.parseInt(str);
+				int g = helpers.helpers.returnId(str);
+				
 				System.out.println(g);
-				Car c = null;
-				try {
-					 c = Car.merriTeDhenat(g);
-				} catch (SQLException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				new CarsDetails(c);
+				/*
+				 * Car c = null; try { c = Car.merriTeDhenat(g); } catch (SQLException e1) { //
+				 * TODO Auto-generated catch block e1.printStackTrace(); } new CarsDetails(c);
+				 */
 				
 				
 			});
@@ -115,7 +110,7 @@ public class Cars {
 			modelOfCar.setFont(Font.font("Arial", FontWeight.BOLD, 15));
 			detailsCar.getStyleClass().add("firstContent");
 			detailsCar.setConstraints(modelOfCar, 0, 0); 
-
+  
 			
 			HBox hboxForFirstDetail  = new HBox(7);
 			Image iconFuelImg = new Image(iconFuels);

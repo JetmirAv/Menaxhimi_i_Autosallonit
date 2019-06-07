@@ -28,7 +28,7 @@ public class CarsDetails {
 		this.c  = c;
 	}
 
-	 public static    TextField textForManufacturer = new TextField();	
+	    public static    TextField textForManufacturer = new TextField();	
 		public static    TextField txtForModel= new TextField(c.getModel());
 		public static    TextField txtForbodyNumber= new TextField();
 	    public static    TextField txtForYearOfProduction = new TextField();	
@@ -58,12 +58,12 @@ public class CarsDetails {
 	    public static    TextField txtForIs4x4 = new TextField();	    
     
     
-	public static VBox display(String current )  throws IOException, SQLException {
+	public static VBox display(int id)  throws IOException, SQLException {
 	    
+		String current = new java.io.File(".").getCanonicalPath();
 		VBox vbox=new VBox();
 		vbox.getStylesheets().add(MainComponent.class.getResource("CarsForm.css").toExternalForm());
 
-		
 		HBox  photoHBox= new HBox();
 		
 		FileInputStream userPath;
