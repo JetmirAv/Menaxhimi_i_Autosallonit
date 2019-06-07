@@ -83,7 +83,7 @@ public class SideBarController implements EventHandler<ActionEvent> {
 		case "_Settings":
 			try {
 				Main.content.getChildren().clear();
-				Main.content.getChildren().addAll(UserInfo.display());
+				Main.content.getChildren().addAll(UserInfo.display(false));
 				Header.labelBox.getChildren().clear();
 				Header.lblLocation.setText("Settings");
 				Header.labelBox.getChildren().addAll(Header.lblLocation);

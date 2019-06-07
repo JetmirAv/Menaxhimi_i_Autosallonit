@@ -260,7 +260,7 @@ public class MainComponent {
 		
 
 		Button createUser = new Button("Create User");
-		createUser.setOnAction(new controller.CreateController());
+		createUser.setOnAction(new controller.ShowCreateUserController());
 		
 		
 		vbox.getChildren().addAll(table, createUser);

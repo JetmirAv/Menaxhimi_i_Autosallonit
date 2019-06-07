@@ -8,12 +8,13 @@ import javafx.scene.control.Label;
 import view.Header;
 import view.Main;
 
-public class CreateController implements EventHandler<ActionEvent>{
+public class ShowCreateUserController implements EventHandler<ActionEvent>{
 
 	@Override
 	public void handle(ActionEvent e) {
 		try {
-			Main.mainWindow.setCenter(view.UserInfo.display());
+			Main.content.getChildren().clear();
+			Main.content.getChildren().add(view.UserInfo.display(true));
 			Label lblCreateUser = new Label("/Create User");
 			Header.lblLocation.getStyleClass().clear();
 			Header.lblLocation.getStyleClass().add("lblHistory");
