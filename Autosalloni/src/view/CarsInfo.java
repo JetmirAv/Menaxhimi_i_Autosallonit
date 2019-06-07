@@ -3,7 +3,10 @@ package view;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Calendar;
 
+import controller.carsInfoController;
 import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -19,10 +22,24 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import models.Car;
+import models.Manufacturer;
+import helpers.helpers;
 
-public class CarsForm {
-	public static    String manufacturers[] = { "Aston-Martin","Audi","Bugatti","Chevrolet","Ford","Geely","Infiniti","Jeep" };
-	public static    ComboBox manufacturerComboBox =  new ComboBox(FXCollections.observableArrayList(manufacturers));
+public class CarsInfo {
+
+//	ArrayList<String> names = Manufacturer.getNames();
+	
+//	ArrayList<String> name = models.Car.modelA;
+//	ArrayList<String> bodyNr = models.Car.bodyNumberA;
+//	ArrayList<String> engineMd = models.Car.engineModelA;
+	
+//	public static    String manufacturers[] = {
+//			for(int i=0 ; i<names.size();i++)
+//				
+//			{names.get(i);}
+//			
+//			};  
+	public static    ComboBox manufacturerComboBox =  new ComboBox(FXCollections.observableArrayList(Manufacturer.getNames()));
 
 	public static    String stores[] = { "Luke","Keith","Tanner","Hall","Aquila","Davis","Dexter"};
 	public static    ComboBox storesComboBox =  new ComboBox(FXCollections.observableArrayList(stores));
@@ -30,9 +47,12 @@ public class CarsForm {
 	
 	public static    TextField txtForModel= new TextField();
 	public static    TextField txtForbodyNumber= new TextField();
-	public static    String years[] = { "2000","2001","2002","2003","2004","2005","2006","2007","2008","2009"
-                		,"2010","2011","2012","2013","2014","2015","2016","2017","2018","2019" };
-	public static    ComboBox yearOfProdComboBox =  new ComboBox(FXCollections.observableArrayList(years));
+//	public static    String years[] = { "2000","2001","2002","2003","2004","2005","2006","2007","2008","2009"
+//                		,"2010","2011","2012","2013","2014","2015","2016","2017","2018","2019" };
+//	
+	
+	
+	public static    ComboBox yearOfProdComboBox;
 	public static    String seats[] = { "2","4","6"};
 	public static    ComboBox seatsComboBox =  new ComboBox(FXCollections.observableArrayList(seats));
 	public static    String doors[] = { "2","4"};
@@ -69,6 +89,14 @@ public class CarsForm {
     
 	public static VBox display(String current )  throws IOException, SQLException {
 	    
+		
+		ArrayList<Integer> years = new ArrayList<Integer>();
+		
+		for(int i=Calendar.getInstance().get(Calendar.YEAR); i>=1940; i--) {
+			years.add(i);
+		}
+		yearOfProdComboBox = new ComboBox<>(FXCollections.observableArrayList(years));
+
 		VBox vbox=new VBox();
 		vbox.getStylesheets().add(MainComponent.class.getResource("CarsForm.css").toExternalForm());
 
@@ -348,52 +376,52 @@ public class CarsForm {
 		carsData.setAlignment(Pos.CENTER);
 		vbox.setPadding(new Insets(0,30,0,30));		
 		
-		insertBtn.setOnAction(e -> {
-			try {
-				insertCar();
-			} catch (NumberFormatException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-		});
+		insertBtn.setOnAction(new carsInfoController());
 		
 		
 		vbox.getChildren().addAll(photoHBox,carsData,secondCarsData,btnHbox);
 		return vbox;
 		
 	}
-	public static void insertCar() throws NumberFormatException, SQLException {
+	private ArrayList<String> getNames() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	public static boolean insertCar() throws NumberFormatException, SQLException {
 
 		
-		Car.addCar(String.valueOf(storesComboBox.getValue()),String.valueOf(manufacturerComboBox.getValue()), txtForModel.getText(),
+		return Car.addCar(String.valueOf(storesComboBox.getValue()),String.valueOf(manufacturerComboBox.getValue()), txtForModel.getText(),
 				txtForbodyNumber.getText(),Integer.parseInt(yearOfProdComboBox.getValue().toString()),
 				Integer.parseInt(seatsComboBox.getValue().toString()),
 				Integer.parseInt(doorsComboBox.getValue().toString()),
-				Boolean.valueOf(String.valueOf(roofComboBox.getValue())),
-				Boolean.valueOf(String.valueOf(alarmComboBox.getValue())),
-				Boolean.valueOf(String.valueOf(centralComboBox.getValue())),
-				Boolean.valueOf(String.valueOf(airbagComboBox.getValue())),
-				Boolean.valueOf(String.valueOf(autonomusComboBox.getValue())),
-				Boolean.valueOf(String.valueOf(navigatorComboBox.getValue())),
-				Boolean.valueOf(String.valueOf(climateComboBox.getValue())),
+				helpers.convertToBoolean(roofComboBox.getValue()),
+				helpers.convertToBoolean(alarmComboBox.getValue()),
+				helpers.convertToBoolean(centralComboBox.getValue()),
+				helpers.convertToBoolean(airbagComboBox.getValue()),
+				helpers.convertToBoolean(autonomusComboBox.getValue()),
+				helpers.convertToBoolean(navigatorComboBox.getValue()),
+				helpers.convertToBoolean(climateComboBox.getValue()),
 				String.valueOf(fuelTypeIdComboBox.getValue()),
 				Integer.parseInt(fuelCapacity.getValue().toString()),
 				Double.valueOf(String.valueOf(fuelConsumption.getValue())),
-				Boolean.valueOf(String.valueOf(hidraulicComboBox.getValue())),
+				helpers.convertToBoolean(hidraulicComboBox.getValue()),
 				engineModel.getText(),
 				Double.valueOf(String.valueOf(enginePower.getValue())),
 				Integer.parseInt(hoursePowerCapacity.getValue().toString()),
 				Integer.parseInt(maxspeed.getValue().toString()),
 			    Double.valueOf(String.valueOf(seconds0to100.getValue())),
-			    Boolean.valueOf(String.valueOf(isAutomaticComboBox.getValue())),
+			    helpers.convertToBoolean(isAutomaticComboBox.getValue()),
 			    Integer.parseInt(gears.getValue().toString()),
 			    String.valueOf(tireModelComboBox.getValue()),
 			    Integer.parseInt(tireSize.getValue().toString()),additionalDesc.getText(),
-			    Boolean.valueOf(String.valueOf(is4x4ComboBox.getValue()))); 
+			    helpers.convertToBoolean(is4x4ComboBox.getValue())); 
 
+		
+	}
+	
+	public static boolean emer(Object s) {
+		
+		return Boolean.valueOf(String.valueOf(s));
 		
 	}
 	
