@@ -30,34 +30,62 @@ public class CarsDetails {
 	
 	public static VBox display (Car car) throws IOException, SQLException {
 		
+		
 		 TextField textForManufacturer = new TextField(car.getNamesOfManufacturer(car.getManufacturerId()));
 		 TextField txtForModel = new TextField(car.getModel());
+		 txtForModel.setEditable(false);
 		 TextField txtForbodyNumber = new TextField(car.getBodyNumber());
+		 txtForbodyNumber.setEditable(false);
 		 TextField txtForYearOfProduction = new TextField(car.getBodyNumber()+"");
+		 txtForYearOfProduction.setEditable(false);
 		 TextField txtForSeats = new TextField(car.getSeats() + "");
+		 txtForSeats.setEditable(false);
 		 TextField txtForDoors = new TextField(car.getDoors() + "");
+		 txtForDoors.setEditable(false);
 		 TextField txtForRoof = new TextField(car.isRoof() + "");
+		 txtForRoof.setEditable(false);
 		 TextField txtForAlarm = new TextField(car.isAlarm() + "");
+		 txtForAlarm.setEditable(false);
 		 TextField txtForCentral = new TextField(car.isCentral() + "");
+		 txtForCentral.setEditable(false);
 		 TextField txtForAirBag = new TextField(car.isAirbag() + "");
+		 txtForAirBag.setEditable(false);
 		 TextField txtForAutonomous = new TextField(car.isAutonomus() + "");
+		 txtForAutonomous.setEditable(false);
 		 TextField txtForNavigator = new TextField(car.isNavigator() + "");
+		 txtForNavigator.setEditable(false);
 		 TextField txtForClimate = new TextField(car.isClimate() + "");
-		 TextField txtForFuelType = new TextField();
+		 txtForClimate.setEditable(false);
+		 TextField txtForFuelType = new TextField(car.getNamesOfFuelType(car.getFuelTypeId()));
+		 txtForFuelType.setEditable(false);
 		 TextField txtForFuelCapacity = new TextField(car.getFuelCapacity() + "");
+		 txtForFuelCapacity.setEditable(false);
 		 TextField txtForFuelConsumption = new TextField(car.getFuelConsumption() + "");
+		 txtForFuelConsumption.setEditable(false);
 		 TextField txtForHidraulic = new TextField(car.isHidraulic() + "");
+		 txtForHidraulic.setEditable(false);
 		 TextField txtForEngineModel = new TextField(car.getEngineModel() + "");
+		 txtForEngineModel.setEditable(false);
 		 TextField txtForEnginePowerModel = new TextField(car.getEnginePower()+"");
+		 txtForEnginePowerModel.setEditable(false);
 		 TextField txtForHoursePower = new TextField(car.getHoursePower() + "");
+		 txtForHoursePower.setEditable(false);
 		 TextField txtForMaxSpeed = new TextField(car.getMaxspeed()+"");
+		 txtForMaxSpeed.setEditable(false);
 		 TextField txtForSeconds0to100 = new TextField(car.getSeconds0to100() + "");
+		 txtForSeconds0to100.setEditable(false);
 		 TextField txtForIsAutomatic = new TextField(car.isAutomatic() + "");
+		 txtForIsAutomatic.setEditable(false);
 		 TextField txtForGears = new TextField(car.getGears() + "");
+		 txtForGears.setEditable(false);
 		 TextField txtForTireModel = new TextField(car.getTireModel());
+		 txtForTireModel.setEditable(false);
 		 TextField txtForTireSize = new TextField(car.getTireSize() + "");
+		 txtForTireSize.setEditable(false);
 		 TextField txtForAdditionalDesc = new TextField(car.getAdditionalDesc() + "");
+		 txtForAdditionalDesc.setEditable(false);
 		 TextField txtForIs4x4 = new TextField(car.isIs4x4() + "");
+		 txtForIs4x4.setEditable(false);
 
 		
 				
@@ -184,7 +212,6 @@ public class CarsDetails {
 		secondCarsData.setPadding(new Insets(20, 0, 0, 20));
 
 		// first row
-		carsData.add(storeLabel, 0, 0);
 		carsData.add(manufacturerIdLabel, 1, 0);
 		carsData.add(storeNameLabel, 2, 0);
 		carsData.add(bodyNumberLabel, 3, 0);

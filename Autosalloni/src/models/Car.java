@@ -38,11 +38,15 @@ public class Car {
 			private String additionalDesc;
 			private boolean is4x4 ;
 			private Date createdAt;
-			private Date updatetimedAt;
-			private Manufacturer manufacturer;
-			
+			private Date updatetimedAt; 
 			public static ArrayList<Car> kerret = new ArrayList<Car>();
-			public static ArrayList<String> nameOfManufacture = Manufacturer.getNames();
+			public static ArrayList<String> nameOfManufacture = Manufacturer.getNamesOfManufacturer();
+			public static ArrayList<String> nameOfFuelType = FuelType.getNamesOfFuelType();
+			
+			
+			
+			
+			
 	/*
 	 * public static ArrayList<String> modelA = new ArrayList<>(); public static
 	 * ArrayList<String> bodyNumberA = new ArrayList<>(); public static
@@ -105,11 +109,10 @@ public class Car {
 				return nameOfManufacture.get(id);
 			}
 			
+			public String getNamesOfFuelType(int id) {
+				return nameOfFuelType.get(id);
+			}
 			
-			
-			
-			
-		
 			  
 			public int getId() {
 				return id;
@@ -660,7 +663,7 @@ public class Car {
 					+ "  ,airbag ,autonomus  ,navigator ,climate ,fuelTypeId ,fuelCapacity,  fuelConsumption,hidraulic  ,engineModel,"
 					+ "enginePower ,hoursePower ,maxspeed ,seconds0to100 ,isAutomatic ,gears  ,tireModel  ,tireSize  ,additionalDesc ,"
 					+ "is4x4\r\n" + 
-					") VALUES((select id  from manufacturer where name=?),?,?,?,?,?,?,?,?,?,?,?,?,(select id from fueltype where name=?),?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+					") VALUES((?,?,?,?,?,?,?,?,?,?,?,?,?,(select id from fueltype where name=?),?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 				PreparedStatement preparedStatement = DatabaseConfig.getConnection().prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 			
 			//PreparedStatement preparedStatement = DatabaseConfig.getConnection().prepareStatement(query);

@@ -26,7 +26,7 @@ public class Manufacturer {
 		this.createdAt = new Date();
 		this.updatedAt = new Date();
 	}
-
+  
 
 	public int getId() {
 		return id;
@@ -84,7 +84,7 @@ public class Manufacturer {
 		this.updatedAt = updatedAt;
 	}
 	
-	public static ArrayList<String> getNames(){
+	public static ArrayList<String> getNamesOfManufacturer(){
 		
 		ArrayList<String> lista = new ArrayList<String>();
 		String query = "select name from manufacturer";
