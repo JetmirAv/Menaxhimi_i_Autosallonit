@@ -6,6 +6,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 
 public class Manufacturer {
 	
@@ -27,6 +30,12 @@ public class Manufacturer {
 		this.updatedAt = new Date();
 	}
   
+
+	public Manufacturer(int id, String name) {
+		this.id = id;
+		this.name = name;
+	}
+
 
 	public int getId() {
 		return id;
@@ -107,7 +116,30 @@ public class Manufacturer {
 		
 		
 	}
+	public static ObservableList<Manufacturer> getData() throws SQLException {
+		ObservableList<Manufacturer> carList = FXCollections.observableArrayList();
+		
+		String query = "select id , name  from manufacturer  limit 10";
+		
+		PreparedStatement preparedStatement = DatabaseConfig.getConnection().prepareStatement(query);
+		java.sql.ResultSet resultSet = preparedStatement.executeQuery();
+			
+		while(resultSet.next()) {
+
+			Manufacturer manufacturer = new Manufacturer(resultSet.getInt(1),resultSet.getString(2)); 
+			carList.add(manufacturer);
+			System.out.println(carList); 
+		
+		}
+		
+		return carList;
+
+	}
 	
+	@Override
+	public String toString() {
+	    return this.getName();
+	}
 	
 	
 	

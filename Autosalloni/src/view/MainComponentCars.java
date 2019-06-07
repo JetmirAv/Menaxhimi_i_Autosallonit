@@ -225,6 +225,7 @@ public class MainComponentCars {
 			carList.add(cars.get(i));
 		}
 		table.setItems(carList);
+		System.out.println(carList);
 
 	}
 }

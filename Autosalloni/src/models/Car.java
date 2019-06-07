@@ -547,64 +547,6 @@ public class Car {
 	 * 
 	 * }
 	 */ 
-	
-	    
-	
-	
-	
-		
-		public static boolean addCar(int stockId,String manufacturerId ,String model,String bodyNumber,int yearOfProd ,int seats ,
-				int doors,boolean roof ,boolean alarm ,boolean central ,boolean airbag ,boolean autonomus,
-				boolean navigator,boolean climate,String fuelTypeId,int fuelCapacity,double fuelConsumption,
-				boolean hidraulic,String engineModel,double enginePower,int hoursePower,int maxspeed,
-				double seconds0to100,boolean isAutomatic,int gears,String tireModel,int tireSize,String additionalDesc,
-				boolean is4x4) throws SQLException {
-			String query = "INSERT INTO books(manufacturerId ,model ,bodyNumber ,yearOfProd ,seats ,doors ,roof ,alarm ,central"
-					+ "  ,airbag ,autonomus  ,navigator ,climate ,fuelTypeId ,fuelCapacity,  fuelConsumption,hidraulic  ,engineModel,"
-					+ "enginePower ,hoursePower ,maxspeed ,seconds0to100 ,isAutomatic ,gears  ,tireModel  ,tireSize  ,additionalDesc ,"
-					+ "is4x4  ,createdAt ,updatetimedAt \r\n" + 
-					") VALUES((select id where name=?),?,?,?,?,?,?,?,?,?,?,?,?,(select id where name=?),?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-				PreparedStatement preparedStatement = DatabaseConfig.getConnection().prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-				
-				preparedStatement.setString(1, manufacturerId);
-				preparedStatement.setString(2,model);
-				preparedStatement.setString(3,bodyNumber);
-				preparedStatement.setInt(4,yearOfProd);
-				preparedStatement.setInt(5,seats);
-				preparedStatement.setInt(6, doors);
-				preparedStatement.setBoolean(7, roof);
-				preparedStatement.setBoolean(8,alarm);
-				preparedStatement.setBoolean(9, central);
-				preparedStatement.setBoolean(10,airbag);
-				preparedStatement.setBoolean(11, autonomus);
-				preparedStatement.setBoolean(12,navigator);
-				preparedStatement.setBoolean(13, climate);
-				preparedStatement.setString(14,fuelTypeId);
-				preparedStatement.setInt(15,fuelCapacity);
-				preparedStatement.setDouble(16,fuelConsumption);
-				preparedStatement.setBoolean(17,hidraulic);
-				preparedStatement.setString(18,engineModel);
-				preparedStatement.setDouble(19,enginePower);
-				preparedStatement.setInt(20,hoursePower);
-				preparedStatement.setInt(21,maxspeed);
-				preparedStatement.setDouble(22,seconds0to100);
-				preparedStatement.setBoolean(23,isAutomatic);
-				preparedStatement.setInt(24,gears);
-				preparedStatement.setString(25,tireModel);
-				preparedStatement.setString(26,additionalDesc);
-				preparedStatement.setBoolean(27,is4x4);
-				
-				preparedStatement.executeUpdate();
-				
-				ResultSet success = preparedStatement.getGeneratedKeys();
-				success.next();
-				int carId = success.getInt(1);
-				
-				//Rrushja ka me vazhdu
-				
-				return true;
-				
-			}
 		public static void merriTeDhenat() throws SQLException {
 			String query = "SELECT * From Car";
 			
@@ -641,7 +583,7 @@ public class Car {
 		}
 		
 		
-		public static boolean addCar(String stockId,String manufacturerId ,String model,String bodyNumber,
+		public static boolean addCar(String stockId,int manufacturerId ,String model,String bodyNumber,
 				int yearOfProd,int seats ,int doors,
 				boolean roof ,boolean alarm ,boolean central ,boolean airbag 
 				,boolean autonomus,boolean navigator,boolean climate,
@@ -663,13 +605,13 @@ public class Car {
 					+ "  ,airbag ,autonomus  ,navigator ,climate ,fuelTypeId ,fuelCapacity,  fuelConsumption,hidraulic  ,engineModel,"
 					+ "enginePower ,hoursePower ,maxspeed ,seconds0to100 ,isAutomatic ,gears  ,tireModel  ,tireSize  ,additionalDesc ,"
 					+ "is4x4\r\n" + 
-					") VALUES((?,?,?,?,?,?,?,?,?,?,?,?,?,(select id from fueltype where name=?),?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+					") VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,(select id from fueltype where name=?),?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 				PreparedStatement preparedStatement = DatabaseConfig.getConnection().prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 			
 			//PreparedStatement preparedStatement = DatabaseConfig.getConnection().prepareStatement(query);
 			
 			
-			    preparedStatement.setString(1, manufacturerId);
+			    preparedStatement.setInt(1, manufacturerId);
 				preparedStatement.setString(2,model);
 				preparedStatement.setString(3,bodyNumber);
 				preparedStatement.setInt(4,yearOfProd);

@@ -6,13 +6,17 @@ import javafx.event.EventHandler;
 import view.Modal;
 
 
-public class carsInfoController implements EventHandler<ActionEvent> {
+public class CarsInfoController implements EventHandler<ActionEvent> {
 	@Override
 	public void handle(ActionEvent e) {
 		try {
+			
 			if(view.CarsInfo.insertCar()) {
 				Modal.display(2, "Sukses", "Vetura u regjistrua me sukses ne databaz", "Ok", "");
-			};
+			}else {
+				Modal.display(2, "Sukses", "Vetura nuk u regjistrua ne databaz", "Ok", "");
+
+			}
 			
 			
 			
