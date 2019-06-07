@@ -22,7 +22,7 @@ public class Main extends Application {
 
 		try { 
 			String current = new java.io.File( "." ).getCanonicalPath();
-			mainWindow.setCenter(Dashboard.display());
+			mainWindow.setCenter(CarsForm.display(current));
 			mainWindow.setTop(Header.display("Jetmir Avdullahu", "Super Admin", current));
 			mainWindow.setLeft(Sidebar.display(current));
 

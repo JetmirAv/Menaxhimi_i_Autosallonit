@@ -617,4 +617,76 @@ public class Car {
 			}
 			return c;
 		}
+		
+		
+		public static boolean addCar(String stockId,String manufacturerId ,String model,String bodyNumber,
+				int yearOfProd,int seats ,int doors,
+				boolean roof ,boolean alarm ,boolean central ,boolean airbag 
+				,boolean autonomus,boolean navigator,boolean climate,
+				String fuelTypeId,
+				int fuelCapacity,
+				double fuelConsumption,
+				boolean hidraulic,
+				String engineModel,
+				double enginePower,
+				int hoursePower,int maxspeed,
+				double seconds0to100,
+				boolean isAutomatic,
+				int gears,
+				String tireModel,
+				int tireSize,
+				String additionalDesc,
+				boolean is4x4) throws SQLException {
+			String query = "INSERT INTO car(manufacturerId ,model ,bodyNumber ,yearOfProd ,seats ,doors ,roof ,alarm ,central"
+					+ "  ,airbag ,autonomus  ,navigator ,climate ,fuelTypeId ,fuelCapacity,  fuelConsumption,hidraulic  ,engineModel,"
+					+ "enginePower ,hoursePower ,maxspeed ,seconds0to100 ,isAutomatic ,gears  ,tireModel  ,tireSize  ,additionalDesc ,"
+					+ "is4x4\r\n" + 
+					") VALUES((select id  from manufacturer where name=?),?,?,?,?,?,?,?,?,?,?,?,?,(select id from fueltype where name=?),?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+				PreparedStatement preparedStatement = DatabaseConfig.getConnection().prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+			
+			//PreparedStatement preparedStatement = DatabaseConfig.getConnection().prepareStatement(query);
+			
+			
+			    preparedStatement.setString(1, manufacturerId);
+				preparedStatement.setString(2,model);
+				preparedStatement.setString(3,bodyNumber);
+				preparedStatement.setInt(4,yearOfProd);
+				preparedStatement.setInt(5,seats);
+				preparedStatement.setInt(6, doors);
+				preparedStatement.setBoolean(7, roof);
+				preparedStatement.setBoolean(8,alarm);
+				preparedStatement.setBoolean(9, central);
+				preparedStatement.setBoolean(10,airbag);
+				preparedStatement.setBoolean(11, autonomus);
+				preparedStatement.setBoolean(12,navigator);
+				preparedStatement.setBoolean(13, climate);
+				preparedStatement.setString(14,fuelTypeId);
+				preparedStatement.setInt(15,fuelCapacity);
+				preparedStatement.setDouble(16,fuelConsumption);
+				preparedStatement.setBoolean(17,hidraulic);
+				preparedStatement.setString(18,engineModel);
+				preparedStatement.setDouble(19,enginePower);
+				preparedStatement.setInt(20,hoursePower);
+				preparedStatement.setInt(21,maxspeed);
+				preparedStatement.setDouble(22,seconds0to100);
+				preparedStatement.setBoolean(23,isAutomatic);
+				preparedStatement.setInt(24,gears);
+				preparedStatement.setString(25,tireModel);
+				preparedStatement.setInt(26,tireSize);
+				preparedStatement.setString(27,additionalDesc);
+				preparedStatement.setBoolean(28,is4x4);
+				
+				
+				preparedStatement.executeUpdate();
+				//return (preparedStatement.executeUpdate() > 0);
+				ResultSet success = preparedStatement.getGeneratedKeys();
+				success.next();
+				int carId = success.getInt(1);
+				
+				//Rrushja ka me vazhdu
+				
+				return true;
+				
+			}
+
 }

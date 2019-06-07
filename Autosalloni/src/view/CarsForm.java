@@ -48,18 +48,19 @@ public class CarsForm {
 	public static    String fuelTypeId[] = { "Gasoline","Diesel","Natural gas","Hydrogen","Biodiesel"};
 	public static    ComboBox fuelTypeIdComboBox =  new ComboBox(FXCollections.observableArrayList(fuelTypeId));
 	private static    Spinner<Integer> fuelCapacity = new Spinner<>(0, 300, 0, 1);
-	public static    Spinner<Integer> fuelConsumption = new Spinner<>(0, 300, 0, 1);//min , max , start , increase
+	public static    Spinner<Double> fuelConsumption = new Spinner<>(0, 300, 0, 1);//min , max , start , increase
 	public static    ComboBox hidraulicComboBox =  new ComboBox(FXCollections.observableArrayList(trueFalse));
 	public static    TextField engineModel= new TextField();
-	public static    Spinner<Integer> enginePower= new Spinner<>(0, 300, 0, 1);
+	public static    Spinner<Double> enginePower= new Spinner<>(0, 300, 0, 1);
 	public static    Spinner<Integer> hoursePowerCapacity = new Spinner<>(0, 300, 0, 1);
 	public static    Spinner<Integer> maxspeed= new Spinner<>(0, 350, 0, 1);
-	public static    Spinner<Integer> seconds0to100= new Spinner<>(0, 300, 0, 1);
+	public static    Spinner<Double> seconds0to100= new Spinner<>(0, 300, 0, 1);
 	public static    ComboBox isAutomaticComboBox =  new ComboBox(FXCollections.observableArrayList(trueFalse));
 	public static    Spinner<Integer> gears= new Spinner<>(4, 7, 4, 1);
 	public static    String tireModel[] = { "summer","winter"};
 	public static    ComboBox tireModelComboBox =  new ComboBox(FXCollections.observableArrayList(tireModel));
-	public static    TextField tireSize= new TextField();
+//	public static    TextField tireSize= new TextField();
+	public static    Spinner<Integer> tireSize= new Spinner<>(0, 350, 0, 1);
 	public static    TextField additionalDesc= new TextField();
 	public static    ComboBox is4x4ComboBox =  new ComboBox(FXCollections.observableArrayList(trueFalse));
 
@@ -347,23 +348,53 @@ public class CarsForm {
 		carsData.setAlignment(Pos.CENTER);
 		vbox.setPadding(new Insets(0,30,0,30));		
 		
+		insertBtn.setOnAction(e -> {
+			try {
+				insertCar();
+			} catch (NumberFormatException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		});
 		
 		
 		vbox.getChildren().addAll(photoHBox,carsData,secondCarsData,btnHbox);
 		return vbox;
 		
 	}
-	public void insertBook() {
-//		public static boolean addCar(int stockId,String manufacturerId ,String model,String bodyNumber,int yearOfProd ,int seats ,
-//				int doors,boolean roof ,boolean alarm ,boolean central ,boolean airbag ,boolean autonomus,
-//				boolean navigator,boolean climate,String fuelTypeId,int fuelCapacity,double fuelConsumption,
-//				boolean hidraulic,String engineModel,double enginePower,int hoursePower,int maxspeed,
-//				double seconds0to100,boolean isAutomatic,int gears,String tireModel,int tireSize,String additionalDesc,
-//				boolean is4x4)
-		
-		if(Car.addCar(titleTxt.getText(), authorTxt.getText(), Integer.parseInt(yearTxt.getText()), Integer.parseInt(pagesTxt.getText()))) {
+	public static void insertCar() throws NumberFormatException, SQLException {
 
-		}
+		
+		Car.addCar(String.valueOf(storesComboBox.getValue()),String.valueOf(manufacturerComboBox.getValue()), txtForModel.getText(),
+				txtForbodyNumber.getText(),Integer.parseInt(yearOfProdComboBox.getValue().toString()),
+				Integer.parseInt(seatsComboBox.getValue().toString()),
+				Integer.parseInt(doorsComboBox.getValue().toString()),
+				Boolean.valueOf(String.valueOf(roofComboBox.getValue())),
+				Boolean.valueOf(String.valueOf(alarmComboBox.getValue())),
+				Boolean.valueOf(String.valueOf(centralComboBox.getValue())),
+				Boolean.valueOf(String.valueOf(airbagComboBox.getValue())),
+				Boolean.valueOf(String.valueOf(autonomusComboBox.getValue())),
+				Boolean.valueOf(String.valueOf(navigatorComboBox.getValue())),
+				Boolean.valueOf(String.valueOf(climateComboBox.getValue())),
+				String.valueOf(fuelTypeIdComboBox.getValue()),
+				Integer.parseInt(fuelCapacity.getValue().toString()),
+				Double.valueOf(String.valueOf(fuelConsumption.getValue())),
+				Boolean.valueOf(String.valueOf(hidraulicComboBox.getValue())),
+				engineModel.getText(),
+				Double.valueOf(String.valueOf(enginePower.getValue())),
+				Integer.parseInt(hoursePowerCapacity.getValue().toString()),
+				Integer.parseInt(maxspeed.getValue().toString()),
+			    Double.valueOf(String.valueOf(seconds0to100.getValue())),
+			    Boolean.valueOf(String.valueOf(isAutomaticComboBox.getValue())),
+			    Integer.parseInt(gears.getValue().toString()),
+			    String.valueOf(tireModelComboBox.getValue()),
+			    Integer.parseInt(tireSize.getValue().toString()),additionalDesc.getText(),
+			    Boolean.valueOf(String.valueOf(is4x4ComboBox.getValue()))); 
+
+		
 	}
 	
 }
