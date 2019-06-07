@@ -13,14 +13,6 @@ public class SideBarController implements EventHandler<ActionEvent> {
 	public void handle(ActionEvent e) {
 		System.out.println(e.getTarget().toString().split("'")[1].split("'")[0]);
 
-		String current = null;
-		try {
-			current = new java.io.File(".").getCanonicalPath();
-		} catch (IOException e2) {
-			// TODO Auto-generated catch block
-			e2.printStackTrace();
-		}
-
 		switch (e.getTarget().toString().split("'")[1].split("'")[0]) {
 		case "_Dashboard":
 			Main.mainWindow.setCenter(Dashboard.display());

@@ -27,8 +27,9 @@ import javafx.scene.text.Text;
 
 public class CreateUser 
 {
-	public static VBox display(String current) throws IOException
+	public static VBox display() throws IOException
 	{
+		String current = new java.io.File(".").getCanonicalPath();
 		
 		FileInputStream namePath = new FileInputStream(current + "/src/img/createUser.png");
 		FileInputStream lastnamePath = new FileInputStream(current + "/src/img/lastname.png");
