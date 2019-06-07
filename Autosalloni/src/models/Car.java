@@ -38,18 +38,19 @@ public class Car {
 			private String additionalDesc;
 			private boolean is4x4 ;
 			private Date createdAt;
-			private Date updatetimedAt;
-			public static ArrayList<String> modelA = new ArrayList<>();
-			public static ArrayList<String> bodyNumberA = new ArrayList<>();
-			public static ArrayList<String> engineModelA = new ArrayList<>();
+			private Date updatetimedAt; 
+			public static ArrayList<Car> kerret = new ArrayList<Car>();
+			
+			
+
 						
-			public Car(int manufacturerId ,String model,String bodyNumber,int yearOfProd ,int seats ,
+			public Car(int id , int manufacturerId ,String model,String bodyNumber,int yearOfProd ,int seats ,
 					int doors,boolean roof ,boolean alarm ,boolean central ,boolean airbag ,boolean autonomus,
 					boolean navigator,boolean climate,int fuelTypeId,int fuelCapacity,double fuelConsumption,
 					boolean hidraulic,String engineModel,double enginePower,int hoursePower,int maxspeed,
 					double seconds0to100,boolean isAutomatic,int gears,String tireModel,int tireSize,String additionalDesc,
 					boolean is4x4) {
-				
+				this.id = id;
 				this.manufacturerId=manufacturerId;
 				this.model=model;
 				this.bodyNumber=bodyNumber;
@@ -77,7 +78,7 @@ public class Car {
 				this.tireModel=tireModel;
 				this.tireSize=tireSize;
 				this.additionalDesc=additionalDesc;
-				this.is4x4=is4x4;			
+				this.is4x4=is4x4;			 
 			}
 
 
@@ -509,22 +510,23 @@ public class Car {
 	}
 	
 	
-	    public static void  city() throws SQLException {
-	  	String query = "SELECT model , bodyNumber , engineModel  FROM Car limit 5";
-		
-		PreparedStatement preparedStatement = DatabaseConfig.getConnection().prepareStatement(query);
-		java.sql.ResultSet resultSet = preparedStatement.executeQuery();
-			 
-		while(resultSet.next()) {
-			modelA.add(resultSet.getString(1));
-			bodyNumberA.add(resultSet.getString(2));
-	        engineModelA.add(resultSet.getString(3));
-		}
-		
-
-	}
+	/*
+	 * public static void city() throws SQLException { String query =
+	 * "SELECT model , bodyNumber , engineModel  FROM Car limit 5";
+	 * 
+	 * PreparedStatement preparedStatement =
+	 * DatabaseConfig.getConnection().prepareStatement(query); java.sql.ResultSet
+	 * resultSet = preparedStatement.executeQuery();
+	 * 
+	 * while(resultSet.next()) { modelA.add(resultSet.getString(1));
+	 * bodyNumberA.add(resultSet.getString(2));
+	 * engineModelA.add(resultSet.getString(3)); }
+	 * 
+	 * 
+	 * }
+	 */
 	
-	
+	    
 	
 	
 	
@@ -580,29 +582,39 @@ public class Car {
 				
 				return true;
 				
-			} 	
+			}
+		public static void merriTeDhenat() throws SQLException {
+			String query = "SELECT * From Car";
+			
+			PreparedStatement preparedStatement = DatabaseConfig.getConnection().prepareStatement(query);
+			java.sql.ResultSet resultSet = preparedStatement.executeQuery();
+				 
+			while(resultSet.next()) {
+				kerret.add(new Car(resultSet.getInt(1) , resultSet.getInt(2),resultSet.getString(3),resultSet.getString(4),resultSet.getInt(5),
+						resultSet.getInt(6),resultSet.getInt(7),((resultSet.getInt(8) == 1) ? true : false),((resultSet.getInt(9) == 1) ? true : false),
+						((resultSet.getInt(10) == 1) ? true : false),((resultSet.getInt(11) == 1) ? true : false),((resultSet.getInt(12) == 1) ? true : false),
+						((resultSet.getInt(13) == 1) ? true : false),((resultSet.getInt(14) == 1) ? true : false),resultSet.getInt(15),resultSet.getInt(16),resultSet.getDouble(17),
+						((resultSet.getInt(18) == 1) ? true : false),resultSet.getString(19),resultSet.getDouble(20),resultSet.getInt(21),resultSet.getInt(22),
+						resultSet.getDouble(23),((resultSet.getInt(24) == 1) ? true : false),resultSet.getInt(25),resultSet.getString(26),resultSet.getInt(27),
+						resultSet.getString(28),((resultSet.getInt(29) == 1) ? true : false)));
+			}
+		}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
-
+		
+		public static Car merriTeDhenat(int id) throws SQLException {
+			Car c = null;
+			String query = "SELECT * From Car WHERE id = " + id;
+			PreparedStatement preparedStatement = DatabaseConfig.getConnection().prepareStatement(query);
+			java.sql.ResultSet resultSet = preparedStatement.executeQuery();
+			while(resultSet.next()) {
+				c = new Car(resultSet.getInt(1) , resultSet.getInt(2),resultSet.getString(3),resultSet.getString(4),resultSet.getInt(5),
+						resultSet.getInt(6),resultSet.getInt(7),((resultSet.getInt(8) == 1) ? true : false),((resultSet.getInt(9) == 1) ? true : false),
+						((resultSet.getInt(10) == 1) ? true : false),((resultSet.getInt(11) == 1) ? true : false),((resultSet.getInt(12) == 1) ? true : false),
+						((resultSet.getInt(13) == 1) ? true : false),((resultSet.getInt(14) == 1) ? true : false),resultSet.getInt(15),resultSet.getInt(16),resultSet.getDouble(17),
+						((resultSet.getInt(18) == 1) ? true : false),resultSet.getString(19),resultSet.getDouble(20),resultSet.getInt(21),resultSet.getInt(22),
+						resultSet.getDouble(23),((resultSet.getInt(24) == 1) ? true : false),resultSet.getInt(25),resultSet.getString(26),resultSet.getInt(27),
+						resultSet.getString(28),((resultSet.getInt(29) == 1) ? true : false));
+			}
+			return c;
+		}
 }
-

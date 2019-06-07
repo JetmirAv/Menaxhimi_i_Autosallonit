@@ -1,5 +1,6 @@
 package view;
 
+import models.*;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -32,11 +33,12 @@ import javafx.stage.Stage;
 public class Cars {
 
 	public static FlowPane display(String current) throws IOException, SQLException {
+ 
+	//	models.Car.city();
+		models.Car.merriTeDhenat();
+		ArrayList<models.Car> veturat = models.Car.kerret;
 
-		models.Car.city();
-		ArrayList<String> model = models.Car.modelA;
-		ArrayList<String> bodyNr = models.Car.bodyNumberA;
-		ArrayList<String> engineMd = models.Car.engineModelA;
+//		ArrayList<Integer> idOfCars = models.Car.idOfCar;
 
 		// Declare Photos
 
@@ -66,7 +68,7 @@ public class Cars {
 		paneFirstRow.setPadding(new Insets(0, 0, 0, 23));
 		paneFirstRow.setAlignment(Pos.CENTER);
 
-		for (int i = 0; i < model.size(); i++) {
+		for (int i = 0; i < 5; i++) {
 
 			
 			// Photo
@@ -81,6 +83,27 @@ public class Cars {
 			
 			
 			VBox VboxComplete = new VBox();
+			VboxComplete.setId(veturat.get(i).getId() + "");
+			VboxComplete.setOnMouseClicked(e -> {
+				String str = e.getSource().toString();
+				/*
+				 * char c = a.charAt(a.length()-2); int g = Character.getNumericValue(c);
+				 */
+				str = str.replaceAll("[^\\d+]", "");
+				int g = Integer.parseInt(str);
+				System.out.println(g);
+				Car c = null;
+				try {
+					 c = Car.merriTeDhenat(g);
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				new CarsDetails(c);
+				
+				
+			});
+			
 			GridPane detailsCar = new GridPane();
 			detailsCar.setPadding(new Insets(10, 10, 10, 10));
 			detailsCar.setVgap(25);
@@ -98,7 +121,7 @@ public class Cars {
 			Image iconFuelImg = new Image(iconFuels);
 			ImageView iconLabel = new ImageView(iconFuelsObj);
 			VBox vbForFirstDetail = new VBox();
-			Label modelFromDatabase = new Label(model.get(i));
+			Label modelFromDatabase =  new Label(veturat.get(i).getModel());
 			modelFromDatabase.setFont(Font.font("Verdana", FontWeight.BOLD, 8));
 			Label Model = new Label("Model");
 			vbForFirstDetail.getChildren().addAll(Model, modelFromDatabase);
@@ -109,7 +132,7 @@ public class Cars {
 			HBox hboxForSecondDetail = new HBox(7);
 			ImageView gearsIcon = new ImageView(gearsPhotoObj);
 			VBox vbForSecondDetail = new VBox();
-			Label bodyNumberFromDatabase = new Label(bodyNr.get(i));
+			Label bodyNumberFromDatabase = new Label(veturat.get(i).getBodyNumber());
 			bodyNumberFromDatabase.setFont(Font.font("Verdana", FontWeight.BOLD, 8));
 			Label bodyNumber = new Label("body");
 			vbForSecondDetail.getChildren().addAll(bodyNumber, bodyNumberFromDatabase);
@@ -120,7 +143,7 @@ public class Cars {
 			HBox hboxForThirdDetail = new HBox(7);
 			ImageView wheelIcon = new ImageView(wheelPhotoObj);
 			VBox vbForThirdDetail = new VBox();
-			Label endineModelFromDatabase = new Label(engineMd.get(i));
+			Label endineModelFromDatabase = new Label(veturat.get(i).getEngineModel());
 			endineModelFromDatabase.setFont(Font.font("Verdana", FontWeight.BOLD, 8));
 			Label engine = new Label("Engine");
 			vbForThirdDetail.getChildren().addAll(engine, endineModelFromDatabase);
@@ -128,7 +151,6 @@ public class Cars {
 			detailsCar.setConstraints(hboxForThirdDetail, 0, 2);
 
 			// Details
-			
 			
 			Label details = new Label("View details");
 			detailsCar.setConstraints(details, 1, 2);
