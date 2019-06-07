@@ -6,7 +6,6 @@ createdAt datetime default Now(),
 updatetimedAt datetime default Now()
 );
 
-
 create table fuelType (
 id int auto_increment primary key,
 name varchar(50) not null,
@@ -14,7 +13,6 @@ description Text not null,
 createdAt datetime default Now(),
 updatetimedAt datetime default Now()
 );
-
 
 create table Stores (
 id int auto_increment primary key,
@@ -70,6 +68,7 @@ updatetimedAt datetime default Now(),
 foreign key (userId) references Users(id)
 );
 
+
 create table Car (
 id int auto_increment primary key,
 manufacturerId int,
@@ -106,6 +105,7 @@ foreign key(manufacturerId) references Manufacturer(id),
 foreign key(fuelTypeId) references fuelType(id)
 );
 
+
 create table Photos (
 id int auto_increment primary key,
 path varchar(50) not null,
@@ -115,13 +115,14 @@ updatetimedAt datetime default Now(),
 foreign key(carId) references Car(id)
 );
 
+
 create table Stock (
 id int auto_increment primary key,
 carId int, 
 storeId int,
 avalible int,
 price double,
-isSale boolean,
+sale float,
 createdAt datetime default Now(),
 updatetimedAt datetime default Now(),
 foreign key (carId) references Car(id),
@@ -138,4 +139,3 @@ updatetimedAt datetime default Now(),
 foreign key (userId) references Users(id),
 foreign key (stockId) references Stock(id)
 );
-
