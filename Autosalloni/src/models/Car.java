@@ -5,7 +5,7 @@ import java.util.Date;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-
+import models.Manufacturer;
 
 public class Car {
             private int id;
@@ -38,9 +38,17 @@ public class Car {
 			private String additionalDesc;
 			private boolean is4x4 ;
 			private Date createdAt;
-			private Date updatetimedAt; 
-			public static ArrayList<Car> kerret = new ArrayList<Car>();
+			private Date updatetimedAt;
+			private Manufacturer manufacturer;
 			
+			public static ArrayList<Car> kerret = new ArrayList<Car>();
+			public static ArrayList<String> nameOfManufacture = Manufacturer.getNames();
+	/*
+	 * public static ArrayList<String> modelA = new ArrayList<>(); public static
+	 * ArrayList<String> bodyNumberA = new ArrayList<>(); public static
+	 * ArrayList<String> engineModelA = new ArrayList<>(); public static
+	 * ArrayList<Integer> idOfCar = new ArrayList<>();
+	 */
 			
 
 						
@@ -78,7 +86,7 @@ public class Car {
 				this.tireModel=tireModel;
 				this.tireSize=tireSize;
 				this.additionalDesc=additionalDesc;
-				this.is4x4=is4x4;			 
+				this.is4x4=is4x4;
 			}
 
 
@@ -93,6 +101,16 @@ public class Car {
 			}
 
 
+			public String getNamesOfManufacturer(int id){
+				return nameOfManufacture.get(id);
+			}
+			
+			
+			
+			
+			
+		
+			  
 			public int getId() {
 				return id;
 			}
@@ -340,7 +358,7 @@ public class Car {
 			public void setUpdatetimedAt(Date updatetimedAt) {
 				this.updatetimedAt = updatetimedAt;
 			}
-			@Override
+			@Override  
 			public String toString() {
 				return "Car [id=" +id +"manufacturerId=" +manufacturerId + "model="+model+"bodyNumber="+bodyNumber+"yearOfProd="+yearOfProd+
 						"seats="+seats+"doors="+doors+"roof="+roof+"alarm="+alarm+"central="+central+"airbag="+airbag+"autonomus="+autonomus+ 
@@ -466,6 +484,7 @@ public class Car {
 			boolean hidraulic,int hoursePower,int maxspeed,
 			boolean isAutomatic) throws SQLException{ 
 		
+		 
 		String query = "select p.path, c.seats, c.doors ,c.alarm,c.climate,c.hidraulic,c.hoursePower ,c.maxspeed, c.isAutomatic from car c";
 		PreparedStatement stm = DatabaseConfig.getConnection().prepareStatement(query);
 		
@@ -524,7 +543,7 @@ public class Car {
 	 * 
 	 * 
 	 * }
-	 */
+	 */ 
 	
 	    
 	
@@ -601,13 +620,13 @@ public class Car {
 		}
 	
 		
-		public static Car merriTeDhenat(int id) throws SQLException {
-			Car c = null;
+		public static Car getAllDetailsOfCar(int id) throws SQLException {
 			String query = "SELECT * From Car WHERE id = " + id;
 			PreparedStatement preparedStatement = DatabaseConfig.getConnection().prepareStatement(query);
 			java.sql.ResultSet resultSet = preparedStatement.executeQuery();
+			Car car = null;
 			while(resultSet.next()) {
-				c = new Car(resultSet.getInt(1) , resultSet.getInt(2),resultSet.getString(3),resultSet.getString(4),resultSet.getInt(5),
+				car = new Car(resultSet.getInt(1) , resultSet.getInt(2),resultSet.getString(3),resultSet.getString(4),resultSet.getInt(5),
 						resultSet.getInt(6),resultSet.getInt(7),((resultSet.getInt(8) == 1) ? true : false),((resultSet.getInt(9) == 1) ? true : false),
 						((resultSet.getInt(10) == 1) ? true : false),((resultSet.getInt(11) == 1) ? true : false),((resultSet.getInt(12) == 1) ? true : false),
 						((resultSet.getInt(13) == 1) ? true : false),((resultSet.getInt(14) == 1) ? true : false),resultSet.getInt(15),resultSet.getInt(16),resultSet.getDouble(17),
@@ -615,7 +634,7 @@ public class Car {
 						resultSet.getDouble(23),((resultSet.getInt(24) == 1) ? true : false),resultSet.getInt(25),resultSet.getString(26),resultSet.getInt(27),
 						resultSet.getString(28),((resultSet.getInt(29) == 1) ? true : false));
 			}
-			return c;
+			return car;
 		}
 		
 		
@@ -688,5 +707,20 @@ public class Car {
 				return true;
 				
 			}
+	/*
+	 * public static void getSomeInfoForCar() throws SQLException { String query =
+	 * "SELECT  id , model , bodyNumber , engineModel  FROM Car limit 5";
+	 * 
+	 * PreparedStatement preparedStatement =
+	 * DatabaseConfig.getConnection().prepareStatement(query); java.sql.ResultSet
+	 * resultSet = preparedStatement.executeQuery();
+	 * 
+	 * while(resultSet.next()) { idOfCar.add(resultSet.getInt(1));
+	 * modelA.add(resultSet.getString(2)); bodyNumberA.add(resultSet.getString(3));
+	 * engineModelA.add(resultSet.getString(4)); }
+	 * 
+	 * 
+	 * }
+	 */
 
 }
