@@ -45,3 +45,6 @@
 .active {
 	-fx-font-weight: 800;
 }
+.bttnBack{
+	-fx-margin: 0 40px 0 0;
+}

@@ -22,7 +22,7 @@ public class Dashboard {
 
 	public static VBox display() {
 		VBox dashboard = new VBox(30);
-
+ 
 		try {
 
 			int totalUsers = models.Users.count(false);

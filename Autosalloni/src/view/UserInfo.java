@@ -25,7 +25,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
-public class CreateUser 
+public class UserInfo 
 {
 	public static VBox display() throws IOException
 	{
@@ -46,7 +46,7 @@ public class CreateUser
 		FileInputStream expiredPath = new FileInputStream(current + "/src/img/expired.png");
 		FileInputStream cardPath = new FileInputStream(current + "/src/img/card.png");
 		
-		
+		 
 		VBox createUserHbox = new VBox();
 		Text signUpTxt = new Text("Create User");
 		signUpTxt.setFont(new Font("Times New Roman",30));

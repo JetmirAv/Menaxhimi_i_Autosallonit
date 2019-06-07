@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
@@ -13,16 +16,16 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
 	public static BorderPane mainWindow = new BorderPane();
-	public static ArrayList<Node> history = new ArrayList<Node>();
-
-	
+	public static ArrayList<String> history = new ArrayList<String>();
+	public static VBox content = new VBox();	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		VBox content = new VBox();	
-//		BorderPane.setMargin(mainWindow.getCenter(), new Insets(20));
-
-		try { 
-			mainWindow.setCenter(Dashboard.display());
+		content.setSpacing(30);
+		content.setPadding(new Insets(50, 10, 30, 10));
+		
+		try {
+			content.getChildren().add(Dashboard.display());
+			mainWindow.setCenter(content);
 			mainWindow.setTop(Header.display("Jetmir Avdullahu", "Super Admin"));
 			mainWindow.setLeft(Sidebar.display());
 

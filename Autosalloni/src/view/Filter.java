@@ -9,12 +9,12 @@ import javafx.scene.layout.HBox;
 public class Filter {
 
 	public static HBox display(String className) {
-		HBox filters = new HBox(250);
+		HBox filters = new HBox(150);
 		filters.setPadding(new Insets(15, 10, 15, 30));
 		HBox searchBox = new HBox(10);
 		HBox manufacturerBox = new HBox(10);
 		HBox fuelBox = new HBox();
-		
+		 
 		Label lblSearch = new Label("Search: ");
 		Label lblManufacturer = new Label("Manufacturer: ");
 		Label lblFuel = new Label("Fuel: ");
@@ -37,7 +37,7 @@ public class Filter {
 		manufacturerBox.getChildren().addAll(lblManufacturer, selectManufacturer);
 		fuelBox.getChildren().addAll(lblFuel, selectFuel);
 		filters.getChildren().addAll(searchBox);
-		if(className == "view.Car") {
+		if(className == "Car") {
 			filters.getChildren().addAll(manufacturerBox, fuelBox);
 		}
 		

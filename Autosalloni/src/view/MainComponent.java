@@ -9,6 +9,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -26,7 +27,7 @@ public class MainComponent {
 
 	public static VBox display() throws IOException, SQLException {
 		String current = new java.io.File(".").getCanonicalPath();
-
+ 
 //	
 		HBox hbox = new HBox(60);
 		VBox vbox = new VBox(5);
@@ -256,7 +257,13 @@ public class MainComponent {
 		addressCol.getStyleClass().add("textToCenter");
 		phoneNumberCol.getStyleClass().add("textToCenter");
 
-		vbox.getChildren().addAll(table);
+		
+
+		Button createUser = new Button("Create User");
+		createUser.setOnAction(new controller.CreateController());
+		
+		
+		vbox.getChildren().addAll(table, createUser);
 		showUsers();
 		return vbox;
 

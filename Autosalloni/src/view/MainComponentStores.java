@@ -232,7 +232,7 @@ public class MainComponentStores {
 		stateCol.getStyleClass().add("textToCenter");
 		phoneNumberCol.getStyleClass().add("textToCenter");
 		postalCol.getStyleClass().add("textToCenter");
-		vbox.setPadding(new Insets(62, 0, 0, 0));
+//		vbox.setPadding(new Insets(62, 0, 0, 0));
 		showStores();
 		vbox.getChildren().add(table);
 		return vbox;

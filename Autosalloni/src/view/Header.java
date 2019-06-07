@@ -3,6 +3,7 @@ package view;
 import java.io.FileInputStream;
 import java.io.IOException;
 
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.control.Button;
@@ -17,12 +18,15 @@ import javafx.scene.shape.Circle;
 public class Header {
 
 	public static HBox historyBox = new HBox();
+	public static HBox labelBox = new HBox();
 	public static Label lblLocation = new Label("Dashboard");
 	public static Button bttnBack = new Button("Back");
 	public static HBox display(String fullName, String role) throws IOException {
-
+ 
 		String current = new java.io.File(".").getCanonicalPath();
 
+		bttnBack.setDisable(true);
+		
 		FileInputStream logOutPath = new FileInputStream(current + "/src/img/power.png");
 		FileInputStream UserImgPath = new FileInputStream(current + "/src/img/user.png");
 		FileInputStream logoPath = new FileInputStream(current + "/src/img/logo.png");
@@ -84,11 +88,13 @@ public class Header {
 		profileBox.getChildren().addAll(userHBox, labelLogOut);
 		
 		
-		
+		labelBox.getChildren().add(lblLocation);
+		labelBox.setAlignment(Pos.CENTER_LEFT);
+		bttnBack.getStyleClass().add("bttnBack");
 		lblLocation.getStyleClass().addAll("lblHistory","active");
 		historyBox.setSpacing(30);
 		historyBox.setAlignment(Pos.CENTER_LEFT);
-		historyBox.getChildren().addAll(bttnBack, lblLocation);
+		historyBox.getChildren().addAll(bttnBack, labelBox);
 		historyBox.setPrefWidth(800); 
 		historyBox.setMaxWidth(801);
 		

@@ -10,6 +10,7 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
@@ -41,7 +42,7 @@ public class MainComponentCars {
 	public static VBox display() throws IOException, SQLException {
 		String current = new java.io.File(".").getCanonicalPath();
 
-//	
+//	 
 //	       HBox hbox = new HBox(60); 
 //	       HBox car1HBox = new HBox(60); 
 //	       
@@ -199,9 +200,11 @@ public class MainComponentCars {
 		maxSpeedCol.getStyleClass().add("textToCenter");
 		isAutomaticCol.getStyleClass().add("textToCenter");
 
+		
+		
 		VBox vbox = new VBox();
 		vbox.setSpacing(5);
-		vbox.setPadding(new Insets(10, 0, 0, 10));
+//		vbox.setPadding(new Insets(10, 0, 0, 10));
 		vbox.getChildren().addAll(table);
 		table.setPrefSize(200, 400);
 		table.setPrefWidth(200);
