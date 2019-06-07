@@ -16,14 +16,20 @@ public class SideBarController implements EventHandler<ActionEvent> {
 		switch (e.getTarget().toString().split("'")[1].split("'")[0]) {
 		case "_Dashboard":
 			Main.mainWindow.setCenter(Dashboard.display());
-			Main.history.clear();
-			Main.history.add(Dashboard.display());
+			Header.historyBox.getChildren().clear();
+			Header.lblLocation.setText("Dashboard");
+			Header.historyBox.getChildren().addAll(Header.bttnBack,Header.lblLocation);
+//			Main.history.clear();
+//			Main.history.add(Dashboard.display());
 			break;
 		case "_Cars":
 			try {
 				Main.mainWindow.setCenter(MainComponentCars.display());
-				Main.history.clear();
-				Main.history.add(Dashboard.display());
+				Header.historyBox.getChildren().clear();
+				Header.lblLocation.setText("Cars");
+				Header.historyBox.getChildren().addAll(Header.bttnBack,Header.lblLocation);
+//				Main.history.clear();
+//				Main.history.add(MainComponentCars.display());
 
 			} catch (IOException | SQLException e1) {
 				// TODO Auto-generated catch block
@@ -33,8 +39,11 @@ public class SideBarController implements EventHandler<ActionEvent> {
 		case "_Stores":
 			try {
 				Main.mainWindow.setCenter(MainComponentStores.display());
-				Main.history.clear();
-				Main.history.add(Dashboard.display());
+				Header.historyBox.getChildren().clear();
+				Header.lblLocation.setText("Stores");
+				Header.historyBox.getChildren().addAll(Header.bttnBack,Header.lblLocation);
+//				Main.history.clear();
+//				Main.history.add(MainComponentStores.display());
 			} catch (IOException | SQLException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -43,8 +52,11 @@ public class SideBarController implements EventHandler<ActionEvent> {
 		case "_Users":
 			try {
 				Main.mainWindow.setCenter(MainComponent.display());
-				Main.history.clear();
-				Main.history.add(Dashboard.display());
+				Header.historyBox.getChildren().clear();
+				Header.lblLocation.setText("Users");
+				Header.historyBox.getChildren().addAll(Header.bttnBack,Header.lblLocation);
+//				Main.history.clear();
+//				Main.history.add(MainComponent.display());
 			} catch (IOException | SQLException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -53,8 +65,12 @@ public class SideBarController implements EventHandler<ActionEvent> {
 		case "_Manufacturer":
 			try {
 				Main.mainWindow.setCenter(MainComponentStores.display());
-				Main.history.clear();
-				Main.history.add(Dashboard.display());
+				Header.historyBox.getChildren().clear();
+				Header.lblLocation.setText("Manufacturer");
+				Header.historyBox.getChildren().addAll(Header.bttnBack,Header.lblLocation);
+				
+//				Main.history.clear();
+//				Main.history.add(MainComponentStores.display());
 			} catch (IOException | SQLException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -62,9 +78,12 @@ public class SideBarController implements EventHandler<ActionEvent> {
 			break;
 		case "_Settings":
 			try {
-				Main.mainWindow.setCenter(CreateUser.display(current));
-				Main.history.clear();
-				Main.history.add(Dashboard.display());
+				Main.mainWindow.setCenter(CreateUser.display());
+				Header.historyBox.getChildren().clear();
+				Header.lblLocation.setText("Settings");
+				Header.historyBox.getChildren().addAll(Header.bttnBack,Header.lblLocation);
+//				Main.history.clear();
+//				Main.history.add(CreateUser.display());
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();

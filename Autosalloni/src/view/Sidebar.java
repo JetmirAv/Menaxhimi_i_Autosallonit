@@ -37,7 +37,7 @@ public class Sidebar {
 		FileInputStream manufacturerPath = new FileInputStream(current + "/src/img/manufacturer.png");
 		FileInputStream reportsPath = new FileInputStream(current + "/src/img/reports.png");
 		FileInputStream settingsPath = new FileInputStream(current + "/src/img/settings.png");
-		FileInputStream logoPath = new FileInputStream(current + "/src/img/logo.png");
+		
 		
 		dashboardBtn.setOnAction(new controller.SideBarController());
 		carsBtn.setOnAction(new controller.SideBarController());
@@ -45,14 +45,6 @@ public class Sidebar {
 		manufacturersBtn.setOnAction(new controller.SideBarController());
 		settingsBtn.setOnAction(new controller.SideBarController());
 		storesBtn.setOnAction(new controller.SideBarController());
-		
-		
-		HBox hbox = new HBox();
-		Image logoImg = new Image(logoPath);
-		hbox.getChildren().add(new ImageView(logoImg));
-		hbox.setPrefWidth(200);
-		hbox.setPrefHeight(80);
-		hbox.getStyleClass().add("logoImg");
 		
 		Image dashboardImg = new Image(dashboardPath);
 		ImageView dashboardView = new ImageView(dashboardImg);
@@ -149,7 +141,7 @@ public class Sidebar {
 		VBox vbox = new VBox(7);
 		//vbox.getChildren().add(new ImageView(logoImg));
 		vbox.setPadding(new Insets(25, 5, 5, 15));
-		vbox.getChildren().addAll(hbox,dashboardBtn,librariesLbl,storesBtn,carsBtn,clientsLbl,usersBtn,manufacturersBtn,reportsBtn,settingsBtn);		
+		vbox.getChildren().addAll(dashboardBtn,librariesLbl,storesBtn,carsBtn,clientsLbl,usersBtn,manufacturersBtn,reportsBtn,settingsBtn);		
 		vbox.setStyle("-fx-background-color:#EFF0F3");
 		vbox.getStylesheets().add(Sidebar.class.getResource("sideBar.css").toExternalForm());
 		VBox sidebarVbox = new VBox();

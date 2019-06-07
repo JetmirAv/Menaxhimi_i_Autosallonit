@@ -30,3 +30,18 @@
 	-fx-font-family: "Titillium Web";
 	-fx-font-size:250%;
 }
+
+.logoImg
+{
+	 -fx-padding:0 0 0 70px;
+	 
+}
+
+.lblHistory {
+	-fx-font-size: 150%;
+	-fx-font-family: "Titillium Web";
+
+}
+.active {
+	-fx-font-weight: 800;
+}
