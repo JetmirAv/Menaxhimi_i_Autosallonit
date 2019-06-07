@@ -5,7 +5,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
 
-import com.mysql.jdbc.Statement;
 
 public class Stock {
 	

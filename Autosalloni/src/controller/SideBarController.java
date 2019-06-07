@@ -29,7 +29,7 @@ public class SideBarController implements EventHandler<ActionEvent> {
 			break;
 		case "_Cars":
 			try {
-				Main.mainWindow.setCenter(MainComponentCars.display(current));
+				Main.mainWindow.setCenter(MainComponentCars.display());
 				Main.history.clear();
 				Main.history.add(Dashboard.display());
 
@@ -40,7 +40,7 @@ public class SideBarController implements EventHandler<ActionEvent> {
 			break;
 		case "_Stores":
 			try {
-				Main.mainWindow.setCenter(MainComponentStores.display(current));
+				Main.mainWindow.setCenter(MainComponentStores.display());
 				Main.history.clear();
 				Main.history.add(Dashboard.display());
 			} catch (IOException | SQLException e1) {
@@ -50,7 +50,7 @@ public class SideBarController implements EventHandler<ActionEvent> {
 			break;
 		case "_Users":
 			try {
-				Main.mainWindow.setCenter(MainComponent.display(current));
+				Main.mainWindow.setCenter(MainComponent.display());
 				Main.history.clear();
 				Main.history.add(Dashboard.display());
 			} catch (IOException | SQLException e1) {
@@ -60,7 +60,7 @@ public class SideBarController implements EventHandler<ActionEvent> {
 			break;
 		case "_Manufacturer":
 			try {
-				Main.mainWindow.setCenter(MainComponentStores.display(current));
+				Main.mainWindow.setCenter(MainComponentStores.display());
 				Main.history.clear();
 				Main.history.add(Dashboard.display());
 			} catch (IOException | SQLException e1) {
