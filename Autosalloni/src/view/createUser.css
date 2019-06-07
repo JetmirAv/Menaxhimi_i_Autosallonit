@@ -1,0 +1,61 @@
+.mainHbox
+{
+	-fx-background-color:pink;
+	
+}
+.textfield {
+    -fx-background-color:
+        #FFFFFF,
+        #FFFFFF;
+    -fx-background-insets: 0, 2;
+    -fx-background-radius: 0, 0;
+ }
+
+.textfield:focused {
+    -fx-background-color:
+        #0093EF,
+        #FFFFFF;
+}
+
+.textfield:hover {
+    -fx-background-color:
+        #909090,
+        #FFFFFF;
+}
+
+.
+.textfield 
+{
+    -fx-background-color:
+        #FFFFFF,
+        #FFFFFF;
+    -fx-background-insets: 0, 2;
+    -fx-background-radius: 3, 3;
+ }
+
+.textfield:focused 
+{
+    -fx-background-color:
+        #0093EF,
+        #FFFFFF;
+}
+
+.textfield:hover 
+{
+    -fx-background-color:
+        #909090,
+        #FFFFFF;
+}
+
+.textfield:focused:hover 
+{
+    -fx-background-color:
+        #0093EF,
+        #FFFFFF;
+}
+
+
+
+
+
+
