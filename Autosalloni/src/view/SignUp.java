@@ -1,5 +1,7 @@
 package view;
 
+
+import java.awt.Desktop;
 import java.io.FileInputStream;
 import java.io.IOException;
 
@@ -15,6 +17,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
 
 public class SignUp {
 	
@@ -24,8 +27,41 @@ public class SignUp {
 	public static TextField passField;
 	
 	
-	public static VBox display(String current) throws IOException
+	public static VBox display() throws IOException
 	{
+		String current = new java.io.File(".").getCanonicalPath();
+		
+		
+		
+		private Desktop desktop = Desktop.getDesktop();
+		
+		final FileChooser fileChooser = new FileChooser();
+		final Button openBtn = new Button("Open a Picture...");
+		final Button openMultipleBtn = new Button("Open Pictures...");
+		
+		openBtn.setOnAction(
+				new EventHandler<ActionEvent>
+				
+				
+				);
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		FileInputStream autoPath = new FileInputStream(current + "/src/img/auto.png");
 		
 		Text signUpTxt = new Text("Sign Up");
