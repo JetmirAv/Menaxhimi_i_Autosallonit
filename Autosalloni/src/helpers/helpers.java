@@ -42,6 +42,12 @@ public class helpers {
 		int id = Integer.parseInt(str);
 		return id;
 	}
+	public static Boolean convertToBoolean(Object str) {
+		
+	return Boolean.valueOf(String.valueOf(str));
+
+	}
+	
 	
 	
 }

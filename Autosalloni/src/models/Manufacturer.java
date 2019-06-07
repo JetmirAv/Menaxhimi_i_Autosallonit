@@ -1,6 +1,11 @@
 package models;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
+
 
 public class Manufacturer {
 	
@@ -21,7 +26,7 @@ public class Manufacturer {
 		this.createdAt = new Date();
 		this.updatedAt = new Date();
 	}
-
+  
 
 	public int getId() {
 		return id;
@@ -79,12 +84,29 @@ public class Manufacturer {
 		this.updatedAt = updatedAt;
 	}
 	
-	
-	
-	
-	
-	
-	
+	public static ArrayList<String> getNamesOfManufacturer(){
+		
+		ArrayList<String> lista = new ArrayList<String>();
+		String query = "select name from manufacturer";
+		PreparedStatement stm;
+		try {
+			stm = DatabaseConfig.getConnection().prepareStatement(query);
+			ResultSet result = stm.executeQuery();
+			
+			while(result.next()) {
+				lista.add(result.getString(1));
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+
+		return lista;
+		
+		
+	}
 	
 	
 	

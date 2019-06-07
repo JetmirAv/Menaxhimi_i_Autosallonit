@@ -35,12 +35,15 @@ public class Cars {
  
 		
 		String current = new java.io.File(".").getCanonicalPath();
-
-	//	models.Car.city();
 		models.Car.merriTeDhenat();
 		ArrayList<models.Car> veturat = models.Car.kerret;
+		
+		
+		/*
+		 * models.Car.merriTeDhenat(); ArrayList<models.Car> veturat =
+		 * models.Car.kerret;
+		 */
 
-//		ArrayList<Integer> idOfCars = models.Car.idOfCar;
 
 		// Declare Photos
 
@@ -70,33 +73,43 @@ public class Cars {
 		paneFirstRow.setPadding(new Insets(0, 0, 0, 23));
 		paneFirstRow.setAlignment(Pos.CENTER);
 
-		for (int i = 1; i < 10; i++) {
-
-			
-			// Photo
-			ImageView image = new ImageView(carObj);
-			
-			
-			VBox contanier = new VBox(15);
-			contanier.setStyle("-fx-background-color: grey");
+		      for (int i = 0; i < 5; i++) {
+			  
+		    	  // Photo
+			    ImageView image = new ImageView(carObj);
+			     
 			
 			
-			// Inside the First Photo
+			    VBox contanier = new VBox(15);
+			    contanier.setStyle("-fx-background-color: grey");
+			
+			
+			   // Inside the First Photo
 			
 			
 		     	VBox VboxComplete = new VBox();
 			    VboxComplete.setId(veturat.get(i).getId() + "");
-			    VboxComplete.setOnMouseClicked(e -> {	
-				String str = e.getSource().toString();
-				int g = helpers.helpers.returnId(str);
+			    
+			    VboxComplete.setOnMouseClicked(e -> {
+			    	
+//			    ArrayList<Car> car = new ArrayList<>();	
+			 	String str = e.getSource().toString();
+				int id = helpers.helpers.returnId(str);
+				System.out.println(id);
 				
-				System.out.println(g);
-				/*
-				 * Car c = null; try { c = Car.merriTeDhenat(g); } catch (SQLException e1) { //
-				 * TODO Auto-generated catch block e1.printStackTrace(); } new CarsDetails(c);
-				 */
-				
-				
+					Car car = null;
+					try {
+						car = models.Car.getAllDetailsOfCar(id);
+					} catch (SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					try {
+						Main.mainWindow.setCenter(CarsDetails.display(car));
+					} catch (IOException | SQLException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 			});
 			
 			GridPane detailsCar = new GridPane();

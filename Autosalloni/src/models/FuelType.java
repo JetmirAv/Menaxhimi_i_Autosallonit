@@ -1,7 +1,9 @@
 package models;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class FuelType {
@@ -20,7 +22,7 @@ public class FuelType {
 		this.createdAt = new Date();
 		this.updatedAt = new Date();
 	}
-
+ 
 	public int getId() {
 		return id;
 	}
@@ -71,6 +73,42 @@ public class FuelType {
 		return stm.executeUpdate() > 0;
 		
 	}
+	
+	
+	public static ArrayList<String> getNamesOfFuelType(){
+		
+		ArrayList<String> lista = new ArrayList<String>();
+		String query = "select name from fuelType";
+		PreparedStatement stm;
+		try {
+			stm = DatabaseConfig.getConnection().prepareStatement(query);
+			ResultSet result = stm.executeQuery();
+			
+			while(result.next()) {
+				lista.add(result.getString(1));
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return lista;
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
