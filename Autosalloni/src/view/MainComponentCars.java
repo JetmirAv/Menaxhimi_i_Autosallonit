@@ -1,6 +1,5 @@
 package view;
 
-
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.PreparedStatement;
@@ -25,25 +24,23 @@ import javafx.scene.shape.Circle;
 import models.Car;
 import models.DatabaseConfig;
 
-
-
 public class MainComponentCars {
-	
-private static    TableView table = new TableView();
-     
-private static 	TextField logoTxt = new TextField();
-private static	TextField seatsTxt = new TextField();
-private static	TextField doorsTxt = new TextField();
-private static	TextField alarmTxt = new TextField();
-private static	TextField climateTxt = new TextField();
-private static	TextField hidraulicTxt = new TextField();
-private static	TextField horsePowerTxt = new TextField();
-private static	TextField maxspeedTxt = new TextField();
-private static	TextField isAutomaticTxt = new TextField();
 
-	public static VBox display(String current )  throws IOException, SQLException {
-	
-	
+	private static TableView table = new TableView();
+
+	private static TextField logoTxt = new TextField();
+	private static TextField seatsTxt = new TextField();
+	private static TextField doorsTxt = new TextField();
+	private static TextField alarmTxt = new TextField();
+	private static TextField climateTxt = new TextField();
+	private static TextField hidraulicTxt = new TextField();
+	private static TextField horsePowerTxt = new TextField();
+	private static TextField maxspeedTxt = new TextField();
+	private static TextField isAutomaticTxt = new TextField();
+
+	public static VBox display() throws IOException, SQLException {
+		String current = new java.io.File(".").getCanonicalPath();
+
 //	
 //	       HBox hbox = new HBox(60); 
 //	       HBox car1HBox = new HBox(60); 
@@ -153,90 +150,78 @@ private static	TextField isAutomaticTxt = new TextField();
 //	vbox.setPadding(new Insets(20,20,20,20));
 //	vbox.getStyleClass().add("mainContent");
 
+		TableColumn<String, Car> logoCol = new TableColumn<>("Logo");
+		logoCol.setCellValueFactory(new PropertyValueFactory("logo"));
+		logoCol.setPrefWidth(60);
 
-		  
-		 
-  		TableColumn<String, Car> logoCol = new TableColumn<>("Logo");
-  		logoCol.setCellValueFactory(new PropertyValueFactory("logo"));
-  		logoCol.setPrefWidth(60);
-  		
-  		TableColumn<String, Car> seatsCol = new TableColumn<>("Seats");
-  		seatsCol.setCellValueFactory(new PropertyValueFactory("seats"));
-  		seatsCol.setPrefWidth(50);
-  		
-  		TableColumn<String, Car> doorsCol = new TableColumn<>("Doors");
-  		doorsCol.setCellValueFactory(new PropertyValueFactory("doors"));
-  		doorsCol.setPrefWidth(50);
+		TableColumn<String, Car> seatsCol = new TableColumn<>("Seats");
+		seatsCol.setCellValueFactory(new PropertyValueFactory("seats"));
+		seatsCol.setPrefWidth(50);
 
+		TableColumn<String, Car> doorsCol = new TableColumn<>("Doors");
+		doorsCol.setCellValueFactory(new PropertyValueFactory("doors"));
+		doorsCol.setPrefWidth(50);
 
-  		
-  		TableColumn<String, Car> alarmCol = new TableColumn<>("Alarm");
-  		alarmCol.setCellValueFactory(new PropertyValueFactory("alarm"));
-  		alarmCol.setPrefWidth(70);
-  		
-  		TableColumn<String, Car> climateCol = new TableColumn<>("Climate");
-  		climateCol.setCellValueFactory(new PropertyValueFactory("climate"));
-  		climateCol.setPrefWidth(120);
-		  
-  		TableColumn<String, Car> hidraulicCol = new TableColumn<>("Hidraulic");
-  		hidraulicCol.setCellValueFactory(new PropertyValueFactory("hidraulic"));
-  		hidraulicCol.setPrefWidth(120);
-  		
-  		TableColumn<String, Car> horsePowerCol = new TableColumn<>("Hourse Power");
-  		horsePowerCol.setCellValueFactory(new PropertyValueFactory("hoursePower"));
-  		horsePowerCol.setPrefWidth(120);
+		TableColumn<String, Car> alarmCol = new TableColumn<>("Alarm");
+		alarmCol.setCellValueFactory(new PropertyValueFactory("alarm"));
+		alarmCol.setPrefWidth(70);
 
-  		TableColumn<String, Car> maxSpeedCol = new TableColumn<>("Max speed");
-  		maxSpeedCol.setCellValueFactory(new PropertyValueFactory("maxspeed"));
-  		maxSpeedCol.setPrefWidth(120);
-  		
-  		TableColumn<String, Car> isAutomaticCol = new TableColumn<>("Is automatic");
-   		isAutomaticCol.setCellValueFactory(new PropertyValueFactory("isAutomatic"));
-  		isAutomaticCol.setPrefWidth(120);
-  		
-	
+		TableColumn<String, Car> climateCol = new TableColumn<>("Climate");
+		climateCol.setCellValueFactory(new PropertyValueFactory("climate"));
+		climateCol.setPrefWidth(120);
 
-    table.getColumns().addAll(logoCol, seatsCol, doorsCol,alarmCol, climateCol
-    		, hidraulicCol,horsePowerCol, maxSpeedCol,isAutomaticCol);
-	
-    
-    logoCol.getStyleClass().add("textToCenter");
-    seatsCol.getStyleClass().add("textToCenter");
-    doorsCol.getStyleClass().add("textToCenter");
-    alarmCol.getStyleClass().add("textToCenter");
-    climateCol.getStyleClass().add("textToCenter");
-    hidraulicCol.getStyleClass().add("textToCenter");
-    horsePowerCol.getStyleClass().add("textToCenter");
-    maxSpeedCol.getStyleClass().add("textToCenter");
-    isAutomaticCol.getStyleClass().add("textToCenter");
+		TableColumn<String, Car> hidraulicCol = new TableColumn<>("Hidraulic");
+		hidraulicCol.setCellValueFactory(new PropertyValueFactory("hidraulic"));
+		hidraulicCol.setPrefWidth(120);
 
-    
-    
-    
-    VBox vbox = new VBox();
-    vbox.setSpacing(5);
-    vbox.setPadding(new Insets(10, 0, 0, 10));
-    vbox.getChildren().addAll( table);
-    table.setPrefSize( 200, 400 );
-    table.setPrefWidth(200);
-    vbox.getStylesheets().add(MainComponentCars.class.getResource("mainComponentCars.css").toExternalForm());
+		TableColumn<String, Car> horsePowerCol = new TableColumn<>("Hourse Power");
+		horsePowerCol.setCellValueFactory(new PropertyValueFactory("hoursePower"));
+		horsePowerCol.setPrefWidth(120);
 
-    vbox.setPrefWidth(100);
-    showBooks();
-		return vbox; 
-	
+		TableColumn<String, Car> maxSpeedCol = new TableColumn<>("Max speed");
+		maxSpeedCol.setCellValueFactory(new PropertyValueFactory("maxspeed"));
+		maxSpeedCol.setPrefWidth(120);
+
+		TableColumn<String, Car> isAutomaticCol = new TableColumn<>("Is automatic");
+		isAutomaticCol.setCellValueFactory(new PropertyValueFactory("isAutomatic"));
+		isAutomaticCol.setPrefWidth(120);
+
+		table.getColumns().addAll(logoCol, seatsCol, doorsCol, alarmCol, climateCol, hidraulicCol, horsePowerCol,
+				maxSpeedCol, isAutomaticCol);
+
+		logoCol.getStyleClass().add("textToCenter");
+		seatsCol.getStyleClass().add("textToCenter");
+		doorsCol.getStyleClass().add("textToCenter");
+		alarmCol.getStyleClass().add("textToCenter");
+		climateCol.getStyleClass().add("textToCenter");
+		hidraulicCol.getStyleClass().add("textToCenter");
+		horsePowerCol.getStyleClass().add("textToCenter");
+		maxSpeedCol.getStyleClass().add("textToCenter");
+		isAutomaticCol.getStyleClass().add("textToCenter");
+
+		VBox vbox = new VBox();
+		vbox.setSpacing(5);
+		vbox.setPadding(new Insets(10, 0, 0, 10));
+		vbox.getChildren().addAll(table);
+		table.setPrefSize(200, 400);
+		table.setPrefWidth(200);
+		vbox.getStylesheets().add(MainComponentCars.class.getResource("mainComponentCars.css").toExternalForm());
+
+		vbox.setPrefWidth(100);
+		showBooks();
+		return vbox;
+
 	}
-	    	
+
 	public static void showBooks() throws SQLException {
 		List<Car> cars = Car.getBooks();
-		
+
 		ObservableList<Car> carList = FXCollections.observableArrayList();
-		
-		for(int i = 0; i < 10; i++) {
+
+		for (int i = 0; i < 10; i++) {
 			carList.add(cars.get(i));
 		}
 		table.setItems(carList);
-		
 
 	}
 }

@@ -1,6 +1,5 @@
 package view;
 
-
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -20,28 +19,23 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import models.Store;
 
-
-
 public class MainComponentStores {
 	private static TableView table = new TableView();
 
-	public static VBox display(String current )  throws IOException, SQLException {
-	
-	
-	
-	HBox hbox = new HBox(50); 
-	VBox vbox= new VBox(5);
-	HBox tHeader= new HBox(10);
-    vbox.getStylesheets().add(MainComponentStores.class.getResource("mainComponent.css").toExternalForm());
-	FileInputStream userPath;
-	userPath = new FileInputStream(current + "/src/img/user.png");
-    
-	Image img = new Image(userPath);
-	
-	hbox.getStyleClass().add("AdminSite");
-	
-	
-	
+	public static VBox display() throws IOException, SQLException {
+		String current = new java.io.File(".").getCanonicalPath();
+
+		HBox hbox = new HBox(50);
+		VBox vbox = new VBox(5);
+		HBox tHeader = new HBox(10);
+		vbox.getStylesheets().add(MainComponentStores.class.getResource("mainComponent.css").toExternalForm());
+		FileInputStream userPath;
+		userPath = new FileInputStream(current + "/src/img/user.png");
+
+		Image img = new Image(userPath);
+
+		hbox.getStyleClass().add("AdminSite");
+
 //	Label logoLabel = new Label("Logo");
 //	logoLabel.setMinWidth(60);
 //	logoLabel.getStyleClass().add("fonts");
@@ -201,64 +195,59 @@ public class MainComponentStores {
 //
 //   	vbox.getChildren().addAll(tHeader,storeHBox,store2HBox,store3HBox);
 //	vbox.setPadding(new Insets(20,20,20,20));
-	TableColumn<String, Stores> photoCol = new TableColumn<>("Photo");
-	photoCol.setCellValueFactory(new PropertyValueFactory("img"));
-	photoCol.setPrefWidth(80);
-	
-	TableColumn<String, Stores> nameCol = new TableColumn<>("Name");
-	nameCol.setCellValueFactory(new PropertyValueFactory("name"));
-	nameCol.setPrefWidth(90);
+		TableColumn<String, Stores> photoCol = new TableColumn<>("Photo");
+		photoCol.setCellValueFactory(new PropertyValueFactory("img"));
+		photoCol.setPrefWidth(80);
 
-	TableColumn<String, Stores> addressCol = new TableColumn<>("Address");
-	addressCol.setCellValueFactory(new PropertyValueFactory("address"));
-	addressCol.setPrefWidth(150);
-	
-	
-	TableColumn<String, Stores> cityCol = new TableColumn<>("City");
-	cityCol.setCellValueFactory(new PropertyValueFactory("city"));
-	cityCol.setPrefWidth(100);
-  
-	TableColumn<String, Stores> stateCol = new TableColumn<>("State");
-	stateCol.setCellValueFactory(new PropertyValueFactory("state"));
-	stateCol.setPrefWidth(150);
-	
-	TableColumn<String, Stores> postalCol = new TableColumn<>("Postal");
-	postalCol.setCellValueFactory(new PropertyValueFactory("postal"));
-	postalCol.setPrefWidth(120);
+		TableColumn<String, Stores> nameCol = new TableColumn<>("Name");
+		nameCol.setCellValueFactory(new PropertyValueFactory("name"));
+		nameCol.setPrefWidth(90);
 
-	TableColumn<String, Stores> phoneNumberCol = new TableColumn<>("Phone Number");
-	phoneNumberCol.setCellValueFactory(new PropertyValueFactory("phoneNumber"));
-	phoneNumberCol.setPrefWidth(150);
-	
+		TableColumn<String, Stores> addressCol = new TableColumn<>("Address");
+		addressCol.setCellValueFactory(new PropertyValueFactory("address"));
+		addressCol.setPrefWidth(150);
 
+		TableColumn<String, Stores> cityCol = new TableColumn<>("City");
+		cityCol.setCellValueFactory(new PropertyValueFactory("city"));
+		cityCol.setPrefWidth(100);
 
-	
-  table.getColumns().addAll(photoCol,addressCol, nameCol,cityCol,stateCol,postalCol,phoneNumberCol);
+		TableColumn<String, Stores> stateCol = new TableColumn<>("State");
+		stateCol.setCellValueFactory(new PropertyValueFactory("state"));
+		stateCol.setPrefWidth(150);
 
-  photoCol.getStyleClass().add("textToCenter");
-  addressCol.getStyleClass().add("textToCenter");
-  nameCol.getStyleClass().add("textToCenter");
-  cityCol.getStyleClass().add("textToCenter");
-  stateCol.getStyleClass().add("textToCenter");
-  phoneNumberCol.getStyleClass().add("textToCenter");
-  postalCol.getStyleClass().add("textToCenter");
-  vbox.setPadding(new Insets(62,0,0,0));
-  showStores();
-	vbox.getChildren().add(table);
-	return vbox; 
-	
+		TableColumn<String, Stores> postalCol = new TableColumn<>("Postal");
+		postalCol.setCellValueFactory(new PropertyValueFactory("postal"));
+		postalCol.setPrefWidth(120);
+
+		TableColumn<String, Stores> phoneNumberCol = new TableColumn<>("Phone Number");
+		phoneNumberCol.setCellValueFactory(new PropertyValueFactory("phoneNumber"));
+		phoneNumberCol.setPrefWidth(150);
+
+		table.getColumns().addAll(photoCol, addressCol, nameCol, cityCol, stateCol, postalCol, phoneNumberCol);
+
+		photoCol.getStyleClass().add("textToCenter");
+		addressCol.getStyleClass().add("textToCenter");
+		nameCol.getStyleClass().add("textToCenter");
+		cityCol.getStyleClass().add("textToCenter");
+		stateCol.getStyleClass().add("textToCenter");
+		phoneNumberCol.getStyleClass().add("textToCenter");
+		postalCol.getStyleClass().add("textToCenter");
+		vbox.setPadding(new Insets(62, 0, 0, 0));
+		showStores();
+		vbox.getChildren().add(table);
+		return vbox;
+
 	}
-	    	
+
 	public static void showStores() throws SQLException {
 		List<Store> store = models.Store.getStores();
-		
+
 		ObservableList<Store> storeList = FXCollections.observableArrayList();
-		
-		for(int i = 0; i < store.size(); i++) {
+
+		for (int i = 0; i < store.size(); i++) {
 			storeList.add(store.get(i));
 		}
 		table.setItems(storeList);
-		
 
 	}
 }

@@ -18,8 +18,10 @@ import javafx.scene.shape.Circle;
 
 public class Header{
 
-	public static HBox display(String fullName, String role, String current) throws IOException {
+	public static HBox display(String fullName, String role) throws IOException {
  
+		String current = new java.io.File( "." ).getCanonicalPath();
+		
 		FileInputStream logOutPath = 
                         new FileInputStream(current + "/src/img/power.png"); 	
 		FileInputStream UserImgPath 
@@ -38,7 +40,6 @@ public class Header{
 		labelLogOut.setTranslateY(-20);
 		labelLogOut.setOnMouseEntered(e -> {
 			labelLogOut.setCursor(Cursor.HAND);
-			
 			Main.mainWindow.setCenter(Main.history.get(Main.history.size() - 1));
 			Main.history.remove(Main.history.size() - 1);
 		});

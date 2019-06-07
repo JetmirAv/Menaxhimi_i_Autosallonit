@@ -14,6 +14,7 @@ public class Main extends Application {
 
 	public static BorderPane mainWindow = new BorderPane();
 	public static ArrayList<Node> history = new ArrayList<Node>();
+
 	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
@@ -21,10 +22,9 @@ public class Main extends Application {
 //		BorderPane.setMargin(mainWindow.getCenter(), new Insets(20));
 
 		try { 
-			String current = new java.io.File( "." ).getCanonicalPath();
 			mainWindow.setCenter(Dashboard.display());
-			mainWindow.setTop(Header.display("Jetmir Avdullahu", "Super Admin", current));
-			mainWindow.setLeft(Sidebar.display(current));
+			mainWindow.setTop(Header.display("Jetmir Avdullahu", "Super Admin"));
+			mainWindow.setLeft(Sidebar.display());
 
 		
 		} catch (Exception e) {

@@ -1,6 +1,5 @@
 package view;
 
-
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -22,23 +21,21 @@ import javafx.scene.shape.Circle;
 import models.Car;
 import models.Users;
 
-
-
 public class MainComponent {
-private static TableView table = new TableView();
-	
- 	public static VBox display(String current )  throws IOException, SQLException {
-	
-	
+	private static TableView table = new TableView();
+
+	public static VBox display() throws IOException, SQLException {
+		String current = new java.io.File(".").getCanonicalPath();
+
 //	
-    HBox hbox = new HBox(60); 
-	VBox vbox= new VBox(5);
+		HBox hbox = new HBox(60);
+		VBox vbox = new VBox(5);
 //	VBox tHeader= new VBox(10);
-    vbox.getStylesheets().add(MainComponent.class.getResource("mainComponent.css").toExternalForm());
-	FileInputStream userPath;
-	userPath = new FileInputStream(current + "/src/img/user.png");
+		vbox.getStylesheets().add(MainComponent.class.getResource("mainComponent.css").toExternalForm());
+		FileInputStream userPath;
+		userPath = new FileInputStream(current + "/src/img/user.png");
 //    
-	Image img = new Image(userPath);
+		Image img = new Image(userPath);
 //	
 //	hbox.getStyleClass().add("AdminSite");
 //	
@@ -82,10 +79,10 @@ private static TableView table = new TableView();
 //    
 //	HBox userHBox = new HBox(60);
 //	userHBox.setPadding(new Insets(3,0,3,30));
-	Circle circle=new Circle();
-    circle.setRadius(15);
-	circle.setFill(new ImagePattern(img));
-	hbox.setAlignment(Pos.TOP_LEFT);
+		Circle circle = new Circle();
+		circle.setRadius(15);
+		circle.setFill(new ImagePattern(img));
+		hbox.setAlignment(Pos.TOP_LEFT);
 //   
 //	Label userNameLabel = new Label("First name");
 //	userNameLabel.setMinWidth(60);
@@ -209,32 +206,31 @@ private static TableView table = new TableView();
 //	
 //	vbox.getChildren().addAll(tHeader,firstUserHBox,secondUserHBox,thirdUserHBox);
 //	vbox.setPadding(new Insets(20,20,20,20));
-	
-	 
+
 		TableColumn<String, Users> photoCol = new TableColumn<>("Photo");
 		photoCol.setCellValueFactory(new PropertyValueFactory("img"));
 		photoCol.setPrefWidth(80);
-		
+
 		TableColumn<String, Users> firstNameCol = new TableColumn<>("First name");
 		firstNameCol.setCellValueFactory(new PropertyValueFactory("name"));
 		firstNameCol.setPrefWidth(90);
-		
+
 		TableColumn<String, Users> surnameCol = new TableColumn<>("Last name");
 		surnameCol.setCellValueFactory(new PropertyValueFactory("surname"));
 		surnameCol.setPrefWidth(90);
-		
+
 		TableColumn<String, Users> emailCol = new TableColumn<>("Email");
 		emailCol.setCellValueFactory(new PropertyValueFactory("email"));
 		emailCol.setPrefWidth(200);
-		
+
 		TableColumn<String, Users> birthdayCol = new TableColumn<>("Birthday");
 		birthdayCol.setCellValueFactory(new PropertyValueFactory("birthday"));
 		birthdayCol.setPrefWidth(100);
-	  
+
 		TableColumn<String, Users> genderCol = new TableColumn<>("Gender");
 		genderCol.setCellValueFactory(new PropertyValueFactory("gendre"));
 		genderCol.setPrefWidth(50);
-		
+
 		TableColumn<String, Users> stateCol = new TableColumn<>("State");
 		stateCol.setCellValueFactory(new PropertyValueFactory("state"));
 		stateCol.setPrefWidth(120);
@@ -242,44 +238,39 @@ private static TableView table = new TableView();
 		TableColumn<String, Users> addressCol = new TableColumn<>("Address");
 		addressCol.setCellValueFactory(new PropertyValueFactory("address"));
 		addressCol.setPrefWidth(200);
-		
+
 		TableColumn<String, Users> phoneNumberCol = new TableColumn<>("Phone Number");
 		phoneNumberCol.setCellValueFactory(new PropertyValueFactory("phoneNumber"));
 		phoneNumberCol.setPrefWidth(120);
-	
 
-      table.getColumns().addAll(photoCol, firstNameCol, surnameCol,emailCol, birthdayCol
-	    		, genderCol,stateCol, addressCol,phoneNumberCol);
+		table.getColumns().addAll(photoCol, firstNameCol, surnameCol, emailCol, birthdayCol, genderCol, stateCol,
+				addressCol, phoneNumberCol);
 
-      photoCol.getStyleClass().add("textToCenter");
-      firstNameCol.getStyleClass().add("textToCenter");
-      surnameCol.getStyleClass().add("textToCenter");
-      emailCol.getStyleClass().add("textToCenter");
-      birthdayCol.getStyleClass().add("textToCenter");
-      genderCol.getStyleClass().add("textToCenter");
-      stateCol.getStyleClass().add("textToCenter");
-      addressCol.getStyleClass().add("textToCenter");
-      phoneNumberCol.getStyleClass().add("textToCenter");
-      
-      
-      
-      
-      vbox.getChildren().addAll( table);
-      showUsers();
-      return vbox; 
-	
+		photoCol.getStyleClass().add("textToCenter");
+		firstNameCol.getStyleClass().add("textToCenter");
+		surnameCol.getStyleClass().add("textToCenter");
+		emailCol.getStyleClass().add("textToCenter");
+		birthdayCol.getStyleClass().add("textToCenter");
+		genderCol.getStyleClass().add("textToCenter");
+		stateCol.getStyleClass().add("textToCenter");
+		addressCol.getStyleClass().add("textToCenter");
+		phoneNumberCol.getStyleClass().add("textToCenter");
+
+		vbox.getChildren().addAll(table);
+		showUsers();
+		return vbox;
+
 	}
-	    	
+
 	public static void showUsers() throws SQLException {
 		List<Users> user = Users.getUsers();
-		
+
 		ObservableList<Users> userList = FXCollections.observableArrayList();
-		
-		for(int i = 0; i < user.size(); i++) {
+
+		for (int i = 0; i < user.size(); i++) {
 			userList.add(user.get(i));
 		}
 		table.setItems(userList);
-		
 
 	}
 }

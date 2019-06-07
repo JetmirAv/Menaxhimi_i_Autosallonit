@@ -27,8 +27,9 @@ public class Sidebar {
 	public static Button settingsBtn = new Button("_Settings");
 	public static Button storesBtn = new Button("_Stores");
 	
-	public static VBox display(String current) throws IOException{
-	
+	public static VBox display() throws IOException{
+		String current = new java.io.File( "." ).getCanonicalPath();
+		
 		FileInputStream dashboardPath = new FileInputStream(current + "/src/img/dashboard.png");
 		FileInputStream storePath = new FileInputStream(current + "/src/img/stores.png");
 		FileInputStream carPath = new FileInputStream(current + "/src/img/car.png");
