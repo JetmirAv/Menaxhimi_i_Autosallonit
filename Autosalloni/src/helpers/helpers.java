@@ -35,4 +35,13 @@ public class helpers {
 
 		return sb.toString();
 	}
+	
+	public static int returnId(String str) {
+		
+		str = str.replaceAll("[^\\d+]", "");
+		int id = Integer.parseInt(str);
+		return id;
+	}
+	
+	
 }
