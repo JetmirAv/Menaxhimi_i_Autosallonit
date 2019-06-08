@@ -2,9 +2,15 @@ package view;
 
 
 import java.awt.Desktop;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
@@ -18,6 +24,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 public class SignUp {
 	
@@ -25,36 +32,49 @@ public class SignUp {
 	public static TextField lastnameField;
 	public static TextField emailField;
 	public static TextField passField;
+	public static Button openButton;
+	private static Desktop desktop = Desktop.getDesktop();
 	
 	
-	public static VBox display() throws IOException
+	public static VBox display(final Stage stage) throws IOException
 	{
 		String current = new java.io.File(".").getCanonicalPath();
-		
-		
-		
-		private Desktop desktop = Desktop.getDesktop();
+		//final Stage stage = new Stage();
 		
 		final FileChooser fileChooser = new FileChooser();
-		final Button openBtn = new Button("Open a Picture...");
-		final Button openMultipleBtn = new Button("Open Pictures...");
+        final Button openButton = new Button("Open a Picture...");
+        final Button openMultipleButton = new Button("Open Pictures...");     
+        
 		
-		openBtn.setOnAction(
-				new EventHandler<ActionEvent>
-				
-				
-				);
+        openButton.setOnAction(
+                new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(final ActionEvent e) {
+                        configureFileChooser(fileChooser);
+                        File file = fileChooser.showOpenDialog(stage);
+                        if (file != null) {
+                            openFile(file);
+                        }
+                    }
+                });
 		
+        openMultipleButton.setOnAction(
+                new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(final ActionEvent e) {
+                        configureFileChooser(fileChooser);                               
+                        List<File> list = 
+                            fileChooser.showOpenMultipleDialog(stage);
+                        if (list != null) {
+                            for (File file : list) {
+                                openFile(file);
+                            }
+                        }
+                    }
+                });
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		final HBox hboximg = new HBox();
+		hboximg.getChildren().addAll(openButton, openMultipleButton);
 		
 		
 		
@@ -194,7 +214,7 @@ public class SignUp {
 				"    -fx-border: none;\r\n" + 
 				"	-fx-padding:0 5px 5px 10px;\r\n" +  
 				"	-fx-text-fill:#5DA4C7;");
-		vbox.getChildren().add(signInBtn);
+		vbox.getChildren().addAll(signInBtn,hboximg);
 		
 		vbox.setStyle(" -fx-background-image: url(autoPath);\r\n" + 
 				"    -fx-background-repeat: stretch;   \r\n" + 
@@ -204,5 +224,33 @@ public class SignUp {
 				"");
 		return vbox;
 	}
+	
+	
+	
+	
+    public static void configureFileChooser(
+            final FileChooser fileChooser) {      
+                fileChooser.setTitle("View Pictures");
+                fileChooser.setInitialDirectory(
+                    new File(System.getProperty("user.home"))
+                );                 
+                fileChooser.getExtensionFilters().addAll(
+                    new FileChooser.ExtensionFilter("All Images", "*.*"),
+                    new FileChooser.ExtensionFilter("JPG", "*.jpg"),
+                    new FileChooser.ExtensionFilter("PNG", "*.png")
+                );
+        }
+    
+    
+    
+    public static void openFile(final File file) {
+        try {
+            desktop.open(file);
+        } catch (IOException ex) {
+            Logger.getLogger(FileChooser.class.getName()).log(
+                Level.SEVERE, null, ex
+            );
+        }
+    }
 
 }
