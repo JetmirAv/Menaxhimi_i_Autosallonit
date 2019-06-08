@@ -6,6 +6,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 public class FuelType {
 
 	private int id;
@@ -23,6 +26,11 @@ public class FuelType {
 		this.updatedAt = new Date();
 	}
  
+	public FuelType(int id, String name) {
+		this.id = id;
+		this.name = name;
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -96,7 +104,30 @@ public class FuelType {
 		return lista;
 		
 	}
+	public static ObservableList<FuelType> getFuelTypes() throws SQLException {
+		ObservableList<FuelType> carList = FXCollections.observableArrayList();
+		
+		String query = "select id , name  from fueltype ";
+		
+		PreparedStatement preparedStatement = DatabaseConfig.getConnection().prepareStatement(query);
+		java.sql.ResultSet resultSet = preparedStatement.executeQuery();
+			
+		while(resultSet.next()) {
+
+			FuelType fuelType = new FuelType(resultSet.getInt(1),resultSet.getString(2)); 
+			carList.add(fuelType);
+		
+		}
+		
+		return carList;
+
+	}
 	
+	@Override
+	public String toString() {
+	    return this.getName();
+	}
+
 	
 	
 	

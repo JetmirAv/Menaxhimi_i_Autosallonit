@@ -128,7 +128,6 @@ public class Manufacturer {
 
 			Manufacturer manufacturer = new Manufacturer(resultSet.getInt(1),resultSet.getString(2)); 
 			carList.add(manufacturer);
-			System.out.println(carList); 
 		
 		}
 		

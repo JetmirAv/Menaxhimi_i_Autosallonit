@@ -73,7 +73,7 @@ public class Cars {
 		paneFirstRow.setPadding(new Insets(0, 0, 0, 23));
 		paneFirstRow.setAlignment(Pos.CENTER);
 
-		      for (int i = 0; i < 5; i++) {
+		      for (int i = 0; i < 10; i++) {
 			  
 		    	  // Photo
 			    ImageView image = new ImageView(carObj);

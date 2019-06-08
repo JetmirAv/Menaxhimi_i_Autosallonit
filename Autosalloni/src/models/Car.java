@@ -524,7 +524,7 @@ public class Car {
 			carList.add(car);
 			
                   
-		
+             System.out.println(carList);		
 		}
 		
 		return carList;
@@ -581,13 +581,33 @@ public class Car {
 			}
 			return car;
 		}
+
+		public static Car getSomeDetailsOfCar() throws SQLException {
+			String query = "SELECT * From Car  ";
+			PreparedStatement preparedStatement = DatabaseConfig.getConnection().prepareStatement(query);
+			java.sql.ResultSet resultSet = preparedStatement.executeQuery();
+			Car car = null;
+			while(resultSet.next()) {
+				car = new Car(resultSet.getInt(1) , resultSet.getInt(2),resultSet.getString(3),resultSet.getString(4),resultSet.getInt(5),
+						resultSet.getInt(6),resultSet.getInt(7),((resultSet.getInt(8) == 1) ? true : false),((resultSet.getInt(9) == 1) ? true : false),
+						((resultSet.getInt(10) == 1) ? true : false),((resultSet.getInt(11) == 1) ? true : false),((resultSet.getInt(12) == 1) ? true : false),
+						((resultSet.getInt(13) == 1) ? true : false),((resultSet.getInt(14) == 1) ? true : false),resultSet.getInt(15),resultSet.getInt(16),resultSet.getDouble(17),
+						((resultSet.getInt(18) == 1) ? true : false),resultSet.getString(19),resultSet.getDouble(20),resultSet.getInt(21),resultSet.getInt(22),
+						resultSet.getDouble(23),((resultSet.getInt(24) == 1) ? true : false),resultSet.getInt(25),resultSet.getString(26),resultSet.getInt(27),
+						resultSet.getString(28),((resultSet.getInt(29) == 1) ? true : false));
+			}
+			return car;
+		}
 		
 		
-		public static boolean addCar(String stockId,int manufacturerId ,String model,String bodyNumber,
+		
+		
+		
+		public static boolean addCar(int stockId,int manufacturerId ,String model,String bodyNumber,
 				int yearOfProd,int seats ,int doors,
 				boolean roof ,boolean alarm ,boolean central ,boolean airbag 
 				,boolean autonomus,boolean navigator,boolean climate,
-				String fuelTypeId,
+				int fuelTypeId,
 				int fuelCapacity,
 				double fuelConsumption,
 				boolean hidraulic,
@@ -605,7 +625,7 @@ public class Car {
 					+ "  ,airbag ,autonomus  ,navigator ,climate ,fuelTypeId ,fuelCapacity,  fuelConsumption,hidraulic  ,engineModel,"
 					+ "enginePower ,hoursePower ,maxspeed ,seconds0to100 ,isAutomatic ,gears  ,tireModel  ,tireSize  ,additionalDesc ,"
 					+ "is4x4\r\n" + 
-					") VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,(select id from fueltype where name=?),?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+					") VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 				PreparedStatement preparedStatement = DatabaseConfig.getConnection().prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 			
 			//PreparedStatement preparedStatement = DatabaseConfig.getConnection().prepareStatement(query);
@@ -624,7 +644,7 @@ public class Car {
 				preparedStatement.setBoolean(11, autonomus);
 				preparedStatement.setBoolean(12,navigator);
 				preparedStatement.setBoolean(13, climate);
-				preparedStatement.setString(14,fuelTypeId);
+				preparedStatement.setInt(14,fuelTypeId);
 				preparedStatement.setInt(15,fuelCapacity);
 				preparedStatement.setDouble(16,fuelConsumption);
 				preparedStatement.setBoolean(17,hidraulic);
@@ -667,5 +687,7 @@ public class Car {
 	 * 
 	 * }
 	 */
+		
+
 
 }

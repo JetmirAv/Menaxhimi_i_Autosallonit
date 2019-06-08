@@ -29,30 +29,16 @@ import models.Car;
 import models.Manufacturer;
 import models.Users;
 import helpers.helpers;
+import models.FuelType;
+import models.Store;
 
 public class CarsInfo {
-
-//	ArrayList<String> names = Manufacturer.getNames();
-
-//	ArrayList<String> name = models.Car.modelA;
-//	ArrayList<String> bodyNr = models.Car.bodyNumberA;
-//	ArrayList<String> engineMd = models.Car.engineModelA;
-
-//	public static    String manufacturers[] = {
-//			for(int i=0 ; i<names.size();i++)
-//				
-//			{names.get(i);}
-//			
-//			};  
 	public static ComboBox manufacturerComboBox = new ComboBox(showData());
-
-	public static String stores[] = { "Luke", "Keith", "Tanner", "Hall", "Aquila", "Davis", "Dexter" };
-	public static ComboBox storesComboBox = new ComboBox(FXCollections.observableArrayList(stores));
-
+	public static ComboBox storesComboBox = new ComboBox(stores());
 	public static TextField txtForModel = new TextField();
 	public static TextField txtForbodyNumber = new TextField();
-
 	public static ComboBox yearOfProdComboBox;
+	public static TextField  txtForPrice= new TextField();
 	public static String seats[] = { "2", "4", "5", "6", "7" };
 	public static ComboBox seatsComboBox = new ComboBox(FXCollections.observableArrayList(seats));
 	public static String doors[] = { "3", "5", "7" };
@@ -65,8 +51,7 @@ public class CarsInfo {
 	public static ComboBox autonomusComboBox = new ComboBox(FXCollections.observableArrayList(trueFalse));
 	public static ComboBox navigatorComboBox = new ComboBox(FXCollections.observableArrayList(trueFalse));
 	public static ComboBox climateComboBox = new ComboBox(FXCollections.observableArrayList(trueFalse));
-	public static String fuelTypeId[] = { "Gasoline", "Diesel", "Natural gas", "Hydrogen", "Biodiesel" };
-	public static ComboBox fuelTypeIdComboBox = new ComboBox(FXCollections.observableArrayList(fuelTypeId));
+	public static ComboBox fuelTypeIdComboBox = new ComboBox(fuelTypes());
 	private static Spinner<Integer> fuelCapacity = new Spinner<>(0, 300, 0, 1);
 	public static Spinner<Double> fuelConsumption = new Spinner<>(0, 300, 0, 1);// min , max , start , increase
 	public static ComboBox hidraulicComboBox = new ComboBox(FXCollections.observableArrayList(trueFalse));
@@ -79,27 +64,11 @@ public class CarsInfo {
 	public static Spinner<Integer> gears = new Spinner<>(4, 7, 4, 1);
 	public static String tireModel[] = { "summer", "winter" };
 	public static ComboBox tireModelComboBox = new ComboBox(FXCollections.observableArrayList(tireModel));
-//	public static    TextField tireSize= new TextField();
 	public static Spinner<Integer> tireSize = new Spinner<>(0, 350, 0, 1);
 	public static TextField additionalDesc = new TextField();
 	public static ComboBox is4x4ComboBox = new ComboBox(FXCollections.observableArrayList(trueFalse));
 
 	public static VBox display(String current) throws IOException, SQLException {
-
-//		manufacturerComboBox.setConverter(new StringConverter<Manufacturer>() {
-//
-//		    @Override
-//		    public String toString(Manufacturer object) {
-//		        return object.getName();
-//		    }
-//
-//		    @Override
-//		    public Manufacturer fromString(String string) {
-//		        return manufacturerComboBox.getItems().stream().filter(ap -> 
-//		            ap.getName().equals(string)).findFirst().orElse(null);
-//		    }
-//		});
-
 		
 		ArrayList<Integer> years = new ArrayList<Integer>();
 
@@ -127,10 +96,10 @@ public class CarsInfo {
 		photoHBox.setPadding(new Insets(20, 0, 0, 0));
 
 		// First Row
-		Label storeLabel = new Label("Manufacturer Id");
+		Label storeLabel = new Label("Stores Id");
 		storeLabel.setMinWidth(60);
 
-		Label manufacturerIdLabel = new Label("Manufacturer Id");
+		Label manufacturerIdLabel = new Label("Manufacturer ");
 		manufacturerIdLabel.setMinWidth(60);
 
 		Label storeNameLabel = new Label("Model");
@@ -142,11 +111,16 @@ public class CarsInfo {
 		Label yearOfProdLabel = new Label("Year of Production");
 		manufacturerIdLabel.setMinWidth(60);
 
+		Label priceLabel = new Label("Price");
+		manufacturerIdLabel.setMinWidth(60);
+
+
+		
 		// Second row
 		Label seatsLabel = new Label("Seats");
 		manufacturerIdLabel.setMinWidth(60);
 
-		Label doorsLabel = new Label("Seats");
+		Label doorsLabel = new Label("Doors");
 		manufacturerIdLabel.setMinWidth(60);
 
 		Label roofLabel = new Label("Roof");
@@ -229,25 +203,29 @@ public class CarsInfo {
 		secondCarsData.setPadding(new Insets(20, 0, 0, 20));
 
 		// first row
-		carsData.add(storeLabel, 0, 0);
-		carsData.add(manufacturerIdLabel, 1, 0);
-		carsData.add(storeNameLabel, 2, 0);
-		carsData.add(bodyNumberLabel, 3, 0);
-		carsData.add(yearOfProdLabel, 4, 0);
+		secondCarsData.add(storeLabel, 0, 0);
+		secondCarsData.add(manufacturerIdLabel, 1, 0);
+		secondCarsData.add(storeNameLabel, 2, 0);
+		secondCarsData.add(bodyNumberLabel, 3, 0);
+		secondCarsData.add(yearOfProdLabel, 4, 0);
+		secondCarsData.add(priceLabel, 5, 0);
 
 		// second row
-		carsData.add(storesComboBox, 0, 1);
-		carsData.add(manufacturerComboBox, 1, 1);
-		carsData.add(txtForModel, 2, 1);
-		carsData.add(txtForbodyNumber, 3, 1);
-		carsData.add(yearOfProdComboBox, 4, 1);
+		secondCarsData.add(storesComboBox, 0, 1);
+		secondCarsData.add(manufacturerComboBox, 1, 1);
+		secondCarsData.add(txtForModel, 2, 1);
+		secondCarsData.add(txtForbodyNumber, 3, 1);
+		secondCarsData.add(yearOfProdComboBox, 4, 1);
+		secondCarsData.add(txtForPrice, 5, 1);
 
+		
 		storesComboBox.getSelectionModel().selectFirst();
-		manufacturerComboBox.setPrefWidth(124);
-		txtForModel.setPrefWidth(124);
-		txtForbodyNumber.setPrefWidth(124);
-		yearOfProdComboBox.setPrefWidth(124);
-
+		manufacturerComboBox.setPrefWidth(100);
+		txtForModel.setPrefWidth(100);
+		txtForbodyNumber.setPrefWidth(100);
+		yearOfProdComboBox.setPrefWidth(100);
+		txtForPrice.setPrefWidth(100);
+		
 		manufacturerComboBox.getSelectionModel().selectFirst();
 		yearOfProdComboBox.getSelectionModel().selectFirst();
 
@@ -374,42 +352,40 @@ public class CarsInfo {
 		
 		
 		manufacturerComboBox.setOnAction(event -> {
-			
-				Manufacturer manufacturer = (Manufacturer) manufacturerComboBox.getSelectionModel().getSelectedItem();
-				System.out.println(manufacturer.getId());
-			
+				Manufacturer manufacturer = (Manufacturer) manufacturerComboBox.getSelectionModel().getSelectedItem();			
+				FuelType fuelType = (FuelType) manufacturerComboBox.getSelectionModel().getSelectedItem();			
+				Stores store = (Stores) manufacturerComboBox.getSelectionModel().getSelectedItem();			
+
 		});
 
 
 		insertBtn.setOnAction(new CarsInfoController());
-//		setEventOnAirport();
 		showData();
 		vbox.getChildren().addAll(photoHBox, carsData, secondCarsData, btnHbox);
 		return vbox;
 
 	}
 
-	private ArrayList<String> getNames() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	public static boolean insertCar() throws NumberFormatException, SQLException {
 
 		Manufacturer manufacturer = (Manufacturer) manufacturerComboBox.getSelectionModel().getSelectedItem();
+		FuelType fuelType = (FuelType) fuelTypeIdComboBox.getSelectionModel().getSelectedItem();			
+		Store store = (Store) storesComboBox.getSelectionModel().getSelectedItem();			
 		
-		return Car.addCar(String.valueOf(storesComboBox.getValue()), 
+		return Car.addCar(store.getId(), 
 				manufacturer.getId(),
 				txtForModel.getText(), txtForbodyNumber.getText(),
 				Integer.parseInt(yearOfProdComboBox.getValue().toString()),
 				Integer.parseInt(seatsComboBox.getValue().toString()),
 				Integer.parseInt(doorsComboBox.getValue().toString()),
-				helpers.convertToBoolean(roofComboBox.getValue()), helpers.convertToBoolean(alarmComboBox.getValue()),
+				helpers.convertToBoolean(roofComboBox.getValue()),
+				helpers.convertToBoolean(alarmComboBox.getValue()),
 				helpers.convertToBoolean(centralComboBox.getValue()),
 				helpers.convertToBoolean(airbagComboBox.getValue()),
 				helpers.convertToBoolean(autonomusComboBox.getValue()),
 				helpers.convertToBoolean(navigatorComboBox.getValue()),
-				helpers.convertToBoolean(climateComboBox.getValue()), String.valueOf(fuelTypeIdComboBox.getValue()),
+				helpers.convertToBoolean(climateComboBox.getValue()),fuelType.getId(),
 				Integer.parseInt(fuelCapacity.getValue().toString()),
 				Double.valueOf(String.valueOf(fuelConsumption.getValue())),
 				helpers.convertToBoolean(hidraulicComboBox.getValue()), engineModel.getText(),
@@ -440,6 +416,28 @@ public class CarsInfo {
 		}
 		
 		
+		
+	}
+	public static ObservableList<models.FuelType> fuelTypes() {
+
+		try {
+			ObservableList<models.FuelType> fuelTypeList = models.FuelType.getFuelTypes();
+			return fuelTypeList;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+		
+	}
+	public static ObservableList<models.Store> stores() {
+
+		try {
+			ObservableList<models.Store> storeList = models.Store.getStore();
+			return storeList ;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 		
 	}
 

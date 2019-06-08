@@ -7,6 +7,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 
 public class Store {
 	
@@ -35,6 +38,11 @@ public class Store {
 		this.phoneNumber = phoneNumber;
 		this.createdAt = new Date();
 		this.updatedAt = new Date();
+	}
+
+	public Store(int id, String name) {
+		this.id = id;
+		this.name = name;
 	}
 
 	public String getAddress() {
@@ -228,4 +236,29 @@ public class Store {
 	 * 
 	 * } }
 	 */
+	
+	public static ObservableList<Store> getStore() throws SQLException {
+		ObservableList<Store> storeList = FXCollections.observableArrayList();
+		
+		String query = "select id , name  from stores ";
+		
+		PreparedStatement preparedStatement = DatabaseConfig.getConnection().prepareStatement(query);
+		java.sql.ResultSet resultSet = preparedStatement.executeQuery();
+			
+		while(resultSet.next()) {
+
+			Store store = new Store(resultSet.getInt(1),resultSet.getString(2)); 
+			storeList.add(store);
+		
+		}
+		
+		return storeList;
+
+	}
+	
+	@Override
+	public String toString() {
+	    return this.getName();
+	}
+
 }
