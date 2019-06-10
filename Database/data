@@ -1,9 +1,9 @@
-INSERT IGNORE INTO `Roles` (`id`,`name`,`description`,`createdAt`,`updatetimedAt`) 
+INSERT IGNORE INTO `roles` (`id`,`name`,`description`,`createdAt`,`updatetimedAt`) 
 VALUES 
 (1,"admin","nec, diam. Duis mi enim, condimentum eget, volutpat ornare, facilisis eget, ipsum. Donec sollicitudin adipiscing ligula. Aenean gravida","2019-08-06 12:27:36","2019-05-24 07:54:28"),
 (2,"user","tincidunt aliquam arcu. Aliquam ultrices iaculis odio. Nam interdum enim non nisi. Aenean eget metus.","2018-11-19 03:29:42","2019-04-23 18:47:39");
 
-INSERT IGNORE INTO `fuelType` (`id`,`name`,`description`,`createdAt`,`updatetimedAt`)
+INSERT IGNORE INTO `fueltype` (`id`,`name`,`description`,`createdAt`,`updatetimedAt`)
  VALUES (1,"Diesel","amet orci. Ut sagittis lobortis mauris. Suspendisse aliquet molestie tellus. Aenean egestas","2019-08-06 21:54:11","2018-04-17 15:52:48"),
  (2,"Gasoline","Praesent interdum ligula eu enim. Etiam imperdiet dictum","2019-08-23 21:19:09","2018-12-24 14:10:44"),
  (3,"Biodiesel","arcu. Curabitur ut","2019-09-20 13:19:29","2018-02-12 18:38:26"),
@@ -11,7 +11,7 @@ INSERT IGNORE INTO `fuelType` (`id`,`name`,`description`,`createdAt`,`updatetime
  (5,"Natural Gas","Vivamus rhoncus. Donec est. Nunc ullamcorper, velit in aliquet lobortis, nisi","2018-11-19 16:18:51","2017-07-02 01:41:21");
 
 
-INSERT IGNORE INTO `Stores` (`id`,`name`,`address`,`city`,`state`,`postal`,`phoneNumber`,`createdAt`,`updatetimedAt`) 
+INSERT IGNORE INTO `storet` (`id`,`name`,`address`,`city`,`state`,`postal`,`phoneNumber`,`createdAt`,`updatetimedAt`) 
 VALUES 
 (1,"Luke","P.O. Box 959, 385 Euismod St.","Tilburg","Botswana","B8W 1Y0","16270208-9851","2014-11-27 07:27:10","2018-06-27 13:05:34"),
 (2,"Keith","936-4433 Gravida Road","Maria","Mauritania","31808","16961130-6532","2016-12-28 11:38:55","2020-05-26 19:41:33"),

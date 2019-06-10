@@ -56,6 +56,7 @@ public class SideBarController implements EventHandler<ActionEvent> {
 			try {
 				Main.content.getChildren().clear();
 				Main.content.getChildren().addAll(Filter.display(""), MainComponent.display());
+//				MainComponent.usersList.getChildren().clear();
 				Header.labelBox.getChildren().clear();
 				Header.lblLocation.setText("Users");
 				Header.labelBox.getChildren().addAll(Header.lblLocation);

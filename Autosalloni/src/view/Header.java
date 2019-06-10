@@ -15,14 +15,21 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 
-public class Header {
+public class Header extends HBox{
 
 	public static HBox historyBox = new HBox();
 	public static HBox labelBox = new HBox();
 	public static Label lblLocation = new Label("Dashboard");
 	public static Button bttnBack = new Button("Back");
+	
+	public Header() {
+	
+		
+		
+	}
 	public static HBox display(String fullName, String role) throws IOException {
  
+		
 		String current = new java.io.File(".").getCanonicalPath();
 
 		bttnBack.setDisable(true);

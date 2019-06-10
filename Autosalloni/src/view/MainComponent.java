@@ -24,13 +24,17 @@ import models.Users;
 
 public class MainComponent {
 	private static TableView table = new TableView();
-
+	public static VBox usersList = new VBox();
+	public static VBox vbox = new VBox(5);
+	public static int count = 0;
+	
+	
 	public static VBox display() throws IOException, SQLException {
 		String current = new java.io.File(".").getCanonicalPath();
  
 //	
 		HBox hbox = new HBox(60);
-		VBox vbox = new VBox(5);
+		
 //	VBox tHeader= new VBox(10);
 		vbox.getStylesheets().add(MainComponent.class.getResource("mainComponent.css").toExternalForm());
 		FileInputStream userPath;
@@ -207,77 +211,166 @@ public class MainComponent {
 //	
 //	vbox.getChildren().addAll(tHeader,firstUserHBox,secondUserHBox,thirdUserHBox);
 //	vbox.setPadding(new Insets(20,20,20,20));
+		
+		
+		HBox headerBox = new HBox();
+		headerBox.setAlignment(Pos.CENTER);
+		headerBox.setPrefHeight(20);
+		Label lblImage = new Label("Image");
+		Label lblName = new Label("First Name");
+		Label lblSurname = new Label("Last Name");
+		Label lblEmail = new Label("Email");
+		Label lblPhone = new Label("Phone Number");
+		Label lblCity = new Label("City");
+		Label lblState = new Label("State");
+		Label lblGender = new Label("Gender");
+		Label lblBirthday = new Label("Birthday");
+		
+		lblImage.getStyleClass().add("userHeaderLabel");
+		lblName.getStyleClass().add("userHeaderLabel");
+		lblSurname.getStyleClass().add("userHeaderLabel");
+		lblEmail.getStyleClass().add("userHeaderLabel");
+		lblPhone.getStyleClass().add("userHeaderLabel");
+		lblCity.getStyleClass().add("userHeaderLabel");
+		lblState.getStyleClass().add("userHeaderLabel");
+		lblGender.getStyleClass().add("userHeaderLabel");
+		lblBirthday.getStyleClass().add("userHeaderLabel");
 
-		TableColumn<String, Users> photoCol = new TableColumn<>("Photo");
-		photoCol.setCellValueFactory(new PropertyValueFactory("img"));
-		photoCol.setPrefWidth(80);
+		lblImage.setPrefWidth(90);
+		lblName.setPrefWidth(120);
+		lblSurname.setPrefWidth(120);
+		lblEmail.setPrefWidth(200);
+		lblPhone.setPrefWidth(180);
+		lblCity.setPrefWidth(120);
+		lblState.setPrefWidth(120);		
+		lblGender.setPrefWidth(90);
+		lblBirthday.setPrefWidth(140);
+		
+		headerBox.getChildren().addAll(lblImage, 
+				lblName, 
+				lblSurname, 
+				lblEmail, 
+				lblPhone,
+				lblGender,
+				lblBirthday,
+				lblCity,
+				lblState);
+		
+//		HBox contentBox = new HBox();
+//		contentBox.setAlignment(Pos.CENTER);
+//		contentBox.setPrefHeight(20);
+//		Label lblContentImage = new Label("Image");
+//		Label lblContentName = new Label("First Name");
+//		Label lblContentSurname = new Label("Last Name");
+//		Label lblContentEmail = new Label("Email");
+//		Label lblContentPhone = new Label("Phone Number");
+//		Label lblConteuserListntCity = new Label("City");
+//		Label lblContentState = new Label("State");
+//		Label lblContentGender = new Label("Gender");
+//		Label lblContentBirthday = new Label("Birthday");
+//		
+//		lblContentImage.getStyleClass().add("contentHeaderLabel");
+//		lblContentName.getStyleClass().add("contentHeaderLabel");
+//		lblContentSurname.getStyleClass().add("contentHeaderLabel");
+//		lblContentEmail.getStyleClass().add("contentHeaderLabel");
+//		lblContentPhone.getStyleClass().add("contentHeaderLabel");
+//		lblContentCity.getStyleClass().add("contentHeaderLabel");
+//		lblContentState.getStyleClass().add("contentHeaderLabel");
+//		lblContentGender.getStyleClass().add("contentHeaderLabel");
+//		lblContentBirthday.getStyleClass().add("contentHeaderLabel");
+//
+//		lblContentImage.setPrefWidth(90);
+//		lblContentName.setPrefWidth(120);
+//		lblContentSurname.setPrefWidth(120);
+//		lblContentEmail.setPrefWidth(200);
+//		lblContentPhone.setPrefWidth(180);
+//		lblContentCity.setPrefWidth(120);
+//		lblContentState.setPrefWidth(120);		
+//		lblContentGender.setPrefWidth(90);
+//		lblContentBirthday.setPrefWidth(140);
+//		
+//		contentBox.getChildren().addAll(lblContentImage, 
+//				lblContentName, 
+//				lblContentSurname, 
+//				lblContentEmail, 
+//				lblContentPhone,
+//				lblContentGender,
+//				lblContentBirthday,
+//				lblContentCity,
+//				lblContentState);
+//		
+		
+		
+		
+		
 
-		TableColumn<String, Users> firstNameCol = new TableColumn<>("First name");
-		firstNameCol.setCellValueFactory(new PropertyValueFactory("name"));
-		firstNameCol.setPrefWidth(90);
-
-		TableColumn<String, Users> surnameCol = new TableColumn<>("Last name");
-		surnameCol.setCellValueFactory(new PropertyValueFactory("surname"));
-		surnameCol.setPrefWidth(90);
-
-		TableColumn<String, Users> emailCol = new TableColumn<>("Email");
-		emailCol.setCellValueFactory(new PropertyValueFactory("email"));
-		emailCol.setPrefWidth(200);
-
-		TableColumn<String, Users> birthdayCol = new TableColumn<>("Birthday");
-		birthdayCol.setCellValueFactory(new PropertyValueFactory("birthday"));
-		birthdayCol.setPrefWidth(100);
-
-		TableColumn<String, Users> genderCol = new TableColumn<>("Gender");
-		genderCol.setCellValueFactory(new PropertyValueFactory("gendre"));
-		genderCol.setPrefWidth(50);
-
-		TableColumn<String, Users> stateCol = new TableColumn<>("State");
-		stateCol.setCellValueFactory(new PropertyValueFactory("state"));
-		stateCol.setPrefWidth(120);
-
-		TableColumn<String, Users> addressCol = new TableColumn<>("Address");
-		addressCol.setCellValueFactory(new PropertyValueFactory("address"));
-		addressCol.setPrefWidth(200);
-
-		TableColumn<String, Users> phoneNumberCol = new TableColumn<>("Phone Number");
-		phoneNumberCol.setCellValueFactory(new PropertyValueFactory("phoneNumber"));
-		phoneNumberCol.setPrefWidth(120);
-
-		table.getColumns().addAll(photoCol, firstNameCol, surnameCol, emailCol, birthdayCol, genderCol, stateCol,
-				addressCol, phoneNumberCol);
-
-		photoCol.getStyleClass().add("textToCenter");
-		firstNameCol.getStyleClass().add("textToCenter");
-		surnameCol.getStyleClass().add("textToCenter");
-		emailCol.getStyleClass().add("textToCenter");
-		birthdayCol.getStyleClass().add("textToCenter");
-		genderCol.getStyleClass().add("textToCenter");
-		stateCol.getStyleClass().add("textToCenter");
-		addressCol.getStyleClass().add("textToCenter");
-		phoneNumberCol.getStyleClass().add("textToCenter");
+//		TableColumn<String, Users> photoCol = new TableColumn<>("Photo");
+//		photoCol.setCellValueFactory(new PropertyValueFactory("img"));
+//		photoCol.setPrefWidth(80);
+//
+//		TableColumn<String, Users> firstNameCol = new TableColumn<>("First name");
+//		firstNameCol.setCellValueFactory(new PropertyValueFactory("name"));
+//		firstNameCol.setPrefWidth(90);
+//
+//		TableColumn<String, Users> surnameCol = new TableColumn<>("Last name");
+//		surnameCol.setCellValueFactory(new PropertyValueFactory("surname"));
+//		surnameCol.setPrefWidth(90);
+//
+//		TableColumn<String, Users> emailCol = new TableColumn<>("Email");
+//		emailCol.setCellValueFactory(new PropertyValueFactory("email"));
+//		emailCol.setPrefWidth(200);
+//
+//		TableColumn<String, Users> birthdayCol = new TableColumn<>("Birthday");
+//		birthdayCol.setCellValueFactory(new PropertyValueFactory("birthday"));
+//		birthdayCol.setPrefWidth(100);
+//
+//		TableColumn<String, Users> genderCol = new TableColumn<>("Gender");
+//		genderCol.setCellValueFactory(new PropertyValueFactory("gendre"));
+//		genderCol.setPrefWidth(50);
+//
+//		TableColumn<String, Users> stateCol = new TableColumn<>("State");
+//		stateCol.setCellValueFactory(new PropertyValueFactory("state"));
+//		stateCol.setPrefWidth(120);
+//
+//		TableColumn<String, Users> addressCol = new TableColumn<>("Address");
+//		addressCol.setCellValueFactory(new PropertyValueFactory("address"));
+//		addressCol.setPrefWidth(200);
+//
+//		TableColumn<String, Users> phoneNumberCol = new TableColumn<>("Phone Number");
+//		phoneNumberCol.setCellValueFactory(new PropertyValueFactory("phoneNumber"));
+//		phoneNumberCol.setPrefWidth(120);
+//
+//		table.getColumns().addAll(photoCol, firstNameCol, surnameCol, emailCol, birthdayCol, genderCol, stateCol,
+//				addressCol, phoneNumberCol);
+//
+//		photoCol.getStyleClass().add("textToCenter");
+//		firstNameCol.getStyleClass().add("textToCenter");
+//		surnameCol.getStyleClass().add("textToCenter");
+//		emailCol.getStyleClass().add("textToCenter");
+//		birthdayCol.getStyleClass().add("textToCenter");
+//		genderCol.getStyleClass().add("textToCenter");
+//		stateCol.getStyleClass().add("textToCenter");
+//		addressCol.getStyleClass().add("textToCenter");
+//		phoneNumberCol.getStyleClass().add("textToCenter");
 
 		
 
 		Button createUser = new Button("Create User");
 		createUser.setOnAction(new controller.ShowCreateUserController());
-		
-		
-		vbox.getChildren().addAll(table, createUser);
-		showUsers();
+		if(count == 0) {
+			showUsers();
+			count++;
+		}
+		vbox.getChildren().add(createUser);
 		return vbox;
 
 	}
 
 	public static void showUsers() throws SQLException {
-		List<Users> user = Users.getUsers();
-
-		ObservableList<Users> userList = FXCollections.observableArrayList();
+		List<HBox> user = Users.getUsers();
 
 		for (int i = 0; i < user.size(); i++) {
-			userList.add(user.get(i));
+			vbox.getChildren().add(user.get(i));
 		}
-		table.setItems(userList);
-
 	}
 }

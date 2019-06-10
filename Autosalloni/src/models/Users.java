@@ -9,6 +9,9 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.geometry.Pos;
+import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
 
 
 public class Users {
@@ -274,28 +277,92 @@ public class Users {
 	
 	
 	
-	public static List<Users> getUsers() throws SQLException {
-		List<Users> userList = new ArrayList();
-		String query = "select * from users  limit 10";
+//	public static List<Users> getUsers() throws SQLException {
+//		List<Users> userList = new ArrayList();
+//		String query = "select * from users  limit 10";
+//		
+//		PreparedStatement preparedStatement = DatabaseConfig.getConnection().prepareStatement(query);
+//		java.sql.ResultSet resultSet = preparedStatement.executeQuery();
+//			
+//		while(resultSet.next()) {
+//			
+//			Users user = new Users(resultSet.getInt(1),resultSet.getInt(2),resultSet.getString(3)
+//					      ,resultSet.getString(4),resultSet.getString(5),resultSet.getString(6)
+//					      ,resultSet.getString(7),resultSet.getDate(8)
+//					      ,resultSet.getString(9).charAt(0),resultSet.getString(10),resultSet.getString(11)
+//					      ,resultSet.getString(12),resultSet.getString(13)
+//					      ,resultSet.getString(14),resultSet.getString(15),resultSet.getDate(16),resultSet.getDate(17)); 
+//			userList.add(user);
+//		}
+//		
+//		return userList;
+//
+//	}
+
+	public static List<HBox> getUsers() throws SQLException {
+		List<HBox> userList = new ArrayList<>();
+		
+		String query = "select id, name, surname, "
+				+ "email, phoneNumber, gendre,"
+				+ " birthday, city, state, img"
+				+ "  from users limit 10";
 		
 		PreparedStatement preparedStatement = DatabaseConfig.getConnection().prepareStatement(query);
 		java.sql.ResultSet resultSet = preparedStatement.executeQuery();
 			
 		while(resultSet.next()) {
 			
-			Users user = new Users(resultSet.getInt(1),resultSet.getInt(2),resultSet.getString(3)
-					      ,resultSet.getString(4),resultSet.getString(5),resultSet.getString(6)
-					      ,resultSet.getString(7),resultSet.getDate(8)
-					      ,resultSet.getString(9).charAt(0),resultSet.getString(10),resultSet.getString(11)
-					      ,resultSet.getString(12),resultSet.getString(13)
-					      ,resultSet.getString(14),resultSet.getString(15),resultSet.getDate(16),resultSet.getDate(17)); 
-			userList.add(user);
+			HBox result = new HBox();
+			result.setAlignment(Pos.CENTER);
+			result.setPrefHeight(20);
+			result.setId(String.valueOf(resultSet.getInt(1)));
+			Label lblContentImage = new Label(resultSet.getString(10));
+			Label lblContentName = new Label(resultSet.getString(2));
+			Label lblContentSurname = new Label(resultSet.getString(3));
+			Label lblContentEmail = new Label(resultSet.getString(4));
+			Label lblContentPhone = new Label(resultSet.getString(5));
+			Label lblContentCity = new Label(resultSet.getString(8));
+			Label lblContentState = new Label(resultSet.getString(9));
+			Label lblContentGender = new Label(resultSet.getString(6));
+			Label lblContentBirthday = new Label(resultSet.getString(7));
+			
+			lblContentImage.getStyleClass().add("contentHeaderLabel");
+			lblContentName.getStyleClass().add("contentHeaderLabel");
+			lblContentSurname.getStyleClass().add("contentHeaderLabel");
+			lblContentEmail.getStyleClass().add("contentHeaderLabel");
+			lblContentPhone.getStyleClass().add("contentHeaderLabel");
+			lblContentCity.getStyleClass().add("contentHeaderLabel");
+			lblContentState.getStyleClass().add("contentHeaderLabel");
+			lblContentGender.getStyleClass().add("contentHeaderLabel");
+			lblContentBirthday.getStyleClass().add("contentHeaderLabel");
+
+			lblContentImage.setPrefWidth(90);
+			lblContentName.setPrefWidth(120);
+			lblContentSurname.setPrefWidth(120);
+			lblContentEmail.setPrefWidth(200);
+			lblContentPhone.setPrefWidth(180);
+			lblContentCity.setPrefWidth(120);
+			lblContentState.setPrefWidth(120);		
+			lblContentGender.setPrefWidth(90);
+			lblContentBirthday.setPrefWidth(140);
+			
+			result.getChildren().addAll(lblContentImage, 
+					lblContentName, 
+					lblContentSurname, 
+					lblContentEmail, 
+					lblContentPhone,
+					lblContentGender,
+					lblContentBirthday,
+					lblContentCity,
+					lblContentState);
+			
+			userList.add(result);			
+			
 		}
 		
 		return userList;
 
 	}
-
 	
 }
 
