@@ -1,3 +1,6 @@
 .textToCenter {
 	  -fx-alignment: CENTER;
 }
+.backgroundColor{
+	-fx-background-color:FFFAFA;
+}
