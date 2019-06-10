@@ -44,6 +44,10 @@ public class Store {
 		this.id = id;
 		this.name = name;
 	}
+	
+	public Store(String name) {
+		this.name = name;
+	}
 
 	public String getAddress() {
 		return address;
@@ -241,6 +245,24 @@ public class Store {
 		ObservableList<Store> storeList = FXCollections.observableArrayList();
 		
 		String query = "select id , name  from stores ";
+		
+		PreparedStatement preparedStatement = DatabaseConfig.getConnection().prepareStatement(query);
+		java.sql.ResultSet resultSet = preparedStatement.executeQuery();
+			
+		while(resultSet.next()) {
+
+			Store store = new Store(resultSet.getInt(1),resultSet.getString(2)); 
+			storeList.add(store);
+		
+		}
+		
+		return storeList;
+
+	}
+	public static ObservableList<Store> getStore(int carId) throws SQLException {
+		ObservableList<Store> storeList = FXCollections.observableArrayList();
+		
+		String query = "SELECT s.id , s.name  FROM Stores s inner join Stock s2 on s.id = s2.storeID where s2.carId = " + carId ;
 		
 		PreparedStatement preparedStatement = DatabaseConfig.getConnection().prepareStatement(query);
 		java.sql.ResultSet resultSet = preparedStatement.executeQuery();

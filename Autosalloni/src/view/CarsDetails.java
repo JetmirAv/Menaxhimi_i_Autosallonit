@@ -30,7 +30,7 @@ import models.Store;
 
 public class CarsDetails {
 
-	
+	public static TextField textForManufacturer ;
 	
 	
 	public static VBox display (Car car) throws IOException, SQLException {
@@ -91,17 +91,10 @@ public class CarsDetails {
 		 txtForAdditionalDesc.setEditable(false);
 		 TextField txtForIs4x4 = new TextField(car.isIs4x4() + "");
 		 txtForIs4x4.setEditable(false);
-		 ComboBox storeComboBox = new ComboBox(FXCollections.observableArrayList(Store.getStore()));
+		 ComboBox storeComboBox = new ComboBox(FXCollections.observableArrayList(Store.getStore(car.getId())));
 		 TextField price = new TextField();
 		 
 		 
-			
-			
-		
-			
-		 
-		 
-		
 				
 		String current = new java.io.File(".").getCanonicalPath();
 		VBox vbox = new VBox();
@@ -318,12 +311,12 @@ public class CarsDetails {
 		secondCarsData.add(txtForAdditionalDesc, 4, 9);
 		secondCarsData.add(txtForIs4x4, 5, 9);
 
-		Button insertBtn = new Button("Buy");
-		insertBtn.getStyleClass().add("photoToCenter");
+		Button buyBtn = new Button("Buy");
+		buyBtn.getStyleClass().add("photoToCenter");
 		HBox btnHbox = new HBox();
 		btnHbox.setPrefWidth(100);
 		btnHbox.setPrefHeight(40);
-		btnHbox.getChildren().add(insertBtn);
+		btnHbox.getChildren().add(buyBtn);
 		btnHbox.setPadding(new Insets(50, 0, 0, 0));
 		btnHbox.setAlignment(Pos.CENTER);
 		carsData.setAlignment(Pos.CENTER);
@@ -333,32 +326,40 @@ public class CarsDetails {
 			Store store = (Store) storeComboBox.getSelectionModel().getSelectedItem();			
 			System.out.println(store.getId());	
 			try {
-				int priceOfCar = car.returnPrice(store.getId(), car.getId());
-				if
-				(priceOfCar==0) {
-					
-					price.setText("No stock for this car !");
-				}
-				
-				else
-				{
-					price.setText(priceOfCar + "");
-				}
-				
-			} catch (SQLException e) {
+				int priceOfCar = car.returnPrice(car.getId(),store.getId());
+				price.setText(priceOfCar + "");
+			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
+				e1.printStackTrace();
+			}			
 
 	});
 		
+		buyBtn.setOnAction(e->{
+			
+		Store storeObj = (Store) storeComboBox.getSelectionModel().getSelectedItem();
+		int storeId = storeObj.getId();
+		int userId = 100;
+		try {
+			int priceOfCar = car.returnPrice(storeObj.getId(), car.getId());
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+			
+			
+			
+			
+		});
 		
-
+		
+		
+		
 		vbox.getChildren().addAll(photoHBox, carsData, secondCarsData, btnHbox);
 		return vbox;
 
 	}	
-
+	
+  
 		
 }

@@ -726,9 +726,9 @@ public class Car {
 		
 		
 		// Return Price Of Car
-		public static int returnPrice(int storeId , int carId) throws SQLException{
+		public static int returnPrice(int carId , int storeId) throws SQLException{
 			int price=0;
-			String query = "select price from stock where storeId = " + storeId + " and carId = " + carId  ;
+			String query = "SELECT s2.price FROM Stores s inner join Stock s2 on s.id = s2.storeID where s2.carId =" + carId + " and storeId  = " + storeId ;   
 			PreparedStatement preparedStatement = DatabaseConfig.getConnection().prepareStatement(query); 
 			java.sql.ResultSet resultSet = preparedStatement.executeQuery();
 			while(resultSet.next()) {
@@ -755,6 +755,8 @@ public class Car {
 			return result;
 		}
 		
+		
+
 		 
 		
 	

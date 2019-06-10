@@ -69,7 +69,7 @@ public class Cars {
 		paneFirstRow.setPadding(new Insets(0, 0, 0, 23));
 		paneFirstRow.setAlignment(Pos.CENTER);
 
-		      for (int i = 54; i < 60; i++) {
+		      for (int i = 53; i < 60; i++) {
 			  
 		    	  // Photo
 			    ImageView image = new ImageView(carObj);
@@ -91,6 +91,7 @@ public class Cars {
 //			    ArrayList<Car> car = new ArrayList<>();	
 			 	String str = e.getSource().toString();
 				int id = helpers.helpers.returnId(str);
+				System.out.println(id);
 				
 					Car car = null;
 					try {
