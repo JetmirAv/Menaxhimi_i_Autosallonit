@@ -18,11 +18,12 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import models.Bought;
 
-public class Dashboard {
-
-	public static VBox display() {
+public class Dashboard extends VBox{
+	
+	public Dashboard() {
+	
 		VBox dashboard = new VBox(30);
- 
+		 
 		try {
 
 			int totalUsers = models.Users.count(false);
@@ -84,8 +85,8 @@ public class Dashboard {
 			final CategoryAxis xCatAxis = new CategoryAxis();
 			final NumberAxis yCatAxis = new NumberAxis();
 			final BarChart<String, Number> bc = new BarChart<String, Number>(xCatAxis, yCatAxis);
-			bc.setTitle("Country Summary");
-			xAxis.setLabel("Country");
+			bc.setTitle("Year Summary");
+			xAxis.setLabel("Month");
 			yAxis.setLabel("Value");
 
 			XYChart.Series<String, Number> series1 = new XYChart.Series<String, Number>();
@@ -98,8 +99,7 @@ public class Dashboard {
 					series1.getData().add(new XYChart.Data<String, Number>(i + "", 0));					
 				} else {
 					series1.getData().add(new XYChart.Data<String, Number>(i+ "", thisYear[i]));
-				}
-//				
+				}			
 				if(lastYear[i] == null) {
 					series2.getData().add(new XYChart.Data<String, Number>(i+ "", 0));					
 				} else {
@@ -117,6 +117,7 @@ public class Dashboard {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return dashboard;
+		getChildren().add(dashboard);
+
 	}
 }

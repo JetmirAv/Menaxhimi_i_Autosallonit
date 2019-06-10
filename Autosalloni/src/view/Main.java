@@ -18,16 +18,20 @@ public class Main extends Application {
 	public static BorderPane mainWindow = new BorderPane();
 	public static ArrayList<String> history = new ArrayList<String>();
 	public static VBox content = new VBox();	
+//	public static Node mainContent; 
+	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		content.setSpacing(30);
 		content.setPadding(new Insets(50, 10, 30, 10));
 		
+//		mainContent = new Dashboard();
+		
 		try {
-			content.getChildren().add(Dashboard.display());
+			content.getChildren().add(new Dashboard());
 			mainWindow.setCenter(content);
-			mainWindow.setTop(Header.display("Jetmir Avdullahu", "Super Admin"));
-			mainWindow.setLeft(Sidebar.display());
+			mainWindow.setTop(new Header());
+			mainWindow.setLeft(new Sidebar());
 
 		
 		} catch (Exception e) {

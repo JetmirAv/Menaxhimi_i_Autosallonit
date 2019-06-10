@@ -20,14 +20,10 @@ public class SignUpController implements EventHandler<ActionEvent> {
 	@Override
 	public void handle(ActionEvent e) {
 		try {
-			
-			
-			
 			int response = view.Modal.display( 1, "Title",
-					"Are you sure you want to create this user. And some other dummy tekst for testing this method", 
+					"Are you sure you want to create this user. "
+					+ "And some other dummy tekst for testing this method", 
 					"Confirm", "cancel");
-			
-			
 			if(response == 0) {
 				DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 				Date myDate = formatter.parse("1999-05-19");

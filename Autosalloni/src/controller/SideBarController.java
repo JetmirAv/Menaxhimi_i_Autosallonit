@@ -16,7 +16,7 @@ public class SideBarController implements EventHandler<ActionEvent> {
 		switch (e.getTarget().toString().split("'")[1].split("'")[0]) {
 		case "_Dashboard":
 			Main.content.getChildren().clear();
-			Main.content.getChildren().addAll(Dashboard.display());
+			Main.content.getChildren().add(new Dashboard());
 			Header.labelBox.getChildren().clear();
 			Header.lblLocation.setText("Dashboard");
 			Header.labelBox.getChildren().addAll(Header.lblLocation);
@@ -55,7 +55,8 @@ public class SideBarController implements EventHandler<ActionEvent> {
 		case "_Users":
 			try {
 				Main.content.getChildren().clear();
-				Main.content.getChildren().addAll(Filter.display(""), MainComponent.display());
+				Main.content.getChildren().addAll(Filter.display(""), new MainComponent());
+				System.out.println(Main.content.getChildren().toString());
 //				MainComponent.usersList.getChildren().clear();
 				Header.labelBox.getChildren().clear();
 				Header.lblLocation.setText("Users");

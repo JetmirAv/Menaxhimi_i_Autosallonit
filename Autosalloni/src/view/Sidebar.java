@@ -18,7 +18,7 @@ import javafx.css.*;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 
-public class Sidebar {
+public class Sidebar extends VBox {
 	public static Button dashboardBtn = new Button("_Dashboard");
 	public static Button carsBtn = new Button("_Cars");
 	public static Button usersBtn = new Button("_Users");
@@ -27,7 +27,8 @@ public class Sidebar {
 	public static Button settingsBtn = new Button("_Settings");
 	public static Button storesBtn = new Button("_Stores");
 	
-	public static VBox display() throws IOException{
+	
+	public Sidebar() throws IOException {
 		String current = new java.io.File( "." ).getCanonicalPath();
 		
 		FileInputStream dashboardPath = new FileInputStream(current + "/src/img/dashboard.png");
@@ -142,15 +143,16 @@ public class Sidebar {
 		//vbox.getChildren().add(new ImageView(logoImg));
 		vbox.setPadding(new Insets(25, 5, 5, 15));
 		vbox.getChildren().addAll(dashboardBtn,librariesLbl,storesBtn,carsBtn,clientsLbl,usersBtn,manufacturersBtn,reportsBtn,settingsBtn);		
-		vbox.setStyle("-fx-background-color:#EFF0F3");
-		vbox.getStylesheets().add(Sidebar.class.getResource("sideBar.css").toExternalForm());
+		
+		
 		VBox sidebarVbox = new VBox();
+		sidebarVbox.getStylesheets().add(Sidebar.class.getResource("sideBar.css").toExternalForm());
+		sidebarVbox.getStyleClass().add("sidebar");
 		sidebarVbox.getChildren().addAll(vbox);
-		sidebarVbox.setAlignment(Pos.CENTER_LEFT);
+//		sidebarVbox.setAlignment(Pos.TOP_CENTER);
 	
 	
-		return sidebarVbox;
-	
+		getChildren().add(sidebarVbox);
 	}
-
+	
 }

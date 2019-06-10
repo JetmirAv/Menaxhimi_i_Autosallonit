@@ -4,6 +4,8 @@
     -fx-padding: 10px 15px;
     -fx-font-family: "Titillium Web";
     -fx-background-color: #EFF0F3;
+    -fx-pref-width: 1440px;
+    -fx-pref-height: 40px;
 }
 .userFullName {
 	-fx-font-size: 15px;
@@ -15,8 +17,8 @@
 }
 
 .logOut {
-	-fx-width: 25px;
-	-fx-height: 25px;
+	-fx-pref-width: 25px;
+	-fx-pref-height: 25px;
 	-fx-background-color: black;
 	-fx-padding: 15px;
 

@@ -1,6 +1,7 @@
 package view;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import javafx.geometry.Insets;
@@ -20,16 +21,11 @@ public class Header extends HBox{
 	public static HBox historyBox = new HBox();
 	public static HBox labelBox = new HBox();
 	public static Label lblLocation = new Label("Dashboard");
-	public static Button bttnBack = new Button("Back");
+	public static Button bttnBack = new Button("Back"); 
+	public static Label userFullName = new Label("Jetmir");
+	public static Label userRole = new Label("Avdullahu");
 	
-	public Header() {
-	
-		
-		
-	}
-	public static HBox display(String fullName, String role) throws IOException {
- 
-		
+	public Header() throws IOException {
 		String current = new java.io.File(".").getCanonicalPath();
 
 		bttnBack.setDisable(true);
@@ -74,8 +70,6 @@ public class Header extends HBox{
 		VBox userBox = new VBox();
 		userBox.setSpacing(5);
 //		userBox.setTranslateY(5);
-		Label userFullName = new Label(fullName);
-		Label userRole = new Label(role);
 		userFullName.getStyleClass().add("userFullName");
 		userBox.getChildren().addAll(userFullName, userRole);
 		userBox.setOnMouseEntered(e -> {
@@ -109,12 +103,13 @@ public class Header extends HBox{
 		
 		// Main Box that will be returned;
 		HBox header = new HBox(100);
-		header.getStylesheets().add(Header.class.getResource("header.css").toExternalForm());
 		header.getStyleClass().add("header");
 		header.getChildren().addAll(logoBox, historyBox, profileBox);
 		header.setMaxHeight(20);
 
-		return header;
-
+		getChildren().add(header);
+		
+		
 	}
+	
 }
