@@ -91,17 +91,18 @@ public class Cars {
 //			    ArrayList<Car> car = new ArrayList<>();	
 			 	String str = e.getSource().toString();
 				int id = helpers.helpers.returnId(str);
-				System.out.println(id);
+				//System.out.println(id);
 				
 					Car car = null;
 					try {
 						car = models.Car.getAllDetailsOfCar(id);
+						new CarsDetails(car);
 					} catch (SQLException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 					try {
-						Main.mainWindow.setCenter(CarsDetails.display(car));
+						Main.mainWindow.setCenter(CarsDetails.display());
 					} catch (IOException | SQLException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();

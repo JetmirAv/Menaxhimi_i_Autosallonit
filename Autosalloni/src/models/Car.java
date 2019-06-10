@@ -2,6 +2,7 @@ package models;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Date;
+import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -368,7 +369,7 @@ public class Car {
 			
 
 
-			public String getNameOfFuelTypeSQL() throws SQLException {
+			public  String getNameOfFuelTypeSQL() throws SQLException   {
 				String s = "";
 				String query = "SELECT distinct f.name FROM fueltype f inner join car c on f.id = c.fuelTypeId WHERE f.id =" + getFuelTypeId() ;
 				PreparedStatement preparedStatement = DatabaseConfig.getConnection().prepareStatement(query); 
@@ -726,7 +727,7 @@ public class Car {
 		
 		
 		// Return Price Of Car
-		public static int returnPrice(int carId , int storeId) throws SQLException{
+		public  int returnPrice(int carId , int storeId) throws SQLException{
 			int price=0;
 			String query = "SELECT s2.price FROM Stores s inner join Stock s2 on s.id = s2.storeID where s2.carId =" + carId + " and storeId  = " + storeId ;   
 			PreparedStatement preparedStatement = DatabaseConfig.getConnection().prepareStatement(query); 

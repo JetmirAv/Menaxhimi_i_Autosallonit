@@ -30,74 +30,113 @@ import models.FuelType;
 import models.Manufacturer;
 import models.Store;
 
-public class CarsDetails {
+public class CarsDetails   {
 
-	public static TextField textForManufacturer ;
+    public static Car c ; 
+    public static TextField textForManufacturer ;
+  	public static TextField txtForModel ;
+  	public static TextField txtForbodyNumber;
+  	public static TextField txtForYearOfProduction;
+  	public static TextField txtForSeats;
+  	public static TextField txtForDoors;
+    public static TextField txtForRoof;
+  	public static TextField txtForAlarm;
+  	public static TextField txtForCentral;
+  	public static TextField txtForAirBag;
+  	public static TextField txtForAutonomous;
+    public static TextField txtForNavigator;
+  	public static TextField txtForClimate;
+  	public static TextField txtForFuelType ; 
+  	public static TextField txtForFuelCapacity;
+  	public static TextField txtForFuelConsumption;
+  	public static TextField txtForHidraulic;
+  	public static TextField txtForEngineModel;
+  	public static TextField txtForEnginePowerModel;
+  	public static TextField txtForHoursePower;
+  	public static TextField txtForMaxSpeed;
+  	public static TextField txtForSeconds0to100;
+  	public static TextField txtForIsAutomatic;
+  	public static TextField txtForGears;
+  	public static TextField txtForTireModel;
+  	public static TextField txtForTireSize;
+  	public static TextField txtForAdditionalDesc;
+  	public static TextField txtForIs4x4;
+  	public static ComboBox storeComboBox ;
+  	public static TextField price;
 	
-	
-	public static VBox display (Car car) throws IOException, SQLException {
+   
+   public CarsDetails(Car c) throws SQLException {
+		this.c=c;
+		txtForFuelType = new TextField(c.getNameOfFuelTypeSQL());
+		textForManufacturer = new TextField(c.getNameOFManufacturerSQL());
+		storeComboBox = new ComboBox(FXCollections.observableArrayList(Store.getStore(c.getId())));
+		txtForModel = new TextField(c.getModel());
+		txtForModel.setEditable(false);
+		txtForbodyNumber = new TextField(c.getBodyNumber());
+		txtForYearOfProduction = new TextField(c.getBodyNumber()+"");
+		txtForSeats = new TextField(c.getSeats() + "");
+		txtForDoors = new TextField(c.getDoors() + "");
+		txtForRoof = new TextField(c.isRoof() + "");
+		txtForAlarm = new TextField(c.isAlarm() + "");
+		txtForCentral = new TextField(c.isCentral() + "");
+		txtForAirBag = new TextField(c.isAirbag() + "");
+		txtForAutonomous = new TextField(c.isAutonomus() + "");
+		txtForNavigator = new TextField(c.isNavigator() + "");
+		txtForClimate = new TextField(c.isClimate() + "");
+		txtForFuelCapacity = new TextField(c.getFuelCapacity() + "");
+		txtForFuelConsumption = new TextField(c.getFuelConsumption() + "");
+		txtForFuelConsumption = new TextField(c.getFuelConsumption() + "");
+		txtForHidraulic = new TextField(c.isHidraulic() + "");
+		txtForEngineModel = new TextField(c.getEngineModel() + "");
+		txtForEnginePowerModel = new TextField(c.getEnginePower()+"");
+		txtForHoursePower = new TextField(c.getHoursePower() + "");
+		txtForMaxSpeed = new TextField(c.getMaxspeed()+"");
+		txtForSeconds0to100 = new TextField(c.getSeconds0to100() + "");
+		txtForIsAutomatic = new TextField(c.isAutomatic() + "");
+		txtForGears = new TextField(c.getGears() + "");
+		txtForTireModel = new TextField(c.getTireModel());
+		txtForTireSize = new TextField(c.getTireSize() + "");
+		txtForAdditionalDesc = new TextField(c.getAdditionalDesc() + "");
+		txtForIs4x4 = new TextField(c.isIs4x4() + "");
+		price = new TextField();
 		
 		
-		 TextField textForManufacturer = new TextField(car.getNameOFManufacturerSQL());
-		 TextField txtForModel = new TextField(car.getModel());
-		 txtForModel.setEditable(false);
-		 TextField txtForbodyNumber = new TextField(car.getBodyNumber());
-		 txtForbodyNumber.setEditable(false);
-		 TextField txtForYearOfProduction = new TextField(car.getBodyNumber()+"");
-		 txtForYearOfProduction.setEditable(false);
-		 TextField txtForSeats = new TextField(car.getSeats() + "");
-		 txtForSeats.setEditable(false);
-		 TextField txtForDoors = new TextField(car.getDoors() + "");
-		 txtForDoors.setEditable(false);
-		 TextField txtForRoof = new TextField(car.isRoof() + "");
-		 txtForRoof.setEditable(false);
-		 TextField txtForAlarm = new TextField(car.isAlarm() + "");
-		 txtForAlarm.setEditable(false);
-		 TextField txtForCentral = new TextField(car.isCentral() + "");
-		 txtForCentral.setEditable(false);
-		 TextField txtForAirBag = new TextField(car.isAirbag() + "");
-		 txtForAirBag.setEditable(false);
-		 TextField txtForAutonomous = new TextField(car.isAutonomus() + "");
-		 txtForAutonomous.setEditable(false);
-		 TextField txtForNavigator = new TextField(car.isNavigator() + "");
-		 txtForNavigator.setEditable(false);
-		 TextField txtForClimate = new TextField(car.isClimate() + "");
-		 txtForClimate.setEditable(false);
-		 TextField txtForFuelType = new TextField(car.getNameOfFuelTypeSQL());
-		 txtForFuelType.setEditable(false);
-		 TextField txtForFuelCapacity = new TextField(car.getFuelCapacity() + "");
-		 txtForFuelCapacity.setEditable(false);
-		 TextField txtForFuelConsumption = new TextField(car.getFuelConsumption() + "");
-		 txtForFuelConsumption.setEditable(false);
-		 TextField txtForHidraulic = new TextField(car.isHidraulic() + "");
-		 txtForHidraulic.setEditable(false);
-		 TextField txtForEngineModel = new TextField(car.getEngineModel() + "");
-		 txtForEngineModel.setEditable(false);
-		 TextField txtForEnginePowerModel = new TextField(car.getEnginePower()+"");
-		 txtForEnginePowerModel.setEditable(false);
-		 TextField txtForHoursePower = new TextField(car.getHoursePower() + "");
-		 txtForHoursePower.setEditable(false);
-		 TextField txtForMaxSpeed = new TextField(car.getMaxspeed()+"");
-		 txtForMaxSpeed.setEditable(false);
-		 TextField txtForSeconds0to100 = new TextField(car.getSeconds0to100() + "");
-		 txtForSeconds0to100.setEditable(false);
-		 TextField txtForIsAutomatic = new TextField(car.isAutomatic() + "");
-		 txtForIsAutomatic.setEditable(false);
-		 TextField txtForGears = new TextField(car.getGears() + "");
-		 txtForGears.setEditable(false);
-		 TextField txtForTireModel = new TextField(car.getTireModel());
-		 txtForTireModel.setEditable(false);
-		 TextField txtForTireSize = new TextField(car.getTireSize() + "");
-		 txtForTireSize.setEditable(false);
-		 TextField txtForAdditionalDesc = new TextField(car.getAdditionalDesc() + "");
-		 txtForAdditionalDesc.setEditable(false);
-		 TextField txtForIs4x4 = new TextField(car.isIs4x4() + "");
-		 txtForIs4x4.setEditable(false);
-		 ComboBox storeComboBox = new ComboBox(FXCollections.observableArrayList(Store.getStore(car.getId())));
-		 TextField price = new TextField();
-		 
-		 
-				
+		txtForFuelType.setEditable(false);
+		txtForYearOfProduction.setEditable(false);
+		textForManufacturer.setEditable(false);
+		txtForbodyNumber.setEditable(false);
+		txtForbodyNumber.setEditable(false);
+		txtForSeats.setEditable(false);
+		txtForDoors.setEditable(false);
+		txtForRoof.setEditable(false);
+		txtForAlarm.setEditable(false);
+		txtForCentral.setEditable(false);
+		txtForAirBag.setEditable(false);
+		txtForAutonomous.setEditable(false);
+		txtForNavigator.setEditable(false);
+		txtForClimate.setEditable(false);
+		txtForFuelCapacity.setEditable(false);
+		txtForFuelConsumption.setEditable(false);
+	    txtForHidraulic.setEditable(false);
+		txtForEngineModel.setEditable(false);
+	    txtForEnginePowerModel.setEditable(false);
+		txtForHoursePower.setEditable(false);
+		txtForMaxSpeed.setEditable(false);
+		txtForSeconds0to100.setEditable(false);
+		txtForIsAutomatic.setEditable(false);
+		txtForGears.setEditable(false);
+		txtForTireModel.setEditable(false);
+		txtForTireSize.setEditable(false);
+		txtForAdditionalDesc.setEditable(false);
+		txtForIs4x4.setEditable(false);
+        price.setEditable(false);
+
+	}
+   
+   
+	public static VBox display () throws IOException, SQLException {
+
+
 		String current = new java.io.File(".").getCanonicalPath();
 		VBox vbox = new VBox();
 		vbox.getStylesheets().add(MainComponent.class.getResource("CarsForm.css").toExternalForm());
@@ -328,7 +367,7 @@ public class CarsDetails {
 			Store store = (Store) storeComboBox.getSelectionModel().getSelectedItem();			
 			System.out.println(store.getId());	
 			try {
-				int priceOfCar = car.returnPrice(car.getId(),store.getId());
+				int priceOfCar = c.returnPrice(c.getId(),store.getId());
 				price.setText(priceOfCar + "");
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
@@ -336,43 +375,52 @@ public class CarsDetails {
 			}			
 
 	});
+		buyBtn.setOnAction(e->{
+			try {
+				
+			if(storeComboBox.getSelectionModel().isEmpty()) {
+				System.out.println("Please choose a store first ! ");
+			} else {
+				insertBought();
+			}
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+		});
+	
 		
-	// INSERTIMI !!	
 		
-//		buyBtn.setOnAction(e->{
-//			
-//		Store storeObj = (Store) storeComboBox.getSelectionModel().getSelectedItem();
-//		int storeId = storeObj.getId();
-//		int userId = 16;
-//        int priceOfCar=0;
-//		try {
-//			 priceOfCar = car.returnPrice(car.getId(),storeObj.getId());
-//		} catch (SQLException e1) {
-//			// TODO Auto-generated catch block
-//			e1.printStackTrace();
-//		}
-//			
-//		String query = "insert into bought(stockId,userId,price) values(?,?,?)";
-//		try {
-//			PreparedStatement stm = DatabaseConfig.getConnection().prepareStatement(query);
-//			stm.setInt(1,storeId);
-//			stm.setInt(2,userId);
-//			stm.setInt(3,priceOfCar);
-//			System.out.println(priceOfCar);
-//			boolean a =  stm.executeUpdate() > 0; 
-//			System.out.println(a);
-//			
-//			
-//		} catch (SQLException e1) {
-//			// TODO Auto-generated catch block
-//			e1.printStackTrace();
-//		}
-//
-
-	//	});
+		
+		
 		vbox.getChildren().addAll(photoHBox, carsData, secondCarsData, btnHbox);
 		return vbox;
-	}	
+	}
+	
+	
+	
+	
+	
+	public static void  insertBought() throws SQLException { 
+		
+		
+		Store storeObj = (Store) storeComboBox.getSelectionModel().getSelectedItem();
+		int storeID = storeObj.getId();
+		int userID = 22;
+		int priceOfCar = c.returnPrice(c.getId(),storeObj.getId());
+     	String query = "insert into bought(stockId,userId,price) values(?,?,?)";
+		PreparedStatement stm = DatabaseConfig.getConnection().prepareStatement(query);
+		stm.setInt(1,storeID);
+		stm.setInt(2,userID);
+		stm.setInt(3,priceOfCar);
+		boolean result = stm.executeUpdate() > 0;
+		System.out.println(result);		
+	}
+	
+	
+	
+	
+	
+	
 	
   
 		
