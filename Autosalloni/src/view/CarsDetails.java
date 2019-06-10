@@ -2,6 +2,7 @@ package view;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -24,6 +25,7 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import models.Car;
+import models.DatabaseConfig;
 import models.FuelType;
 import models.Manufacturer;
 import models.Store;
@@ -335,29 +337,41 @@ public class CarsDetails {
 
 	});
 		
-		buyBtn.setOnAction(e->{
-			
-		Store storeObj = (Store) storeComboBox.getSelectionModel().getSelectedItem();
-		int storeId = storeObj.getId();
-		int userId = 100;
-		try {
-			int priceOfCar = car.returnPrice(storeObj.getId(), car.getId());
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-			
-			
-			
-			
-		});
+	// INSERTIMI !!	
 		
-		
-		
-		
+//		buyBtn.setOnAction(e->{
+//			
+//		Store storeObj = (Store) storeComboBox.getSelectionModel().getSelectedItem();
+//		int storeId = storeObj.getId();
+//		int userId = 16;
+//        int priceOfCar=0;
+//		try {
+//			 priceOfCar = car.returnPrice(car.getId(),storeObj.getId());
+//		} catch (SQLException e1) {
+//			// TODO Auto-generated catch block
+//			e1.printStackTrace();
+//		}
+//			
+//		String query = "insert into bought(stockId,userId,price) values(?,?,?)";
+//		try {
+//			PreparedStatement stm = DatabaseConfig.getConnection().prepareStatement(query);
+//			stm.setInt(1,storeId);
+//			stm.setInt(2,userId);
+//			stm.setInt(3,priceOfCar);
+//			System.out.println(priceOfCar);
+//			boolean a =  stm.executeUpdate() > 0; 
+//			System.out.println(a);
+//			
+//			
+//		} catch (SQLException e1) {
+//			// TODO Auto-generated catch block
+//			e1.printStackTrace();
+//		}
+//
+
+	//	});
 		vbox.getChildren().addAll(photoHBox, carsData, secondCarsData, btnHbox);
 		return vbox;
-
 	}	
 	
   
