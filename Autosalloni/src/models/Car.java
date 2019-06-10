@@ -5,6 +5,9 @@ import java.util.Date;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import models.Manufacturer;
 
 public class Car {
@@ -105,12 +108,26 @@ public class Car {
 			}
 
 
-			public String getNamesOfManufacturer(int id){
-				return nameOfManufacture.get(id);
+			public String getNameOfFuelTypeSQL() throws SQLException {
+				String s = "";
+				String query = "SELECT distinct f.name FROM fueltype f inner join car c on f.id = c.fuelTypeId WHERE f.id =" + getFuelTypeId() ;
+				PreparedStatement preparedStatement = DatabaseConfig.getConnection().prepareStatement(query); 
+				java.sql.ResultSet resultSet = preparedStatement.executeQuery();
+				while(resultSet.next()) {
+					s += resultSet.getString(1);
+				}
+				return s;
 			}
 			
-			public String getNamesOfFuelType(int id) {
-				return nameOfFuelType.get(id);
+			public String getNameOFManuufacturerSQL() throws SQLException {
+				String s = "";
+				String query = "SELECT distinct m.name FROM manufacturer m inner join car c on m.id = c.manufacturerId WHERE m.id =" + getManufacturerId() ;
+				PreparedStatement preparedStatement = DatabaseConfig.getConnection().prepareStatement(query); 
+				java.sql.ResultSet resultSet = preparedStatement.executeQuery();
+				while(resultSet.next()) {
+					s += resultSet.getString(1);
+				}
+				return s;
 			}
 			
 			  
@@ -672,21 +689,42 @@ public class Car {
 				return true;
 				
 			}
-	/*
-	 * public static void getSomeInfoForCar() throws SQLException { String query =
-	 * "SELECT  id , model , bodyNumber , engineModel  FROM Car limit 5";
-	 * 
-	 * PreparedStatement preparedStatement =
-	 * DatabaseConfig.getConnection().prepareStatement(query); java.sql.ResultSet
-	 * resultSet = preparedStatement.executeQuery();
-	 * 
-	 * while(resultSet.next()) { idOfCar.add(resultSet.getInt(1));
-	 * modelA.add(resultSet.getString(2)); bodyNumberA.add(resultSet.getString(3));
-	 * engineModelA.add(resultSet.getString(4)); }
-	 * 
-	 * 
-	 * }
-	 */
+		
+		
+		public static ObservableList<FuelType> getFuelTypes() throws SQLException {
+			ObservableList<FuelType> carList = FXCollections.observableArrayList();
+			
+			String query = "select id , name  from fueltype ";
+			
+			PreparedStatement preparedStatement = DatabaseConfig.getConnection().prepareStatement(query);
+			java.sql.ResultSet resultSet = preparedStatement.executeQuery();
+				
+			while(resultSet.next()) {
+
+				FuelType fuelType = new FuelType(resultSet.getInt(1),resultSet.getString(2)); 
+				carList.add(fuelType);
+			
+			}
+			
+			return carList;
+
+		}
+		public static int returnPrice(int storeId , int carId) throws SQLException{
+			int price=0;
+			String query = "select price from stock where storeId = " + storeId + " and carId = " + carId  ;
+			PreparedStatement preparedStatement = DatabaseConfig.getConnection().prepareStatement(query); 
+			java.sql.ResultSet resultSet = preparedStatement.executeQuery();
+			while(resultSet.next()) {
+				
+				price=resultSet.getInt(1);
+			}
+			return price;
+		}
+		
+		
+		
+		 
+	
 		
 
 
