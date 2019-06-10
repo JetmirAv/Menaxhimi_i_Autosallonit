@@ -5,6 +5,9 @@ import java.util.Date;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import models.Manufacturer;
 
 public class Car {
@@ -102,15 +105,6 @@ public class Car {
 				this.hoursePower=hoursePower;
 				this.maxspeed=maxspeed;
 				this.isAutomatic=isAutomatic;
-			}
-
-
-			public String getNamesOfManufacturer(int id){
-				return nameOfManufacture.get(id);
-			}
-			
-			public String getNamesOfFuelType(int id) {
-				return nameOfFuelType.get(id);
 			}
 			
 			  
@@ -372,6 +366,32 @@ public class Car {
 			
 			 }
 			
+
+
+			public String getNameOfFuelTypeSQL() throws SQLException {
+				String s = "";
+				String query = "SELECT distinct f.name FROM fueltype f inner join car c on f.id = c.fuelTypeId WHERE f.id =" + getFuelTypeId() ;
+				PreparedStatement preparedStatement = DatabaseConfig.getConnection().prepareStatement(query); 
+				java.sql.ResultSet resultSet = preparedStatement.executeQuery();
+				while(resultSet.next()) {
+					s += resultSet.getString(1);
+				}
+				return s;
+			}
+			
+			public String getNameOFManufacturerSQL() throws SQLException {
+				String s = "";
+				String query = "SELECT distinct m.name FROM manufacturer m inner join car c on m.id = c.manufacturerId WHERE m.id =" + getManufacturerId() ;
+				PreparedStatement preparedStatement = DatabaseConfig.getConnection().prepareStatement(query); 
+				java.sql.ResultSet resultSet = preparedStatement.executeQuery();
+				while(resultSet.next()) {
+					s += resultSet.getString(1);
+				}
+				return s;
+			}
+			
+
+			
 	 
 	public static boolean create(int manufacturerId ,String model,String bodyNumber,int yearOfProd ,int seats ,
 			int doors,boolean roof ,boolean alarm ,boolean central ,boolean airbag ,boolean autonomus,
@@ -547,6 +567,11 @@ public class Car {
 	 * 
 	 * }
 	 */ 
+	
+	
+	
+	
+	
 		public static void merriTeDhenat() throws SQLException {
 			String query = "SELECT * From Car";
 			
@@ -565,6 +590,8 @@ public class Car {
 		}
 	
 		
+		
+		
 		public static Car getAllDetailsOfCar(int id) throws SQLException {
 			String query = "SELECT * From Car WHERE id = " + id;
 			PreparedStatement preparedStatement = DatabaseConfig.getConnection().prepareStatement(query);
@@ -582,6 +609,8 @@ public class Car {
 			return car;
 		}
 
+		
+		
 		public static Car getSomeDetailsOfCar() throws SQLException {
 			String query = "SELECT * From Car  ";
 			PreparedStatement preparedStatement = DatabaseConfig.getConnection().prepareStatement(query);
@@ -672,21 +701,65 @@ public class Car {
 				return true;
 				
 			}
-	/*
-	 * public static void getSomeInfoForCar() throws SQLException { String query =
-	 * "SELECT  id , model , bodyNumber , engineModel  FROM Car limit 5";
-	 * 
-	 * PreparedStatement preparedStatement =
-	 * DatabaseConfig.getConnection().prepareStatement(query); java.sql.ResultSet
-	 * resultSet = preparedStatement.executeQuery();
-	 * 
-	 * while(resultSet.next()) { idOfCar.add(resultSet.getInt(1));
-	 * modelA.add(resultSet.getString(2)); bodyNumberA.add(resultSet.getString(3));
-	 * engineModelA.add(resultSet.getString(4)); }
-	 * 
-	 * 
-	 * }
-	 */
+		
+		
+		
+		
+		public static ObservableList<FuelType> getFuelTypes() throws SQLException {
+			ObservableList<FuelType> carList = FXCollections.observableArrayList();
+			
+			String query = "select id , name  from fueltype ";
+			
+			PreparedStatement preparedStatement = DatabaseConfig.getConnection().prepareStatement(query);
+			java.sql.ResultSet resultSet = preparedStatement.executeQuery();
+				
+			while(resultSet.next()) {
+
+				FuelType fuelType = new FuelType(resultSet.getInt(1),resultSet.getString(2)); 
+				carList.add(fuelType);
+			
+			}
+			
+			return carList;
+
+		}
+		
+		
+		// Return Price Of Car
+		public static int returnPrice(int carId , int storeId) throws SQLException{
+			int price=0;
+			String query = "SELECT s2.price FROM Stores s inner join Stock s2 on s.id = s2.storeID where s2.carId =" + carId + " and storeId  = " + storeId ;   
+			PreparedStatement preparedStatement = DatabaseConfig.getConnection().prepareStatement(query); 
+			java.sql.ResultSet resultSet = preparedStatement.executeQuery();
+			while(resultSet.next()) {
+				
+				price=resultSet.getInt(1);
+			}
+			return price;
+		}
+		
+		
+		
+		// Return path of photo Car
+		
+		public static String returnPhoto(int carId) throws SQLException{
+			String result = "";
+			String query = "SELECT path FROM photos WHERE carId = " + carId;
+
+			PreparedStatement preparedStatement = DatabaseConfig.getConnection().prepareStatement(query); 
+			java.sql.ResultSet resultSet = preparedStatement.executeQuery();
+			while(resultSet.next()) {
+				
+				result=resultSet.getString(1);
+			}
+			return result;
+		}
+		
+		
+
+		 
+		
+	
 		
 
 

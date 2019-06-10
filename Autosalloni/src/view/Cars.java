@@ -38,11 +38,7 @@ public class Cars {
 		models.Car.merriTeDhenat();
 		ArrayList<models.Car> veturat = models.Car.kerret;
 		
-		
-		/*
-		 * models.Car.merriTeDhenat(); ArrayList<models.Car> veturat =
-		 * models.Car.kerret;
-		 */
+	
 
 
 		// Declare Photos
@@ -73,7 +69,7 @@ public class Cars {
 		paneFirstRow.setPadding(new Insets(0, 0, 0, 23));
 		paneFirstRow.setAlignment(Pos.CENTER);
 
-		      for (int i = 0; i < 10; i++) {
+		      for (int i = 53; i < 60; i++) {
 			  
 		    	  // Photo
 			    ImageView image = new ImageView(carObj);

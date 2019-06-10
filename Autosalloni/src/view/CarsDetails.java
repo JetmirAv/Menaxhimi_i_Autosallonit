@@ -2,10 +2,12 @@ package view;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -15,6 +17,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -22,16 +25,20 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import models.Car;
+import models.DatabaseConfig;
+import models.FuelType;
+import models.Manufacturer;
+import models.Store;
 
 public class CarsDetails {
 
-	
+	public static TextField textForManufacturer ;
 	
 	
 	public static VBox display (Car car) throws IOException, SQLException {
 		
 		
-		 TextField textForManufacturer = new TextField(car.getNamesOfManufacturer(car.getManufacturerId()));
+		 TextField textForManufacturer = new TextField(car.getNameOFManufacturerSQL());
 		 TextField txtForModel = new TextField(car.getModel());
 		 txtForModel.setEditable(false);
 		 TextField txtForbodyNumber = new TextField(car.getBodyNumber());
@@ -56,7 +63,7 @@ public class CarsDetails {
 		 txtForNavigator.setEditable(false);
 		 TextField txtForClimate = new TextField(car.isClimate() + "");
 		 txtForClimate.setEditable(false);
-		 TextField txtForFuelType = new TextField(car.getNamesOfFuelType(car.getFuelTypeId()));
+		 TextField txtForFuelType = new TextField(car.getNameOfFuelTypeSQL());
 		 txtForFuelType.setEditable(false);
 		 TextField txtForFuelCapacity = new TextField(car.getFuelCapacity() + "");
 		 txtForFuelCapacity.setEditable(false);
@@ -86,8 +93,10 @@ public class CarsDetails {
 		 txtForAdditionalDesc.setEditable(false);
 		 TextField txtForIs4x4 = new TextField(car.isIs4x4() + "");
 		 txtForIs4x4.setEditable(false);
-
-		
+		 ComboBox storeComboBox = new ComboBox(FXCollections.observableArrayList(Store.getStore(car.getId())));
+		 TextField price = new TextField();
+		 
+		 
 				
 		String current = new java.io.File(".").getCanonicalPath();
 		VBox vbox = new VBox();
@@ -109,7 +118,7 @@ public class CarsDetails {
 		photoHBox.setPadding(new Insets(20, 0, 0, 0));
 
 		// First Row
-		Label storeLabel = new Label("Manufacture Id");
+		Label storeLabel = new Label("Store");
 		storeLabel.setMinWidth(60);
 
 		Label manufacturerIdLabel = new Label("Manufacturer Id");
@@ -124,6 +133,9 @@ public class CarsDetails {
 
 		Label yearOfProdLabel = new Label("Year of Production");
 		manufacturerIdLabel.setMinWidth(60);
+		
+		Label priceLabel = new Label("Price");
+		price.setMinWidth(60);
 
 		// Second row
 		Label seatsLabel = new Label("Seats");
@@ -204,29 +216,37 @@ public class CarsDetails {
 		GridPane carsData = new GridPane();
 		carsData.setVgap(10);
 		carsData.setHgap(70);
-		carsData.setPadding(new Insets(20, 0, 0, 0));
+		carsData.setPadding(new Insets(20, 5, 5, 10));
 
 		GridPane secondCarsData = new GridPane();
 		secondCarsData.setVgap(10);
 		secondCarsData.setHgap(60);
 		secondCarsData.setPadding(new Insets(20, 0, 0, 20));
 
-		// first row
+		// first row storeLabel
+
+		carsData.add(storeLabel, 0, 0);
 		carsData.add(manufacturerIdLabel, 1, 0);
 		carsData.add(storeNameLabel, 2, 0);
 		carsData.add(bodyNumberLabel, 3, 0);
 		carsData.add(yearOfProdLabel, 4, 0);
+		carsData.add(priceLabel, 5, 0);
+		
 
-		// second row
+		// second row storeComboBox
 		
-		
+		carsData.add(storeComboBox, 0, 1);
 		carsData.add(textForManufacturer, 1, 1);
 		carsData.add(txtForModel, 2, 1);	
 		carsData.add(txtForbodyNumber, 3, 1);
 		carsData.add(txtForYearOfProduction, 4, 1);
+		carsData.add(price, 5, 1);
 
 		txtForModel.setPrefWidth(124);
 		txtForbodyNumber.setPrefWidth(124);
+		price.setPrefWidth(124);
+		txtForYearOfProduction.setPrefWidth(124);
+		textForManufacturer.setPrefWidth(124);
 
 		// third row
 		secondCarsData.add(seatsLabel, 0, 2);
@@ -293,19 +313,67 @@ public class CarsDetails {
 		secondCarsData.add(txtForAdditionalDesc, 4, 9);
 		secondCarsData.add(txtForIs4x4, 5, 9);
 
-		Button insertBtn = new Button("Insert");
-		insertBtn.getStyleClass().add("photoToCenter");
+		Button buyBtn = new Button("Buy");
+		buyBtn.getStyleClass().add("photoToCenter");
 		HBox btnHbox = new HBox();
 		btnHbox.setPrefWidth(100);
 		btnHbox.setPrefHeight(40);
-		btnHbox.getChildren().add(insertBtn);
+		btnHbox.getChildren().add(buyBtn);
 		btnHbox.setPadding(new Insets(50, 0, 0, 0));
 		btnHbox.setAlignment(Pos.CENTER);
 		carsData.setAlignment(Pos.CENTER);
 		vbox.setPadding(new Insets(0, 30, 0, 30));
+		
+		storeComboBox.setOnAction(event -> {
+			Store store = (Store) storeComboBox.getSelectionModel().getSelectedItem();			
+			System.out.println(store.getId());	
+			try {
+				int priceOfCar = car.returnPrice(car.getId(),store.getId());
+				price.setText(priceOfCar + "");
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}			
 
+	});
+		
+	// INSERTIMI !!	
+		
+//		buyBtn.setOnAction(e->{
+//			
+//		Store storeObj = (Store) storeComboBox.getSelectionModel().getSelectedItem();
+//		int storeId = storeObj.getId();
+//		int userId = 16;
+//        int priceOfCar=0;
+//		try {
+//			 priceOfCar = car.returnPrice(car.getId(),storeObj.getId());
+//		} catch (SQLException e1) {
+//			// TODO Auto-generated catch block
+//			e1.printStackTrace();
+//		}
+//			
+//		String query = "insert into bought(stockId,userId,price) values(?,?,?)";
+//		try {
+//			PreparedStatement stm = DatabaseConfig.getConnection().prepareStatement(query);
+//			stm.setInt(1,storeId);
+//			stm.setInt(2,userId);
+//			stm.setInt(3,priceOfCar);
+//			System.out.println(priceOfCar);
+//			boolean a =  stm.executeUpdate() > 0; 
+//			System.out.println(a);
+//			
+//			
+//		} catch (SQLException e1) {
+//			// TODO Auto-generated catch block
+//			e1.printStackTrace();
+//		}
+//
+
+	//	});
 		vbox.getChildren().addAll(photoHBox, carsData, secondCarsData, btnHbox);
 		return vbox;
-
-	}
+	}	
+	
+  
+		
 }
