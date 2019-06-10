@@ -36,7 +36,7 @@ public class CarsDetails {
 	public static VBox display (Car car) throws IOException, SQLException {
 		
 		
-		 TextField textForManufacturer = new TextField(car.getNameOFManuufacturerSQL());
+		 TextField textForManufacturer = new TextField(car.getNameOFManufacturerSQL());
 		 TextField txtForModel = new TextField(car.getModel());
 		 txtForModel.setEditable(false);
 		 TextField txtForbodyNumber = new TextField(car.getBodyNumber());

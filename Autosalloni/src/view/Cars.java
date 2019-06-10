@@ -38,11 +38,7 @@ public class Cars {
 		models.Car.merriTeDhenat();
 		ArrayList<models.Car> veturat = models.Car.kerret;
 		
-		
-		/*
-		 * models.Car.merriTeDhenat(); ArrayList<models.Car> veturat =
-		 * models.Car.kerret;
-		 */
+	
 
 
 		// Declare Photos

@@ -106,29 +106,6 @@ public class Car {
 				this.maxspeed=maxspeed;
 				this.isAutomatic=isAutomatic;
 			}
-
-
-			public String getNameOfFuelTypeSQL() throws SQLException {
-				String s = "";
-				String query = "SELECT distinct f.name FROM fueltype f inner join car c on f.id = c.fuelTypeId WHERE f.id =" + getFuelTypeId() ;
-				PreparedStatement preparedStatement = DatabaseConfig.getConnection().prepareStatement(query); 
-				java.sql.ResultSet resultSet = preparedStatement.executeQuery();
-				while(resultSet.next()) {
-					s += resultSet.getString(1);
-				}
-				return s;
-			}
-			
-			public String getNameOFManuufacturerSQL() throws SQLException {
-				String s = "";
-				String query = "SELECT distinct m.name FROM manufacturer m inner join car c on m.id = c.manufacturerId WHERE m.id =" + getManufacturerId() ;
-				PreparedStatement preparedStatement = DatabaseConfig.getConnection().prepareStatement(query); 
-				java.sql.ResultSet resultSet = preparedStatement.executeQuery();
-				while(resultSet.next()) {
-					s += resultSet.getString(1);
-				}
-				return s;
-			}
 			
 			  
 			public int getId() {
@@ -389,6 +366,32 @@ public class Car {
 			
 			 }
 			
+
+
+			public String getNameOfFuelTypeSQL() throws SQLException {
+				String s = "";
+				String query = "SELECT distinct f.name FROM fueltype f inner join car c on f.id = c.fuelTypeId WHERE f.id =" + getFuelTypeId() ;
+				PreparedStatement preparedStatement = DatabaseConfig.getConnection().prepareStatement(query); 
+				java.sql.ResultSet resultSet = preparedStatement.executeQuery();
+				while(resultSet.next()) {
+					s += resultSet.getString(1);
+				}
+				return s;
+			}
+			
+			public String getNameOFManufacturerSQL() throws SQLException {
+				String s = "";
+				String query = "SELECT distinct m.name FROM manufacturer m inner join car c on m.id = c.manufacturerId WHERE m.id =" + getManufacturerId() ;
+				PreparedStatement preparedStatement = DatabaseConfig.getConnection().prepareStatement(query); 
+				java.sql.ResultSet resultSet = preparedStatement.executeQuery();
+				while(resultSet.next()) {
+					s += resultSet.getString(1);
+				}
+				return s;
+			}
+			
+
+			
 	 
 	public static boolean create(int manufacturerId ,String model,String bodyNumber,int yearOfProd ,int seats ,
 			int doors,boolean roof ,boolean alarm ,boolean central ,boolean airbag ,boolean autonomus,
@@ -564,6 +567,11 @@ public class Car {
 	 * 
 	 * }
 	 */ 
+	
+	
+	
+	
+	
 		public static void merriTeDhenat() throws SQLException {
 			String query = "SELECT * From Car";
 			
@@ -582,6 +590,8 @@ public class Car {
 		}
 	
 		
+		
+		
 		public static Car getAllDetailsOfCar(int id) throws SQLException {
 			String query = "SELECT * From Car WHERE id = " + id;
 			PreparedStatement preparedStatement = DatabaseConfig.getConnection().prepareStatement(query);
@@ -599,6 +609,8 @@ public class Car {
 			return car;
 		}
 
+		
+		
 		public static Car getSomeDetailsOfCar() throws SQLException {
 			String query = "SELECT * From Car  ";
 			PreparedStatement preparedStatement = DatabaseConfig.getConnection().prepareStatement(query);
@@ -691,6 +703,8 @@ public class Car {
 			}
 		
 		
+		
+		
 		public static ObservableList<FuelType> getFuelTypes() throws SQLException {
 			ObservableList<FuelType> carList = FXCollections.observableArrayList();
 			
@@ -709,6 +723,9 @@ public class Car {
 			return carList;
 
 		}
+		
+		
+		// Return Price Of Car
 		public static int returnPrice(int storeId , int carId) throws SQLException{
 			int price=0;
 			String query = "select price from stock where storeId = " + storeId + " and carId = " + carId  ;
@@ -723,7 +740,23 @@ public class Car {
 		
 		
 		
+		// Return path of photo Car
+		
+		public static String returnPhoto(int carId) throws SQLException{
+			String result = "";
+			String query = "SELECT path FROM photos WHERE carId = " + carId;
+
+			PreparedStatement preparedStatement = DatabaseConfig.getConnection().prepareStatement(query); 
+			java.sql.ResultSet resultSet = preparedStatement.executeQuery();
+			while(resultSet.next()) {
+				
+				result=resultSet.getString(1);
+			}
+			return result;
+		}
+		
 		 
+		
 	
 		
 
