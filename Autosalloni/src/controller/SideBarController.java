@@ -30,7 +30,7 @@ public class SideBarController implements EventHandler<ActionEvent> {
 		case "_Cars":
 			try {
 				Main.content.getChildren().clear();
-				Main.content.getChildren().addAll(new Filter("Car"), MainComponentCars.display());
+				Main.content.getChildren().addAll(new Filter("Car"),new MainComponentCars());
 				Header.labelBox.getChildren().clear();
 				Header.lblLocation.setText("Cars");
 				Header.labelBox.getChildren().addAll(Header.lblLocation);

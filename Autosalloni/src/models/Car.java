@@ -13,6 +13,14 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 import models.Manufacturer;
 
 public class Car {
@@ -593,7 +601,75 @@ public class Car {
 						resultSet.getString(28),((resultSet.getInt(29) == 1) ? true : false)));
 			}
 		}
-	
+		public static List<HBox> getCars() throws SQLException, IOException {
+			List<HBox> carList = new ArrayList<>();
+
+			String current = new java.io.File(".").getCanonicalPath();
+			
+			String query = "select id, seats , doors , alarm , climate , hidraulic , hoursePower , maxspeed, isAutomatic from car  limit 13";
+
+			PreparedStatement preparedStatement = DatabaseConfig.getConnection().prepareStatement(query);
+			java.sql.ResultSet resultSet = preparedStatement.executeQuery();
+
+			while (resultSet.next()) {
+				HBox result = new HBox(65);
+				VBox photoHBox = new VBox();
+				result.setAlignment(Pos.CENTER);
+				result.setPrefHeight(20);
+				result.getStyleClass().add("carList");
+				result.setId(String.valueOf(resultSet.getInt(1)));
+	     
+				
+				//To change
+				FileInputStream userPath;
+				userPath = new FileInputStream(current + "/src/img/user.png");
+				Image img = new Image(userPath);
+				Circle car1Circle = new Circle();
+				car1Circle.setRadius(15);
+				car1Circle.setFill(new ImagePattern(img));
+				photoHBox.getChildren().add(car1Circle);
+				photoHBox.setTranslateX(-25);
+				photoHBox.setPadding(new Insets(0,5,0,25));
+				result.setTranslateX(-25);
+
+//				  Label lblContentImage = new Label();
+		           Label car1SeatsLabel = new Label(resultSet.getString(2));
+		   	       car1SeatsLabel.getStyleClass().add("fonts");
+		   	       car1SeatsLabel.setMinWidth(60);
+		   	       Label car1DoorsLabel = new Label(resultSet.getString(3));
+		   	       car1DoorsLabel.getStyleClass().add("fonts");
+		   	       car1DoorsLabel.setMinWidth(55);
+			       Label car1AlarmLabel = new Label((resultSet.getString(4) == "1"? "true" : "false"));
+			       car1AlarmLabel.setMinWidth(60);
+			       car1AlarmLabel.getStyleClass().add("fonts");
+		   	       Label car1ClimateLabel = new Label((resultSet.getString(5) == "1"? "true" : "false"));
+		   	       car1ClimateLabel.setMinWidth(60);
+		   	       car1ClimateLabel.getStyleClass().add("fonts");
+		   	       Label car1HidraulicLabel = new Label((resultSet.getString(6) == "1"? "true" : "false"));
+		   	       car1HidraulicLabel.getStyleClass().add("fonts");
+		   	       car1HidraulicLabel.setMinWidth(60);
+		   	       Label car1HoursePowerLabel = new Label(resultSet.getString(7));
+			       car1HoursePowerLabel.setMinWidth(80);
+			       car1HoursePowerLabel.getStyleClass().add("fonts");
+			       Label car1MaxspeedLabel = new Label(resultSet.getString(8));
+			       car1MaxspeedLabel.setMinWidth(60);
+			       car1MaxspeedLabel.getStyleClass().add("fonts");
+		   	       Label car1IsAutomaticLabel = new Label((resultSet.getString(9) == "1"? "true" : "false"));
+		   	       car1IsAutomaticLabel.getStyleClass().add("fonts");
+		   	       car1IsAutomaticLabel.setMinWidth(60);
+
+		   	    result.getStyleClass().add("backgroundColor");
+				result.getChildren().addAll(photoHBox, car1SeatsLabel, car1DoorsLabel, car1AlarmLabel,
+						car1ClimateLabel, car1HidraulicLabel, car1HoursePowerLabel, car1MaxspeedLabel, car1IsAutomaticLabel);
+
+				carList.add(result);
+
+			}
+
+			return carList;
+
+		}
+
 		
 		
 		
