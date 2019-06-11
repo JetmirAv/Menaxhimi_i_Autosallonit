@@ -1,43 +1,22 @@
 package view;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.ImagePattern;
-import javafx.scene.shape.Circle;
-import models.Car;
 import models.Users;
 
 public class MainComponent extends VBox {
 
-	public static VBox usersList = new VBox();
 	public static VBox vbox = new VBox(5);
 	public static int count = 0;
 
 	public MainComponent() throws SQLException, IOException {
-
-		String current = new java.io.File(".").getCanonicalPath();
-
-		HBox hbox = new HBox(60);
-
-		vbox.getStylesheets().add(MainComponent.class.getResource("mainComponent.css").toExternalForm());
-		FileInputStream userPath;
-		userPath = new FileInputStream(current + "/src/img/user.png");
-		Image img = new Image(userPath);
 
 		HBox headerBox = new HBox();
 		headerBox.setAlignment(Pos.CENTER);
@@ -62,10 +41,10 @@ public class MainComponent extends VBox {
 		lblGender.getStyleClass().add("userHeaderLabel");
 		lblBirthday.getStyleClass().add("userHeaderLabel");
 
-		lblImage.setPrefWidth(90);
+		lblImage.setPrefWidth(50);
 		lblName.setPrefWidth(120);
 		lblSurname.setPrefWidth(120);
-		lblEmail.setPrefWidth(200);
+		lblEmail.setPrefWidth(230);
 		lblPhone.setPrefWidth(180);
 		lblCity.setPrefWidth(120);
 		lblState.setPrefWidth(120);

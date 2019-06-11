@@ -26,7 +26,7 @@ public class SideBarController implements EventHandler<ActionEvent> {
 		case "_Cars":
 			try {
 				Main.content.getChildren().clear();
-				Main.content.getChildren().addAll(Filter.display("Car"), MainComponentCars.display());
+				Main.content.getChildren().addAll(new Filter("Car"), MainComponentCars.display());
 				Header.labelBox.getChildren().clear();
 				Header.lblLocation.setText("Cars");
 				Header.labelBox.getChildren().addAll(Header.lblLocation);
@@ -41,7 +41,7 @@ public class SideBarController implements EventHandler<ActionEvent> {
 		case "_Stores":
 			try {
 				Main.content.getChildren().clear();
-				Main.content.getChildren().addAll(Filter.display(""), MainComponentStores.display());
+				Main.content.getChildren().addAll(new Filter(""), new MainComponentStores());
 				Header.labelBox.getChildren().clear();
 				Header.lblLocation.setText("Stores");
 				Header.labelBox.getChildren().addAll(Header.lblLocation);
@@ -55,7 +55,7 @@ public class SideBarController implements EventHandler<ActionEvent> {
 		case "_Users":
 			try {
 				Main.content.getChildren().clear();
-				Main.content.getChildren().addAll(Filter.display(""), new MainComponent());
+				Main.content.getChildren().addAll(new Filter(""), new MainComponent());
 				System.out.println(Main.content.getChildren().toString());
 //				MainComponent.usersList.getChildren().clear();
 				Header.labelBox.getChildren().clear();
@@ -71,7 +71,7 @@ public class SideBarController implements EventHandler<ActionEvent> {
 		case "_Manufacturer":
 			try {
 				Main.content.getChildren().clear();
-				Main.content.getChildren().addAll(Filter.display(""), MainComponentStores.display());
+				Main.content.getChildren().addAll(new Filter(""), new MainComponentStores());
 				Header.labelBox.getChildren().clear();
 				Header.lblLocation.setText("Manufacturer");
 				Header.labelBox.getChildren().addAll(Header.lblLocation);
@@ -103,6 +103,5 @@ public class SideBarController implements EventHandler<ActionEvent> {
 	}
 	public static void addToHistory(String s) {
 		Main.history.add(s);
-		Header.bttnBack.setDisable(false);
 	}
 }

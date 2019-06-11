@@ -8,6 +8,8 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -18,11 +20,13 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import models.Store;
+import models.Users;
 
-public class MainComponentStores {
+public class MainComponentStores extends VBox {
 	private static TableView table = new TableView();
+	private static int count = 0;
 
-	public static VBox display() throws IOException, SQLException {
+	public MainComponentStores() throws SQLException, IOException {
 		String current = new java.io.File(".").getCanonicalPath();
 
 		HBox hbox = new HBox(50);
@@ -35,6 +39,58 @@ public class MainComponentStores {
 		Image img = new Image(userPath);
 
 		hbox.getStyleClass().add("AdminSite");
+
+		// Ktu ja nisi une
+
+		HBox headerBox = new HBox();
+		headerBox.setAlignment(Pos.CENTER);
+		headerBox.setPrefHeight(20);
+		Label lblImage = new Label("Image");
+		Label lblName = new Label("Name");
+		Label lblEmail = new Label("Address");
+		Label lblCity = new Label("City");
+		Label lblState = new Label("State");
+		Label lblGender = new Label("Postal");
+		Label lblPhone = new Label("Phone Number");
+		Label lblBirthday = new Label("Birthday");
+
+		lblImage.getStyleClass().add("userHeaderLabel");
+		lblName.getStyleClass().add("userHeaderLabel");
+		lblEmail.getStyleClass().add("userHeaderLabel");
+		lblPhone.getStyleClass().add("userHeaderLabel");
+		lblCity.getStyleClass().add("userHeaderLabel");
+		lblState.getStyleClass().add("userHeaderLabel");
+		lblGender.getStyleClass().add("userHeaderLabel");
+		lblBirthday.getStyleClass().add("userHeaderLabel");
+
+		lblImage.setPrefWidth(50);
+		lblName.setPrefWidth(120);
+		lblEmail.setPrefWidth(230);
+		lblPhone.setPrefWidth(180);
+		lblCity.setPrefWidth(120);
+		lblState.setPrefWidth(120);
+		lblGender.setPrefWidth(90);
+		lblBirthday.setPrefWidth(140);
+
+		headerBox.getChildren().addAll(lblImage, lblName, lblEmail, lblPhone, lblGender, lblBirthday,
+				lblCity, lblState);
+
+		if (count == 0) {
+//			vbox.getChildren().add(headerBox);
+//
+//			List<HBox> user = Users.getUsers();
+//			for (int i = 0; i < user.size(); i++) {
+//				vbox.getChildren().add(user.get(i));
+//			}
+//			Button createUser = new Button("Create User");
+//			createUser.setOnAction(new controller.ShowCreateUserController());
+//
+//			vbox.getChildren().add(createUser);
+//			count++;
+		}
+//		getChildren().add(vbox);
+
+		// Ktu e kryej
 
 //	Label logoLabel = new Label("Logo");
 //	logoLabel.setMinWidth(60);
@@ -233,9 +289,12 @@ public class MainComponentStores {
 		phoneNumberCol.getStyleClass().add("textToCenter");
 		postalCol.getStyleClass().add("textToCenter");
 //		vbox.setPadding(new Insets(62, 0, 0, 0));
-		showStores();
+		if (count == 0) {
+			showStores();
+			count++;
+		}
 		vbox.getChildren().add(table);
-		return vbox;
+		getChildren().add(vbox);
 
 	}
 

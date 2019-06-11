@@ -1,5 +1,7 @@
 package models;
 
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,8 +13,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
-
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Circle;
 
 public class Users {
 	private int id;
@@ -33,16 +37,16 @@ public class Users {
 	private Date createdAt;
 	private Date updatetimedAt;
 
-	public Users(int id, int roleId, String name, String surname, String email, String password,String forgotPwToken, Date birthday,
-			char gendre,String img,  String address, String city, String state, String postal, String phoneNumber, Date createdAt,
-			Date updatetimedAt) {
+	public Users(int id, int roleId, String name, String surname, String email, String password, String forgotPwToken,
+			Date birthday, char gendre, String img, String address, String city, String state, String postal,
+			String phoneNumber, Date createdAt, Date updatetimedAt) {
 		this.id = id;
 		this.roleId = roleId;
 		this.name = name;
 		this.surname = surname;
 		this.email = email;
 		this.password = password;
-		this.forgotPwToken=forgotPwToken;
+		this.forgotPwToken = forgotPwToken;
 		this.birthday = birthday;
 		this.gendre = gendre;
 		this.img = img;
@@ -102,6 +106,7 @@ public class Users {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
 	public String getForgotPwToken() {
 		return forgotPwToken;
 	}
@@ -109,8 +114,6 @@ public class Users {
 	public void setForgotPwToken(String forgotPwToken) {
 		this.forgotPwToken = forgotPwToken;
 	}
-		
-	
 
 	public Date getBirthday() {
 		return birthday;
@@ -127,6 +130,7 @@ public class Users {
 	public void setGendre(char gendre) {
 		this.gendre = gendre;
 	}
+
 	public String getImg() {
 		return img;
 	}
@@ -201,55 +205,55 @@ public class Users {
 				+ createdAt + ", updatetimedAt=" + updatetimedAt + "]";
 	}
 
-	public static boolean create(String name, String surname, String email, String password, Date birthday, String gendre,
-			String address, String city, String state, String postal, String phoneNumber) throws SQLException {
-		
-		String query = "insert into users (roleId, name, surname, email, password," + 
-				" birthday, gendre, address, city, state, postal, phoneNumber) values (?,?,?,?,?,?,?,?,?,?,?,?)";
+	public static boolean create(String name, String surname, String email, String password, Date birthday,
+			String gendre, String address, String city, String state, String postal, String phoneNumber)
+			throws SQLException {
+
+		String query = "insert into users (roleId, name, surname, email, password,"
+				+ " birthday, gendre, address, city, state, postal, phoneNumber) values (?,?,?,?,?,?,?,?,?,?,?,?)";
 		PreparedStatement stm = DatabaseConfig.getConnection().prepareStatement(query);
-		
+
 		stm.setInt(1, 2);
-		stm.setString(2,name);
-		stm.setString(3,surname);
-		stm.setString(4,email);
-		stm.setString(5,password);
+		stm.setString(2, name);
+		stm.setString(3, surname);
+		stm.setString(4, email);
+		stm.setString(5, password);
 		stm.setDate(6, birthday);
 		stm.setString(7, gendre);
-		stm.setString(8,address);
-		stm.setString(9,city);
-		stm.setString(10,state);
-		stm.setString(11,postal);
-		stm.setString(12,phoneNumber);
-		
+		stm.setString(8, address);
+		stm.setString(9, city);
+		stm.setString(10, state);
+		stm.setString(11, postal);
+		stm.setString(12, phoneNumber);
+
 		return stm.executeUpdate() > 0;
-		
-		
-		
+
 	}
-	public static boolean update(int id, String name, String surname, String email, String password, Date birthday, String gendre,
-			String address, String city, String state, String postal, String phoneNumber) throws SQLException {
-		
-		String query = "update users set name=?, surname=?, email=?, password=?," + 
-				" birthday=?, gendre=?, address=?, city=?, state=?, postal=?, phoneNumber=? where id = ?";
+
+	public static boolean update(int id, String name, String surname, String email, String password, Date birthday,
+			String gendre, String address, String city, String state, String postal, String phoneNumber)
+			throws SQLException {
+
+		String query = "update users set name=?, surname=?, email=?, password=?,"
+				+ " birthday=?, gendre=?, address=?, city=?, state=?, postal=?, phoneNumber=? where id = ?";
 		PreparedStatement stm = DatabaseConfig.getConnection().prepareStatement(query);
-		
+
 		stm.setInt(1, 2);
-		stm.setString(2,name);
-		stm.setString(3,surname);
-		stm.setString(4,email);
-		stm.setString(5,password);
+		stm.setString(2, name);
+		stm.setString(3, surname);
+		stm.setString(4, email);
+		stm.setString(5, password);
 		stm.setDate(6, birthday);
 		stm.setString(7, gendre);
-		stm.setString(8,address);
-		stm.setString(9,city);
-		stm.setString(10,state);
-		stm.setString(11,postal);
-		stm.setString(12,phoneNumber);
-		stm.setInt(13,id);
-		
-		
+		stm.setString(8, address);
+		stm.setString(9, city);
+		stm.setString(10, state);
+		stm.setString(11, postal);
+		stm.setString(12, phoneNumber);
+		stm.setInt(13, id);
+
 		return stm.executeUpdate() > 0;
-		
+
 	}
 
 	public static boolean delete(int id) throws SQLException {
@@ -258,25 +262,21 @@ public class Users {
 		stm.setInt(1, id);
 		return stm.executeUpdate() > 0;
 	}
-	
+
 	public static int count(boolean thisMonth) throws SQLException {
 		String query = "select count(*) from users;";
-		if(thisMonth) {
-			query = "select COUNT(*) from users where"
-					+ " MONTH(createdAt) = MONTH(CURRENT_DATE)  AND"
-						+ " YEAR(createdAt) = YEAR(CURRENT_DATE)";
+		if (thisMonth) {
+			query = "select COUNT(*) from users where" + " MONTH(createdAt) = MONTH(CURRENT_DATE)  AND"
+					+ " YEAR(createdAt) = YEAR(CURRENT_DATE)";
 		}
-		
+
 		PreparedStatement stm = DatabaseConfig.getConnection().prepareStatement(query);
-	
+
 		ResultSet queryResult = stm.executeQuery();
 		queryResult.next();
 		return queryResult.getInt(1);
 	}
-	
-	
-	
-	
+
 //	public static List<Users> getUsers() throws SQLException {
 //		List<Users> userList = new ArrayList();
 //		String query = "select * from users  limit 10";
@@ -299,24 +299,35 @@ public class Users {
 //
 //	}
 
-	public static List<HBox> getUsers() throws SQLException {
+	public static List<HBox> getUsers() throws SQLException, IOException {
 		List<HBox> userList = new ArrayList<>();
+
+		String current = new java.io.File(".").getCanonicalPath();
 		
-		String query = "select id, name, surname, "
-				+ "email, phoneNumber, gendre,"
-				+ " birthday, city, state, img"
+		String query = "select id, name, surname, " + "email, phoneNumber, gendre," + " birthday, city, state, img"
 				+ "  from users limit 10";
-		
+
 		PreparedStatement preparedStatement = DatabaseConfig.getConnection().prepareStatement(query);
 		java.sql.ResultSet resultSet = preparedStatement.executeQuery();
-			
-		while(resultSet.next()) {
-			
+
+		while (resultSet.next()) {
 			HBox result = new HBox();
 			result.setAlignment(Pos.CENTER);
 			result.setPrefHeight(20);
+			result.getStyleClass().add("userList");
 			result.setId(String.valueOf(resultSet.getInt(1)));
-			Label lblContentImage = new Label(resultSet.getString(10));
+
+			//To change
+			FileInputStream userPath;
+			userPath = new FileInputStream(current + "/src/img/user.png");
+			Image img = new Image(userPath);
+			Circle car1Circle = new Circle();
+			car1Circle.setRadius(15);
+			car1Circle.setFill(new ImagePattern(img));
+		
+
+//			Label lblContentImage = new Label();
+			
 			Label lblContentName = new Label(resultSet.getString(2));
 			Label lblContentSurname = new Label(resultSet.getString(3));
 			Label lblContentEmail = new Label(resultSet.getString(4));
@@ -325,8 +336,8 @@ public class Users {
 			Label lblContentState = new Label(resultSet.getString(9));
 			Label lblContentGender = new Label(resultSet.getString(6));
 			Label lblContentBirthday = new Label(resultSet.getString(7));
-			
-			lblContentImage.getStyleClass().add("contentHeaderLabel");
+
+//			lblContentImage.getStyleClass().add("contentHeaderLabel");
 			lblContentName.getStyleClass().add("contentHeaderLabel");
 			lblContentSurname.getStyleClass().add("contentHeaderLabel");
 			lblContentEmail.getStyleClass().add("contentHeaderLabel");
@@ -336,59 +347,26 @@ public class Users {
 			lblContentGender.getStyleClass().add("contentHeaderLabel");
 			lblContentBirthday.getStyleClass().add("contentHeaderLabel");
 
-			lblContentImage.setPrefWidth(90);
+//			lblImage.setPrefWidth(50);
 			lblContentName.setPrefWidth(120);
 			lblContentSurname.setPrefWidth(120);
-			lblContentEmail.setPrefWidth(200);
+			lblContentEmail.setPrefWidth(230);
 			lblContentPhone.setPrefWidth(180);
 			lblContentCity.setPrefWidth(120);
-			lblContentState.setPrefWidth(120);		
+			lblContentState.setPrefWidth(120);
 			lblContentGender.setPrefWidth(90);
 			lblContentBirthday.setPrefWidth(140);
-			
-			result.getChildren().addAll(lblContentImage, 
-					lblContentName, 
-					lblContentSurname, 
-					lblContentEmail, 
-					lblContentPhone,
-					lblContentGender,
-					lblContentBirthday,
-					lblContentCity,
-					lblContentState);
-			
-			userList.add(result);			
-			
+
+
+			result.getChildren().addAll(car1Circle, lblContentName, lblContentSurname, lblContentEmail,
+					lblContentPhone, lblContentGender, lblContentBirthday, lblContentCity, lblContentState);
+
+			userList.add(result);
+
 		}
-		
+
 		return userList;
 
 	}
-	
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -54,16 +54,15 @@
 .userHeaderLabel{
 	-fx-alignment: center;
 	-fx-font-size: 110%;
-	-fx-border-style: solid;
-	-fx-border-color: #AAA;
 	-fx-font-weight: 800;
 	-fx-font-family: "Titillium Web";
 }
 .contentHeaderLabel {
 	-fx-alignment: center;
 	-fx-font-size: 110%;
-	-fx-border-style: solid;
-	-fx-border-color: #AAA;
 	-fx-font-family: "Titillium Web";	
+}
+.userList{
+	-fx-background-color: #fff;
 }
 

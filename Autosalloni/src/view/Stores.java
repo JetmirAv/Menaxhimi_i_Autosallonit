@@ -1,6 +1,7 @@
 package view;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -21,9 +22,9 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
-public class Stores {
+public class Stores extends FlowPane {
 
-	public static FlowPane display() throws IOException, SQLException {
+	public Stores() throws SQLException, IOException {
 		String current = new java.io.File(".").getCanonicalPath();
 
 		models.Store.getDetailsOfStores();
@@ -119,7 +120,9 @@ public class Stores {
 
 		paneFirstRow.getStylesheets().add(Header.class.getResource("cars.css").toExternalForm());
 
-		return mainPane;
+		getChildren().add(mainPane);
+
 	}
+
 
 }

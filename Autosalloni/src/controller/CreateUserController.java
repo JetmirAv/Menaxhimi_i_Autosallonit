@@ -10,6 +10,7 @@ import java.util.Date;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import models.Users;
+import view.Dashboard;
 import view.Main;
 import view.MainComponent;
 import view.Modal;
@@ -41,7 +42,7 @@ public class CreateUserController implements EventHandler<ActionEvent> {
 
 				Modal.display(2, "Success", "User created sucessgfully", "OK", "");
 				Main.content.getChildren().clear();
-				Main.content.getChildren().add(MainComponent.display());
+				Main.content.getChildren().add(new Dashboard());
 
 				UserInfo.firstNameField.clear();
 				UserInfo.lastNameField.clear();
@@ -60,7 +61,7 @@ public class CreateUserController implements EventHandler<ActionEvent> {
 				Modal.display(2, "Error", "Users was not created", "OK", "");
 			}
 
-		} catch (SQLException | IOException e1) {
+		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}

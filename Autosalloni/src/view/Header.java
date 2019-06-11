@@ -21,14 +21,14 @@ public class Header extends HBox{
 	public static HBox historyBox = new HBox();
 	public static HBox labelBox = new HBox();
 	public static Label lblLocation = new Label("Dashboard");
-	public static Button bttnBack = new Button("Back"); 
+//	public static Button bttnBack = new Button("Back"); 
 	public static Label userFullName = new Label("Jetmir");
 	public static Label userRole = new Label("Avdullahu");
 	
 	public Header() throws IOException {
 		String current = new java.io.File(".").getCanonicalPath();
 
-		bttnBack.setDisable(true);
+//		bttnBack.setDisable(true);
 		
 		FileInputStream logOutPath = new FileInputStream(current + "/src/img/power.png");
 		FileInputStream UserImgPath = new FileInputStream(current + "/src/img/user.png");
@@ -90,12 +90,12 @@ public class Header extends HBox{
 		
 		
 		labelBox.getChildren().add(lblLocation);
-		labelBox.setAlignment(Pos.CENTER_LEFT);
-		bttnBack.getStyleClass().add("bttnBack");
+		labelBox.setAlignment(Pos.CENTER);
+//		bttnBack.getStyleClass().add("bttnBack");
 		lblLocation.getStyleClass().addAll("lblHistory","active");
 		historyBox.setSpacing(30);
 		historyBox.setAlignment(Pos.CENTER_LEFT);
-		historyBox.getChildren().addAll(bttnBack, labelBox);
+		historyBox.getChildren().add(labelBox);
 		historyBox.setPrefWidth(800); 
 		historyBox.setMaxWidth(801);
 		

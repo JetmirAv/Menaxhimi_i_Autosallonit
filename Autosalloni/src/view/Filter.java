@@ -6,9 +6,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 
-public class Filter {
+public class Filter extends HBox{
 
-	public static HBox display(String className) {
+	public Filter(String className) {
 		HBox filters = new HBox(150);
 		filters.setPadding(new Insets(15, 10, 15, 30));
 		HBox searchBox = new HBox(10);
@@ -41,6 +41,8 @@ public class Filter {
 			filters.getChildren().addAll(manufacturerBox, fuelBox);
 		}
 		
-		return filters;
+		getChildren().add(filters);
+
 	}
+	
 }
