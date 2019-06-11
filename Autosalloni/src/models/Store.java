@@ -305,6 +305,24 @@ public class Store {
 
 	}
 	
+	   public static boolean  createStoreQuery(String name , String address , String city , String state , String postal , String phoneNumber) throws SQLException { 
+		   
+	    	String query = "insert into stores(name,address,city,state,postal,phoneNumber) values(?,?,?,?,?,?)";
+			PreparedStatement stm = DatabaseConfig.getConnection().prepareStatement(query);
+	    	
+			stm.setString(1,name);
+			stm.setString(2,address);
+			stm.setString(3,city);
+			stm.setString(4, state);
+			stm.setString(5, postal);
+			stm.setString(6, phoneNumber);
+			
+			boolean result = stm.executeUpdate() > 0;
+			return result;	
+		}
+		
+	
+	
 	@Override
 	public String toString() {
 	    return this.getName();

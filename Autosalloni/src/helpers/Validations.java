@@ -81,5 +81,36 @@ public class Validations {
 		}
 		return number;
 	}
+	
+	public static boolean validateInput(String str) {
+		str.trim();
+		return str.matches( "[A-Z][a-z]*" );
+		  
+	}
+	
+	public static String capitalize(String str)
+	{
+	    return str.substring(0, 1).toUpperCase() + str.substring(1);
+	}
+	
+	
+	
+	public static boolean postalValidation(String postal) {
+		
+		return postal.matches(".*([a-zA-Z].*[0-9]|[0-9].*[a-zA-Z]).*");
+		
+	}
+	
+   public static boolean validateNumeric(String s) {  
+		
+		return s != null && s.matches("[-+]?\\d*\\.?\\d+");
+		
+	}  
+	
+	
+	
+	
+	
+	
 
 }
