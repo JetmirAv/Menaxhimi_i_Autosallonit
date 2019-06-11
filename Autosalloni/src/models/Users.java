@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import controller.UserClickedController;
+import helpers.JWT;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
@@ -395,6 +396,24 @@ public class Users {
 
 		return userList;
 
+	}
+	
+	
+	public static String login(String email, String password) throws SQLException {
+//		ArrayList<String> ret = new ArrayList<String>();
+//		boolean ret = false;
+		String res = "";
+		String query = "select id, roleId, name, surname, password from users where email = ? ";
+		
+		PreparedStatement stm = DatabaseConfig.getConnection().prepareStatement(query);
+		stm.setString(1, email);
+		
+		ResultSet r = stm.executeQuery();
+		while(r.next()) {
+			res = JWT.generateJWTToken(r.getInt(1), r.getInt(2), r.getString(3), r.getString(4), r.getString(5));
+		}
+		
+		return res;
 	}
 
 }

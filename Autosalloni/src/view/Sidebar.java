@@ -22,7 +22,6 @@ public class Sidebar extends VBox {
 	public static Button dashboardBtn = new Button("_Dashboard");
 	public static Button carsBtn = new Button("_Cars");
 	public static Button usersBtn = new Button("_Users");
-	public static Button manufacturersBtn = new Button("_Manufacturer");
 	public static Button reportsBtn = new Button("_Reports");
 	public static Button settingsBtn = new Button("_Settings");
 	public static Button storesBtn = new Button("_Stores");
@@ -43,7 +42,6 @@ public class Sidebar extends VBox {
 		dashboardBtn.setOnAction(new controller.SideBarController());
 		carsBtn.setOnAction(new controller.SideBarController());
 		usersBtn.setOnAction(new controller.SideBarController());
-		manufacturersBtn.setOnAction(new controller.SideBarController());
 		settingsBtn.setOnAction(new controller.SideBarController());
 		storesBtn.setOnAction(new controller.SideBarController());
 		
@@ -101,17 +99,7 @@ public class Sidebar extends VBox {
 			});
 		
 		
-		Image manufacturerImg = new Image(manufacturerPath);
-		ImageView manufacturerView = new ImageView(manufacturerImg);
-		manufacturersBtn.setGraphic(manufacturerView);
-		manufacturersBtn.setPrefWidth(200);
-		manufacturersBtn.setPrefHeight(50);
-		//Per me bo align ne te majt
-		manufacturersBtn.setAlignment(Pos.CENTER_LEFT);
-		manufacturersBtn.getStyleClass().add("sideBarBtn");
-		manufacturersBtn.setOnMouseEntered(e -> {
-			manufacturersBtn.setCursor(Cursor.HAND);
-			});
+		
 		
 		
 		Image reportsImg = new Image(reportsPath);
@@ -140,16 +128,14 @@ public class Sidebar extends VBox {
 		
 		
 		VBox vbox = new VBox(7);
-		//vbox.getChildren().add(new ImageView(logoImg));
 		vbox.setPadding(new Insets(25, 5, 5, 15));
-		vbox.getChildren().addAll(dashboardBtn,librariesLbl,storesBtn,carsBtn,clientsLbl,usersBtn,manufacturersBtn,reportsBtn,settingsBtn);		
+		vbox.getChildren().addAll(dashboardBtn,librariesLbl,storesBtn,carsBtn,clientsLbl,usersBtn,reportsBtn,settingsBtn);		
 		
 		
 		VBox sidebarVbox = new VBox();
 		sidebarVbox.getStylesheets().add(Sidebar.class.getResource("sideBar.css").toExternalForm());
 		sidebarVbox.getStyleClass().add("sidebar");
 		sidebarVbox.getChildren().addAll(vbox);
-//		sidebarVbox.setAlignment(Pos.TOP_CENTER);
 	
 	
 		getChildren().add(sidebarVbox);
