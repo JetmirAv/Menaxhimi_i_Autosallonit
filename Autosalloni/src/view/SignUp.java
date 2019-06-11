@@ -5,6 +5,8 @@ import java.awt.Desktop;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,7 +19,10 @@ import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -33,48 +38,115 @@ public class SignUp {
 	public static TextField emailField;
 	public static TextField passField;
 	public static Button openButton;
+	public static TextArea textArea;
 	private static Desktop desktop = Desktop.getDesktop();
+	public static FileChooser fileChooser;
+	public static File file;
+	public static Image image1;
+	public static ImageView imageView1 = new ImageView();
 	
 	
-	public static VBox display(final Stage stage) throws IOException
+	
+	public static VBox display() throws IOException
 	{
+		final Stage stage = new Stage();
 		String current = new java.io.File(".").getCanonicalPath();
 		//final Stage stage = new Stage();
 		
 		final FileChooser fileChooser = new FileChooser();
         final Button openButton = new Button("Open a Picture...");
         final Button openMultipleButton = new Button("Open Pictures...");     
+       // final ImageView imageView1 = new ImageView();
+        
+        TextArea textArea = new TextArea();
+        textArea.setMinHeight(70);
+        
         
 		
-        openButton.setOnAction(
-                new EventHandler<ActionEvent>() {
-                    @Override
-                    public void handle(final ActionEvent e) {
-                        configureFileChooser(fileChooser);
-                        File file = fileChooser.showOpenDialog(stage);
-                        if (file != null) {
-                            openFile(file);
-                        }
-                    }
-                });
+//        openButton.setOnAction(
+//                new EventHandler<ActionEvent>() {
+//                    @Override
+//                    public void handle(final ActionEvent e) {
+//                    	textArea.clear();
+//                        configureFileChooser(fileChooser);
+//                        File file = fileChooser.showOpenDialog(stage);
+//                        if (file != null) {
+//                            openFile(file);
+//                            List<File> files = Arrays.asList(file);
+//                            printLog(textArea, files);
+//                        }
+//                    }
+//                });
+        
+        
+//        openButton.setOnAction(new EventHandler<ActionEvent>() {
+//        	 
+//            @Override
+//            public void handle(ActionEvent event) {
+//                textArea.clear();
+//                configureFileChooser(fileChooser); 
+//                File file = fileChooser.showOpenDialog(stage);
+//                if (file != null) {
+//                    openFile(file);
+//                    List<File> files = Arrays.asList(file);
+//                    printLog(textArea, files);
+//                }
+//            }
+//        });
 		
-        openMultipleButton.setOnAction(
-                new EventHandler<ActionEvent>() {
-                    @Override
-                    public void handle(final ActionEvent e) {
-                        configureFileChooser(fileChooser);                               
-                        List<File> list = 
-                            fileChooser.showOpenMultipleDialog(stage);
-                        if (list != null) {
-                            for (File file : list) {
-                                openFile(file);
-                            }
-                        }
-                    }
-                });
+//        openMultipleButton.setOnAction(
+//                new EventHandler<ActionEvent>() {
+//                    @Override
+//                    public void handle(final ActionEvent e) {
+//                    	 textArea.clear();
+//                        configureFileChooser(fileChooser);                               
+//                        List<File> list = 
+//                            fileChooser.showOpenMultipleDialog(stage);
+//                        if (list != null) {
+//                            for (File file : list) {
+//                                openFile(file);
+//                            }
+//                        }
+//                    }
+//                });
+        
+//        openMultipleButton.setOnAction(new EventHandler<ActionEvent>() {
+//        	 
+//            @Override
+//            public void handle(ActionEvent event) {
+//                textArea.clear();
+//                configureFileChooser(fileChooser); 
+//                List<File> files = fileChooser.showOpenMultipleDialog(stage);
+// 
+//                printLog(textArea, files);
+//                //openFile(file);
+//            }
+//        });
+        
+        openButton.setOnAction(e ->{
+        	file = fileChooser.showOpenDialog(stage);
+        	if(file != null)
+        	{
+        		
+        		textArea.clear();
+                configureFileChooser(fileChooser); 
+        		textArea.appendText(file.getAbsolutePath() + "\n");
+        		//Path ,prefWidth, prefheight, 
+        		image1 = new Image(file.toURI().toString(),100, 150, true, true);
+        		imageView1.setImage(image1);
+        		imageView1.setFitHeight(150);
+        		imageView1.setFitWidth(100);
+        		imageView1.setPreserveRatio(true);
+        		
+        		
+        		
+        		
+        		
+        	}
+        });
 		
 		final HBox hboximg = new HBox();
-		hboximg.getChildren().addAll(openButton, openMultipleButton);
+		hboximg.getChildren().addAll(textArea,openButton, openMultipleButton,imageView1);
 		
 		
 		
@@ -240,17 +312,43 @@ public class SignUp {
                     new FileChooser.ExtensionFilter("PNG", "*.png")
                 );
         }
+//	
+//	
+    
+//    
+//    public static void printLog(TextArea textArea, List<File> files) {
+//        if (files == null || files.isEmpty()) {
+//            return;
+//        }
+//        for (File file : files) {
+//            textArea.appendText(file.getAbsolutePath() + "\n");
+//        }
+//    }
     
     
     
-    public static void openFile(final File file) {
-        try {
-            desktop.open(file);
-        } catch (IOException ex) {
-            Logger.getLogger(FileChooser.class.getName()).log(
-                Level.SEVERE, null, ex
-            );
-        }
-    }
+//    public static void openFile(final File file) {
+//        try {
+//            desktop.open(file);
+//        } catch (IOException ex) {
+//            Logger.getLogger(FileChooser.class.getName()).log(
+//                Level.SEVERE, null, ex
+//            );
+//        }
+//    }
+    
+//    private static void openFile(final File file) {
+//    	
+//    	//fileA = file ;
+//    	
+//        try {
+//        	
+//            desktop.open(file);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
+    
+    
 
 }
