@@ -45,6 +45,7 @@ public class Main extends Application {
 		scene.getStylesheets().add("https://fonts.googleapis.com/css?family=Titillium+Web:200,300,400,700&display=swap");
 		scene.getStylesheets().add(Main.class.getResource("header.css").toExternalForm());
 		primaryStage.setScene(scene);
+		primaryStage.setTitle("Autosalloni");
 		primaryStage.setResizable(false);
 //		primaryStage.setMaximized(true);
 		primaryStage.show();

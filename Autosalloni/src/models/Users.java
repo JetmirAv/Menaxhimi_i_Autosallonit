@@ -236,7 +236,7 @@ public class Users {
 			String gendre, String address, String city, String state, String postal, String phoneNumber)
 			throws SQLException {
 
-		String query = "update users set name=?, surname=?, email=?, password=?,"
+		String query = "update users set roleId=?, name=?, surname=?, email=?, password=?,"
 				+ " birthday=?, gendre=?, address=?, city=?, state=?, postal=?, phoneNumber=? where id = ?";
 		PreparedStatement stm = DatabaseConfig.getConnection().prepareStatement(query);
 

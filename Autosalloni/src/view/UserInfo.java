@@ -23,13 +23,15 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import models.DeleteUserController;
 
 public class UserInfo extends VBox {
 
 	public static VBox createUserHbox = new VBox();
 	
-	public static Button signUpBtn = new Button();
-	public static Button deleteBtn = new Button();
+	public static Button signUpBtn = new Button("Create User");
+	public static Button deleteBtn = new Button("Delete User");
+	public static Button updateBtn = new Button("Update User");
 	public static TextField firstNameField = new TextField();
 	public static TextField lastNameField = new TextField();
 	public static TextField emailField = new TextField();
@@ -196,20 +198,18 @@ public class UserInfo extends VBox {
 
 		
 		if (newUser) {
-			signUpBtn.setText("Create User");
 			createUserHbox.getChildren().add(signUpBtn);
-			signUpBtn.setOnAction(new CreateUserController());
 		} else {
-			signUpBtn.setText("Update User");
-			signUpBtn.setOnAction(new UpdateUserController());
-			deleteBtn.setText("Delete");
 			HBox bttnBox = new HBox(5);
 			bttnBox.setAlignment(Pos.CENTER);
-			bttnBox.getChildren().addAll(deleteBtn, signUpBtn);
+			bttnBox.getChildren().addAll(deleteBtn, updateBtn);
 			createUserHbox.getChildren().add(bttnBox);
 		}
 		signUpBtn.setOnAction(new CreateUserController());
+		updateBtn.setOnAction(new UpdateUserController());
+		deleteBtn.setOnAction(new DeleteUserController());
 		signUpBtn.setStyle("-fx-text-fill:white ;  -fx-background-color:#5DA4C7;");
+		updateBtn.setStyle("-fx-text-fill:white ;  -fx-background-color:#5DA4C7;");
 		deleteBtn.setStyle("-fx-text-fill:white ;  -fx-background-color:#5DA4C7;");
 
 		rightVbox.setPrefWidth(300);

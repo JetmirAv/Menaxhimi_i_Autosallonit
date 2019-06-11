@@ -33,7 +33,8 @@ public class UserClickedController implements EventHandler<MouseEvent> {
 			Main.nodeHistory.addAll(Main.content.getChildren());
 			Main.content.getChildren().clear();
 			UserInfo.createUserHbox.getChildren().clear(); 
-			UserInfo.createUserHbox.setId(box.getId());
+			UserInfo.updateBtn.setId(box.getId());
+			UserInfo.deleteBtn.setId(box.getId());
 			Main.content.getChildren().add(new UserInfo(false));
 		} catch (NumberFormatException | SQLException | IOException e1) {
 			// TODO Auto-generated catch block
