@@ -15,38 +15,40 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
-	public static String name = null;
-	public static String surname = null;
-	public static String role = null;
-	public static String email = null;
+	public static int loggedId = 0;
+	public static String loggedName = null;
+	public static String loggedSurname = null;
+	public static int loggedRole = 0;
+	public static String loggedEmail = null;
 	public static BorderPane mainWindow = new BorderPane();
 	public static ArrayList<String> history = new ArrayList<String>();
 	public static ArrayList<Node> nodeHistory = new ArrayList<Node>();
 	public static VBox content = new VBox();
-
+	public static Scene scene = null;
+	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		Scene scene = null;
-		
-		if (name == null) {
+		content.setSpacing(30);
+		content.setPadding(new Insets(50, 10, 30, 10));
 
-			scene = new Scene(new SignIn());
+		content.getChildren().add(new Dashboard());
+
+		try {
+			mainWindow.setCenter(content);
+			mainWindow.setTop(new Header());
+			mainWindow.setLeft(new Sidebar());
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		
+		if (loggedName == null) {
+
+			SignIn.display();
 			
 		} else {
-			content.setSpacing(30);
-			content.setPadding(new Insets(50, 10, 30, 10));
-
-			content.getChildren().add(new Dashboard());
-
-			try {
-				mainWindow.setCenter(content);
-				mainWindow.setTop(new Header());
-				mainWindow.setLeft(new Sidebar());
-
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-
+			
 			scene = new Scene(mainWindow, 1440, 800);
 
 		}

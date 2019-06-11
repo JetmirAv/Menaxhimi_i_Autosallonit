@@ -19,13 +19,21 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 public class SignIn extends HBox {
 
 	public static PasswordField passwordField = new PasswordField();
 	public static TextField emailField = new TextField();
+	public static Stage modal = new Stage();
 
-	public SignIn() throws IOException {
+	public static void display() throws IOException {
+		
+		modal.initModality(Modality.APPLICATION_MODAL);
+		modal.setTitle("Sign In");
+		
+		
 		String current = new java.io.File(".").getCanonicalPath();
 		FileInputStream autoPath = new FileInputStream(current + "/src/img/auto.png");
 		FileInputStream bentleyPath = new FileInputStream(current + "/src/img/bentley.png");
@@ -104,7 +112,12 @@ public class SignIn extends HBox {
 		hbox.setAlignment(Pos.CENTER);
 		hbox.getStylesheets().add(SignIn.class.getResource("signIn.css").toExternalForm());
 
-		getChildren().add(hbox);
+		Scene scene = new Scene(hbox);
+		modal.setScene(scene);
+		modal.showAndWait();
+		
+		
+//		getChildren().add(hbox);
 	}
 
 }

@@ -410,7 +410,7 @@ public class Users {
 		
 		ResultSet r = stm.executeQuery();
 		while(r.next()) {
-			res = JWT.generateJWTToken(r.getInt(1), r.getInt(2), r.getString(3), r.getString(4), r.getString(5));
+			res = JWT.generateJWTToken(r.getInt(1), r.getInt(2), r.getString(3), r.getString(4), email);
 		}
 		
 		return res;

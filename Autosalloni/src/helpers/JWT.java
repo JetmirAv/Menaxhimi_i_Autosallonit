@@ -1,9 +1,12 @@
 package helpers;
 
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.Base64;
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
+
+import view.Main;
 
 public class JWT {
 
@@ -35,7 +38,7 @@ public class JWT {
 		}
 	}
 
-	private static String hmacEncode(String data, String key) throws Exception {
+	public static String hmacEncode(String data, String key) throws Exception {
 		Mac sha256_HMAC = Mac.getInstance("HmacSHA256");
 		SecretKeySpec secret_key = new SecretKeySpec(key.getBytes(), "HmacSHA256");
 		sha256_HMAC.init(secret_key);
@@ -43,41 +46,48 @@ public class JWT {
 		return Base64.getUrlEncoder().withoutPadding().encodeToString(sha256_HMAC.doFinal(data.getBytes()));
 	}
 	
-	private static String decodeJWT(String data) {
+	public static String decodeBase64(String data) {
 		byte[] decodedBytes = Base64.getDecoder().decode(data);
 		String result = new String(decodedBytes);
 		return result;
 	}
 	
+	public static void decodeJWT(String hash) {
+	
+		ArrayList<Integer> info1 = new ArrayList<Integer>();
+		ArrayList<String> info2 = new ArrayList<String>();
+		String payload = hash.split("\\.")[1];
+		String decoded = decodeBase64(payload);
+		decoded = decoded.substring(1, decoded.length() -1);
+		String[] parts = decoded.split("\\,");
+		System.out.println(decoded);
+		
+		
+		for (String string : parts) {
+			string = string.split(":")[1];
+			string = string.substring(1, string.length()-1);
+			try {
+				int num = Integer.parseInt(string);
+				info1.add(num);
+//				System.out.println(num);
+			} catch (NumberFormatException e) {
+				info2.add(string);
+//				System.out.println(string);
+			}
+		}
+		
+		Main.loggedId = info1.get(0);
+		Main.loggedRole = info1.get(1);
+		Main.loggedName = info2.get(0);
+		Main.loggedSurname = info2.get(1);
+		Main.loggedEmail = info2.get(2);
+	}
 	
 
 //	public static void main(String[] args) {
 //		
-//		String hash = generateJWTToken(1, 1, "Jetmir", "Avdullahu", "jetmir99@hotmail.com", SECRET_KEY);
+//		String hash = generateJWTToken(1, 1, "Jetmir", "Avdullahu", "jetmir99@hotmail.com");
 //		
-//		String header = hash.split("\\.")[0];
-//
-//		String payload = hash.split("\\.")[1];
-//		
-//		System.out.println(generateJWTToken(1, 1, "Jetmir", "Avdullahu", "jetmir99@hotmail.com", SECRET_KEY));
-//		System.out.println(header + " \n" + payload);
-//		System.out.println(decodeJWT(header));
-//		String decoded = decodeJWT(payload);
-//		decoded = decoded.substring(1, decoded.length() -1);
-//		String[] parts = decoded.split("\\,");
-//		System.out.println(decoded);
-//		
-//		for (String string : parts) {
-//			string = string.split(":")[1];
-////			System.out.println(string.getClass());
-//			try {
-//				int num = Integer.parseInt(string);
-//				System.out.println(num);
-//			} catch (NumberFormatException e) {
-//				e.printStackTrace();
-//				System.out.println(string);
-//			}
-//		}
-//		
+//		decodeJWT(hash);		
 //	}
 }

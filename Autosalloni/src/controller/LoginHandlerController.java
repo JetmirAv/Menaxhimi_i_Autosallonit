@@ -4,7 +4,9 @@ import java.sql.SQLException;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.Scene;
 import models.Users;
+import view.Main;
 import view.Modal;
 import view.SignIn;
 
@@ -16,7 +18,10 @@ public class LoginHandlerController implements EventHandler<ActionEvent>{
 		try {
 			String token = Users.login(SignIn.emailField.getText(), SignIn.passwordField.getText());
 			if(token.length() > 0) {
-				Modal.display(2, "Sucess!", "Bravo", "Ok", "");
+				helpers.JWT.decodeJWT(token);
+//				Modal.display(2, "Sucess!", "Bravo", "Ok", "");
+				SignIn.modal.close();
+				Main.scene = new Scene(Main.mainWindow, 1440, 800);
 
 			} else {
 				Modal.display(2, "Error!", "Email or password incorrect", "Ok", "");
