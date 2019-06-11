@@ -45,50 +45,45 @@ public class MainComponentStores extends VBox {
 		HBox headerBox = new HBox();
 		headerBox.setAlignment(Pos.CENTER);
 		headerBox.setPrefHeight(20);
-		Label lblImage = new Label("Image");
 		Label lblName = new Label("Name");
-		Label lblEmail = new Label("Address");
+		Label lblAddress = new Label("Address");
 		Label lblCity = new Label("City");
 		Label lblState = new Label("State");
-		Label lblGender = new Label("Postal");
+		Label lblPostal = new Label("Postal");
 		Label lblPhone = new Label("Phone Number");
-		Label lblBirthday = new Label("Birthday");
 
-		lblImage.getStyleClass().add("userHeaderLabel");
 		lblName.getStyleClass().add("userHeaderLabel");
-		lblEmail.getStyleClass().add("userHeaderLabel");
+		lblAddress.getStyleClass().add("userHeaderLabel");
 		lblPhone.getStyleClass().add("userHeaderLabel");
 		lblCity.getStyleClass().add("userHeaderLabel");
 		lblState.getStyleClass().add("userHeaderLabel");
-		lblGender.getStyleClass().add("userHeaderLabel");
-		lblBirthday.getStyleClass().add("userHeaderLabel");
+		lblPostal.getStyleClass().add("userHeaderLabel");
 
-		lblImage.setPrefWidth(50);
 		lblName.setPrefWidth(120);
-		lblEmail.setPrefWidth(230);
+		lblAddress.setPrefWidth(230);
 		lblPhone.setPrefWidth(180);
 		lblCity.setPrefWidth(120);
 		lblState.setPrefWidth(120);
-		lblGender.setPrefWidth(90);
-		lblBirthday.setPrefWidth(140);
+		lblPostal.setPrefWidth(90);
 
-		headerBox.getChildren().addAll(lblImage, lblName, lblEmail, lblPhone, lblGender, lblBirthday,
+		headerBox.getChildren().addAll(lblName, lblAddress, lblPhone, lblPostal,
 				lblCity, lblState);
 
 		if (count == 0) {
-//			vbox.getChildren().add(headerBox);
-//
-//			List<HBox> user = Users.getUsers();
-//			for (int i = 0; i < user.size(); i++) {
-//				vbox.getChildren().add(user.get(i));
-//			}
-//			Button createUser = new Button("Create User");
-//			createUser.setOnAction(new controller.ShowCreateUserController());
-//
-//			vbox.getChildren().add(createUser);
-//			count++;
+			vbox.getChildren().add(headerBox);
+
+			List<HBox> stores = Store.getStores();
+			for (int i = 0; i < stores.size(); i++) {
+				vbox.getChildren().add(stores.get(i));
+			}
+			
+			Button createStore = new Button("Create Store");
+			createStore.setOnAction(new controller.ShowCreateUserController());
+
+			vbox.getChildren().add(createStore);
+			count++;
 		}
-//		getChildren().add(vbox);
+		getChildren().add(vbox);
 
 		// Ktu e kryej
 
@@ -251,62 +246,62 @@ public class MainComponentStores extends VBox {
 //
 //   	vbox.getChildren().addAll(tHeader,storeHBox,store2HBox,store3HBox);
 //	vbox.setPadding(new Insets(20,20,20,20));
-		TableColumn<String, Stores> photoCol = new TableColumn<>("Photo");
-		photoCol.setCellValueFactory(new PropertyValueFactory("img"));
-		photoCol.setPrefWidth(80);
-
-		TableColumn<String, Stores> nameCol = new TableColumn<>("Name");
-		nameCol.setCellValueFactory(new PropertyValueFactory("name"));
-		nameCol.setPrefWidth(90);
-
-		TableColumn<String, Stores> addressCol = new TableColumn<>("Address");
-		addressCol.setCellValueFactory(new PropertyValueFactory("address"));
-		addressCol.setPrefWidth(150);
-
-		TableColumn<String, Stores> cityCol = new TableColumn<>("City");
-		cityCol.setCellValueFactory(new PropertyValueFactory("city"));
-		cityCol.setPrefWidth(100);
-
-		TableColumn<String, Stores> stateCol = new TableColumn<>("State");
-		stateCol.setCellValueFactory(new PropertyValueFactory("state"));
-		stateCol.setPrefWidth(150);
-
-		TableColumn<String, Stores> postalCol = new TableColumn<>("Postal");
-		postalCol.setCellValueFactory(new PropertyValueFactory("postal"));
-		postalCol.setPrefWidth(120);
-
-		TableColumn<String, Stores> phoneNumberCol = new TableColumn<>("Phone Number");
-		phoneNumberCol.setCellValueFactory(new PropertyValueFactory("phoneNumber"));
-		phoneNumberCol.setPrefWidth(150);
-
-		table.getColumns().addAll(photoCol, addressCol, nameCol, cityCol, stateCol, postalCol, phoneNumberCol);
-
-		photoCol.getStyleClass().add("textToCenter");
-		addressCol.getStyleClass().add("textToCenter");
-		nameCol.getStyleClass().add("textToCenter");
-		cityCol.getStyleClass().add("textToCenter");
-		stateCol.getStyleClass().add("textToCenter");
-		phoneNumberCol.getStyleClass().add("textToCenter");
-		postalCol.getStyleClass().add("textToCenter");
-//		vbox.setPadding(new Insets(62, 0, 0, 0));
-		if (count == 0) {
-			showStores();
-			count++;
-		}
-		vbox.getChildren().add(table);
-		getChildren().add(vbox);
+//		TableColumn<String, Stores> photoCol = new TableColumn<>("Photo");
+//		photoCol.setCellValueFactory(new PropertyValueFactory("img"));
+//		photoCol.setPrefWidth(80);
+//
+//		TableColumn<String, Stores> nameCol = new TableColumn<>("Name");
+//		nameCol.setCellValueFactory(new PropertyValueFactory("name"));
+//		nameCol.setPrefWidth(90);
+//
+//		TableColumn<String, Stores> addressCol = new TableColumn<>("Address");
+//		addressCol.setCellValueFactory(new PropertyValueFactory("address"));
+//		addressCol.setPrefWidth(150);
+//
+//		TableColumn<String, Stores> cityCol = new TableColumn<>("City");
+//		cityCol.setCellValueFactory(new PropertyValueFactory("city"));
+//		cityCol.setPrefWidth(100);
+//
+//		TableColumn<String, Stores> stateCol = new TableColumn<>("State");
+//		stateCol.setCellValueFactory(new PropertyValueFactory("state"));
+//		stateCol.setPrefWidth(150);
+//
+//		TableColumn<String, Stores> postalCol = new TableColumn<>("Postal");
+//		postalCol.setCellValueFactory(new PropertyValueFactory("postal"));
+//		postalCol.setPrefWidth(120);
+//
+//		TableColumn<String, Stores> phoneNumberCol = new TableColumn<>("Phone Number");
+//		phoneNumberCol.setCellValueFactory(new PropertyValueFactory("phoneNumber"));
+//		phoneNumberCol.setPrefWidth(150);
+//
+//		table.getColumns().addAll(photoCol, addressCol, nameCol, cityCol, stateCol, postalCol, phoneNumberCol);
+//
+//		photoCol.getStyleClass().add("textToCenter");
+//		addressCol.getStyleClass().add("textToCenter");
+//		nameCol.getStyleClass().add("textToCenter");
+//		cityCol.getStyleClass().add("textToCenter");
+//		stateCol.getStyleClass().add("textToCenter");
+//		phoneNumberCol.getStyleClass().add("textToCenter");
+//		postalCol.getStyleClass().add("textToCenter");
+////		vbox.setPadding(new Insets(62, 0, 0, 0));
+//		if (count == 0) {
+//			showStores();
+//			count++;
+//		}
+//		vbox.getChildren().add(table);
+//		getChildren().add(vbox);
 
 	}
 
 	public static void showStores() throws SQLException {
-		List<Store> store = models.Store.getStores();
+//		List<Store> store = models.Store.getStores();
 
-		ObservableList<Store> storeList = FXCollections.observableArrayList();
-
-		for (int i = 0; i < store.size(); i++) {
-			storeList.add(store.get(i));
-		}
-		table.setItems(storeList);
+//		ObservableList<Store> storeList = FXCollections.observableArrayList();
+//
+//		for (int i = 0; i < store.size(); i++) {
+//			storeList.add(store.get(i));
+//		}
+//		table.setItems(storeList);
 
 	}
 }
