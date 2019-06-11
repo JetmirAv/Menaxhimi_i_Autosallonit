@@ -1,0 +1,87 @@
+Name = Emri
+city = Qyteti
+state =Shteti
+address = Adresa
+phoneNr = Numri Tel
+postal = Numri Postar
+delete = Fshij
+update = Ndrysho
+create = Shto
+search = Kerko
+buy = Blej
+car = Vetura
+showMore = Shfaq me shume
+chooseAfile = Zgjedh nje Foto
+
+
+storeSB = Dyqanet
+carsSB = Veturat
+usersSB = Perdoruesit
+reportsSB = Raportet
+
+
+valueDB = Vlera
+profitDB = Perfitimet ne vitin {0}
+monthDB = Muajt
+otherDB = Muajt tjere
+thisMonthDB = Muaji aktual
+yearSummaryDB = Permbledhja Vjetor
+
+
+manufacturerC = Prodhuesit
+fuelC = Karburanti
+fuelCapacityC =Kapaciteti Karburantit
+fuelConsumptionC = Konsumi karburantit
+logoC = Foto
+seatsC = Nr.Ulseve
+doorsC = Dyer
+climateC = Klima
+hidraulicC = Hidraulik
+hoursePowerC = Kuaj-Fuqi
+maxSpeedC = Shpejtesia Max
+isAutomaticC = Automatik
+modelC  = Modeli
+bodyC = Karoseria
+engineC = Motori
+engineModelC = Lloji Motorit
+secondsC = Sekondat 0-100
+gearsC = Shpejtesite
+tireModelC = Modeli gomave
+tireSizeC = Madhesia gomave
+descriptionC = Pershkrimi
+is4x4C = 4x4?
+viewDetailsC = Shiko Detajet
+prodYearC = Viti Prodhimit
+priceC = Cmimi
+roofC = E mbuluar
+centralC = Qendrore
+airbagC = Airbag-u
+autonomousC = Vete-vozitese
+navigatorC = Tregues i rruges
+
+
+lastNameU = Mbiemri
+genderU = Gjinia
+birthdayU = Datelindja
+passwordU = Fjalekalimi
+cardNrU = Numri Karteles
+exDateU = Data Skadimit
+codeU = Kodi
+
+
+welcomeBack = Miresevini perseri
+signInToCont = Kycuni per te vazhduar me tutje
+forgotPass = Keni harruar fjalekalimin?
+login = Kycuni
+newUser = Shfrytezues i ri?
+signUp = Regjistrohuni
+alreadyAmember = Tashme anetar?
+
+
+
+
+
+
+
+
+

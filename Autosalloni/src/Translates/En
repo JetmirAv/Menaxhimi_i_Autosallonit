@@ -1,0 +1,85 @@
+Name = Name
+city = City
+state = State
+address = Address
+phoneNr = Phone Number
+postal = Postal
+delete = Delete
+update = Update
+create = Create
+search = Search
+buy = Buy
+car = Car
+showMore = Show More
+chooseAfile = Choose a File
+
+
+storeSB = Stores
+carsSB = Cars
+usersSB = Users
+reportsSB = Reports
+
+
+valueDB = Value
+profitDB = Profit in year {0}
+monthDB = Month
+otherDB = Other
+thisMonthDB = This Month
+yearSummaryDB = Year Summary
+
+
+manufacturerC = Manufacturer
+fuelC = Fuel
+fuelCapacityC = Fuel Capacity 
+fuelConsumptionC = Fuel Consumption
+logoC = Image
+seatsC = Seats
+doorsC = Doors
+climateC = Climate
+hidraulicC = Hidraulic
+hoursePowerC = Hourse-Power
+maxSpeedC = Max Speed
+isAutomaticC = isAutomatic
+modelC  = Model
+bodyC = Body
+engineC = Engine
+engineModelC = Engine Model
+secondsC = Seconds 0 to 100
+gearsC = Gears
+tireModelC = Tire Model
+tireSizeC = Tire Size
+descriptionC = Description
+is4x4C = is4x4
+viewDetailsC = View Details
+prodYearC = Year of Production
+priceC = Price
+roofC = Roof
+centralC = Central
+airbagC = Airbag
+autonomousC = Autonomous
+navigatorC = Navigator
+
+
+lastNameU = Surname
+genderU = Gender
+birthdayU = Birthday
+passwordU = Password
+cardNrU = Card Number
+exDateU = Expired Date
+codeU = Code
+
+
+welcomeBack = Welcome Back
+signInToCont = Sign In to Continue
+forgotPass = Forgot Password?
+login = Login
+newUser = New User?
+signUp = Sign Up
+alreadyAmember = Already a member?
+
+
+
+
+
+
+
