@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import controller.CarsDetailsController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -352,6 +353,7 @@ public class CarsDetails   {
 		secondCarsData.add(txtForAdditionalDesc, 4, 9);
 		secondCarsData.add(txtForIs4x4, 5, 9);
 
+		
 		Button buyBtn = new Button("Buy");
 		buyBtn.getStyleClass().add("photoToCenter");
 		HBox btnHbox = new HBox();
@@ -375,20 +377,8 @@ public class CarsDetails   {
 			}			
 
 	});
-		buyBtn.setOnAction(e->{
-			try {
-				
-			if(storeComboBox.getSelectionModel().isEmpty()) {
-				System.out.println("Please choose a store first ! ");
-			} else {
-				insertBought();
-			}
-			} catch (SQLException e1) {
-				e1.printStackTrace();
-			}
-		});
-	
 		
+		buyBtn.setOnAction(new CarsDetailsController());
 		
 		
 		
@@ -397,31 +387,7 @@ public class CarsDetails   {
 	}
 	
 	
-	
-	
-	
-	public static void  insertBought() throws SQLException { 
-		
-		
-		Store storeObj = (Store) storeComboBox.getSelectionModel().getSelectedItem();
-		int storeID = storeObj.getId();
-		int userID = 22;
-		int priceOfCar = c.returnPrice(c.getId(),storeObj.getId());
-     	String query = "insert into bought(stockId,userId,price) values(?,?,?)";
-		PreparedStatement stm = DatabaseConfig.getConnection().prepareStatement(query);
-		stm.setInt(1,storeID);
-		stm.setInt(2,userID);
-		stm.setInt(3,priceOfCar);
-		boolean result = stm.executeUpdate() > 0;
-		System.out.println(result);		
 	}
-	
-	
-	
-	
-	
-	
-	
+
   
 		
-}

@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import view.CarsDetails;
 
 public class Bought {
 	
@@ -149,5 +150,26 @@ public class Bought {
 		
 		
 	}
+	
+	
+
+	public static boolean  insertBought() throws SQLException { 
+		
+		
+		Store storeObj = (Store) view.CarsDetails.storeComboBox.getSelectionModel().getSelectedItem();
+		int storeID = storeObj.getId();
+		int userID = 22;
+		int priceOfCar = view.CarsDetails.c.returnPrice(view.CarsDetails.c.getId(),storeObj.getId());
+     	String query = "insert into bought(stockId,userId,price) values(?,?,?)";
+		PreparedStatement stm = DatabaseConfig.getConnection().prepareStatement(query);
+		stm.setInt(1,storeID);
+		stm.setInt(2,userID);
+		stm.setInt(3,priceOfCar);
+		boolean result = stm.executeUpdate() > 0;
+		return result;	
+	}
+	
+	
+
 	
 }
