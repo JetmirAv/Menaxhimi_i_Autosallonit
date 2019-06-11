@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -15,8 +16,8 @@ public class SideBarController implements EventHandler<ActionEvent> {
 		Header.lblLocation.getStyleClass().addAll("active", "lblHistory");
 		switch (e.getTarget().toString().split("'")[1].split("'")[0]) {
 		case "_Dashboard":
-			Main.content.getChildren().clear();
-			Main.content.getChildren().add(new Dashboard());
+			Main.mainContent = null;
+			Main.mainContent = new Dashboard();
 			Header.labelBox.getChildren().clear();
 			Header.lblLocation.setText("Dashboard");
 			Header.labelBox.getChildren().addAll(Header.lblLocation);
@@ -41,7 +42,9 @@ public class SideBarController implements EventHandler<ActionEvent> {
 		case "_Stores":
 			try {
 				Main.content.getChildren().clear();
-				Main.content.getChildren().addAll(new Filter(""), new MainComponentStores());
+				Main.content.getChildren().add(new Filter(""));
+				Main.mainContent = null;
+				Main.mainContent = new MainComponentStores();
 				Header.labelBox.getChildren().clear();
 				Header.lblLocation.setText("Stores");
 				Header.labelBox.getChildren().addAll(Header.lblLocation);

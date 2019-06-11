@@ -9,6 +9,9 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.geometry.Pos;
+import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
 
 
 public class Store {
@@ -180,28 +183,52 @@ public class Store {
 		String query = "delete from stores where id = ?";
 		PreparedStatement stm = DatabaseConfig.getConnection().prepareStatement(query);
 		stm.setInt(1, id);
-		return stm.executeUpdate() > 0;
-		
-		
+		return stm.executeUpdate() > 0;		
 	}
 	
 	
 	
 			
 	
-	public static List<Store> getStores() throws SQLException {
-		List<Store> storeList = new ArrayList();
-		String query = "select id, name , address , city , state , postal , phoneNumber , createdAt , updatetimedAt from stores  limit 10";
+	public static List<HBox> getStores() throws SQLException {
+		List<HBox> storeList = new ArrayList<>();
+		String query = "select id, name , address , city , state , postal , phoneNumber from stores limit 10";
 		
 		PreparedStatement preparedStatement = DatabaseConfig.getConnection().prepareStatement(query);
-		java.sql.ResultSet resultSet = preparedStatement.executeQuery();
+		ResultSet resultSet = preparedStatement.executeQuery();
 			 
 		while(resultSet.next()) {
+			
+			HBox headerBox = new HBox();
+			headerBox.setAlignment(Pos.CENTER);
+			headerBox.setPrefHeight(20);
+			headerBox.getStyleClass().add("userList");
+			Label lblName = new Label(resultSet.getString(2));
+			Label lblAddress = new Label(resultSet.getString(3));
+			Label lblCity = new Label(resultSet.getString(4));
+			Label lblState = new Label(resultSet.getString(5));
+			Label lblPostal = new Label(resultSet.getString(6));
+			Label lblPhone = new Label(resultSet.getString(7));
 
-			Store store = new Store(resultSet.getInt(1),resultSet.getString(2)
-					      ,resultSet.getString(3),resultSet.getString(4),resultSet.getString(5)
-					      ,resultSet.getString(6),resultSet.getString(7)); 
-			storeList.add(store);
+			lblName.getStyleClass().add("userHeaderLabel");
+			lblAddress.getStyleClass().add("userHeaderLabel");
+			lblPhone.getStyleClass().add("userHeaderLabel");
+			lblCity.getStyleClass().add("userHeaderLabel");
+			lblState.getStyleClass().add("userHeaderLabel");
+			lblPostal.getStyleClass().add("userHeaderLabel");
+
+			lblName.setPrefWidth(120);
+			lblAddress.setPrefWidth(230);
+			lblPhone.setPrefWidth(180);
+			lblCity.setPrefWidth(120);
+			lblState.setPrefWidth(120);
+			lblPostal.setPrefWidth(90);
+
+			headerBox.getChildren().addAll(lblName, lblAddress, lblPhone, lblPostal,
+					lblCity, lblState);
+			storeList.add(headerBox);
+
+		
 		}
 		
 		return storeList;
