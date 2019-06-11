@@ -6,6 +6,7 @@ import java.sql.SQLException;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import models.Users;
 import view.*;
 
 public class SideBarController implements EventHandler<ActionEvent> {
@@ -16,8 +17,10 @@ public class SideBarController implements EventHandler<ActionEvent> {
 		Header.lblLocation.getStyleClass().addAll("active", "lblHistory");
 		switch (e.getTarget().toString().split("'")[1].split("'")[0]) {
 		case "_Dashboard":
-			Main.mainContent = null;
-			Main.mainContent = new Dashboard();
+			Main.content.getChildren().clear();
+			Main.content.getChildren().add(new Dashboard());
+//			Main.mainContent = null;
+//			Main.mainContent = new Dashboard();
 			Header.labelBox.getChildren().clear();
 			Header.lblLocation.setText("Dashboard");
 			Header.labelBox.getChildren().addAll(Header.lblLocation);
@@ -42,9 +45,9 @@ public class SideBarController implements EventHandler<ActionEvent> {
 		case "_Stores":
 			try {
 				Main.content.getChildren().clear();
-				Main.content.getChildren().add(new Filter(""));
-				Main.mainContent = null;
-				Main.mainContent = new MainComponentStores();
+				Main.content.getChildren().addAll(new Filter(""), new MainComponentStores());
+//				Main.mainContent = null;
+//				Main.mainContent = new MainComponentStores();
 				Header.labelBox.getChildren().clear();
 				Header.lblLocation.setText("Stores");
 				Header.labelBox.getChildren().addAll(Header.lblLocation);
@@ -88,13 +91,15 @@ public class SideBarController implements EventHandler<ActionEvent> {
 		case "_Settings":
 			try {
 				Main.content.getChildren().clear();
-				Main.content.getChildren().addAll(UserInfo.display(false));
+				UserInfo.createUserHbox.getChildren().clear();
+				Users.findByPk(1);
+				Main.content.getChildren().addAll(new UserInfo(false));
 				Header.labelBox.getChildren().clear();
 				Header.lblLocation.setText("Settings");
 				Header.labelBox.getChildren().addAll(Header.lblLocation);
 				Main.history.clear();
 				Main.history.add("_Settings");
-			} catch (IOException e1) {
+			} catch (IOException | SQLException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}

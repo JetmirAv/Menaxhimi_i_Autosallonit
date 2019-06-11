@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import controller.UserClickedController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
@@ -17,6 +18,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import view.UserInfo;
 
 public class Users {
 	private int id;
@@ -298,6 +300,31 @@ public class Users {
 //		return userList;
 //
 //	}
+	
+	public static void findByPk(int id) throws SQLException {
+		String query = "select id, name, surname, email, "
+				+ "birthday, gendre, img, address, city, "
+				+ "state, postal, phoneNumber from users "
+				+ "where id= ?";
+		
+		PreparedStatement stm = DatabaseConfig.getConnection().prepareStatement(query);
+		stm.setInt(1, id);
+		
+		ResultSet r = stm.executeQuery();
+		r.next();
+		UserInfo.firstNameField.setText(r.getString(2));
+		UserInfo.lastNameField.setText(r.getString(3));
+		UserInfo.emailField.setText(r.getString(4));
+		UserInfo.birthdayField.setText(r.getString(5));
+		UserInfo.gendre.setValue(r.getString(6));
+		UserInfo.addressField.setText(r.getString(8));
+		UserInfo.cityField.setText(r.getString(9));
+		UserInfo.stateField.setText(r.getString(10));
+		UserInfo.postalField.setText(r.getString(11));
+		UserInfo.numberField.setText(r.getString(12));
+		UserInfo.createUserHbox.setId(String.valueOf(r.getInt(1)));
+		
+	}
 
 	public static List<HBox> getUsers() throws SQLException, IOException {
 		List<HBox> userList = new ArrayList<>();
@@ -308,7 +335,7 @@ public class Users {
 				+ "  from users limit 10";
 
 		PreparedStatement preparedStatement = DatabaseConfig.getConnection().prepareStatement(query);
-		java.sql.ResultSet resultSet = preparedStatement.executeQuery();
+		ResultSet resultSet = preparedStatement.executeQuery();
 
 		while (resultSet.next()) {
 			HBox result = new HBox();
@@ -316,6 +343,7 @@ public class Users {
 			result.setPrefHeight(20);
 			result.getStyleClass().add("userList");
 			result.setId(String.valueOf(resultSet.getInt(1)));
+			result.setOnMouseClicked(new UserClickedController());
 
 			//To change
 			FileInputStream userPath;

@@ -69,7 +69,7 @@ public class MainComponentStores extends VBox {
 		headerBox.getChildren().addAll(lblName, lblAddress, lblPhone, lblPostal,
 				lblCity, lblState);
 
-		if (count == 0) {
+//		if (count == 0) {
 			vbox.getChildren().add(headerBox);
 
 			List<HBox> stores = Store.getStores();
@@ -82,7 +82,8 @@ public class MainComponentStores extends VBox {
 
 			vbox.getChildren().add(createStore);
 			count++;
-		}
+//		}
+		
 		getChildren().add(vbox);
 
 		// Ktu e kryej

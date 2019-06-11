@@ -3,7 +3,10 @@ package view;
 import java.io.FileInputStream;
 import java.io.IOException;
 
+import javax.imageio.ImageIO;
+
 import controller.CreateUserController;
+import controller.UpdateUserController;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
@@ -21,7 +24,10 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 
-public class UserInfo {
+public class UserInfo extends VBox {
+
+	public static VBox createUserHbox = new VBox();
+	
 	public static Button signUpBtn = new Button();
 	public static Button deleteBtn = new Button();
 	public static TextField firstNameField = new TextField();
@@ -38,8 +44,10 @@ public class UserInfo {
 	public static TextField codeField = new TextField();
 	public static TextField expireField = new TextField();
 	public static TextField numberField = new TextField();
+
 	
-	public static VBox display(Boolean newUser) throws IOException {
+	public UserInfo(Boolean newUser) throws IOException {
+		
 		String current = new java.io.File(".").getCanonicalPath();
 
 		FileInputStream namePath = new FileInputStream(current + "/src/img/createUser.png");
@@ -56,7 +64,6 @@ public class UserInfo {
 		FileInputStream expiredPath = new FileInputStream(current + "/src/img/expired.png");
 		FileInputStream cardPath = new FileInputStream(current + "/src/img/card.png");
 
-		VBox createUserHbox = new VBox();
 
 		Circle photoCircle = new Circle(50);
 		photoCircle.setStroke(Color.SEAGREEN);
@@ -77,7 +84,6 @@ public class UserInfo {
 		firstNameField.setPromptText("Test");
 		firstNameField.getStyleClass().addAll("textfield");
 
-
 		Label lastNameLbl = new Label("Last Name");
 		Image lastnameImg = new Image(lastnamePath);
 		lastNameLbl.setGraphic(new ImageView(lastnameImg));
@@ -94,7 +100,7 @@ public class UserInfo {
 		Label passLbl = new Label("Password");
 		Image passImg = new Image(passPath);
 		passLbl.setGraphic(new ImageView(passImg));
-		
+
 		passField.setPromptText("********");
 		passField.getStyleClass().addAll("textfield");
 
@@ -103,7 +109,7 @@ public class UserInfo {
 		Label birthdayLbl = new Label("Birthday");
 		Image birthdayImg = new Image(birthdayPath);
 		birthdayLbl.setGraphic(new ImageView(birthdayImg));
-		
+
 		birthdayField.setPrefWidth(280);
 		birthdayField.getStyleClass().addAll("textfield");
 		vbox1.getChildren().addAll(birthdayLbl, birthdayField);
@@ -114,7 +120,7 @@ public class UserInfo {
 		gendre.getItems().add("M");
 		gendre.getItems().add("F");
 		gendre.setPrefWidth(30);
-		gendre.setValue("M");
+//		gendre.setValue("M");
 		gendre.getStyleClass().addAll("textfield");
 		vbox2.getChildren().addAll(gendreLbl, gendre);
 		vbox2.setPadding(new Insets(2, 0, 0, 0));
@@ -123,7 +129,7 @@ public class UserInfo {
 		Label numberLbl = new Label("Phone Number");
 		Image phonenumberImg = new Image(phonenumberPath);
 		numberLbl.setGraphic(new ImageView(phonenumberImg));
-		
+
 		numberField.setPromptText("123456789");
 		numberField.getStyleClass().addAll("textfield");
 
@@ -188,11 +194,14 @@ public class UserInfo {
 		mainHbox.getChildren().addAll(leftVbox, rightVbox);
 		createUserHbox.getChildren().addAll(photoCircle, mainHbox);
 
+		
 		if (newUser) {
 			signUpBtn.setText("Create User");
 			createUserHbox.getChildren().add(signUpBtn);
+			signUpBtn.setOnAction(new CreateUserController());
 		} else {
 			signUpBtn.setText("Update User");
+			signUpBtn.setOnAction(new UpdateUserController());
 			deleteBtn.setText("Delete");
 			HBox bttnBox = new HBox(5);
 			bttnBox.setAlignment(Pos.CENTER);
@@ -208,7 +217,11 @@ public class UserInfo {
 		createUserHbox.getStylesheets().add(SignIn.class.getResource("createUser.css").toExternalForm());
 		createUserHbox.setAlignment(Pos.CENTER);
 
-		return createUserHbox;
+		getChildren().add(createUserHbox);
+	}
+	
+	protected void finalize() {
+		createUserHbox.getChildren().clear();
 	}
 
 }
