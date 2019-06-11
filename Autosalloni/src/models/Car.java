@@ -11,6 +11,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import controller.CarClickedController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -460,44 +461,45 @@ public class Car {
 			boolean navigator,boolean climate,int fuelTypeId,int fuelCapacity,double fuelConsumption,
 			boolean hidraulic,String engineModel,double enginePower,int hoursePower,int maxspeed,
 			double seconds0to100,boolean isAutomatic,int gears,String tireModel,int tireSize,String additionalDesc,
-			boolean is4x4) throws SQLException{ 
+			boolean is4x4 ,int carId) throws SQLException{ 
 		
-		String query = "manufacturerId=? ,model=?,bodyNumber=?,yearOfProd=? ,seats=? ,\r\n" + 
+		String query = "update car set manufacturerId=? ,model=?,bodyNumber=?,yearOfProd=? ,seats=? ,\r\n" + 
 				"			doors=?,roof=? ,alarm=? ,central=? ,airbag=? ,autonomus=?,\r\n" + 
-				"			navigator=?,climate=?,fuelTypeId=?,fuelCapacity=?,fuelConsumption=? \r\n" + 
+				"			navigator=?,climate=?,fuelTypeId=?,fuelCapacity=?,fuelConsumption=?, \r\n" + 
 				"			hidraulic=?,engineModel=?,enginePower=?,hoursePower=?,maxspeed=?,\r\n" + 
-				"			seconds0to100=?,isAutomatic=?,gears=?,tireModel=?,tireSize=?,additionalDesc=?,is4x4";
-		PreparedStatement stm = DatabaseConfig.getConnection().prepareStatement(query);
+				"			seconds0to100=?,isAutomatic=?,gears=?,tireModel=?,tireSize=?,additionalDesc=?,is4x4=? where id= " + carId;
+		PreparedStatement preparedStatement = DatabaseConfig.getConnection().prepareStatement(query);
 		
-		stm.setInt(1, manufacturerId);
-		stm.setString(2,model);
-		stm.setString(3,bodyNumber);
-		stm.setInt(4,yearOfProd);
-		stm.setInt(5,seats);
-		stm.setInt(6, doors);
-		stm.setBoolean(7, roof);
-		stm.setBoolean(8,alarm);
-		stm.setBoolean(9, central);
-		stm.setBoolean(10,airbag);
-		stm.setBoolean(11, autonomus);
-		stm.setBoolean(12,navigator);
-		stm.setBoolean(13, climate);
-		stm.setInt(14,fuelTypeId);
-		stm.setInt(15,fuelCapacity);
-		stm.setDouble(16,fuelConsumption);
-		stm.setBoolean(17,hidraulic);
-		stm.setString(18,engineModel);
-		stm.setDouble(19,enginePower);
-		stm.setInt(20,hoursePower);
-		stm.setInt(21,maxspeed);
-		stm.setDouble(22,seconds0to100);
-		stm.setBoolean(23,isAutomatic);
-		stm.setInt(24,gears);
-		stm.setString(25,tireModel);
-		stm.setString(26,additionalDesc);
-		stm.setBoolean(27,is4x4);
+	    preparedStatement.setInt(1, manufacturerId);
+		preparedStatement.setString(2,model);
+		preparedStatement.setString(3,bodyNumber);
+		preparedStatement.setInt(4,yearOfProd);
+		preparedStatement.setInt(5,seats);
+		preparedStatement.setInt(6, doors);
+		preparedStatement.setBoolean(7, roof);
+		preparedStatement.setBoolean(8,alarm);
+		preparedStatement.setBoolean(9, central);
+		preparedStatement.setBoolean(10,airbag);
+		preparedStatement.setBoolean(11, autonomus);
+		preparedStatement.setBoolean(12,navigator);
+		preparedStatement.setBoolean(13, climate);
+		preparedStatement.setInt(14,fuelTypeId);
+		preparedStatement.setInt(15,fuelCapacity);
+		preparedStatement.setDouble(16,fuelConsumption);
+		preparedStatement.setBoolean(17,hidraulic);
+		preparedStatement.setString(18,engineModel);
+		preparedStatement.setDouble(19,enginePower);
+		preparedStatement.setInt(20,hoursePower);
+		preparedStatement.setInt(21,maxspeed);
+		preparedStatement.setDouble(22,seconds0to100);
+		preparedStatement.setBoolean(23,isAutomatic);
+		preparedStatement.setInt(24,gears);
+		preparedStatement.setString(25,tireModel);
+		preparedStatement.setInt(26,tireSize);
+		preparedStatement.setString(27,additionalDesc);
+		preparedStatement.setBoolean(28,is4x4);
 		
-		return stm.executeUpdate() > 0;
+		return preparedStatement.executeUpdate() > 0;
 	}
 	
 	
@@ -618,6 +620,7 @@ public class Car {
 				result.setPrefHeight(20);
 				result.getStyleClass().add("carList");
 				result.setId(String.valueOf(resultSet.getInt(1)));
+				result.setOnMouseClicked(new CarClickedController());
 	     
 				
 				//To change

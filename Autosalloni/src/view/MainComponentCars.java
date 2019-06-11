@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import controller.ShowCreateCarController;
 import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -75,27 +76,24 @@ public class MainComponentCars  extends VBox {
            tHeader.getChildren().add(hbox);
            tHeader.setPadding(new Insets(0,0,5,15));
            
-           
-    			if(count == 0) {
+
     				vbox.getChildren().add(tHeader);
     				
     				List<HBox> car = Car.getCars();
     				for (int i = 0; i < car.size(); i++) {
     					vbox.getChildren().add(car.get(i));
     				}
-    				Button createCar = new Button("Create Car");
-    				createCar.setOnAction(new controller.ShowCreateUserController());
+    				Button createCar = new Button("Insert Car");
     				
     				vbox.getChildren().add(createCar);
-    				count++;
-    			}
+    				createCar.setOnAction(new ShowCreateCarController());
+    			     
+    				
     			getChildren().add(vbox);
+    			
 
     		}
 
-    		public void destroyObject(){
-    			getChildren().clear();
-    		}
     	}
 
            
