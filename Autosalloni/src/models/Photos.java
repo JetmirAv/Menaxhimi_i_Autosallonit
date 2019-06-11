@@ -1,6 +1,14 @@
 package models;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.Date;
+
+import view.SignUp;
 
 public class Photos {
 
@@ -64,6 +72,21 @@ public class Photos {
 	public String toString() {
 		return "Photos [id=" + id + ", path=" + path + ", carId=" + carId + ", createdAt=" + createdAt + ", updatedAt="
 				+ updatedAt + "]";
+	}
+	
+	
+	public static boolean insertPhoto(Integer carId, String path) throws SQLException , FileNotFoundException,IOException
+	{
+		String query = "Insert into photos(path,carId) values (?,?) ; ";
+		PreparedStatement stm = DatabaseConfig.getConnection().prepareStatement(query);
+		
+		
+		//SignUp signUpObj = new SignUp();
+	
+		stm.setString(1, path);
+		stm.setInt(2, carId);
+		return stm.executeUpdate() > 0;
+			
 	}
 
 	

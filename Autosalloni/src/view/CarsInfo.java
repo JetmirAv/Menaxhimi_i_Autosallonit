@@ -1,6 +1,9 @@
 package view;
 
+import java.awt.Desktop;
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -16,17 +19,22 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import javafx.util.StringConverter;
 import models.Car;
 import models.Manufacturer;
+import models.Photos;
 import models.Users;
 import helpers.helpers;
 import models.FuelType;
@@ -67,8 +75,78 @@ public class CarsInfo {
 	public static Spinner<Integer> tireSize = new Spinner<>(0, 350, 0, 1);
 	public static TextField additionalDesc = new TextField();
 	public static ComboBox is4x4ComboBox = new ComboBox(FXCollections.observableArrayList(trueFalse));
+	
+	
+	
+	
+	public static Button openButton;
+	public static TextArea textArea;
+	private static Desktop desktop = Desktop.getDesktop();
+	public static FileChooser fileChooser;
+	public static File file;
+	public static Image image1;
+	public static ImageView imageView1 = new ImageView();
+	public static FileInputStream fileInput;
+	public static TextField imgField = new TextField();
+	
+	
+	
+	
 
 	public static VBox display(String current) throws IOException, SQLException {
+		
+		
+		
+		final Stage stage = new Stage();
+		//String current = new java.io.File(".").getCanonicalPath();
+		//final Stage stage = new Stage();
+		
+		final FileChooser fileChooser = new FileChooser();
+        final Button openButton = new Button("Open a Picture...");
+        final Button openMultipleButton = new Button("Open Pictures...");     
+       // final ImageView imageView1 = new ImageView();
+        
+        TextArea textArea = new TextArea();
+        textArea.setMinHeight(30);
+        textArea.setMinWidth(600);
+        textArea.setMaxWidth(600);
+        textArea.setMaxHeight(40);
+        
+        
+        openButton.setOnAction(e ->{
+        	file = fileChooser.showOpenDialog(stage);
+        	if(file != null)
+        	{
+        		
+        		textArea.clear();
+                configureFileChooser(fileChooser); 
+        		textArea.appendText(file.getAbsolutePath() + "\n");
+        		String imgName = file.getName().toString();
+        		System.out.println(imgName);
+        		String extType = imgName.split("\\.")[1];
+        		//String imgName = file.getName();
+        		imgField.setText(imgName);
+        		//Path ,prefWidth, prefheight, 
+        		image1 = new Image(file.toURI().toString(),100, 150, true, true);
+        		imageView1.setImage(image1);
+        		imageView1.setFitHeight(150);
+        		imageView1.setFitWidth(100);
+        		imageView1.setPreserveRatio(true);
+        		
+        		
+        		
+        		
+        		
+        	}
+        });
+		
+		final HBox hboximg = new HBox();
+		hboximg.getChildren().addAll(textArea,openButton, openMultipleButton,imageView1);
+		
+		
+        
+		
+		
 		
 		ArrayList<Integer> years = new ArrayList<Integer>();
 
@@ -361,19 +439,19 @@ public class CarsInfo {
 
 		insertBtn.setOnAction(new CarsInfoController());
 		showData();
-		vbox.getChildren().addAll(photoHBox, carsData, secondCarsData, btnHbox);
+		vbox.getChildren().addAll(photoHBox, carsData, secondCarsData, btnHbox,hboximg);
 		return vbox;
 
 	}
 
 
-	public static boolean insertCar() throws NumberFormatException, SQLException {
+	public static boolean insertCar() throws NumberFormatException, SQLException, IOException {
 
 		Manufacturer manufacturer = (Manufacturer) manufacturerComboBox.getSelectionModel().getSelectedItem();
 		FuelType fuelType = (FuelType) fuelTypeIdComboBox.getSelectionModel().getSelectedItem();			
 		Store store = (Store) storesComboBox.getSelectionModel().getSelectedItem();			
 		
-		return Car.addCar(store.getId(), 
+		int carId = Car.addCar(store.getId(), 
 				manufacturer.getId(),
 				txtForModel.getText(), txtForbodyNumber.getText(),
 				Integer.parseInt(yearOfProdComboBox.getValue().toString()),
@@ -396,6 +474,8 @@ public class CarsInfo {
 				helpers.convertToBoolean(isAutomaticComboBox.getValue()), Integer.parseInt(gears.getValue().toString()),
 				String.valueOf(tireModelComboBox.getValue()), Integer.parseInt(tireSize.getValue().toString()),
 				additionalDesc.getText(), helpers.convertToBoolean(is4x4ComboBox.getValue()));
+			
+			return Photos.insertPhoto(carId, imgField.getText());
 
 	}
 
@@ -440,7 +520,18 @@ public class CarsInfo {
 		}
 		
 	}
-
+    public static void configureFileChooser(
+            final FileChooser fileChooser) {      
+                fileChooser.setTitle("View Pictures");
+                fileChooser.setInitialDirectory(
+                    new File(System.getProperty("user.home"))
+                );                 
+                fileChooser.getExtensionFilters().addAll(
+                    new FileChooser.ExtensionFilter("All Images", "*.*"),
+                    new FileChooser.ExtensionFilter("JPG", "*.jpg"),
+                    new FileChooser.ExtensionFilter("PNG", "*.png")
+                );
+        }
 		
 
 

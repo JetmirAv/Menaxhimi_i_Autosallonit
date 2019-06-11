@@ -2,14 +2,19 @@ package view;
 
 
 import java.awt.Desktop;
+import java.awt.image.BufferedImage;
+import java.awt.image.RenderedImage;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javax.imageio.ImageIO;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -37,6 +42,7 @@ public class SignUp {
 	public static TextField lastnameField;
 	public static TextField emailField;
 	public static TextField passField;
+	
 	public static Button openButton;
 	public static TextArea textArea;
 	private static Desktop desktop = Desktop.getDesktop();
@@ -44,6 +50,15 @@ public class SignUp {
 	public static File file;
 	public static Image image1;
 	public static ImageView imageView1 = new ImageView();
+	public static FileInputStream fileInput;
+	public static String bImage;	
+	public static TextField imgField;
+	
+//	public SignUp(File file) throws FileNotFoundException {
+//		fileInput = new FileInputStream(file);
+//	}
+	
+	
 	
 	
 	
@@ -52,14 +67,14 @@ public class SignUp {
 		final Stage stage = new Stage();
 		String current = new java.io.File(".").getCanonicalPath();
 		//final Stage stage = new Stage();
-		
+		System.out.println(current);
 		final FileChooser fileChooser = new FileChooser();
         final Button openButton = new Button("Open a Picture...");
         final Button openMultipleButton = new Button("Open Pictures...");     
        // final ImageView imageView1 = new ImageView();
         
         TextArea textArea = new TextArea();
-        textArea.setMinHeight(70);
+        textArea.setMinHeight(20);
         
         
 		
@@ -127,19 +142,57 @@ public class SignUp {
         	file = fileChooser.showOpenDialog(stage);
         	if(file != null)
         	{
+        		BufferedImage bImage = null;
         		
         		textArea.clear();
                 configureFileChooser(fileChooser); 
         		textArea.appendText(file.getAbsolutePath() + "\n");
+        		try {
+					bImage = ImageIO.read(file);
+				} catch (IOException e2) {
+					// TODO Auto-generated catch block
+					e2.printStackTrace();
+				}
         		//Path ,prefWidth, prefheight, 
         		image1 = new Image(file.toURI().toString(),100, 150, true, true);
+        		
+        		String imgName = file.getName().toString();
+        		String extType = imgName.split("\\.")[1];
         		imageView1.setImage(image1);
         		imageView1.setFitHeight(150);
         		imageView1.setFitWidth(100);
         		imageView1.setPreserveRatio(true);
+//        		System.out.println(imgName.getClass().getName());
+//        		System.out.println(file.getAbsolutePath().toString().split("\\.")[0]);
+//        		System.out.println(imgName.split("\\.")[1]);
+//        		System.out.println(file.getAbsolutePath().split("\\.")[1]);
+        		
+        		try {
+					ImageIO.write(bImage, extType, new File(current + "/uploads/user-img/" + imgName));
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+        		
+//        		try {
+//					ImageIO.write((RenderedImage) file, "jpg", new File("current + /uploads/user-img/"));
+//				} catch (IOException e1) {
+//					// TODO Auto-generated catch block
+//					e1.printStackTrace();
+//				}
         		
         		
+//        		try {
+//					ImageIO.write((RenderedImage) file, "gif", new File("current + /uploads/user-img/"));
+//					
+//				} catch (IOException e1) {
+//					// TODO Auto-generated catch block
+//					e1.printStackTrace();
+//				}
         		
+//        	    BufferedImage bi = getMyImage();
+//        	    File outputfile = new File("saved.png");
+//        	    ImageIO.write(bi, "png", outputfile);
         		
         		
         	}

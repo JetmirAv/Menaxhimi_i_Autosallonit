@@ -1,8 +1,12 @@
 package models;
 import java.sql.PreparedStatement;
+
 import java.sql.SQLException;
 import java.util.Date;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -633,7 +637,7 @@ public class Car {
 		
 		
 		
-		public static boolean addCar(int stockId,int manufacturerId ,String model,String bodyNumber,
+		public static int addCar(int stockId,int manufacturerId ,String model,String bodyNumber,
 				int yearOfProd,int seats ,int doors,
 				boolean roof ,boolean alarm ,boolean central ,boolean airbag 
 				,boolean autonomus,boolean navigator,boolean climate,
@@ -650,7 +654,7 @@ public class Car {
 				String tireModel,
 				int tireSize,
 				String additionalDesc,
-				boolean is4x4) throws SQLException {
+				boolean is4x4) throws SQLException, FileNotFoundException {
 			String query = "INSERT INTO car(manufacturerId ,model ,bodyNumber ,yearOfProd ,seats ,doors ,roof ,alarm ,central"
 					+ "  ,airbag ,autonomus  ,navigator ,climate ,fuelTypeId ,fuelCapacity,  fuelConsumption,hidraulic  ,engineModel,"
 					+ "enginePower ,hoursePower ,maxspeed ,seconds0to100 ,isAutomatic ,gears  ,tireModel  ,tireSize  ,additionalDesc ,"
@@ -691,15 +695,19 @@ public class Car {
 				preparedStatement.setBoolean(28,is4x4);
 				
 				
+				
+				
+				//preparedStatement.setBinaryStream(28, (InputStream)view.SignUp.fileInput,(int)view.SignUp.file.length());
 				preparedStatement.executeUpdate();
 				//return (preparedStatement.executeUpdate() > 0);
 				ResultSet success = preparedStatement.getGeneratedKeys();
 				success.next();
 				int carId = success.getInt(1);
-				
+				return carId;
 				//Rrushja ka me vazhdu
 				
-				return true;
+				//insert photo into cars table
+			
 				
 			}
 		
