@@ -3,12 +3,10 @@ package view;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 
 import controller.CarsInfoController;
 import javafx.collections.FXCollections;
@@ -23,7 +21,6 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.KeyCode;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -31,16 +28,14 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import javafx.util.StringConverter;
 import models.Car;
 import models.Manufacturer;
 import models.Photos;
-import models.Users;
 import helpers.helpers;
 import models.FuelType;
 import models.Store;
 
-public class CarsInfo {
+public class CarsInfo extends VBox{
 	public static ComboBox manufacturerComboBox = new ComboBox(showData());
 	public static ComboBox storesComboBox = new ComboBox(stores());
 	public static TextField txtForModel = new TextField();
@@ -92,10 +87,12 @@ public class CarsInfo {
 	
 	
 	
+	
+	
 
-	public static VBox display(String current) throws IOException, SQLException {
+	public CarsInfo () throws IOException {
 		
-		
+		String current = new java.io.File(".").getCanonicalPath();	
 		
 		final Stage stage = new Stage();
 		//String current = new java.io.File(".").getCanonicalPath();
@@ -440,7 +437,7 @@ public class CarsInfo {
 		insertBtn.setOnAction(new CarsInfoController());
 		showData();
 		vbox.getChildren().addAll(photoHBox, carsData, secondCarsData, btnHbox,hboximg);
-		return vbox;
+		getChildren().add(vbox);
 
 	}
 
