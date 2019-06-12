@@ -16,6 +16,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -120,6 +121,16 @@ public class SignIn extends HBox {
 				e1.printStackTrace();
 			}
 		});
+		
+		hbox.setOnKeyPressed(e -> {
+			if (e.getCode() == KeyCode.ENTER) {
+				loginBtn.onKeyTypedProperty();
+				Main.scene = new Scene(Main.mainWindow, 1440, 800);
+				modal.close();
+				//loginBtn.onKeyReleasedProperty();
+			}
+		});
+		
 
 		signUpBtn.getStyleClass().addAll("signUpBtn");
 		signUpBox.getChildren().addAll(newUserTxt, signUpBtn);
@@ -131,6 +142,7 @@ public class SignIn extends HBox {
 
 		Scene scene = new Scene(hbox);
 		modal.setScene(scene);
+		emailField.requestFocus();
 		modal.showAndWait();
 
 //		getChildren().add(hbox);
