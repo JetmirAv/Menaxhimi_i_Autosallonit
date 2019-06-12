@@ -728,10 +728,12 @@ public class Car {
 
 		String current = new java.io.File(".").getCanonicalPath();
 
-		String query = "select id, seats , doors , alarm , climate , hidraulic , hoursePower , maxspeed, isAutomatic from car  limit 10 ";
+		String query = "select id, seats , doors , alarm , climate , hidraulic , hoursePower , maxspeed, isAutomatic from car  limit 12 offset ?" ;
 
 		PreparedStatement preparedStatement = DatabaseConfig.getConnection().prepareStatement(query);
+		preparedStatement.setInt(1,view.MainComponentCars.carOffset);
 		java.sql.ResultSet resultSet = preparedStatement.executeQuery();
+		
 
 		while (resultSet.next()) {
 			HBox result = new HBox(65);

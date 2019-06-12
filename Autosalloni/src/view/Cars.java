@@ -32,6 +32,9 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 public class Cars {
+	public static FlowPane mainPane = new FlowPane(10, 10);
+	public static Button showMore = I18N.getButton("showMore");
+	public static int detailsOffset = 0;
 
 	public static FlowPane display() throws IOException, SQLException {
 		// Declare Photos

@@ -25,12 +25,15 @@ import models.Users;
 public class MainComponentStores extends VBox {
 	public static int count = 0;
 	public static VBox formatVbox = new VBox();
+	public static VBox vbox = new VBox(5);
+	public static Button showMore = I18N.getButton("showMore");
+	public static int storeOffset = 0;
+
 	
 	public MainComponentStores() throws SQLException, IOException {
 		String current = new java.io.File(".").getCanonicalPath();
 
 		HBox hbox = new HBox(50);
-		VBox vbox = new VBox(5);
 		
 		vbox.getStylesheets().add(MainComponentStores.class.getResource("mainComponent.css").toExternalForm());
 		FileInputStream userPath;
@@ -81,13 +84,16 @@ public class MainComponentStores extends VBox {
 			createStore.getStyleClass().add("btnFormat");
 			createStore.setTranslateX(360);
 			
+
+
+			
 			vbox.getChildren().add(createStore);
 			formatVbox.getChildren().add(vbox);
 			formatVbox.setPadding(new Insets(0, 120, 0, 120));
 			count++;			
 		}
 		
-		getChildren().add(formatVbox);
+		getChildren().addAll(formatVbox);
 
 	}
 

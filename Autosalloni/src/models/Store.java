@@ -221,7 +221,7 @@ public class Store {
 	
 	public static List<HBox> getStores() throws SQLException {
 		List<HBox> storeList = new ArrayList<>();
-		String query = "select id, name , address , city , state , postal , phoneNumber from stores limit 10";
+		String query = "select id, name , address , city , state , postal , phoneNumber from stores limit 12 "  ;
 		
 		PreparedStatement preparedStatement = DatabaseConfig.getConnection().prepareStatement(query);
 		ResultSet resultSet = preparedStatement.executeQuery();

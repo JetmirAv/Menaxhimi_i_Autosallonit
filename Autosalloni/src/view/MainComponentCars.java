@@ -22,17 +22,23 @@ import javafx.scene.shape.Circle;
 import models.Car;
 import models.Users;
 
+
+
+
 public class MainComponentCars extends VBox {
 	public static VBox vbox = new VBox(5);
 	public static int count = 0;
+	public static Button showMore = I18N.getButton("showMore");
+	public static int carOffset = 0;
 
 
 	public MainComponentCars() throws IOException, SQLException {
 		String current = new java.io.File(".").getCanonicalPath();
-		Pane buttonPane = new Pane();
+		HBox buttonPane = new HBox();
+		HBox showMorePane = new HBox();
 		HBox hbox = new HBox(60);
 		Button createCar= I18N.getButton("create");
-		VBox vbox = new VBox(5);
+		
 //		vbox.getChildren().add(createCar);
 		VBox vboxWithSCroll = new VBox();
 
@@ -92,28 +98,34 @@ public class MainComponentCars extends VBox {
 		tHeader.setPadding(new Insets(0, 0, 5, 0));
 
 	//	vbox.getChildren().add(tHeader);
-
-		List<HBox> car = Car.getCars();
-		for (int i = 0; i < car.size(); i++) {
-			vbox.getChildren().add(car.get(i));
+		if(count == 0) {
+			List<HBox> car = Car.getCars();
+			for (int i = 0; i < car.size(); i++) {
+				vbox.getChildren().add(car.get(i));
+			}	
+			count++;
 		}
-//		createCar.setStyle("-fx-text-fill:white ;  -fx-background-color:#5DA4C7;");
 		buttonPane.getChildren().add(createCar);
-		createCar.setTranslateX(500);
+		createCar.setTranslateY(5);
 		vboxWithSCroll.getChildren().addAll(tHeader,vbox);
 		createCar.getStyleClass().addAll("updateBtn");
 		createCar.getStyleClass().addAll("btnFormat");
-
-
+		showMore.getStyleClass().add("updateBtn");
+		showMore.getStyleClass().add("btnFormat");
+		showMore.setTranslateX(500);
+		showMore.setPrefWidth(100);
+		buttonPane.setPadding(new Insets(0,0,20,5));
+		showMore.setOnAction(new controller.ShowMoreCarsController());
+		buttonPane.setTranslateY(0);
+		showMorePane.getChildren().add(showMore);
+		showMorePane.setPadding(new Insets(15,0,0,0));
 		createCar.setOnAction(new ShowCreateCarController());
 		ScrollPane s = new ScrollPane(vbox);  
-		
+			
 
-//        vbox.setLeft(new ScrollPane(vbox));
         s.setStyle(" -fx-background-color:transparent;");
         s.setBorder(null);
- //       s.setPadding(new Insets(0,10,0,10));
-		getChildren().addAll(createCar,tHeader,vbox,s);
+ 		getChildren().addAll(buttonPane,tHeader,vbox,s,showMorePane);
 
 	}
 
