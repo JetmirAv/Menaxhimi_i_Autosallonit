@@ -72,7 +72,7 @@ public class SignUp {
 		System.out.println(current + "/src/img/user.png");
 		image1 = new Image(UserImgPath, 100, 150, true, true);
 		imageView1.setImage(image1);
-
+		imageView1.setId("SignUp");
 		imageView1.setOnMouseClicked(new UploadPhotoController());
 
 		Text signUpTxt = new Text("Sign Up");

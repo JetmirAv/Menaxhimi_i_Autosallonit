@@ -9,9 +9,11 @@ import java.util.Random;
 import javax.imageio.ImageIO;
 
 import javafx.event.EventHandler;
+import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
+import view.CarsInfo;
 import view.SignUp;
 
 
@@ -21,6 +23,11 @@ public class UploadPhotoController implements EventHandler<MouseEvent> {
 	
 	@Override
 	public void handle(MouseEvent e) {
+		Node img = (Node) e.getSource();
+		System.out.println("Ketu");
+		System.out.println(img.getId());
+		System.out.println("Ketu");
+		
 		File file = fileChooser.showOpenDialog(SignUp.stage);
 		if (file != null) {
 			
@@ -39,9 +46,9 @@ public class UploadPhotoController implements EventHandler<MouseEvent> {
 				SignUp.bImage = ImageIO.read(file);
 			} catch (IOException e2) {
 				e2.printStackTrace();
+			
 			}
-			SignUp.image1 = new Image(file.toURI().toString(), 100, 150, true, true);
-
+			
 			String imgName = file.getName().toString();
 			String extType = imgName.split("\\.")[1];
 			Random rand = new Random();
@@ -49,12 +56,27 @@ public class UploadPhotoController implements EventHandler<MouseEvent> {
 			String timeStamp = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
 			String joinName = randomNumber+timeStamp; 
 			String finalName = joinName + "." + extType;
-			System.out.println(finalName);
 			SignUp.imgField.setText(finalName);
-			SignUp.imageView1.setImage(SignUp.image1);
-			SignUp.imageView1.setFitHeight(150);
-			SignUp.imageView1.setFitWidth(100);
-			SignUp.imageView1.setPreserveRatio(true);
+			
+			
+			if(img.getId().equals("carsinfo") ) {
+				CarsInfo.image1 = new Image(file.toURI().toString(), 100, 150, true, true);
+				CarsInfo.imageView1.setImage(CarsInfo.image1);
+				CarsInfo.imageView1.setFitHeight(150);
+				CarsInfo.imageView1.setFitWidth(100);
+				CarsInfo.imageView1.setPreserveRatio(true);
+				CarsInfo.imgField.setText(finalName);
+			} else {
+				System.out.println("joooo");
+				SignUp.image1 = new Image(file.toURI().toString(), 100, 150, true, true);				
+				SignUp.imageView1.setImage(SignUp.image1);
+				SignUp.imageView1.setFitHeight(150);
+				SignUp.imageView1.setFitWidth(100);
+				SignUp.imageView1.setPreserveRatio(true);
+				SignUp.imgField.setText(finalName);
+			}
+
+			System.out.println(finalName);
 
 			try {
 				ImageIO.write(SignUp.bImage, extType, new File(current + "/uploads/user-img/" + finalName));

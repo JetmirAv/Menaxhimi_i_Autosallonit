@@ -57,10 +57,13 @@ public class Main extends Application {
 		content.setSpacing(30);
 		content.setPadding(new Insets(50, 10, 30, 10));
 
-		content.getChildren().add(new Dashboard());
-
 		try {
-			mainWindow.setCenter(content);
+			if(Main.loggedRole == 1) {
+				content.getChildren().add(new Dashboard());
+			} else {
+				content.getChildren().add(Cars.display());
+			}
+			mainWindow.setCenter(content);				
 			mainWindow.setTop(new Header());
 			mainWindow.setLeft(new Sidebar());
 

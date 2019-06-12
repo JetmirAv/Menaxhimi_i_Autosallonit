@@ -39,7 +39,6 @@ import models.Store;
 import helpers.Validations;
 
 public class CarsInfo extends VBox{
-	public static Circle store1Circle;
 	public static ComboBox manufacturerComboBox = new ComboBox(showData());
 	public static ComboBox storesComboBox = new ComboBox(stores());
 	public static TextField txtForModel = new TextField();
@@ -74,21 +73,17 @@ public class CarsInfo extends VBox{
 	public static Spinner<Integer> tireSize = new Spinner<>(0, 350, 0, 1);
 	public static TextField additionalDesc = new TextField();
 	public static ComboBox is4x4ComboBox = new ComboBox(FXCollections.observableArrayList(trueFalse));
+	public static TextField imgField = new TextField();
 	
 	
 	
-	
-	public static Button openButton;
-	public static TextArea textArea;
-	public static Desktop desktop = Desktop.getDesktop();
-	public static FileChooser fileChooser;
-	public static File file;
 	public static Image image1;
 	public static ImageView imageView1 = new ImageView();
-	public static FileInputStream fileInput;
-	public static TextField imgField = new TextField();
 	public static Stage modal = new Stage();
+
+	public static Stage stage = new Stage();
 	
+
 	
 
 	public CarsInfo () throws IOException {
@@ -99,11 +94,16 @@ public class CarsInfo extends VBox{
 		//String current = new java.io.File(".").getCanonicalPath();
 		//final Stage stage = new Stage();
 		
-		final FileChooser fileChooser = new FileChooser();
-        final Button openButton = new Button("Open a Picture...");
-        final Button openMultipleButton = new Button("Open Pictures...");     
-       // final ImageView imageView1 = new ImageView();
-        
+		FileInputStream UserImgPath = new FileInputStream(current + "/src/img/car.png");
+		image1 = new Image(UserImgPath, 100, 150, true, true);
+		imageView1.setImage(image1);
+		imageView1.setId("carsinfo");
+		imageView1.setOnMouseClicked(new UploadPhotoController());
+
+		
+		
+		
+		
         TextArea textArea = new TextArea();
         textArea.setMinHeight(30);
         textArea.setMinWidth(600);
@@ -114,43 +114,8 @@ public class CarsInfo extends VBox{
 
 
 		
-		FileInputStream UserImgPath = new FileInputStream(current + "/src/img/user.png");
-		System.out.println(current + "/src/img/user.png");
-		image1 = new Image(UserImgPath, 100, 150, true, true);
-		imageView1.setImage(image1);
 
-		imageView1.setOnMouseClicked(new UploadPhotoController());
-
-        
-        openButton.setOnAction(e ->{
-        	file = fileChooser.showOpenDialog(stage);
-        	if(file != null)
-        	{
-        		
-        		textArea.clear();
-                configureFileChooser(fileChooser); 
-        		textArea.appendText(file.getAbsolutePath() + "\n");
-        		String imgName = file.getName().toString();
-        		System.out.println(imgName);
-        		String extType = imgName.split("\\.")[1];
-        		//String imgName = file.getName();
-        		imgField.setText(imgName);
-        		//Path ,prefWidth, prefheight, 
-        		image1 = new Image(file.toURI().toString(),100, 150, true, true);
-        		imageView1.setImage(image1);
-        		imageView1.setFitHeight(150);
-        		imageView1.setFitWidth(100);
-        		imageView1.setPreserveRatio(true);
-        		
-        		
-        		
-        		
-        		
-        	}
-        });
-		
-		final HBox hboximg = new HBox();
-		hboximg.getChildren().addAll(textArea,openButton, openMultipleButton,imageView1);
+       
 		
 		
         
@@ -175,11 +140,8 @@ public class CarsInfo extends VBox{
 
 		Image img = new Image(userPath);
 
-		store1Circle = new Circle();
-		store1Circle.setRadius(50);
-		store1Circle.setFill(new ImagePattern(img));
 
-		photoHBox.getChildren().add(store1Circle);
+		photoHBox.getChildren().add(imageView1);
 		photoHBox.getStyleClass().add("photoToCenter");
 		photoHBox.setPadding(new Insets(20, 0, 0, 0));
 
@@ -450,7 +412,7 @@ public class CarsInfo extends VBox{
 
 		insertBtn.setOnAction(new CarsInfoController());
 		showData();
-		vbox.getChildren().addAll(photoHBox, carsData, secondCarsData, btnHbox,hboximg);
+		vbox.getChildren().addAll(photoHBox, carsData, secondCarsData, btnHbox);
 		getChildren().add(vbox);
 
 	}
@@ -461,7 +423,7 @@ public class CarsInfo extends VBox{
 		Manufacturer manufacturer = (Manufacturer) manufacturerComboBox.getSelectionModel().getSelectedItem();
 		FuelType fuelType = (FuelType) fuelTypeIdComboBox.getSelectionModel().getSelectedItem();			
 		Store store = (Store) storesComboBox.getSelectionModel().getSelectedItem();			
-		if (Validations.validateBodyNumber(txtForbodyNumber.getText())) {
+		if (Validations.validateBodyNumber(txtForbodyNumber.getText()) ) {
 		}
 		else 
 		{
@@ -494,7 +456,7 @@ public class CarsInfo extends VBox{
 				additionalDesc.getText(), helpers.convertToBoolean(is4x4ComboBox.getValue()));
 			
 			return Photos.insertPhoto(carId, imgField.getText());
-
+//			return true;
 	
 	}
 	

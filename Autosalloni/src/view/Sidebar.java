@@ -33,7 +33,6 @@ public class Sidebar extends VBox {
 	public Sidebar() throws IOException {
 		String current = new java.io.File( "." ).getCanonicalPath();
 		
-		
 		languagesCbo.getItems().addAll(Main.allowedLanguages);
 		languagesCbo.setValue(I18N.getDefaultLocale().getLanguage());
 		languagesCbo.setOnAction(e -> switchLanguage());
@@ -137,7 +136,12 @@ public class Sidebar extends VBox {
 		
 		VBox vbox = new VBox(7);
 		vbox.setPadding(new Insets(25, 5, 5, 15));
-		vbox.getChildren().addAll(dashboardBtn,librariesLbl,storesBtn,carsBtn,clientsLbl,usersBtn,reportsBtn,profileBtn,languagesCbo);		
+		
+		if(Main.loggedRole == 1) {
+			vbox.getChildren().addAll(dashboardBtn,librariesLbl,storesBtn,carsBtn,clientsLbl,usersBtn,reportsBtn,profileBtn,languagesCbo);					
+		} else {
+			vbox.getChildren().addAll(carsBtn, profileBtn, languagesCbo);
+		}
 		
 		
 		VBox sidebarVbox = new VBox();

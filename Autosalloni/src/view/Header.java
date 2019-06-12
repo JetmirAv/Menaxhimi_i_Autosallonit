@@ -38,8 +38,8 @@ public class Header extends HBox {
 		FileInputStream UserImgPath = new FileInputStream(current + "/uploads/user-img/" + Main.loggedImg);
 		FileInputStream logoPath = new FileInputStream(current + "/src/img/logo.png");
 
-		Label userFullName = new Label(Main.loggedName);
-		Label userRole = new Label(Main.loggedSurname);
+		Label userFullName = new Label(Main.loggedName + Main.loggedSurname);
+		Label userRole = new Label(Main.loggedRole == 1? "Admin": "User");
 
 		// Logo
 		HBox logoBox = new HBox();

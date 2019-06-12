@@ -29,7 +29,11 @@ public class SideBarController implements EventHandler<ActionEvent> {
 		case "Cars":
 			try {
 				Main.content.getChildren().clear();
-				Main.content.getChildren().addAll(new Filter("Car"), new MainComponentCars());
+				if(Main.loggedRole == 1) {
+					Main.content.getChildren().addAll(new Filter("Car"), new MainComponentCars());					
+				} else {
+					Main.content.getChildren().addAll(Cars.display());
+				}
 				Header.labelBox.getChildren().clear();
 				Header.lblLocation.setText("Cars");
 				Header.labelBox.getChildren().addAll(Header.lblLocation);
@@ -102,7 +106,11 @@ public class SideBarController implements EventHandler<ActionEvent> {
 		case "Veturat":
 			try {
 				Main.content.getChildren().clear();
-				Main.content.getChildren().addAll(new Filter("Car"), new MainComponentCars());
+				if(Main.loggedRole == 1) {
+					Main.content.getChildren().addAll(new Filter("Car"), new MainComponentCars());					
+				} else {
+					Main.content.getChildren().addAll(Cars.display());
+				}
 				Header.labelBox.getChildren().clear();
 				Header.lblLocation.setText("Cars");
 				Header.labelBox.getChildren().addAll(Header.lblLocation);
