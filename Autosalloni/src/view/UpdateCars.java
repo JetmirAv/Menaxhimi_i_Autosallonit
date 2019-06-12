@@ -40,7 +40,6 @@ public class UpdateCars {
 	public static Button updateBtn = I18N.getButton("update");
 	public static Button deleteBtn =  I18N.getButton("delete");
 	public static ComboBox<Manufacturer> manufacturerComboBox = new ComboBox(showData());
-	public static ComboBox storesComboBox = new ComboBox(stores());
 	public static TextField txtForModel = new TextField();
 	public static TextField txtForbodyNumber;
 	public static ComboBox yearOfProdComboBox;
@@ -74,7 +73,6 @@ public class UpdateCars {
 	public static TextField additionalDesc;
 	public static ComboBox is4x4ComboBox = new ComboBox(FXCollections.observableArrayList(trueFalse));
 	public static int id;
-
 	
 
 	public static VBox display() throws IOException, SQLException {
@@ -214,13 +212,16 @@ public class UpdateCars {
 		secondCarsData.add(priceLabel, 5, 0);
 
 		// second row
-		secondCarsData.add(storesComboBox, 0, 1);
+		secondCarsData.add(controller.CarClickedController.storesComboBox, 0, 1);
 		secondCarsData.add(manufacturerComboBox, 1, 1);
 		secondCarsData.add(txtForModel, 2, 1);
 		secondCarsData.add(txtForbodyNumber, 3, 1);
 		secondCarsData.add(yearOfProdComboBox, 4, 1);
 		secondCarsData.add(txtForPrice, 5, 1);
+		
+		
 
+		
 		manufacturerComboBox.setPrefWidth(100);
 		txtForModel.setPrefWidth(100);
 		txtForbodyNumber.setPrefWidth(100);
@@ -388,16 +389,16 @@ public class UpdateCars {
 
 	}
 
-	public static ObservableList<models.Store> stores() {
-
-		try {
-			ObservableList<models.Store> storeList = models.Store.getStore();
-			return storeList;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-
-	}
+//	public static ObservableList<models.Store> stores() {
+//
+//		try {
+//			ObservableList<models.Store> storeList = models.Store.getStore();
+//			return storeList;
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			return null;
+//		}
+//
+//	}
 
 }

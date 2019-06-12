@@ -16,20 +16,28 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import models.Car;
 import models.Manufacturer;
+import models.Store;
 import models.Users;
 import view.Header;
 import view.Main;
 import view.UserInfo;
 import view.UpdateCars;
 
+
+
+
+
+
 public class CarClickedController implements EventHandler<MouseEvent> {
+
+	 public static ComboBox storesComboBox ; 
 
 	@Override
 	public void handle(MouseEvent e) {
 		HBox box = (HBox) e.getSource();
 		System.out.println(box.getId());
 
-		
+		UpdateCars.txtForPrice.clear();
 		Label lblCreateUser = new Label("/Edit Car");
 		Header.lblLocation.getStyleClass().clear();
 		Header.lblLocation.getStyleClass().add("lblHistory");
@@ -51,6 +59,11 @@ public class CarClickedController implements EventHandler<MouseEvent> {
 			UpdateCars.yearOfProdComboBox = new ComboBox<>(FXCollections.observableArrayList(years));
 			UpdateCars.id = c.getId();
 
+		
+			
+			
+			
+			
 			
 //			ObservableList<Manufacturer> carList = c.getNameAndId(c.getId());
 //			System.out.println("IdKerit");
@@ -70,6 +83,7 @@ public class CarClickedController implements EventHandler<MouseEvent> {
 			UpdateCars.seatsComboBox.getSelectionModel().select(c.getSeats() + "");
 			UpdateCars.doorsComboBox.getSelectionModel().select(c.getDoors() + "");
 			UpdateCars.roofComboBox.getSelectionModel().select(c.isRoof() + "");
+			storesComboBox = new ComboBox(FXCollections.observableArrayList(Store.getStore(c.getId())));
 			UpdateCars.alarmComboBox.getSelectionModel().select(c.isAlarm() + "");
 			UpdateCars.centralComboBox.getSelectionModel().select(c.isCentral() + "");
 			UpdateCars.airbagComboBox.getSelectionModel().select(c.isAirbag() + "");
@@ -89,6 +103,24 @@ public class CarClickedController implements EventHandler<MouseEvent> {
 			UpdateCars.tireSize = new Spinner<>(0, 350, c.getTireSize(), 1);
 			UpdateCars.additionalDesc = new TextField(c.getAdditionalDesc() + "");
 			UpdateCars.is4x4ComboBox.getSelectionModel().select(c.isIs4x4() + "");
+
+			
+			storesComboBox.setOnAction(event -> {
+				Store store = (Store) storesComboBox.getSelectionModel().getSelectedItem();			
+				System.out.println(store.getId());	
+				try {
+					int priceOfCar = c.returnPrice(c.getId(),store.getId());
+					view.UpdateCars.txtForPrice.setText(priceOfCar + "");
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}			
+
+		});
+
+			
+
+			
 			// price = new TextField();
 
 			// Fundi
