@@ -27,6 +27,7 @@ public class MainComponent extends VBox {
 
 	public MainComponent() throws SQLException, IOException {
 
+		
 		HBox headerBox = new HBox();
 		headerBox.setAlignment(Pos.CENTER);
 		headerBox.setPrefHeight(20);

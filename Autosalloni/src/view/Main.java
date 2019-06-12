@@ -16,7 +16,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class Main extends Application {
-	;
+	
 
 	
 	public static String token = null; 
@@ -43,7 +43,17 @@ public class Main extends Application {
 		for (int i = 0; i < I18N.getLanguages().size(); i++) {
 			allowedLanguages.add(I18N.getLanguages().get(i).getLanguage());
 		}
+		if (loggedName == null) {
 
+			SignIn.display();
+
+		} else {
+
+			scene = new Scene(mainWindow, 1440, 800);
+
+		}
+
+		
 		content.setSpacing(30);
 		content.setPadding(new Insets(50, 10, 30, 10));
 
@@ -58,16 +68,7 @@ public class Main extends Application {
 			e.printStackTrace();
 		}
 
-		if (loggedName == null) {
-
-			SignIn.display();
-
-		} else {
-
-			scene = new Scene(mainWindow, 1440, 800);
-
-		}
-		scene.getStylesheets()
+			scene.getStylesheets()
 				.add("https://fonts.googleapis.com/css?family=Titillium+Web:200,300,400,700&display=swap");
 		scene.getStylesheets().add(Main.class.getResource("header.css").toExternalForm());
 		primaryStage.setScene(scene);
