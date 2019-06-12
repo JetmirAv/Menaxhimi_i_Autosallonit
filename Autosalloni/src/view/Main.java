@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
+	public static String token = null;
 	public static int loggedId = 0;
 	public static String loggedName = null;
 	public static String loggedSurname = null;
@@ -25,7 +26,7 @@ public class Main extends Application {
 	public static ArrayList<Node> nodeHistory = new ArrayList<Node>();
 	public static VBox content = new VBox();
 	public static Scene scene = null;
-	
+
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		content.setSpacing(30);
@@ -38,27 +39,26 @@ public class Main extends Application {
 			mainWindow.setTop(new Header());
 			mainWindow.setLeft(new Sidebar());
 
+			if (token == null) {
+
+				SignIn.display();
+
+			} else {
+
+				scene = new Scene(mainWindow, 1440, 800);
+
+			}
+			scene.getStylesheets()
+					.add("https://fonts.googleapis.com/css?family=Titillium+Web:200,300,400,700&display=swap");
+			scene.getStylesheets().add(Main.class.getResource("header.css").toExternalForm());
+			primaryStage.setScene(scene);
+			primaryStage.setTitle("Autosalloni");
+			primaryStage.setResizable(false);
+			primaryStage.show();
 		} catch (Exception e) {
-			e.printStackTrace();
+			Modal.display(2, "Good Bye!", "Good Bye! We hope we see you again.", "Ok", "");
 		}
 
-		
-		if (loggedName == null) {
-
-			SignIn.display();
-			
-		} else {
-			
-			scene = new Scene(mainWindow, 1440, 800);
-
-		}
-		scene.getStylesheets()
-				.add("https://fonts.googleapis.com/css?family=Titillium+Web:200,300,400,700&display=swap");
-		scene.getStylesheets().add(Main.class.getResource("header.css").toExternalForm());
-		primaryStage.setScene(scene);
-		primaryStage.setTitle("Autosalloni");
-		primaryStage.setResizable(false);
-		primaryStage.show();
 	}
 
 	public static void main(String[] args) throws IOException {

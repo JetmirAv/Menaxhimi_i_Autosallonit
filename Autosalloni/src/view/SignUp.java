@@ -1,29 +1,25 @@
 package view;
 
-
-import java.awt.Desktop;
 import java.awt.image.BufferedImage;
-import java.awt.image.RenderedImage;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.util.Arrays;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Random;
 
 import javax.imageio.ImageIO;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
+
+import controller.UploadPhotoController;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -34,289 +30,149 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class SignUp {
+
+	public static TextField nameField = new TextField();
+	public static TextField lastnameField = new TextField();
+	public static TextField emailField = new TextField();
+	public static PasswordField passField = new PasswordField();
+	public static TextField birthdayField = new TextField();
+	public static ChoiceBox<String> gendre = new ChoiceBox<>();
+	public static TextField phoneField = new TextField();
+	public static TextField addressField = new TextField();
+	public static TextField cityField = new TextField();
+	public static TextField stateField = new TextField();
+	public static TextField postalField = new TextField();
+	public static TextField cardField = new TextField();
+	public static TextField expMonthField = new TextField();
+	public static TextField expYearField = new TextField();
+	public static BufferedImage bImage = null;
 	
-	public static TextField nameField;
-	public static TextField lastnameField;
-	public static TextField emailField;
-	public static TextField passField;
 	
-	public static Button openButton;
-	public static TextArea textArea;
-	private static Desktop desktop = Desktop.getDesktop();
-	public static FileChooser fileChooser;
-	public static File file;
 	public static Image image1;
 	public static ImageView imageView1 = new ImageView();
-	public static FileInputStream fileInput;
-	public static String bImage;	
 	public static TextField imgField;
+	public static Stage modal = new Stage();
+
+	public static Stage stage = new Stage();
 	
-//	public SignUp(File file) throws FileNotFoundException {
-//		fileInput = new FileInputStream(file);
-//	}
-	
-	
-	
-	
-	
-	public static VBox display() throws IOException
-	{
-		final Stage stage = new Stage();
+	public static void display() throws IOException {
+
+		modal.initModality(Modality.APPLICATION_MODAL);
+		modal.setTitle("Sign In");
+
+
+		
 		String current = new java.io.File(".").getCanonicalPath();
-		//final Stage stage = new Stage();
-		System.out.println(current);
-		final FileChooser fileChooser = new FileChooser();
-        final Button openButton = new Button("Open a Picture...");
-        final Button openMultipleButton = new Button("Open Pictures...");     
-       // final ImageView imageView1 = new ImageView();
-        
-        TextArea textArea = new TextArea();
-        textArea.setMinHeight(20);
-        
-        
-		
-//        openButton.setOnAction(
-//                new EventHandler<ActionEvent>() {
-//                    @Override
-//                    public void handle(final ActionEvent e) {
-//                    	textArea.clear();
-//                        configureFileChooser(fileChooser);
-//                        File file = fileChooser.showOpenDialog(stage);
-//                        if (file != null) {
-//                            openFile(file);
-//                            List<File> files = Arrays.asList(file);
-//                            printLog(textArea, files);
-//                        }
-//                    }
-//                });
-        
-        
-//        openButton.setOnAction(new EventHandler<ActionEvent>() {
-//        	 
-//            @Override
-//            public void handle(ActionEvent event) {
-//                textArea.clear();
-//                configureFileChooser(fileChooser); 
-//                File file = fileChooser.showOpenDialog(stage);
-//                if (file != null) {
-//                    openFile(file);
-//                    List<File> files = Arrays.asList(file);
-//                    printLog(textArea, files);
-//                }
-//            }
-//        });
-		
-//        openMultipleButton.setOnAction(
-//                new EventHandler<ActionEvent>() {
-//                    @Override
-//                    public void handle(final ActionEvent e) {
-//                    	 textArea.clear();
-//                        configureFileChooser(fileChooser);                               
-//                        List<File> list = 
-//                            fileChooser.showOpenMultipleDialog(stage);
-//                        if (list != null) {
-//                            for (File file : list) {
-//                                openFile(file);
-//                            }
-//                        }
-//                    }
-//                });
-        
-//        openMultipleButton.setOnAction(new EventHandler<ActionEvent>() {
-//        	 
-//            @Override
-//            public void handle(ActionEvent event) {
-//                textArea.clear();
-//                configureFileChooser(fileChooser); 
-//                List<File> files = fileChooser.showOpenMultipleDialog(stage);
-// 
-//                printLog(textArea, files);
-//                //openFile(file);
-//            }
-//        });
-        
-        openButton.setOnAction(e ->{
-        	file = fileChooser.showOpenDialog(stage);
-        	if(file != null)
-        	{
-        		BufferedImage bImage = null;
-        		
-        		textArea.clear();
-                configureFileChooser(fileChooser); 
-        		textArea.appendText(file.getAbsolutePath() + "\n");
-        		try {
-					bImage = ImageIO.read(file);
-				} catch (IOException e2) {
-					// TODO Auto-generated catch block
-					e2.printStackTrace();
-				}
-        		//Path ,prefWidth, prefheight, 
-        		image1 = new Image(file.toURI().toString(),100, 150, true, true);
-        		
-        		String imgName = file.getName().toString();
-        		String extType = imgName.split("\\.")[1];
-        		imageView1.setImage(image1);
-        		imageView1.setFitHeight(150);
-        		imageView1.setFitWidth(100);
-        		imageView1.setPreserveRatio(true);
-//        		System.out.println(imgName.getClass().getName());
-//        		System.out.println(file.getAbsolutePath().toString().split("\\.")[0]);
-//        		System.out.println(imgName.split("\\.")[1]);
-//        		System.out.println(file.getAbsolutePath().split("\\.")[1]);
-        		
-        		try {
-					ImageIO.write(bImage, extType, new File(current + "/uploads/user-img/" + imgName));
-				} catch (IOException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-        		
-//        		try {
-//					ImageIO.write((RenderedImage) file, "jpg", new File("current + /uploads/user-img/"));
-//				} catch (IOException e1) {
-//					// TODO Auto-generated catch block
-//					e1.printStackTrace();
-//				}
-        		
-        		
-//        		try {
-//					ImageIO.write((RenderedImage) file, "gif", new File("current + /uploads/user-img/"));
-//					
-//				} catch (IOException e1) {
-//					// TODO Auto-generated catch block
-//					e1.printStackTrace();
-//				}
-        		
-//        	    BufferedImage bi = getMyImage();
-//        	    File outputfile = new File("saved.png");
-//        	    ImageIO.write(bi, "png", outputfile);
-        		
-        		
-        	}
-        });
-		
-		final HBox hboximg = new HBox();
-		hboximg.getChildren().addAll(textArea,openButton, openMultipleButton,imageView1);
-		
-		
-		
-		
-		
-		
-		
-		FileInputStream autoPath = new FileInputStream(current + "/src/img/auto.png");
-		
+		FileInputStream UserImgPath = new FileInputStream(current + "/src/img/user.png");
+		System.out.println(current + "/src/img/user.png");
+		image1 = new Image(UserImgPath, 100, 150, true, true);
+		imageView1.setImage(image1);
+
+		imageView1.setOnMouseClicked(new UploadPhotoController());
+
 		Text signUpTxt = new Text("Sign Up");
-		signUpTxt.setFont(new Font("Times New Roman",30));
-		signUpTxt.setFill(Color.WHITE);
+		signUpTxt.setFont(new Font("Times New Roman", 30));
+		signUpTxt.setFill(Color.BLACK);
 
 		VBox vbox = new VBox(15);
-		vbox.setPadding(new Insets(40,40,40,40));
-		vbox.getChildren().add(signUpTxt);
+		vbox.setPadding(new Insets(40, 40, 40, 40));
+		vbox.getChildren().addAll(signUpTxt, imageView1);
 		vbox.setAlignment(Pos.CENTER);
 
+
 		HBox hbox = new HBox();
-		TextField nameField = new TextField();
+
 		nameField.setPromptText("First Name");
 		nameField.setPrefWidth(250);
-		TextField lastnameField = new TextField();
 		lastnameField.setPromptText("Last Name");
 		lastnameField.setPrefWidth(250);
-		
-		hbox.getChildren().addAll(nameField,lastnameField);
+
+		hbox.getChildren().addAll(nameField, lastnameField);
 		hbox.setSpacing(20);
 		hbox.setAlignment(Pos.CENTER);
 		vbox.getChildren().add(hbox);
-		
-		
-		
-		//VBox vbox2 = new VBox();
+
+		// VBox vbox2 = new VBox();
 		HBox hbox2 = new HBox();
-		TextField birthdayField = new TextField();
+
 		birthdayField.setPromptText("Birthday");
 		birthdayField.setPrefWidth(220);
-		ChoiceBox<String> gendre = new ChoiceBox<>();
+		
 		gendre.getItems().add("M");
 		gendre.getItems().add("F");
 		gendre.setPrefWidth(30);
 		gendre.setValue("M");
-		//emailField.setMaxWidth(500);
-		TextField phoneField = new TextField();
+		// emailField.setMaxWidth(500);
+		
 		phoneField.setPromptText("Phone Number");
 		phoneField.setPrefWidth(220);
-		//phoneField.setMaxWidth(500);
-		hbox2.getChildren().addAll(birthdayField,gendre,phoneField);
+		// phoneField.setMaxWidth(500);
+		hbox2.getChildren().addAll(birthdayField, gendre, phoneField);
 		hbox2.setSpacing(15);
 		hbox2.setAlignment(Pos.CENTER);
 		vbox.getChildren().add(hbox2);
 
 		HBox hbox3 = new HBox();
-		TextField emailField = new TextField();
 		emailField.setPromptText("Email");
 		emailField.setPrefWidth(250);
-		//emailField.setMaxWidth(500);
-		TextField passField = new TextField();
+		// emailField.setMaxWidth(500);
 		passField.setPromptText("Password");
 		passField.setPrefWidth(250);
-		//passField.setMaxWidth(500);
-		hbox3.getChildren().addAll(emailField,passField);
+		// passField.setMaxWidth(500);
+		hbox3.getChildren().addAll(emailField, passField);
 		hbox3.setSpacing(20);
 		hbox3.setAlignment(Pos.CENTER);
 		vbox.getChildren().add(hbox3);
-		
+
 		HBox hbox4 = new HBox();
-		TextField addressField = new TextField();
+		
 		addressField.setPromptText("Address");
-		addressField.setPrefWidth(160);
-		//emailField.setMaxWidth(500);
-		TextField cityField = new TextField();
+		addressField.setPrefWidth(250);
+		// emailField.setMaxWidth(500);
+		
 		cityField.setPromptText("City");
-		cityField.setPrefWidth(160);
-		TextField stateField = new TextField();
+		cityField.setPrefWidth(250);
+		
 		stateField.setPromptText("State");
-		stateField.setPrefWidth(160);
-		hbox4.getChildren().addAll(addressField,cityField,stateField);
+		stateField.setPrefWidth(250);
+		hbox4.getChildren().addAll(addressField, cityField);
 		hbox4.setSpacing(20);
-		hbox4.setAlignment(Pos.CENTER);
+		hbox4.setAlignment(Pos.CENTER_LEFT);
 		vbox.getChildren().add(hbox4);
 
-		
-		
 		HBox hbox5 = new HBox();
-		TextField postalField = new TextField();
+		
 		postalField.setPromptText("Postal Number");
-		postalField.setPrefWidth(250);
-		//emailField.setMaxWidth(500);
-		TextField cardField = new TextField();
+		postalField.setPrefWidth(160);
+		// emailField.setMaxWidth(500);
+		
 		cardField.setPromptText("Card Number");
 		cardField.setPrefWidth(250);
-		hbox5.getChildren().addAll(postalField,cardField);
+		hbox5.getChildren().addAll(stateField, postalField);
 		hbox5.setSpacing(20);
-		hbox5.setAlignment(Pos.CENTER);
+		hbox5.setAlignment(Pos.CENTER_LEFT);
 		vbox.getChildren().add(hbox5);
-		
-		
-		
+
 		HBox hbox6 = new HBox();
-		TextField expMonthField = new TextField();
+		
 		expMonthField.setPromptText("expMonth");
 		expMonthField.setPrefWidth(249);
-		//emailField.setMaxWidth(500);
-		TextField expYearField = new TextField();
+		// emailField.setMaxWidth(500);
+		
 		expYearField.setPromptText("expYear");
 		expYearField.setPrefWidth(249);
-		hbox6.getChildren().addAll(expMonthField,expYearField);
+		hbox6.getChildren().addAll(expMonthField, expYearField);
 		hbox6.setSpacing(20);
 		hbox6.setAlignment(Pos.CENTER);
 		vbox.getChildren().add(hbox6);
-		
 
 		Button signUpBtn = new Button("Sign Up");
 		signUpBtn.setOnMouseEntered(e -> {
-		signUpBtn.setCursor(Cursor.HAND);
+			signUpBtn.setCursor(Cursor.HAND);
 		});
 		signUpBtn.setStyle("-fx-text-fill:white ;  -fx-background-color:#5DA4C7;");
 		signUpBtn.setPrefWidth(520);
@@ -327,47 +183,35 @@ public class SignUp {
 		vbox.getChildren().add(memberTxt);
 		memberTxt.setFill(Color.WHITE);
 
-
 		Button signInBtn = new Button("Sign In");
 		signInBtn.setOnMouseEntered(e -> {
-		signInBtn.setCursor(Cursor.HAND);
+			signInBtn.setCursor(Cursor.HAND);
 		});
-		
+
 		signUpBtn.setOnAction(new controller.SignUpController());
-		
-		signInBtn.setStyle("    -fx-background-color: transparent;\r\n" + 
-				"    -fx-border: none;\r\n" + 
-				"	-fx-padding:0 5px 5px 10px;\r\n" +  
-				"	-fx-text-fill:#5DA4C7;");
-		vbox.getChildren().addAll(signInBtn,hboximg);
-		
-		vbox.setStyle(" -fx-background-image: url(autoPath);\r\n" + 
-				"    -fx-background-repeat: stretch;   \r\n" + 
-				"    -fx-background-size: 900 506;\r\n" + 
-				"    -fx-background-position: center center;\r\n" + 
-				"    -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0); \r\n" + 
-				"");
-		return vbox;
+
+		signInBtn.setStyle("    -fx-background-color: transparent;\r\n" + "    -fx-border: none;\r\n"
+				+ "	-fx-padding:0 5px 5px 10px;\r\n" + "	-fx-text-fill:#5DA4C7;");
+		vbox.getChildren().addAll(signInBtn);
+
+		vbox.setStyle(" -fx-background-image: url(autoPath);\r\n" + "    -fx-background-repeat: stretch;   \r\n"
+				+ "    -fx-background-size: 900 506;\r\n" + "    -fx-background-position: center center;\r\n"
+				+ "    -fx-effect: dropshadow(three-pass-box, black, 30, 0.5, 0, 0); \r\n" + "");
+
+		Scene scene = new Scene(vbox);
+		modal.setScene(scene);
+		modal.showAndWait();
 	}
-	
-	
-	
-	
-    public static void configureFileChooser(
-            final FileChooser fileChooser) {      
-                fileChooser.setTitle("View Pictures");
-                fileChooser.setInitialDirectory(
-                    new File(System.getProperty("user.home"))
-                );                 
-                fileChooser.getExtensionFilters().addAll(
-                    new FileChooser.ExtensionFilter("All Images", "*.*"),
-                    new FileChooser.ExtensionFilter("JPG", "*.jpg"),
-                    new FileChooser.ExtensionFilter("PNG", "*.png")
-                );
-        }
+
+	public static void configureFileChooser(final FileChooser fileChooser) {
+		fileChooser.setTitle("View Pictures");
+		fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
+		fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("All Images", "*.*"),
+				new FileChooser.ExtensionFilter("JPG", "*.jpg"), new FileChooser.ExtensionFilter("PNG", "*.png"));
+	}
 //	
 //	
-    
+
 //    
 //    public static void printLog(TextArea textArea, List<File> files) {
 //        if (files == null || files.isEmpty()) {
@@ -377,9 +221,7 @@ public class SignUp {
 //            textArea.appendText(file.getAbsolutePath() + "\n");
 //        }
 //    }
-    
-    
-    
+
 //    public static void openFile(final File file) {
 //        try {
 //            desktop.open(file);
@@ -389,7 +231,7 @@ public class SignUp {
 //            );
 //        }
 //    }
-    
+
 //    private static void openFile(final File file) {
 //    	
 //    	//fileA = file ;
@@ -401,7 +243,5 @@ public class SignUp {
 //            e.printStackTrace();
 //        }
 //    }
-    
-    
 
 }

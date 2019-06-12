@@ -104,6 +104,16 @@ public class SignIn extends HBox {
 		signUpBtn.setOnMouseEntered(e -> {
 			signUpBtn.setCursor(Cursor.HAND);
 		});
+		signUpBtn.setOnAction(e -> {
+			try {
+				 SignUp.display();
+//				 modal.close();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		});
+		
 		signUpBtn.getStyleClass().addAll("signUpBtn");
 		signUpBox.getChildren().addAll(newUserTxt, signUpBtn);
 		vbox.getChildren().add(signUpBox);
