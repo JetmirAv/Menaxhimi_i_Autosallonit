@@ -713,7 +713,7 @@ public class Car {
 			car1Circle.setRadius(15);
 			car1Circle.setFill(new ImagePattern(img));
 			photoHBox.getChildren().add(car1Circle);
-			photoHBox.setTranslateX(-25);
+			photoHBox.setTranslateX(0);
 			photoHBox.setPadding(new Insets(0, 5, 0, 25));
 			result.setTranslateX(-25);
 
@@ -742,6 +742,16 @@ public class Car {
 			Label car1IsAutomaticLabel = new Label((resultSet.getString(9) == "1" ? "true" : "false"));
 			car1IsAutomaticLabel.getStyleClass().add("fonts");
 			car1IsAutomaticLabel.setMinWidth(60);
+
+			car1SeatsLabel.getStyleClass().add("storeData");
+			car1DoorsLabel.getStyleClass().add("storeData");
+			car1AlarmLabel.getStyleClass().add("storeData");
+			car1ClimateLabel.getStyleClass().add("storeData");
+			car1HidraulicLabel.getStyleClass().add("storeData");
+			car1HoursePowerLabel.getStyleClass().add("storeData");
+			car1MaxspeedLabel.getStyleClass().add("storeData");
+			car1IsAutomaticLabel.getStyleClass().add("storeData");
+
 
 			result.getStyleClass().add("backgroundColor");
 			result.getChildren().addAll(photoHBox, car1SeatsLabel, car1DoorsLabel, car1AlarmLabel, car1ClimateLabel,
@@ -774,6 +784,9 @@ public class Car {
 		}
 		return car;
 	}
+	
+	
+	
 
 	public static Car getSomeDetailsOfCar() throws SQLException {
 		String query = "SELECT * From Car  ";

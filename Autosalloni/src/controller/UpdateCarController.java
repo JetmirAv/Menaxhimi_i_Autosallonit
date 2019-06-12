@@ -29,26 +29,9 @@ public class UpdateCarController implements EventHandler<ActionEvent>{
 	public void handle(ActionEvent e) {
 		
 		Node event =  (Node) e.getSource();
-		System.out.println(event.getId());
-		System.out.println("Mbrijtem");
-		
-		
 		
 		Manufacturer manufacturer = (Manufacturer) view.UpdateCars.manufacturerComboBox.getSelectionModel().getSelectedItem();
 		FuelType fuelType = (FuelType) view.UpdateCars.fuelTypeIdComboBox.getSelectionModel().getSelectedItem();
-	//	Store store = (Store) view.UpdateCars.storesComboBox.getSelectionModel().getSelectedItem();			
-
-		;
-
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		
 			try {
 				if (models.Car.update(manufacturer.getId(), UpdateCars.txtForModel.getText(), UpdateCars.txtForbodyNumber.getText(),
@@ -82,7 +65,6 @@ public class UpdateCarController implements EventHandler<ActionEvent>{
 
 								} else {
 
-					System.out.println("Mbrijtem4");
 					Modal.display(2, "Error", "Users was not updated", "OK", "");
 				}
 			} catch (NumberFormatException | SQLException | IOException e1) {
@@ -90,10 +72,7 @@ public class UpdateCarController implements EventHandler<ActionEvent>{
 				e1.printStackTrace();
 			}
 
-		
-
-		System.out.println("Mbrijtem6");
-		
+			
 	}
 
 }

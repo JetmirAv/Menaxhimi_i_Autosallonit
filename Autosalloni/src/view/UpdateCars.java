@@ -321,25 +321,32 @@ public class UpdateCars {
 
 		
 		updateBtn.getStyleClass().add("photoToCenter");
-		HBox btnHbox = new HBox();
+		HBox btnHbox = new HBox(30);
 		btnHbox.setPrefWidth(100);
 		btnHbox.setPrefHeight(40);
-		btnHbox.getChildren().add(updateBtn);
+		btnHbox.getChildren().addAll(updateBtn,deleteBtn);
 		btnHbox.setPadding(new Insets(50, 0, 0, 0));
-		btnHbox.setAlignment(Pos.CENTER);
+		btnHbox.setTranslateX(350);
 		carsData.setAlignment(Pos.CENTER);
 		vbox.setPadding(new Insets(0, 30, 0, 30));
 
 		updateBtn.setOnAction(new controller.UpdateCarController());
+		deleteBtn.setOnAction(new controller.DeleteCarController());
+		updateBtn.getStyleClass().add("btnFormat");
+		deleteBtn.getStyleClass().add("btnFormat");
 
-		manufacturerComboBox.setOnAction(event -> {
-			Manufacturer manufacturer = (Manufacturer) manufacturerComboBox.getSelectionModel().getSelectedItem();
+		deleteBtn.setPrefWidth(100);
+		updateBtn.setPrefWidth(100);
+		
+		
+//		manufacturerComboBox.setOnAction(event -> {
+//			Manufacturer manufacturer = (Manufacturer) manufacturerComboBox.getSelectionModel().getSelectedItem();
 			// FuelType fuelType = (FuelType)
 			// fuelTypeIdComboBox.getSelectionModel().getSelectedItem();
 			// Stores store = (Stores)
 			// manufacturerComboBox.getSelectionModel().getSelectedItem();
 
-		});
+//		});
 
 		showData();
 		vbox.getChildren().addAll(photoHBox, carsData, secondCarsData, btnHbox);
@@ -388,15 +395,5 @@ public class UpdateCars {
 		}
 
 	}
-//		public static boolean update(int manufacturerId ,String model,String bodyNumber,int yearOfProd ,int seats ,
-//				int doors,boolean roof ,boolean alarm ,boolean central ,boolean airbag ,boolean autonomus,
-//				boolean navigator,boolean climate,int fuelTypeId,int fuelCapacity,double fuelConsumption,
-//				boolean hidraulic,String engineModel,double enginePower,int hoursePower,int maxspeed,
-//				double seconds0to100,boolean isAutomatic,int gears,String tireModel,int tireSize,String additionalDesc,
-//				boolean is4x4 ,int carId) throws SQLException{ 
-
-
-		
-	
 
 }

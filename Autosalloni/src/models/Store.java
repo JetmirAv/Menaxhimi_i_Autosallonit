@@ -9,6 +9,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
@@ -210,12 +211,12 @@ public class Store {
 			Label lblPostal = new Label(resultSet.getString(6));
 			Label lblPhone = new Label(resultSet.getString(7));
 
-			lblName.getStyleClass().add("userHeaderLabel");
-			lblAddress.getStyleClass().add("userHeaderLabel");
-			lblPhone.getStyleClass().add("userHeaderLabel");
-			lblCity.getStyleClass().add("userHeaderLabel");
-			lblState.getStyleClass().add("userHeaderLabel");
-			lblPostal.getStyleClass().add("userHeaderLabel");
+			lblName.getStyleClass().add("storeData");
+			lblAddress.getStyleClass().add("storeData");
+			lblPhone.getStyleClass().add("storeData");
+			lblCity.getStyleClass().add("storeData");
+			lblState.getStyleClass().add("storeData");
+			lblPostal.getStyleClass().add("storeData");
 
 			lblName.setPrefWidth(120);
 			lblAddress.setPrefWidth(230);
@@ -227,8 +228,6 @@ public class Store {
 			headerBox.getChildren().addAll(lblName, lblAddress, lblPhone, lblPostal,
 					lblCity, lblState);
 			storeList.add(headerBox);
-
-		
 		}
 		
 		return storeList;

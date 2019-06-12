@@ -67,4 +67,11 @@
 .userList{
 	-fx-background-color: #fff;
 }
-
+.storeData{
+	-fx-alignment: center;
+	-fx-font-size: 110%;
+}
+.btnFormat{
+	-fx-text-fill:white ; 
+	 -fx-background-color:#5DA4C7; 
+}
