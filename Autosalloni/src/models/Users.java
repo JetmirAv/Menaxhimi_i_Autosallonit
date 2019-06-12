@@ -410,8 +410,6 @@ public class Users {
 	
 	
 	public static String login(String email, String password) throws SQLException {
-//		ArrayList<String> ret = new ArrayList<String>();
-//		boolean ret = false;
 		String res = "";
 		String query = "select id, roleId, name, surname, password, img from users where email = ? ";
 		
@@ -420,17 +418,13 @@ public class Users {
 		
 		ResultSet r = stm.executeQuery();
 		while(r.next()) {
-			System.out.println(r.getString(5).getClass());
-			System.out.println(password.getClass());
-			System.out.println(r.getString(5).equals(password));
 			String encPw = helpers.PasswordEncrypt.encrypt(password);
 			
 			if(r.getString(5).equals(encPw)) {
 				res = JWT.generateJWTToken(r.getInt(1), r.getInt(2), r.getString(3), r.getString(4), email, r.getString(6));	
-				System.out.println(res);
 			}
+			
 		}
-		
 		return res;
 	}
 

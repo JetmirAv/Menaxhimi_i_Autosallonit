@@ -16,16 +16,12 @@ public class LoginHandlerController implements EventHandler<ActionEvent>{
 	public void handle(ActionEvent e) {
 		
 		try {
-			Main.token  = Users.login(SignIn.emailField.getText(), SignIn.passwordField.getText());
+			Main.token = Users.login(SignIn.emailField.getText(), SignIn.passwordField.getText());
 			if(Main.token.length() > 0) {
-				System.out.println();
-				System.out.println("Main.token:" + Main.token);
-//				helpers.JWT.decodeJWT(token);
-//				Modal.display(2, "Sucess!", "Bravo", "Ok", "");
 				SignIn.modal.close();
 				Main.scene = new Scene(Main.mainWindow, 1440, 800);
-
 			} else {
+				SignIn.passwordField.clear();
 				Modal.display(2, "Error!", "Email or password incorrect", "Ok", "");
 			}
 			

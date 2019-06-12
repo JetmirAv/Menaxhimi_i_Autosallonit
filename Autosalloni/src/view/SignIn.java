@@ -124,10 +124,7 @@ public class SignIn extends HBox {
 		
 		hbox.setOnKeyPressed(e -> {
 			if (e.getCode() == KeyCode.ENTER) {
-				loginBtn.onKeyTypedProperty();
-				Main.scene = new Scene(Main.mainWindow, 1440, 800);
-				modal.close();
-				//loginBtn.onKeyReleasedProperty();
+				loginBtn.fire();
 			}
 		});
 		

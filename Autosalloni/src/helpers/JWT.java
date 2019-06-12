@@ -70,23 +70,20 @@ public class JWT {
 			try {
 				int num = Integer.parseInt(string);
 				info1.add(num);
-				System.out.println(num);
 			} catch (NumberFormatException e) {
 				info2.add(string);
-				System.out.println(string);
 			}
 		}
-		System.out.println();
-		System.out.println();
 		
-		System.out.println("ktu1");
-		for(int i=0; i<info1.size(); i++) {
-			System.out.println(info1.get(i));
-		}
-		System.out.println("ktu2");
-		for(int i=0; i<info2.size(); i++) {
-			System.out.println(info2.get(i));
-		}
+//		System.out.println("ktu1");
+//		for(int i=0; i<info1.size(); i++) {
+//			System.out.println(info1.get(i));
+//		}
+//		System.out.println("ktu2");
+//		for(int i=0; i<info2.size(); i++) {
+//			System.out.println(info2.get(i));
+//		}
+		
 		Main.loggedId = info1.get(0);
 		Main.loggedRole = info1.get(1);
 		Main.loggedName = info2.get(0);
