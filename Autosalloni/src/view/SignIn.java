@@ -30,14 +30,14 @@ public class SignIn extends HBox {
 	public static PasswordField passwordField = new PasswordField();
 	public static TextField emailField = new TextField();
 	public static Stage modal = new Stage();
-	public static ComboBox<String> languagesCbo;
+	public static ComboBox<String> languagesCbo = new ComboBox<>();
 
 	public static void display() throws IOException {
 
-		final ComboBox<String> languagesCbo = new ComboBox<>();
-//		languagesCbo.getItems().addAll(Main.allowedLanguages);
-//		languagesCbo.setValue(I18N.getDefaultLocale().getLanguage());
-//		languagesCbo.setOnAction(e -> switchLanguage());
+
+		languagesCbo.getItems().addAll(Main.allowedLanguages);
+		languagesCbo.setValue(I18N.getDefaultLocale().getLanguage());
+		languagesCbo.setOnAction(e -> switchLanguage());
 
 		modal.initModality(Modality.APPLICATION_MODAL);
 		modal.setTitle("Sign In");
@@ -60,24 +60,24 @@ public class SignIn extends HBox {
 		ImageView logoView = new ImageView(logoImg);
 		vbox.getChildren().addAll(languagesCbo, logoView);
 
-		Text welcomeTxt = new Text("Welcome Back,");
+		Text welcomeTxt = I18N.getText("welcomeBack");
 
 		welcomeTxt.setStyle("-fx-font-weight:bold; -fx-font-family:'Titillium Web'; -fx-font-size:25");
 		vbox.getChildren().add(welcomeTxt);
 
-		Text entryTxt = new Text("Sign in to continue");
+		Text entryTxt = I18N.getText("signInToCont");
 		entryTxt.setFill(Color.GREY);
 		entryTxt.setFont(Font.font("Verdana", 16));
 		vbox.getChildren().add(entryTxt);
 
-		Label emailLbl = new Label("Email");
+		Label emailLbl = I18N.getLabel("email");
 		emailField.setPromptText("email@email.email");
 		emailField.setStyle("-fx-background-color: -fx-text-box-border "
 				+ ", -fx-background; -fx-background-insets: 0, 0 0 1 0 ;" + "-fx-background-radius: 0 ;");
 		vbox.getChildren().addAll(emailLbl);
 		vbox.getChildren().addAll(emailField);
 
-		Label passwordLbl = new Label("Password");
+		Label passwordLbl = I18N.getLabel("passwordU");
 		vbox.getChildren().addAll(passwordLbl);
 
 		passwordField.setPromptText("***********");
@@ -90,7 +90,7 @@ public class SignIn extends HBox {
 				+ " -fx-background-insets: 0, 0 0 1 0 ;-fx-background-radius: 0 ;");
 		vbox.getChildren().addAll(passwordField);
 
-		Button forgotPass = new Button(" Forgot password?");
+		Button forgotPass = I18N.getButton("forgotPass");
 		forgotPass.setOnMouseEntered(e -> {
 			forgotPass.setCursor(Cursor.HAND);
 		});
@@ -107,8 +107,8 @@ public class SignIn extends HBox {
 		vbox.getChildren().add(loginBtn);
 
 		HBox signUpBox = new HBox();
-		Text newUserTxt = new Text("New User? ");
-		Button signUpBtn = new Button("Sign Up");
+		Text newUserTxt = I18N.getText("newUser");
+		Button signUpBtn = I18N.getButton("signUp");
 		signUpBtn.setOnMouseEntered(e -> {
 			signUpBtn.setCursor(Cursor.HAND);
 		});
