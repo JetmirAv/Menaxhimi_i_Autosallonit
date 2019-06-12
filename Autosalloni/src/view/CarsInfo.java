@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import controller.CarsInfoController;
+import controller.UploadPhotoController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -27,6 +28,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import models.Car;
 import models.Manufacturer;
@@ -78,17 +80,14 @@ public class CarsInfo extends VBox{
 	
 	public static Button openButton;
 	public static TextArea textArea;
-	private static Desktop desktop = Desktop.getDesktop();
+	public static Desktop desktop = Desktop.getDesktop();
 	public static FileChooser fileChooser;
 	public static File file;
 	public static Image image1;
 	public static ImageView imageView1 = new ImageView();
 	public static FileInputStream fileInput;
 	public static TextField imgField = new TextField();
-	
-	
-	
-	
+	public static Stage modal = new Stage();
 	
 	
 
@@ -110,7 +109,18 @@ public class CarsInfo extends VBox{
         textArea.setMinWidth(600);
         textArea.setMaxWidth(600);
         textArea.setMaxHeight(40);
-        
+		modal.initModality(Modality.APPLICATION_MODAL);
+		modal.setTitle("Sign In");
+
+
+		
+		FileInputStream UserImgPath = new FileInputStream(current + "/src/img/user.png");
+		System.out.println(current + "/src/img/user.png");
+		image1 = new Image(UserImgPath, 100, 150, true, true);
+		imageView1.setImage(image1);
+
+		imageView1.setOnMouseClicked(new UploadPhotoController());
+
         
         openButton.setOnAction(e ->{
         	file = fileChooser.showOpenDialog(stage);
@@ -144,7 +154,7 @@ public class CarsInfo extends VBox{
 		
 		
         
-		
+		System.out.println(showData());
 		
 		
 		ArrayList<Integer> years = new ArrayList<Integer>();
@@ -161,7 +171,7 @@ public class CarsInfo extends VBox{
 		HBox photoHBox = new HBox();
 
 		FileInputStream userPath;
-		userPath = new FileInputStream(current + "/src/img/user.png");
+		userPath = new FileInputStream(current1 + "/src/img/user.png");
 
 		Image img = new Image(userPath);
 
@@ -430,12 +440,12 @@ public class CarsInfo extends VBox{
 		insertBtn.getStyleClass().add("updateBtn");
 
 		
-		manufacturerComboBox.setOnAction(event -> {
-				Manufacturer manufacturer = (Manufacturer) manufacturerComboBox.getSelectionModel().getSelectedItem();			
-				FuelType fuelType = (FuelType) manufacturerComboBox.getSelectionModel().getSelectedItem();			
-				Stores store = (Stores) manufacturerComboBox.getSelectionModel().getSelectedItem();			
-
-		});
+//		manufacturerComboBox.setOnAction(event -> {
+//				Manufacturer manufacturer = (Manufacturer) manufacturerComboBox.getSelectionModel().getSelectedItem();			
+//				FuelType fuelType = (FuelType) manufacturerComboBox.getSelectionModel().getSelectedItem();			
+//				Stores store = (Stores) manufacturerComboBox.getSelectionModel().getSelectedItem();			
+//
+//		});
 
 
 		insertBtn.setOnAction(new CarsInfoController());
@@ -508,6 +518,8 @@ public class CarsInfo extends VBox{
 		
 		
 	}
+	
+
 	public static ObservableList<models.FuelType> fuelTypes() {
 
 		try {

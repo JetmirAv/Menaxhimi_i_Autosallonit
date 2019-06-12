@@ -30,6 +30,11 @@ public class UpdateCarController implements EventHandler<ActionEvent>{
 		
 		Node event =  (Node) e.getSource();
 		
+
+		System.out.println("Test");
+		System.out.println(UpdateCars.manufacturerComboBox.getSelectionModel().getSelectedItem());
+		System.out.println("Test");
+		
 		Manufacturer manufacturer = (Manufacturer) view.UpdateCars.manufacturerComboBox.getSelectionModel().getSelectedItem();
 		FuelType fuelType = (FuelType) view.UpdateCars.fuelTypeIdComboBox.getSelectionModel().getSelectedItem();
 		

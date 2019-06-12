@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -14,6 +15,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import models.Car;
+import models.Manufacturer;
 import models.Users;
 import view.Header;
 import view.Main;
@@ -27,6 +29,7 @@ public class CarClickedController implements EventHandler<MouseEvent> {
 		HBox box = (HBox) e.getSource();
 		System.out.println(box.getId());
 
+		
 		Label lblCreateUser = new Label("/Edit Car");
 		Header.lblLocation.getStyleClass().clear();
 		Header.lblLocation.getStyleClass().add("lblHistory");
@@ -48,9 +51,17 @@ public class CarClickedController implements EventHandler<MouseEvent> {
 			UpdateCars.yearOfProdComboBox = new ComboBox<>(FXCollections.observableArrayList(years));
 			UpdateCars.id = c.getId();
 
-			UpdateCars.fuelTypeIdComboBox.getSelectionModel().select(c.getNameOfFuelTypeSQL());
+			
+//			ObservableList<Manufacturer> carList = c.getNameAndId(c.getId());
+//			System.out.println("IdKerit");
+//			System.out.println(c.getId());
+			
+//			System.out.println("IdM");
+			System.out.println(view.CarsInfo.showData());
+			
+			UpdateCars.fuelTypeIdComboBox.getSelectionModel().select(models.FuelType.getNameAndId(c.getId()));
 			//UpdateCars.storesComboBox.getSelectionModel().select(FXCollections.observableArrayList(Store.getStore(c.getId())));
-			UpdateCars. manufacturerComboBox.getSelectionModel().select(c.getNameAndId(c.getId()));
+			UpdateCars.manufacturerComboBox.getSelectionModel().select(models.Manufacturer.getNameAndId(c.getId()));
 			UpdateCars.updateBtn.setId(String.valueOf(c.getId()));
 			UpdateCars.deleteBtn.setId(String.valueOf(c.getId()));
 			UpdateCars.txtForModel = new TextField(c.getModel());

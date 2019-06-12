@@ -159,6 +159,29 @@ public class Manufacturer {
 
 	}
 	
+	
+
+	public  static Manufacturer getNameAndId(int carId) throws SQLException {
+		
+		
+		String query = "SELECT  Distinct(m.id), m.name FROM manufacturer m inner join car c on m.id = c.manufacturerId WHERE c.id = ?";
+		
+		PreparedStatement preparedStatement = DatabaseConfig.getConnection().prepareStatement(query);
+		
+		preparedStatement.setInt(1, carId);
+		
+		java.sql.ResultSet resultSet = preparedStatement.executeQuery();
+		Manufacturer manufacturer =  null;
+		while(resultSet.next()) {
+
+			manufacturer = new Manufacturer(resultSet.getInt(1),resultSet.getString(2)); 
+			
+		
+		}
+		
+		return manufacturer;
+
+	}
 	@Override
 	public String toString() {
 	    return this.getName();
