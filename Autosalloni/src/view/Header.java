@@ -96,8 +96,8 @@ public class Header extends HBox{
 		historyBox.setSpacing(30);
 		historyBox.setAlignment(Pos.CENTER_LEFT);
 		historyBox.getChildren().add(labelBox);
-		historyBox.setPrefWidth(800); 
-		historyBox.setMaxWidth(801);
+		historyBox.setPrefWidth(900); 
+		historyBox.setMaxWidth(901);
 		
 		
 		

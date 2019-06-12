@@ -410,7 +410,12 @@ public class Users {
 		
 		ResultSet r = stm.executeQuery();
 		while(r.next()) {
-			res = JWT.generateJWTToken(r.getInt(1), r.getInt(2), r.getString(3), r.getString(4), email);
+			System.out.println(r.getString(5).getClass());
+			System.out.println(password.getClass());
+			System.out.println(r.getString(5).equals(password));
+			if(r.getString(5).equals(password)) {
+				res = JWT.generateJWTToken(r.getInt(1), r.getInt(2), r.getString(3), r.getString(4), email);				
+			}
 		}
 		
 		return res;

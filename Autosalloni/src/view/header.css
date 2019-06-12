@@ -1,7 +1,7 @@
 .header {
 	-fx-box-sizing: border-box;
 	-fx-height: 20px; 
-    -fx-padding: 10px 15px;
+    -fx-padding: 10px 0px 10px 15px;
     -fx-font-family: "Titillium Web";
     -fx-background-color: #EFF0F3;
     -fx-pref-width: 1440px;
@@ -20,7 +20,7 @@
 	-fx-pref-width: 25px;
 	-fx-pref-height: 25px;
 	-fx-background-color: black;
-	-fx-padding: 15px;
+	
 
 }
 
@@ -35,7 +35,7 @@
 
 .logoImg
 {
-	 -fx-padding:0 0 0 40px;
+	 -fx-padding:0 0 0 70px;
 	 -fx-pref-width: 30px;
 	 
 	 
