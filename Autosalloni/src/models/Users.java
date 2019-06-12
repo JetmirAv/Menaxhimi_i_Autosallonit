@@ -337,7 +337,7 @@ public class Users {
 		String current = new java.io.File(".").getCanonicalPath();
 		
 		String query = "select id, name, surname, " + "email, phoneNumber, gendre," + " birthday, city, state, img"
-				+ "  from users limit 10";
+				+ "  from users limit 10 offset " + view.MainComponent.offset;
 
 		PreparedStatement preparedStatement = DatabaseConfig.getConnection().prepareStatement(query);
 		ResultSet resultSet = preparedStatement.executeQuery();

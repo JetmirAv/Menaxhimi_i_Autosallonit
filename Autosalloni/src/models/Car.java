@@ -728,7 +728,7 @@ public class Car {
 
 		String current = new java.io.File(".").getCanonicalPath();
 
-		String query = "select id, seats , doors , alarm , climate , hidraulic , hoursePower , maxspeed, isAutomatic from car  limit 33";
+		String query = "select id, seats , doors , alarm , climate , hidraulic , hoursePower , maxspeed, isAutomatic from car  limit 10 ";
 
 		PreparedStatement preparedStatement = DatabaseConfig.getConnection().prepareStatement(query);
 		java.sql.ResultSet resultSet = preparedStatement.executeQuery();

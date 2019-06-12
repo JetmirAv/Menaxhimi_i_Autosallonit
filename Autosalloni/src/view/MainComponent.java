@@ -7,6 +7,7 @@ import java.util.List;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import models.Users;
@@ -14,7 +15,13 @@ import models.Users;
 public class MainComponent extends VBox {
 
 	public static VBox vbox = new VBox(5);
+	public static VBox vboxWithScroll = new VBox(5);
+
 	public static int count = 0;
+	public static int offset = 0;
+	public static Button createUser = I18N.getButton("create");
+	public static Button showMore = I18N.getButton("showMore");
+
 
 	public MainComponent() throws SQLException, IOException {
 
@@ -41,39 +48,52 @@ public class MainComponent extends VBox {
 		lblGender.getStyleClass().add("userHeaderLabel");
 		lblBirthday.getStyleClass().add("userHeaderLabel");
 
-		lblImage.setPrefWidth(50);
-		lblName.setPrefWidth(120);
-		lblSurname.setPrefWidth(120);
-		lblEmail.setPrefWidth(230);
-		lblPhone.setPrefWidth(180);
-		lblCity.setPrefWidth(120);
-		lblState.setPrefWidth(120);
-		lblGender.setPrefWidth(90);
-		lblBirthday.setPrefWidth(140);
+	//	lblImage.setPrefWidth(50);
+		lblName.setPrefWidth(110);
+		lblSurname.setPrefWidth(110);
+		lblEmail.setPrefWidth(225);
+		lblPhone.setPrefWidth(175);
+		lblCity.setPrefWidth(115);
+		lblState.setPrefWidth(115);
+		lblGender.setPrefWidth(85);
+		lblBirthday.setPrefWidth(135);
 
 		headerBox.getChildren().addAll(lblImage, 
 				lblName, lblSurname, 
 				lblEmail, lblPhone, 
 				lblGender, lblBirthday,
 				lblCity, lblState);
-
+		headerBox.setTranslateX(-10);
 		if(count == 0) {
-			vbox.getChildren().add(headerBox);
+	//		vbox.getChildren().add(headerBox);
 			
 			List<HBox> user = Users.getUsers();
 			for (int i = 0; i < user.size(); i++) {
 				vbox.getChildren().add(user.get(i));
 			}
-			Button createUser = I18N.getButton("create");
+
 			createUser.setOnAction(new controller.ShowCreateUserController());
 			createUser.getStyleClass().add("updateBtn");
 			createUser.getStyleClass().add("btnFormat");
-			createUser.setTranslateX(550);
-
-			vbox.getChildren().add(createUser);
+			createUser.setTranslateX(350);
+			showMore.getStyleClass().add("updateBtn");
+			showMore.getStyleClass().add("btnFormat");
+			showMore.setTranslateX(550);
+			showMore.setPrefWidth(100);
+			
+			showMore.setOnAction(new controller.ShowMoreController());
+			
+			vbox.getChildren().addAll();
 			count++;
 		}
-		getChildren().add(vbox);
+		ScrollPane s = new ScrollPane(vbox);  
+		
+
+//      vbox.setLeft(new ScrollPane(vbox));
+      s.setStyle(" -fx-background-color:transparent;");
+ //     s.setBorder(null);
+      vboxWithScroll.getChildren().addAll(vbox,s);
+		getChildren().addAll(headerBox,vboxWithScroll,createUser,showMore);
 
 	}
 
