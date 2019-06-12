@@ -76,19 +76,30 @@ public class JWT {
 				System.out.println(string);
 			}
 		}
-//		
-//		Main.loggedId = info1.get(0);
-//		Main.loggedRole = info1.get(1);
-//		Main.loggedName = info2.get(0);
-//		Main.loggedSurname = info2.get(1);
-//		Main.loggedEmail = info2.get(2);
+		System.out.println();
+		System.out.println();
+		
+		System.out.println("ktu1");
+		for(int i=0; i<info1.size(); i++) {
+			System.out.println(info1.get(i));
+		}
+		System.out.println("ktu2");
+		for(int i=0; i<info2.size(); i++) {
+			System.out.println(info2.get(i));
+		}
+		Main.loggedId = info1.get(0);
+		Main.loggedRole = info1.get(1);
+		Main.loggedName = info2.get(0);
+		Main.loggedSurname = info2.get(1);
+		Main.loggedImg = info2.get(2);
+		Main.loggedEmail = info2.get(3);
 	}
 	
 
-	public static void main(String[] args) {
-		
-		String hash = generateJWTToken(1, 1, "Jetmir", "Avdullahu", "jetmir99@hotmail.com", "");
-		
-		decodeJWT(hash);		
-	}
+//	public static void main(String[] args) {
+//		
+//		String hash = generateJWTToken(1, 1, "Jetmir", "Avdullahu", "jetmir99@hotmail.com", "img");
+//		
+//		decodeJWT(hash);		
+//	}
 }

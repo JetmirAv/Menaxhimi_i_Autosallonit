@@ -38,7 +38,7 @@ public class SignUpController implements EventHandler<ActionEvent> {
 						Integer.valueOf(SignUp.expYearField.getText()), Integer.valueOf(SignUp.expYearField.getText()),
 						Integer.valueOf(SignUp.cardCodeField.getText()));
 				if (result) {
-					Main.token = models.Users.login(SignUp.emailField.getText(), password);
+					
 					SignUp.modal.close();
 					SignIn.modal.close();
 					Main.scene = new Scene(Main.mainWindow, 1440, 800);

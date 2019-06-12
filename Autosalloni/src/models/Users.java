@@ -20,6 +20,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import view.Main;
 import view.MainComponent;
 import view.UserInfo;
 
@@ -234,8 +235,10 @@ public class Users {
 
 		stm.executeUpdate();
 		ResultSet result =  stm.getGeneratedKeys();
-		result.next();
 		
+		result.next();
+		Main.token = JWT.generateJWTToken(result.getInt(1), 2, name, surname, email, img);	
+
 		return result.getInt(1);
 	}
 
@@ -423,7 +426,8 @@ public class Users {
 			String encPw = helpers.PasswordEncrypt.encrypt(password);
 			
 			if(r.getString(5).equals(encPw)) {
-				res = JWT.generateJWTToken(r.getInt(1), r.getInt(2), r.getString(3), r.getString(4), email, r.getString(6));				
+				res = JWT.generateJWTToken(r.getInt(1), r.getInt(2), r.getString(3), r.getString(4), email, r.getString(6));	
+				System.out.println(res);
 			}
 		}
 		

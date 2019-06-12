@@ -23,8 +23,6 @@ public class Header extends HBox{
 	public static Label lblLocation = new Label("Dashboard");
 //			I18N.getLabel("dashboardSB");
 //	public static Button bttnBack = new Button("Back"); 
-	public static Label userFullName = new Label("Jetmir");
-	public static Label userRole = new Label("Avdullahu");
 	
 	public Header() throws IOException {
 		
@@ -35,10 +33,12 @@ public class Header extends HBox{
 //		bttnBack.setDisable(true);
 		
 		FileInputStream logOutPath = new FileInputStream(current + "/src/img/power.png");
-		FileInputStream UserImgPath = new FileInputStream(current + "/src/img/user.png");
+		FileInputStream UserImgPath = new FileInputStream(current + "/uploads/user-img/" + Main.loggedImg);
 		FileInputStream logoPath = new FileInputStream(current + "/src/img/logo.png");
 
 		
+		Label userFullName = new Label(Main.loggedName);
+		Label userRole = new Label(Main.loggedSurname);
 		
 		//Logo
 		HBox logoBox = new HBox();

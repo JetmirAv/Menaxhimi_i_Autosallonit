@@ -16,9 +16,10 @@ public class LoginHandlerController implements EventHandler<ActionEvent>{
 	public void handle(ActionEvent e) {
 		
 		try {
-			String token = Users.login(SignIn.emailField.getText(), SignIn.passwordField.getText());
-			if(token.length() > 0) {
-				Main.token = token;
+			Main.token  = Users.login(SignIn.emailField.getText(), SignIn.passwordField.getText());
+			if(Main.token.length() > 0) {
+				System.out.println();
+				System.out.println("Main.token:" + Main.token);
 //				helpers.JWT.decodeJWT(token);
 //				Modal.display(2, "Sucess!", "Bravo", "Ok", "");
 				SignIn.modal.close();
