@@ -21,15 +21,15 @@ public class MainComponent extends VBox {
 		HBox headerBox = new HBox();
 		headerBox.setAlignment(Pos.CENTER);
 		headerBox.setPrefHeight(20);
-		Label lblImage = new Label("Image");
-		Label lblName = new Label("First Name");
-		Label lblSurname = new Label("Last Name");
-		Label lblEmail = new Label("Email");
-		Label lblPhone = new Label("Phone Number");
-		Label lblCity = new Label("City");
-		Label lblState = new Label("State");
-		Label lblGender = new Label("Gender");
-		Label lblBirthday = new Label("Birthday");
+		Label lblImage = I18N.getLabel("logo");
+		Label lblName = I18N.getLabel("name");
+		Label lblSurname = I18N.getLabel("lastNameU");
+		Label lblEmail = I18N.getLabel("email");
+		Label lblPhone = I18N.getLabel("phoneNr");
+		Label lblCity = I18N.getLabel("city");
+		Label lblState = I18N.getLabel("state"); 
+		Label lblGender = I18N.getLabel("genderU");
+		Label lblBirthday = I18N.getLabel("birthdayU");
 
 		lblImage.getStyleClass().add("userHeaderLabel");
 		lblName.getStyleClass().add("userHeaderLabel");
@@ -64,7 +64,7 @@ public class MainComponent extends VBox {
 			for (int i = 0; i < user.size(); i++) {
 				vbox.getChildren().add(user.get(i));
 			}
-			Button createUser = new Button("Create User");
+			Button createUser = I18N.getButton("create");
 			createUser.setOnAction(new controller.ShowCreateUserController());
 			createUser.getStyleClass().add("updateBtn");
 			createUser.getStyleClass().add("btnFormat");

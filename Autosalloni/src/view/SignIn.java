@@ -2,6 +2,7 @@ package view;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Locale;
 
 import controller.LoginHandlerController;
 import javafx.geometry.Insets;
@@ -9,6 +10,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -27,8 +29,14 @@ public class SignIn extends HBox {
 	public static PasswordField passwordField = new PasswordField();
 	public static TextField emailField = new TextField();
 	public static Stage modal = new Stage();
+	public static ComboBox<String> languagesCbo;
 
 	public static void display() throws IOException {
+		
+		final ComboBox<String> languagesCbo = new ComboBox<>();
+//		languagesCbo.getItems().addAll(Main.allowedLanguages);
+//		languagesCbo.setValue(I18N.getDefaultLocale().getLanguage());
+//		languagesCbo.setOnAction(e -> switchLanguage());
 		
 		modal.initModality(Modality.APPLICATION_MODAL);
 		modal.setTitle("Sign In");
@@ -50,7 +58,7 @@ public class SignIn extends HBox {
 		vbox.setPadding(new Insets(0, 30, 0, 60));
 		Image logoImg = new Image(bentleyPath, 200, 100, false, false);
 		ImageView logoView = new ImageView(logoImg);
-		vbox.getChildren().add(logoView);
+		vbox.getChildren().addAll(languagesCbo,logoView);
 
 		Text welcomeTxt = new Text("Welcome Back,");
 
@@ -129,5 +137,9 @@ public class SignIn extends HBox {
 		
 //		getChildren().add(hbox);
 	}
+	public static void switchLanguage() {
+		I18N.setLocale(new Locale(languagesCbo.getValue()));
+	}
+
 
 }

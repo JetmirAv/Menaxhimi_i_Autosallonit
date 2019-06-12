@@ -3,6 +3,7 @@ package view;
 import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -13,22 +14,29 @@ import javafx.stage.Stage;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Locale;
 
 import javafx.css.*;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 
 public class Sidebar extends VBox {
-	public static Button dashboardBtn = new Button("_Dashboard");
-	public static Button carsBtn = new Button("_Cars");
-	public static Button usersBtn = new Button("_Users");
-	public static Button reportsBtn = new Button("_Reports");
-	public static Button settingsBtn = new Button("_Settings");
-	public static Button storesBtn = new Button("_Stores");
+	public static Button dashboardBtn = I18N.getButton("dashboardSB");
+	public static Button carsBtn = I18N.getButton("carsSB");
+	public static Button usersBtn = I18N.getButton("usersSB");
+	public static Button reportsBtn = I18N.getButton("reportsSB");
+	public static Button profileBtn = I18N.getButton("profileSB");
+	public static Button storesBtn = I18N.getButton("storeSB");
+	public static ComboBox<String> languagesCbo = new ComboBox<>();
 	
 	
 	public Sidebar() throws IOException {
 		String current = new java.io.File( "." ).getCanonicalPath();
+		
+		
+		languagesCbo.getItems().addAll(Main.allowedLanguages);
+		languagesCbo.setValue(I18N.getDefaultLocale().getLanguage());
+		languagesCbo.setOnAction(e -> switchLanguage());
 		
 		FileInputStream dashboardPath = new FileInputStream(current + "/src/img/dashboard.png");
 		FileInputStream storePath = new FileInputStream(current + "/src/img/stores.png");
@@ -42,7 +50,7 @@ public class Sidebar extends VBox {
 		dashboardBtn.setOnAction(new controller.SideBarController());
 		carsBtn.setOnAction(new controller.SideBarController());
 		usersBtn.setOnAction(new controller.SideBarController());
-		settingsBtn.setOnAction(new controller.SideBarController());
+		profileBtn.setOnAction(new controller.SideBarController());
 		storesBtn.setOnAction(new controller.SideBarController());
 		
 		Image dashboardImg = new Image(dashboardPath);
@@ -116,20 +124,20 @@ public class Sidebar extends VBox {
 		
 		Image settingsImg = new Image(settingsPath);
 		ImageView settingsView = new ImageView(settingsImg);
-		settingsBtn.setGraphic(settingsView);
-		settingsBtn.setPrefWidth(200);
-		settingsBtn.setPrefHeight(50);
-		settingsBtn.setAlignment(Pos.CENTER_LEFT);
-		settingsBtn.getStyleClass().add("sideBarBtn");
-		settingsBtn.setOnMouseEntered(e -> {
-			settingsBtn.setCursor(Cursor.HAND);
+		profileBtn.setGraphic(settingsView);
+		profileBtn.setPrefWidth(200);
+		profileBtn.setPrefHeight(50);
+		profileBtn.setAlignment(Pos.CENTER_LEFT);
+		profileBtn.getStyleClass().add("sideBarBtn");
+		profileBtn.setOnMouseEntered(e -> {
+			profileBtn.setCursor(Cursor.HAND);
 			});
 		
 		
 		
 		VBox vbox = new VBox(7);
 		vbox.setPadding(new Insets(25, 5, 5, 15));
-		vbox.getChildren().addAll(dashboardBtn,librariesLbl,storesBtn,carsBtn,clientsLbl,usersBtn,reportsBtn,settingsBtn);		
+		vbox.getChildren().addAll(dashboardBtn,librariesLbl,storesBtn,carsBtn,clientsLbl,usersBtn,reportsBtn,profileBtn,languagesCbo);		
 		
 		
 		VBox sidebarVbox = new VBox();
@@ -139,6 +147,9 @@ public class Sidebar extends VBox {
 	
 	
 		getChildren().add(sidebarVbox);
+	}
+	public static void switchLanguage() {
+		I18N.setLocale(new Locale(languagesCbo.getValue()));
 	}
 	
 }
