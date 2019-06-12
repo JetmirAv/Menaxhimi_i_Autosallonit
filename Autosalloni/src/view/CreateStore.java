@@ -94,7 +94,8 @@ public class CreateStore extends HBox
 		rightVbox.setAlignment(Pos.CENTER_LEFT);
 		rightVbox.getChildren().addAll(addressLbl,addressField ,stateLbl, stateField,phonenumberLbl,phonenumberField);
 
-		
+		mainHbox.setTranslateX(260);
+		mainHbox.setTranslateY(80);
 		
 		
 		mainHbox.setAlignment(Pos.CENTER);

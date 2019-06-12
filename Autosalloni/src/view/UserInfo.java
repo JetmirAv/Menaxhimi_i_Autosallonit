@@ -46,6 +46,8 @@ public class UserInfo extends VBox {
 	public static TextField codeField = new TextField();
 	public static TextField expireField = new TextField();
 	public static TextField numberField = new TextField();
+	public static TextField phoneNumber = new TextField();
+	
 
 	
 	public UserInfo(Boolean newUser) throws IOException {
@@ -132,8 +134,8 @@ public class UserInfo extends VBox {
 		Image phonenumberImg = new Image(phonenumberPath);
 		numberLbl.setGraphic(new ImageView(phonenumberImg));
 
-		numberField.setPromptText("123456789");
-		numberField.getStyleClass().addAll("textfield");
+		phoneNumber.setPromptText("123456789");
+		phoneNumber.getStyleClass().addAll("textfield");
 
 		leftVbox.getChildren().addAll(firstNameLbl, firstNameField, lastNameLbl, lastNameField, emailLbl, emailField,
 				passLbl, passField, numberLbl, numberField, bottomHbox);

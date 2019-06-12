@@ -5,10 +5,10 @@ import com.sun.org.apache.xerces.internal.impl.xs.identity.Selector.Matcher;
 
 public class Validations {
 
-	public static boolean emailValidation(String email) {
-		String regex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
-		return email.matches(regex);
-	}
+	public  static boolean isValidEmail(String email) {
+		      String regex = "^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$";
+		      return email.matches(regex);
+		   }
 
 
 	
@@ -135,8 +135,13 @@ public class Validations {
    }
 
   
-	   
-   
+  public static boolean validateCode(String str) {
+	  
+	 int a = Integer.parseInt(str);
+	 if(a>99 && a<1000) return true;
+	 else return false;
+	 
+  }
    
 }
    

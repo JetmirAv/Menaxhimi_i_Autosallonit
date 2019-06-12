@@ -24,40 +24,40 @@ public class CreateStoreController implements EventHandler<ActionEvent> {
 		
 		
 		
-		 String storeName = Validations.capitalize((CreateStore.nameField.getText().toLowerCase()));
-		 String storeAddress =Validations.capitalize(CreateStore.addressField.getText().toLowerCase());
-		 String storeCity = Validations.capitalize(CreateStore.cityField.getText().toLowerCase());
-		 String storeState = Validations.capitalize(CreateStore.stateField.getText().toLowerCase());
-		 String storePostal = Validations.capitalize(CreateStore.postalField.getText().toLowerCase());
+		 String storeName = ((CreateStore.nameField.getText().toLowerCase()));
+		 String storeAddress =(CreateStore.addressField.getText().toLowerCase());
+		 String storeCity = (CreateStore.cityField.getText().toLowerCase());
+		 String storeState = (CreateStore.stateField.getText().toLowerCase());
+		 String storePostal = (CreateStore.postalField.getText().toLowerCase());
 		 String storePhoneNumber = CreateStore.phonenumberField.getText();
 		 
 		
 		String str1 = ""; 
 		try {
-			if(!Validations.validateInput(storeName)) {
-				str1+="Name not valid ";
+			if(!Validations.textFieldValidations(storeName)) {
+				str1+="Name not valid. ";
 			}
-			 if (!Validations.validateInput(storeCity)) {
-				str1+="City not valid ";
+			 if (!Validations.textFieldValidations(storeCity)) {
+				str1+="City not valid. ";
 			}
 			 			
-//		     if (!Validations.validateInput(storeAddress)) {
-//					str1+="Address not valid ";
-//				}
+		     if (!Validations.validateInput(storeAddress)) {
+					str1+="Address not valid ";
+				}
 			
-			 if (!Validations.validateInput(storeState)) {
-				str1+="State not valid ";
+			 if (!Validations.textFieldValidations(storeState)) {
+				str1+="State not valid. ";
 			}
 	
-			if(!Validations.validatePostal(storePostal))
+			if(!Validations.textFieldValidations(storePostal))
 			{
-				System.out.println(Validations.validatePostal(storePostal));
-				str1+="Postal not valid";
+				str1+="postal not valid. ";
+
 			}
 			
 			if(!Validations.validateNumeric(storePhoneNumber))
 			{
-				str1+="Phone not valid";
+				str1+="Phone not valid. ";
 			}
 	
 			if(str1.length()!=0) {	

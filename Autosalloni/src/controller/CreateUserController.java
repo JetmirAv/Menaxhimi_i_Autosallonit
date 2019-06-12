@@ -6,6 +6,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import helpers.Validations;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import models.Users;
@@ -19,7 +20,50 @@ public class CreateUserController implements EventHandler<ActionEvent> {
 	@Override
 	public void handle(ActionEvent e) {
 
-		String password = helpers.PasswordEncrypt.decrypt(UserInfo.passField.getText());
+		String str = "";
+		
+		
+		if(!Validations.textFieldValidations(UserInfo.firstNameField.getText())) {
+			str+= "FirstName not valid. ";
+		}
+		
+		if(!Validations.isValidEmail(UserInfo.emailField.getText())) {
+			str+="email not valid. ";
+		}
+		
+		
+		if(!Validations.textFieldValidations(UserInfo.lastNameField.getText())) {
+			str+= "LastName not valid. ";
+		}
+		
+		if(!Validations.textFieldValidations(UserInfo.addressField.getText())) {
+			str+= "Address not valid. ";
+		}
+		
+		if(!Validations.textFieldValidations(UserInfo.cityField.getText())) {
+			str+= "City not valid. ";
+		}
+		
+		
+		if(!Validations.textFieldValidations(UserInfo.stateField.getText())) {
+			str+= "State not valid. ";
+		}
+		
+		
+		if(!Validations.textFieldValidations(UserInfo.postalField.getText())) {
+			str+= "Postal not valid. ";
+		}
+		
+		if(!Validations.validateCode(UserInfo.codeField.getText())) {
+			str+="code not valid. ";
+		}
+		
+		if(str.length()!=0) {	
+			Modal.display(2, "Error", str , "Ok", "");
+
+			} else {
+		
+		String password = helpers.PasswordEncrypt.encrypt(UserInfo.passField.getText());
 
 		DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		Date myDate = null;
@@ -36,7 +80,7 @@ public class CreateUserController implements EventHandler<ActionEvent> {
 					UserInfo.emailField.getText(), password, sqlDate,
 					UserInfo.gendre.getSelectionModel().getSelectedItem(), UserInfo.addressField.getText(),
 					UserInfo.cityField.getText(), UserInfo.stateField.getText(), UserInfo.postalField.getText(),
-					UserInfo.numberField.getText(), "") > 0) {
+					UserInfo.phoneNumber.getText(), "") > 0) {
 
 				Modal.display(2, "Success", "User created sucessfully", "OK", "");
 				Main.content.getChildren().clear();
@@ -47,6 +91,7 @@ public class CreateUserController implements EventHandler<ActionEvent> {
 				UserInfo.emailField.clear();
 				UserInfo.passField.clear();
 				UserInfo.numberField.clear();
+				UserInfo.phoneNumber.clear();
 				UserInfo.birthdayField.clear();
 				UserInfo.cityField.clear();
 				UserInfo.stateField.clear();
@@ -65,5 +110,5 @@ public class CreateUserController implements EventHandler<ActionEvent> {
 		}
 
 	}
-
+	}
 }
