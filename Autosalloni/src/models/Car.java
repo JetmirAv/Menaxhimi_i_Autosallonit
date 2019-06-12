@@ -604,14 +604,17 @@ public class Car {
 	 * }
 	 */
 
-	public static List<VBox> merriTeDhenat() throws SQLException, IOException {
+	public static List<VBox> merriTeDhenat(int limit, int offset) throws SQLException, IOException {
 
 		List<VBox> listaCar = new ArrayList<>();
 
 		String current = new java.io.File(".").getCanonicalPath();
 
-		String query = "select id , model , bodyNumber , engineModel from car limit 5";
+		String query = "select id , model , bodyNumber , engineModel from car limit ? offset ? ";
 		PreparedStatement preparedStatement = DatabaseConfig.getConnection().prepareStatement(query);
+		preparedStatement.setInt(1, limit);
+		preparedStatement.setInt(2, limit);
+		
 		java.sql.ResultSet resultSet = preparedStatement.executeQuery();
 
 		while (resultSet.next()) {
@@ -639,7 +642,7 @@ public class Car {
 			// Inside the First Photo
 
 			VBox contanier = new VBox(15);
-			contanier.setStyle("-fx-background-color: grey");
+			contanier.setStyle("-fx-background-color:grey");
 			VBox VboxComplete = new VBox();
 			VboxComplete.setId(resultSet.getInt(1) + "");
 

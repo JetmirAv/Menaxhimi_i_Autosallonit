@@ -1,8 +1,10 @@
 package controller;
 
 import view.Main;
+import view.Modal;
 import view.SignIn;
 import view.SignUp;
+import view.UserInfo;
 
 import java.sql.SQLException;
 import java.text.DateFormat;
@@ -10,6 +12,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import helpers.Validations;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -20,6 +23,59 @@ public class SignUpController implements EventHandler<ActionEvent> {
 
 	@Override
 	public void handle(ActionEvent e) {
+		
+		
+		
+String str = "";
+		
+		
+		if(!Validations.textFieldValidations(SignUp.nameField.getText())) {
+			str+= "Name not valid. ";
+		}
+		
+		if(!Validations.isValidEmail(SignUp.emailField.getText())) {
+			str+="email not valid. ";
+		}
+		
+		
+		if(!Validations.textFieldValidations(SignUp.lastnameField.getText())) {
+			str+= "LastName not valid. ";
+		}
+		
+		if(!Validations.textFieldValidations(SignUp.addressField.getText())) {
+			str+= "Address not valid. ";
+		}
+		
+		if(!Validations.textFieldValidations(SignUp.cityField.getText())) {
+			str+= "City not valid. ";
+		}
+		
+		
+		if(!Validations.textFieldValidations(SignUp.stateField.getText())) {
+			str+= "State not valid. ";
+		}
+		
+		
+		if(!Validations.textFieldValidations(SignUp.postalField.getText())) {
+			str+= "Postal not valid. ";
+		}
+		
+		if(!Validations.validateCode(SignUp.cardCodeField.getText())) {
+			str+="code not valid. ";
+		}
+
+		
+		if(str.length()!=0) {	
+			Modal.display(2, "Error", str , "Ok", "");
+
+			} else {
+		
+		
+		
+		
+		
+		
+		
 		try {
 
 			String password = helpers.PasswordEncrypt.encrypt(SignUp.passField.getText());
@@ -52,4 +108,5 @@ public class SignUpController implements EventHandler<ActionEvent> {
 		}
 
 	}
+}
 }

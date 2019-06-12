@@ -18,6 +18,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -31,26 +32,61 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
-public class Cars {
-	public static FlowPane mainPane = new FlowPane(10, 10);
+public class Cars extends VBox {
+	public static HBox mainPane1 = new HBox(10);
+	public static HBox mainPane2 = new HBox(10);
+	public static VBox main= new VBox(10);
+	public static HBox button = new HBox(10);
+
+	
+	public static FlowPane secondmainPane = new FlowPane(10,10);
+
 	public static Button showMore = I18N.getButton("showMore");
 	public static int detailsOffset = 0;
-
-	public static FlowPane display() throws IOException, SQLException {
+	public static int count = 0;
+	public  Cars() throws IOException, SQLException {
 		// Declare Photos
+		mainPane1.setPrefWidth(150);
+		mainPane1.setMaxWidth(151);
+		mainPane2.setPrefWidth(150);
+		mainPane2.setMaxWidth(151);
+		
+		
+//		mainPane.setOrientation(Orientation.HORIZONTAL);
+//		mainPane.setPadding(new Insets(30));
 
-		FlowPane mainPane = new FlowPane(10, 10);
-		mainPane.setOrientation(Orientation.HORIZONTAL);
-		mainPane.setPadding(new Insets(30));
-
-		List<VBox> carInfo = Car.merriTeDhenat();
-
-		for (int i = 0; i < carInfo.size(); i++) {
-
-			mainPane.getChildren().addAll(carInfo.get(i));
+		if(count == 0) {
+			List<VBox> carInfo = Car.merriTeDhenat(10, 0);
+			int k=0;
+			for (int i = 0; i < carInfo.size(); i++) {
+				
+				if(k<5) {
+					mainPane1.getChildren().addAll(carInfo.get(i));
+				}
+				else
+				{
+					mainPane2.getChildren().addAll(carInfo.get(i));
+									
+				}
+				k++;
+				}
+			
+			
+			count++;
 		}
-
-		return mainPane;
+		main.getChildren().addAll(mainPane1,mainPane2);
+		showMore.setOnAction(new controller.ShowMoreCarDetails());
+//		mainPane.getChildren().addAll(showMore);
+		ScrollPane s = new ScrollPane(main);  
+        s.setStyle(" -fx-background-color:transparent;");
+        s.setBorder(null);
+        main.setPrefWidth(600);
+        main.setPadding(new Insets(20,0,50,50));
+		button.getChildren().add(showMore);
+//		button.setAlignment(Pos.CENTER);
+		button.setPadding(new Insets(0,0,50,500));
+//		main.getChildren().add(button);
+		getChildren().addAll(main,s,button );
 	}
 
 }
