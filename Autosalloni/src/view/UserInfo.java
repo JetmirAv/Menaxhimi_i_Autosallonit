@@ -29,9 +29,9 @@ public class UserInfo extends VBox {
 
 	public static VBox createUserHbox = new VBox();
 	
-	public static Button signUpBtn = new Button("Create User");
-	public static Button deleteBtn = new Button("Delete User");
-	public static Button updateBtn = new Button("Update User");
+	public static Button signUpBtn = I18N.getButton("create");
+	public static Button deleteBtn = I18N.getButton("delete");
+	public static Button updateBtn = I18N.getButton("update");
 	public static TextField firstNameField = new TextField();
 	public static TextField lastNameField = new TextField();
 	public static TextField emailField = new TextField();
@@ -79,27 +79,27 @@ public class UserInfo extends VBox {
 		mainHbox.setAlignment(Pos.CENTER);
 
 		VBox leftVbox = new VBox(8);
-		Label firstNameLbl = new Label("First Name");
+		Label firstNameLbl = I18N.getLabel("name");
 
 		Image nameImg = new Image(namePath);
 		firstNameLbl.setGraphic(new ImageView(nameImg));
 		firstNameField.setPromptText("Test");
 		firstNameField.getStyleClass().addAll("textfield");
 
-		Label lastNameLbl = new Label("Last Name");
+		Label lastNameLbl = I18N.getLabel("lastNameU");
 		Image lastnameImg = new Image(lastnamePath);
 		lastNameLbl.setGraphic(new ImageView(lastnameImg));
 		lastNameField.setPromptText("Test");
 		lastNameField.getStyleClass().addAll("textfield");
 
-		Label emailLbl = new Label("Email");
+		Label emailLbl = I18N.getLabel("email");
 		Image emailImg = new Image(emailPath);
 		emailLbl.setGraphic(new ImageView(emailImg));
 
 		emailField.setPromptText("Test");
 		emailField.getStyleClass().addAll("textfield");
 
-		Label passLbl = new Label("Password");
+		Label passLbl = I18N.getLabel("passwordU");
 		Image passImg = new Image(passPath);
 		passLbl.setGraphic(new ImageView(passImg));
 
@@ -108,7 +108,7 @@ public class UserInfo extends VBox {
 
 		HBox bottomHbox = new HBox(20);
 		VBox vbox1 = new VBox(3);
-		Label birthdayLbl = new Label("Birthday");
+		Label birthdayLbl = I18N.getLabel("birthdayU");
 		Image birthdayImg = new Image(birthdayPath);
 		birthdayLbl.setGraphic(new ImageView(birthdayImg));
 
@@ -116,7 +116,7 @@ public class UserInfo extends VBox {
 		birthdayField.getStyleClass().addAll("textfield");
 		vbox1.getChildren().addAll(birthdayLbl, birthdayField);
 		VBox vbox2 = new VBox();
-		Label gendreLbl = new Label("Gender");
+		Label gendreLbl = new Label();
 		// Image genderImg = new Image(genderPath);
 		// gendreLbl.setGraphic(new ImageView(genderImg));
 		gendre.getItems().add("M");
@@ -128,7 +128,7 @@ public class UserInfo extends VBox {
 		vbox2.setPadding(new Insets(2, 0, 0, 0));
 		bottomHbox.getChildren().addAll(vbox1, vbox2);
 
-		Label numberLbl = new Label("Phone Number");
+		Label numberLbl = I18N.getLabel("phoneNr");
 		Image phonenumberImg = new Image(phonenumberPath);
 		numberLbl.setGraphic(new ImageView(phonenumberImg));
 
@@ -143,14 +143,14 @@ public class UserInfo extends VBox {
 
 		HBox topHbox = new HBox(5);
 		VBox vbox3 = new VBox(3);
-		Label cityLbl = new Label("City");
+		Label cityLbl = I18N.getLabel("city");
 		Image cityImg = new Image(cityPath);
 		cityLbl.setGraphic(new ImageView(cityImg));
 		cityField.setPromptText("Test");
 		cityField.getStyleClass().addAll("textfield");
 		vbox3.getChildren().addAll(cityLbl, cityField);
 		VBox vbox4 = new VBox();
-		Label stateLbl = new Label("State");
+		Label stateLbl = I18N.getLabel("state");
 		Image stateImg = new Image(statePath);
 		stateLbl.setGraphic(new ImageView(stateImg));
 		stateField.setPromptText("Test");
@@ -160,31 +160,31 @@ public class UserInfo extends VBox {
 		vbox4.getChildren().addAll(stateLbl, stateField);
 		topHbox.getChildren().addAll(vbox3, vbox4);
 
-		Label addresslLbl = new Label("Address");
+		Label addresslLbl = I18N.getLabel("address");
 		Image addressImg = new Image(addressPath);
 		addresslLbl.setGraphic(new ImageView(addressImg));
 		addressField.setPromptText("Address");
 		addressField.getStyleClass().addAll("textfield");
 
-		Label postalLbl = new Label("Postal");
+		Label postalLbl = I18N.getLabel("postal");
 		Image postalnumberImg = new Image(postalnumberPath);
 		postalLbl.setGraphic(new ImageView(postalnumberImg));
 		postalField.setPromptText("10000");
 		postalField.getStyleClass().addAll("textfield");
 
-		Label cardLbl = new Label("Card Number");
+		Label cardLbl = I18N.getLabel("exDateU");
 		Image cardImg = new Image(cardPath);
 		cardLbl.setGraphic(new ImageView(cardImg));
 		cardField.setPromptText("123456678");
 		cardField.getStyleClass().addAll("textfield");
 
-		Label expireLbl = new Label("Expired Date");
+		Label expireLbl = I18N.getLabel("birthdayU");
 		Image expiredImg = new Image(expiredPath);
 		expireLbl.setGraphic(new ImageView(expiredImg));
 		expireField.setPromptText("__ / ____");
 		expireField.getStyleClass().addAll("textfield");
 
-		Label codeLbl = new Label("Code");
+		Label codeLbl = I18N.getLabel("codeU");
 		Image codeImg = new Image(codePath);
 		codeLbl.setGraphic(new ImageView(codeImg));
 		codeField.setPromptText("1234");
@@ -208,9 +208,14 @@ public class UserInfo extends VBox {
 		signUpBtn.setOnAction(new CreateUserController());
 		updateBtn.setOnAction(new UpdateUserController());
 		deleteBtn.setOnAction(new DeleteUserController());
-		signUpBtn.setStyle("-fx-text-fill:white ;  -fx-background-color:#5DA4C7;");
-		updateBtn.setStyle("-fx-text-fill:white ;  -fx-background-color:#5DA4C7;");
-		deleteBtn.setStyle("-fx-text-fill:white ;  -fx-background-color:#5DA4C7;");
+
+		signUpBtn.getStyleClass().add("updateBtn");
+		signUpBtn.getStyleClass().add("btnFormat");
+		updateBtn.getStyleClass().add("updateBtn");
+		updateBtn.getStyleClass().add("btnFormat");
+		deleteBtn.getStyleClass().add("updateBtn");
+		deleteBtn.getStyleClass().add("btnFormat");
+
 
 		rightVbox.setPrefWidth(300);
 		mainHbox.setAlignment(Pos.CENTER);

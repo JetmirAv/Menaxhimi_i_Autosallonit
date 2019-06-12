@@ -39,7 +39,7 @@ import models.Store;
 public class UpdateCars {
 	public static Button updateBtn = new Button("Update");
 	public static Button deleteBtn = new Button("Delete User");
-	public static ComboBox manufacturerComboBox = new ComboBox(showData());
+	public static ComboBox<Manufacturer> manufacturerComboBox = new ComboBox(showData());
 	public static ComboBox storesComboBox = new ComboBox(stores());
 	public static TextField txtForModel = new TextField();
 	public static TextField txtForbodyNumber;
@@ -334,6 +334,8 @@ public class UpdateCars {
 		deleteBtn.setOnAction(new controller.DeleteCarController());
 		updateBtn.getStyleClass().add("btnFormat");
 		deleteBtn.getStyleClass().add("btnFormat");
+		updateBtn.getStyleClass().add("updateBtn");
+		deleteBtn.getStyleClass().add("updateBtn");
 
 		deleteBtn.setPrefWidth(100);
 		updateBtn.setPrefWidth(100);

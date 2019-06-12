@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 import controller.CarsInfoController;
+import controller.UploadPhotoController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -27,6 +28,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import models.Car;
 import models.Manufacturer;
@@ -34,8 +36,10 @@ import models.Photos;
 import helpers.helpers;
 import models.FuelType;
 import models.Store;
+import helpers.Validations;
 
 public class CarsInfo extends VBox{
+	public static Circle store1Circle;
 	public static ComboBox manufacturerComboBox = new ComboBox(showData());
 	public static ComboBox storesComboBox = new ComboBox(stores());
 	public static TextField txtForModel = new TextField();
@@ -55,14 +59,14 @@ public class CarsInfo extends VBox{
 	public static ComboBox navigatorComboBox = new ComboBox(FXCollections.observableArrayList(trueFalse));
 	public static ComboBox climateComboBox = new ComboBox(FXCollections.observableArrayList(trueFalse));
 	public static ComboBox fuelTypeIdComboBox = new ComboBox(fuelTypes());
-	private static Spinner<Integer> fuelCapacity = new Spinner<>(0, 300, 0, 1);
-	public static Spinner<Double> fuelConsumption = new Spinner<>(0, 300, 0, 1);// min , max , start , increase
+	public static Spinner<Integer> fuelCapacity = new Spinner<>(0, 150, 45, 1);
+	public static Spinner<Double> fuelConsumption = new Spinner<>(0, 20, 4, 1);// min , max , start , increase
 	public static ComboBox hidraulicComboBox = new ComboBox(FXCollections.observableArrayList(trueFalse));
 	public static TextField engineModel = new TextField();
-	public static Spinner<Double> enginePower = new Spinner<>(0, 300, 0, 1);
-	public static Spinner<Integer> hoursePowerCapacity = new Spinner<>(0, 300, 0, 1);
-	public static Spinner<Integer> maxspeed = new Spinner<>(0, 350, 0, 1);
-	public static Spinner<Double> seconds0to100 = new Spinner<>(0, 300, 0, 1);
+	public static Spinner<Double> enginePower = new Spinner<>(0, 60000, 80, 1);
+	public static Spinner<Integer> hoursePowerCapacity = new Spinner<>(0, 7000, 200, 1);
+	public static Spinner<Integer> maxspeed = new Spinner<>(0, 500, 80, 1);
+	public static Spinner<Double> seconds0to100 = new Spinner<>(0, 50, 0, 1);
 	public static ComboBox isAutomaticComboBox = new ComboBox(FXCollections.observableArrayList(trueFalse));
 	public static Spinner<Integer> gears = new Spinner<>(4, 7, 4, 1);
 	public static String tireModel[] = { "summer", "winter" };
@@ -76,17 +80,14 @@ public class CarsInfo extends VBox{
 	
 	public static Button openButton;
 	public static TextArea textArea;
-	private static Desktop desktop = Desktop.getDesktop();
+	public static Desktop desktop = Desktop.getDesktop();
 	public static FileChooser fileChooser;
 	public static File file;
 	public static Image image1;
 	public static ImageView imageView1 = new ImageView();
 	public static FileInputStream fileInput;
 	public static TextField imgField = new TextField();
-	
-	
-	
-	
+	public static Stage modal = new Stage();
 	
 	
 
@@ -108,7 +109,18 @@ public class CarsInfo extends VBox{
         textArea.setMinWidth(600);
         textArea.setMaxWidth(600);
         textArea.setMaxHeight(40);
-        
+		modal.initModality(Modality.APPLICATION_MODAL);
+		modal.setTitle("Sign In");
+
+
+		
+		FileInputStream UserImgPath = new FileInputStream(current + "/src/img/user.png");
+		System.out.println(current + "/src/img/user.png");
+		image1 = new Image(UserImgPath, 100, 150, true, true);
+		imageView1.setImage(image1);
+
+		imageView1.setOnMouseClicked(new UploadPhotoController());
+
         
         openButton.setOnAction(e ->{
         	file = fileChooser.showOpenDialog(stage);
@@ -142,7 +154,7 @@ public class CarsInfo extends VBox{
 		
 		
         
-		
+		System.out.println(showData());
 		
 		
 		ArrayList<Integer> years = new ArrayList<Integer>();
@@ -154,15 +166,16 @@ public class CarsInfo extends VBox{
 
 		VBox vbox = new VBox();
 		vbox.getStylesheets().add(MainComponent.class.getResource("CarsForm.css").toExternalForm());
+		vbox.getStylesheets().add(MainComponent.class.getResource("header.css").toExternalForm());
 
 		HBox photoHBox = new HBox();
 
 		FileInputStream userPath;
-		userPath = new FileInputStream(current + "/src/img/user.png");
+		userPath = new FileInputStream(current1 + "/src/img/user.png");
 
 		Image img = new Image(userPath);
 
-		Circle store1Circle = new Circle();
+		store1Circle = new Circle();
 		store1Circle.setRadius(50);
 		store1Circle.setFill(new ImagePattern(img));
 
@@ -239,7 +252,7 @@ public class CarsInfo extends VBox{
 		Label enginePowerLabel = new Label("Engine Power");
 		enginePowerLabel.setMinWidth(60);
 
-		Label hoursePowerLabel = new Label("Fuel capacity");
+		Label hoursePowerLabel = new Label("Hourse Power");
 		hoursePowerLabel.setMinWidth(60);
 
 		Label maxspeedLabel = new Label("Max speed");
@@ -424,14 +437,15 @@ public class CarsInfo extends VBox{
 		btnHbox.setAlignment(Pos.CENTER);
 		carsData.setAlignment(Pos.CENTER);
 		vbox.setPadding(new Insets(0, 30, 0, 30));
-		
-		
-		manufacturerComboBox.setOnAction(event -> {
-				Manufacturer manufacturer = (Manufacturer) manufacturerComboBox.getSelectionModel().getSelectedItem();			
-				FuelType fuelType = (FuelType) manufacturerComboBox.getSelectionModel().getSelectedItem();			
-				Stores store = (Stores) manufacturerComboBox.getSelectionModel().getSelectedItem();			
+		insertBtn.getStyleClass().add("updateBtn");
 
-		});
+		
+//		manufacturerComboBox.setOnAction(event -> {
+//				Manufacturer manufacturer = (Manufacturer) manufacturerComboBox.getSelectionModel().getSelectedItem();			
+//				FuelType fuelType = (FuelType) manufacturerComboBox.getSelectionModel().getSelectedItem();			
+//				Stores store = (Stores) manufacturerComboBox.getSelectionModel().getSelectedItem();			
+//
+//		});
 
 
 		insertBtn.setOnAction(new CarsInfoController());
@@ -447,6 +461,13 @@ public class CarsInfo extends VBox{
 		Manufacturer manufacturer = (Manufacturer) manufacturerComboBox.getSelectionModel().getSelectedItem();
 		FuelType fuelType = (FuelType) fuelTypeIdComboBox.getSelectionModel().getSelectedItem();			
 		Store store = (Store) storesComboBox.getSelectionModel().getSelectedItem();			
+		if (Validations.validateBodyNumber(txtForbodyNumber.getText())) {
+		}
+		else 
+		{
+			Modal.display(2, "Error!", "Only numbers and uppercase letters are allowed", "Ok", "");
+
+		} 
 		
 		int carId = Car.addCar(store.getId(), 
 				manufacturer.getId(),
@@ -474,7 +495,9 @@ public class CarsInfo extends VBox{
 			
 			return Photos.insertPhoto(carId, imgField.getText());
 
+	
 	}
+	
 
 	public static boolean emer(Object s) {
 
@@ -495,6 +518,8 @@ public class CarsInfo extends VBox{
 		
 		
 	}
+	
+
 	public static ObservableList<models.FuelType> fuelTypes() {
 
 		try {

@@ -123,6 +123,28 @@ public class FuelType {
 
 	}
 	
+	public  static FuelType getNameAndId(int carId) throws SQLException {
+		
+		
+		String query = "SELECT distinct f.id, f.name FROM fueltype f inner join car c on f.id = c.fuelTypeId WHERE f.id =?";
+		
+		PreparedStatement preparedStatement = DatabaseConfig.getConnection().prepareStatement(query);
+		
+		preparedStatement.setInt(1, carId);
+		
+		java.sql.ResultSet resultSet = preparedStatement.executeQuery();
+		FuelType fuelType =  null;
+		while(resultSet.next()) {
+
+			fuelType = new FuelType(resultSet.getInt(1),resultSet.getString(2)); 
+			
+		
+		}
+		
+		return fuelType;
+
+	}
+	
 	@Override
 	public String toString() {
 	    return this.getName();

@@ -35,19 +35,19 @@ public class Main extends Application {
 		content.getChildren().add(new Dashboard());
 
 		try {
-			mainWindow.setCenter(content);
+			mainWindow.setCenter(Cars.display());
 			mainWindow.setTop(new Header());
 			mainWindow.setLeft(new Sidebar());
 
-			if (token == null) {
-
-				SignIn.display();
-
-			} else {
+//			if (token == null) {
+//
+//				SignIn.display();
+//
+//			} else {
 
 				scene = new Scene(mainWindow, 1440, 800);
 
-			}
+//			}
 			scene.getStylesheets()
 					.add("https://fonts.googleapis.com/css?family=Titillium+Web:200,300,400,700&display=swap");
 			scene.getStylesheets().add(Main.class.getResource("header.css").toExternalForm());

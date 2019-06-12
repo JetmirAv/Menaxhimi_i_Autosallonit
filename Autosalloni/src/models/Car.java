@@ -408,6 +408,43 @@ public class Car {
 		return s;
 	}
 
+	
+
+
+//	public String getNameOFManufacturerSQLWithId() throws SQLException {
+//		String s = "";
+//		String query = "SELECT distinct m.name FROM manufacturer m inner join car c on m.id = c.manufacturerId WHERE m.id ="
+//				+ getManufacturerId();
+//		PreparedStatement preparedStatement = DatabaseConfig.getConnection().prepareStatement(query);
+//		java.sql.ResultSet resultSet = preparedStatement.executeQuery();
+//		while (resultSet.next()) {
+//			s += resultSet.getString(1);
+//		}
+//		return s;
+//	}
+//	public static ObservableList<Manufacturer> getData() throws SQLException {
+//		ObservableList<Manufacturer> carList = FXCollections.observableArrayList();
+//		
+//		String query = "SELECT distinct m.name FROM manufacturer m inner join car c on m.id = c.manufacturerId WHERE m.id ="
+//				+ models.Manufacturer.getManufacturerId();
+//		
+//		PreparedStatement preparedStatement = DatabaseConfig.getConnection().prepareStatement(query);
+//		java.sql.ResultSet resultSet = preparedStatement.executeQuery();
+//			
+//		while(resultSet.next()) {
+//
+//			Manufacturer manufacturer = new Manufacturer(resultSet.getInt(1),resultSet.getString(2)); 
+//			carList.add(manufacturer);
+//		
+//		}
+//		
+//		return carList;
+//
+//	}
+
+
+	
+	
 	public static boolean create(int manufacturerId, String model, String bodyNumber, int yearOfProd, int seats,
 			int doors, boolean roof, boolean alarm, boolean central, boolean airbag, boolean autonomus,
 			boolean navigator, boolean climate, int fuelTypeId, int fuelCapacity, double fuelConsumption,
@@ -691,7 +728,7 @@ public class Car {
 
 		String current = new java.io.File(".").getCanonicalPath();
 
-		String query = "select id, seats , doors , alarm , climate , hidraulic , hoursePower , maxspeed, isAutomatic from car  limit 13";
+		String query = "select id, seats , doors , alarm , climate , hidraulic , hoursePower , maxspeed, isAutomatic from car  limit 33";
 
 		PreparedStatement preparedStatement = DatabaseConfig.getConnection().prepareStatement(query);
 		java.sql.ResultSet resultSet = preparedStatement.executeQuery();
@@ -752,7 +789,6 @@ public class Car {
 			car1MaxspeedLabel.getStyleClass().add("storeData");
 			car1IsAutomaticLabel.getStyleClass().add("storeData");
 
-
 			result.getStyleClass().add("backgroundColor");
 			result.getChildren().addAll(photoHBox, car1SeatsLabel, car1DoorsLabel, car1AlarmLabel, car1ClimateLabel,
 					car1HidraulicLabel, car1HoursePowerLabel, car1MaxspeedLabel, car1IsAutomaticLabel);
@@ -784,9 +820,6 @@ public class Car {
 		}
 		return car;
 	}
-	
-	
-	
 
 	public static Car getSomeDetailsOfCar() throws SQLException {
 		String query = "SELECT * From Car  ";

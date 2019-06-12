@@ -107,10 +107,17 @@ public class Validations {
 		
 	}  
 	
-	
-	
-	
-	
-	
+   public static boolean validateBodyNumber(String s) {  
+		
+		return s != null && s.matches("[\\p{Digit}\\p{Lu}]+");
+		
+		
+	}  
+   public static boolean validatePostal(String s) {  
+		
+		return s != null && (s.matches("[\\p{Digit}\\p{Lu}]+" ) || s.matches( "[A-Z][a-z]*" ));
+		
+		
+	}  
 
 }

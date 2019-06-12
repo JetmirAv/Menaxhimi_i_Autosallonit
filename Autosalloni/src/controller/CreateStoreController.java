@@ -41,16 +41,17 @@ public class CreateStoreController implements EventHandler<ActionEvent> {
 				str1+="City not valid ";
 			}
 			 			
-		     if (!Validations.validateInput(storeAddress)) {
-					str1+="Address not valid ";
-				}
+//		     if (!Validations.validateInput(storeAddress)) {
+//					str1+="Address not valid ";
+//				}
 			
 			 if (!Validations.validateInput(storeState)) {
 				str1+="State not valid ";
 			}
 	
-			if(!Validations.postalValidation(storePostal))
+			if(!Validations.validatePostal(storePostal))
 			{
+				System.out.println(Validations.validatePostal(storePostal));
 				str1+="Postal not valid";
 			}
 			

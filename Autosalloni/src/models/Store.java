@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import controller.CarClickedController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -199,11 +200,18 @@ public class Store {
 		ResultSet resultSet = preparedStatement.executeQuery();
 			 
 		while(resultSet.next()) {
-			
 			HBox headerBox = new HBox();
 			headerBox.setAlignment(Pos.CENTER);
 			headerBox.setPrefHeight(20);
 			headerBox.getStyleClass().add("userList");
+
+			headerBox.setAlignment(Pos.CENTER);
+			headerBox.setPrefHeight(20);
+			headerBox.getStyleClass().add("carList");
+			headerBox.setId(String.valueOf(resultSet.getInt(1)));
+//			headerBox.setOnMouseClicked(new StoreClickedController());
+
+			
 			Label lblName = new Label(resultSet.getString(2));
 			Label lblAddress = new Label(resultSet.getString(3));
 			Label lblCity = new Label(resultSet.getString(4));

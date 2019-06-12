@@ -75,3 +75,18 @@
 	-fx-text-fill:white ; 
 	 -fx-background-color:#5DA4C7; 
 }
+
+.updateBtn:hover 
+{
+    -fx-background-color: #6090C9;
+}
+
+.deleteBtn:hover 
+{
+    -fx-background-color: #FFA85C;
+}
+.buttonToCenter
+{
+    -fx-t-color: #FFA85C;
+}
+

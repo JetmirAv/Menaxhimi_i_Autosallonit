@@ -8,8 +8,11 @@ import java.util.List;
 
 import controller.ShowCreateCarController;
 import javafx.geometry.Insets;
+import javafx.geometry.Orientation;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollBar;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -23,15 +26,21 @@ public class MainComponentCars extends VBox {
 	public static VBox vbox = new VBox(5);
 	public static int count = 0;
 
+
 	public MainComponentCars() throws IOException, SQLException {
 		String current = new java.io.File(".").getCanonicalPath();
 		Pane buttonPane = new Pane();
 		HBox hbox = new HBox(60);
-
+		Button createCar= new Button("Insert Car");
 		VBox vbox = new VBox(5);
+//		vbox.getChildren().add(createCar);
+		VBox vboxWithSCroll = new VBox();
+
+
 		VBox tHeader = new VBox(10);
 		vbox.getStylesheets().add(MainComponentCars.class.getResource("mainComponent.css").toExternalForm());
 		vbox.getStylesheets().add(MainComponentCars.class.getResource("mainComponentCars.css").toExternalForm());
+		vbox.getStylesheets().add(MainComponentCars.class.getResource("header.css").toExternalForm());
 
 		FileInputStream userPath;
 		userPath = new FileInputStream(current + "/src/img/user.png");
@@ -80,23 +89,31 @@ public class MainComponentCars extends VBox {
 		hbox.getChildren().addAll(logoLabel, seatsLabel, doorsLabel, alarmLabel, climateLabel, hidraulicLabel,
 				hoursePowerLabel, maxspeedLabel, isAutomaticLabel);
 		tHeader.getChildren().add(hbox);
-		tHeader.setPadding(new Insets(0, 0, 5, 20));
+		tHeader.setPadding(new Insets(0, 0, 5, 0));
 
-		vbox.getChildren().add(tHeader);
+	//	vbox.getChildren().add(tHeader);
 
 		List<HBox> car = Car.getCars();
 		for (int i = 0; i < car.size(); i++) {
 			vbox.getChildren().add(car.get(i));
 		}
-		Button createCar = new Button("Insert Car");
-		createCar.setStyle("-fx-text-fill:white ;  -fx-background-color:#5DA4C7;");
+//		createCar.setStyle("-fx-text-fill:white ;  -fx-background-color:#5DA4C7;");
 		buttonPane.getChildren().add(createCar);
 		createCar.setTranslateX(500);
+		vboxWithSCroll.getChildren().addAll(tHeader,vbox);
+		createCar.getStyleClass().addAll("updateBtn");
+		createCar.getStyleClass().addAll("btnFormat");
 
-		vbox.getChildren().add(createCar);
+
 		createCar.setOnAction(new ShowCreateCarController());
+		ScrollPane s = new ScrollPane(vbox);  
+		
 
-		getChildren().add(vbox);
+//        vbox.setLeft(new ScrollPane(vbox));
+        s.setStyle(" -fx-background-color:transparent;");
+        s.setBorder(null);
+ //       s.setPadding(new Insets(0,10,0,10));
+		getChildren().addAll(createCar,tHeader,vbox,s);
 
 	}
 

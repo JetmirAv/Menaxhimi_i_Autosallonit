@@ -4,6 +4,7 @@ import java.util.List;
 
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.io.IOException;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -45,8 +46,10 @@ public class I18N {
 		return locale;
 	}
 
-	public static String get(String key, Object... args) {
-		ResourceBundle bundle = ResourceBundle.getBundle("src/Translates", getLocale()); // wrong path
+	public static String get(String key, Object... args) throws IOException {
+		String current = new java.io.File(".").getCanonicalPath();
+
+		ResourceBundle bundle = ResourceBundle.getBundle("Translates.translate", getLocale()); // wrong path
 
 		return MessageFormat.format(bundle.getString(key), args);
 	}
@@ -61,17 +64,24 @@ public class I18N {
 		return label;
 	}
 
-	public static Button getButton(final String key, final Object... args) {
+	public static Button getButton( String key, Object... args) {
 		Button button = new Button();
 		button.textProperty().bind(createStringBinding(key, args));
 		return button;
 	}
 
-	public static Text getText(final String key, final Object... args) {
+	public static Text getText(final String key,  Object... args) {
 		Text text = new Text();
 		text.textProperty().bind(createStringBinding(key, args));
 		return text;
 	}
+	
+//	public static String getString( String key,  Object... args) {
+//		String string = new Label();
+//		string.textProperty().bind(createStringBinding(key, args));
+//		return string;
+//	}
+
 
 //	public static Button buttonForKey(String string) {
 //		// TODO Auto-generated method stub
