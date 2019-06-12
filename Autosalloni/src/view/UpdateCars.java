@@ -37,8 +37,8 @@ import helpers.helpers;
 import models.Store;
 
 public class UpdateCars {
-	public static Button updateBtn = new Button("Update");
-	public static Button deleteBtn = new Button("Delete User");
+	public static Button updateBtn = I18N.getButton("update");
+	public static Button deleteBtn =  I18N.getButton("delete");
 	public static ComboBox<Manufacturer> manufacturerComboBox = new ComboBox(showData());
 	public static ComboBox storesComboBox = new ComboBox(stores());
 	public static TextField txtForModel = new TextField();
@@ -99,98 +99,98 @@ public class UpdateCars {
 		photoHBox.setPadding(new Insets(20, 0, 0, 0));
 
 		// First Row
-		Label storeLabel = new Label("Stores Id");
+		Label storeLabel = I18N.getLabel("storeSB");
 		storeLabel.setMinWidth(60);
 
-		Label manufacturerIdLabel = new Label("Manufacturer ");
+		Label manufacturerIdLabel =  I18N.getLabel("manufacturerC");
 		manufacturerIdLabel.setMinWidth(60);
 
-		Label storeNameLabel = new Label("Model");
+		Label storeNameLabel = I18N.getLabel("modelC");
 		storeNameLabel.setMinWidth(60);
 
-		Label bodyNumberLabel = new Label("Body Number");
+		Label bodyNumberLabel = I18N.getLabel("bodyC");
 		storeNameLabel.setMinWidth(60);
 
-		Label yearOfProdLabel = new Label("Year of Production");
+		Label yearOfProdLabel = I18N.getLabel("prodYearC");
 		manufacturerIdLabel.setMinWidth(60);
 
-		Label priceLabel = new Label("Price");
+		Label priceLabel = I18N.getLabel("priceC");
 		manufacturerIdLabel.setMinWidth(60);
 
 		// Second row
-		Label seatsLabel = new Label("Seats");
+		Label seatsLabel = I18N.getLabel("seatsC");
 		manufacturerIdLabel.setMinWidth(60);
 
-		Label doorsLabel = new Label("Doors");
+		Label doorsLabel = I18N.getLabel("doorsC");
 		manufacturerIdLabel.setMinWidth(60);
 
-		Label roofLabel = new Label("Roof");
+		Label roofLabel = I18N.getLabel("roofC");
 		manufacturerIdLabel.setMinWidth(60);
 
-		Label alarmLabel = new Label("Alarm");
+		Label alarmLabel = I18N.getLabel("alarmC");
 		manufacturerIdLabel.setMinWidth(60);
 
-		Label centralLabel = new Label("Central");
+		Label centralLabel = I18N.getLabel("centralC");
 		manufacturerIdLabel.setMinWidth(60);
 
-		Label airbagLabel = new Label("Airbag");
+		Label airbagLabel = I18N.getLabel("airbagC");
 		manufacturerIdLabel.setMinWidth(60);
 
 		// Third Row
-		Label autonomusLabel = new Label("Autonomus");
+		Label autonomusLabel = I18N.getLabel("autonomousC");
 		autonomusLabel.setMinWidth(60);
 
-		Label navigatorLabel = new Label("Navigator");
+		Label navigatorLabel = I18N.getLabel("navigatorC");
 		navigatorLabel.setMinWidth(60);
 
-		Label climateLabel = new Label("Climate");
+		Label climateLabel = I18N.getLabel("climateC");
 		climateLabel.setMinWidth(60);
 
-		Label fuelTypeIdLabel = new Label("Fuel TypeId");
+		Label fuelTypeIdLabel = I18N.getLabel("fuelC");
 		fuelTypeIdLabel.setMinWidth(60);
 
-		Label fuelCapacityLabel = new Label("Fuel capacity");
+		Label fuelCapacityLabel = I18N.getLabel("fuelCapacityC");
 		climateLabel.setMinWidth(60);
 
-		Label fuelConsumptionLabel = new Label("Fuel consumption");
+		Label fuelConsumptionLabel = I18N.getLabel("fuelConsumptionC");
 		fuelConsumptionLabel.setMinWidth(60);
 
 		// Fourth Row
-		Label hidraulicLabel = new Label("Hidraulic");
+		Label hidraulicLabel = I18N.getLabel("hidraulicC");
 		climateLabel.setMinWidth(60);
 
-		Label engineModelLabel = new Label("Engine Model");
+		Label engineModelLabel = I18N.getLabel("engineModelC");
 		engineModelLabel.setMinWidth(60);
 
-		Label enginePowerLabel = new Label("Engine Power");
+		Label enginePowerLabel = I18N.getLabel("engineC");
 		enginePowerLabel.setMinWidth(60);
 
-		Label hoursePowerLabel = new Label("Fuel capacity");
+		Label hoursePowerLabel = I18N.getLabel("hoursePowerC");
 		hoursePowerLabel.setMinWidth(60);
 
-		Label maxspeedLabel = new Label("Max speed");
+		Label maxspeedLabel = I18N.getLabel("maxSpeedC");
 		maxspeedLabel.setMinWidth(60);
 
-		Label seconds0to100Label = new Label("Seconds 0 to 100");
+		Label seconds0to100Label = I18N.getLabel("secondsC");
 		seconds0to100Label.setMinWidth(60);
 
 		// fifth row
-		Label isAutomaticLabel = new Label("Is Automatic");
+		Label isAutomaticLabel = I18N.getLabel("isAutomaticC");
 		isAutomaticLabel.setMinWidth(60);
 
-		Label gearsLabel = new Label("Gears");
+		Label gearsLabel = I18N.getLabel("gearsC");
 		gearsLabel.setMinWidth(60);
 
-		Label tireModelLabel = new Label("Tire model");
+		Label tireModelLabel = I18N.getLabel("tireModelC");
 		tireModelLabel.setMinWidth(60);
 
-		Label tireSizeLabel = new Label("Tire size");
+		Label tireSizeLabel = I18N.getLabel("tireSizeC");
 		engineModelLabel.setMinWidth(60);
 
-		Label additionalDescLabel = new Label("Additional description");
+		Label additionalDescLabel = I18N.getLabel("descriptionC");
 		additionalDescLabel.setMinWidth(60);
 
-		Label is4x4Label = new Label("Is 4x4");
+		Label is4x4Label = I18N.getLabel("is4x4C");
 		is4x4Label.setMinWidth(60);
 
 		GridPane carsData = new GridPane();
@@ -325,7 +325,7 @@ public class UpdateCars {
 		btnHbox.setPrefWidth(100);
 		btnHbox.setPrefHeight(40);
 		btnHbox.getChildren().addAll(updateBtn,deleteBtn);
-		btnHbox.setPadding(new Insets(50, 0, 0, 0));
+		btnHbox.setPadding(new Insets(60, 0, 0, 24));
 		btnHbox.setTranslateX(350);
 		carsData.setAlignment(Pos.CENTER);
 		vbox.setPadding(new Insets(0, 30, 0, 30));
@@ -339,6 +339,8 @@ public class UpdateCars {
 
 		deleteBtn.setPrefWidth(100);
 		updateBtn.setPrefWidth(100);
+		deleteBtn.setPrefHeight(100);
+		updateBtn.setPrefHeight(100);
 		
 		
 //		manufacturerComboBox.setOnAction(event -> {

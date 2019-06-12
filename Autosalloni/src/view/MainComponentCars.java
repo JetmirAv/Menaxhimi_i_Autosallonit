@@ -31,7 +31,7 @@ public class MainComponentCars extends VBox {
 		String current = new java.io.File(".").getCanonicalPath();
 		Pane buttonPane = new Pane();
 		HBox hbox = new HBox(60);
-		Button createCar= new Button("Insert Car");
+		Button createCar= I18N.getButton("create");
 		VBox vbox = new VBox(5);
 //		vbox.getChildren().add(createCar);
 		VBox vboxWithSCroll = new VBox();
@@ -49,31 +49,31 @@ public class MainComponentCars extends VBox {
 
 		hbox.getStyleClass().add("AdminSite");
 
-		Label logoLabel = new Label("Logo");
+		Label logoLabel = I18N.getLabel("logo");
 		logoLabel.setMinWidth(60);
 		logoLabel.getStyleClass().add("fonts");
-		Label seatsLabel = new Label("Seats");
+		Label seatsLabel = I18N.getLabel("seatsC");
 		seatsLabel.getStyleClass().add("fonts");
 		seatsLabel.setMinWidth(60);
-		Label doorsLabel = new Label("Doors");
+		Label doorsLabel = I18N.getLabel("doorsC");
 		doorsLabel.getStyleClass().add("fonts");
 		doorsLabel.setMinWidth(60);
-		Label alarmLabel = new Label("Alarm");
+		Label alarmLabel = I18N.getLabel("alarmC");
 		alarmLabel.setMinWidth(60);
 		alarmLabel.getStyleClass().add("fonts");
-		Label climateLabel = new Label("Climate");
+		Label climateLabel = I18N.getLabel("climateC");
 		climateLabel.setMinWidth(60);
 		climateLabel.getStyleClass().add("fonts");
-		Label hidraulicLabel = new Label("Hidraulic");
+		Label hidraulicLabel = I18N.getLabel("hidraulicC");
 		hidraulicLabel.getStyleClass().add("fonts");
 		hidraulicLabel.setMinWidth(60);
-		Label hoursePowerLabel = new Label("Hourse Power");
+		Label hoursePowerLabel = I18N.getLabel("hoursePowerC");
 		hoursePowerLabel.setMinWidth(60);
 		hoursePowerLabel.getStyleClass().add("fonts");
-		Label maxspeedLabel = new Label("Max speed");
+		Label maxspeedLabel = I18N.getLabel("maxSpeedC");
 		maxspeedLabel.setMinWidth(60);
 		maxspeedLabel.getStyleClass().add("fonts");
-		Label isAutomaticLabel = new Label("Is automatic");
+		Label isAutomaticLabel = I18N.getLabel("isAutomaticC");
 		isAutomaticLabel.getStyleClass().add("fonts");
 		isAutomaticLabel.setMinWidth(60);
 

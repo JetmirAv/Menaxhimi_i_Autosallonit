@@ -15,9 +15,9 @@ public class Filter extends HBox{
 		HBox manufacturerBox = new HBox(10);
 		HBox fuelBox = new HBox();
 		 
-		Label lblSearch = new Label("Search: ");
-		Label lblManufacturer = new Label("Manufacturer: ");
-		Label lblFuel = new Label("Fuel: ");
+		Label lblSearch = I18N.getLabel("search");
+		Label lblManufacturer = I18N.getLabel("manufacturerC");
+		Label lblFuel = I18N.getLabel("fuelC");
 		
 		lblSearch.getStyleClass().add("filterText");
 		lblManufacturer.getStyleClass().add("filterText");

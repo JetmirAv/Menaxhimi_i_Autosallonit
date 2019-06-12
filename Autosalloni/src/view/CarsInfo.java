@@ -171,7 +171,7 @@ public class CarsInfo extends VBox{
 		HBox photoHBox = new HBox();
 
 		FileInputStream userPath;
-		userPath = new FileInputStream(current1 + "/src/img/user.png");
+		userPath = new FileInputStream(current + "/src/img/user.png");
 
 		Image img = new Image(userPath);
 
