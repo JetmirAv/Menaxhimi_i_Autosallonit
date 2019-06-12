@@ -1,4 +1,5 @@
-package models;
+package controller;
+
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -6,6 +7,7 @@ import java.sql.SQLException;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
+import models.Users;
 import view.Filter;
 import view.Header;
 import view.Main;
@@ -30,6 +32,7 @@ public class DeleteUserController implements EventHandler<ActionEvent>{
 				Modal.display(2, "Success", "User was deleted successfuly", "Ok", "");
 				Main.content.getChildren().clear();
 				MainComponent.vbox.getChildren().clear();
+				MainComponent.offset=0;
 				MainComponent.count = 0;
 				Header.labelBox.getChildren().remove(Header.labelBox.getChildren().size()-1);
 				Main.content.getChildren().addAll(new Filter(""), new MainComponent());

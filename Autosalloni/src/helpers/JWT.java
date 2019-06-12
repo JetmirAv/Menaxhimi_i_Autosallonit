@@ -12,7 +12,7 @@ public class JWT {
 
 	private static final String SECRET_KEY = "SomeSuperSecretKeyToHandleLogin";
 
-	public static String generateJWTToken(int id, int roleId, String name, String surname, String email) throws RuntimeException {
+	public static String generateJWTToken(int id, int roleId, String name, String surname, String email, String img) throws RuntimeException {
 
 		String secretKey = SECRET_KEY;
 		String header = "{\"typ\":\"JWT\",\"alg\":\"HS256\"}";
@@ -25,6 +25,7 @@ public class JWT {
 				+ "\"roleId\":\""+  roleId + "\"," 
 				+ "\"name\":\""+  name + "\","
 				+ "\"surname\":\""+  surname + "\","
+				+ "\"img\":\""+  img + "\","
  				+ "\"email\":\""+  email + "\"}";
 		
 		String base64UrlPayload = Base64.getUrlEncoder().withoutPadding().encodeToString(payload.getBytes());
@@ -69,25 +70,25 @@ public class JWT {
 			try {
 				int num = Integer.parseInt(string);
 				info1.add(num);
-//				System.out.println(num);
+				System.out.println(num);
 			} catch (NumberFormatException e) {
 				info2.add(string);
-//				System.out.println(string);
+				System.out.println(string);
 			}
 		}
-		
-		Main.loggedId = info1.get(0);
-		Main.loggedRole = info1.get(1);
-		Main.loggedName = info2.get(0);
-		Main.loggedSurname = info2.get(1);
-		Main.loggedEmail = info2.get(2);
+//		
+//		Main.loggedId = info1.get(0);
+//		Main.loggedRole = info1.get(1);
+//		Main.loggedName = info2.get(0);
+//		Main.loggedSurname = info2.get(1);
+//		Main.loggedEmail = info2.get(2);
 	}
 	
 
-//	public static void main(String[] args) {
-//		
-//		String hash = generateJWTToken(1, 1, "Jetmir", "Avdullahu", "jetmir99@hotmail.com");
-//		
-//		decodeJWT(hash);		
-//	}
+	public static void main(String[] args) {
+		
+		String hash = generateJWTToken(1, 1, "Jetmir", "Avdullahu", "jetmir99@hotmail.com", "");
+		
+		decodeJWT(hash);		
+	}
 }

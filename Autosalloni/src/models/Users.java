@@ -20,6 +20,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import view.MainComponent;
 import view.UserInfo;
 
 public class Users {
@@ -210,11 +211,11 @@ public class Users {
 	}
 
 	public static int create(String name, String surname, String email, String password, Date birthday,
-			String gendre, String address, String city, String state, String postal, String phoneNumber)
+			String gendre, String address, String city, String state, String postal, String phoneNumber, String img)
 			throws SQLException {
 
 		String query = "insert into users (roleId, name, surname, email, password,"
-				+ " birthday, gendre, address, city, state, postal, phoneNumber) values (?,?,?,?,?,?,?,?,?,?,?,?)";
+				+ " birthday, gendre, address, city, state, postal, phoneNumber, img) values (?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		PreparedStatement stm = DatabaseConfig.getConnection().prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 
 		stm.setInt(1, 2);
@@ -229,6 +230,7 @@ public class Users {
 		stm.setString(10, state);
 		stm.setString(11, postal);
 		stm.setString(12, phoneNumber);
+		stm.setString(13, img);
 
 		stm.executeUpdate();
 		ResultSet result =  stm.getGeneratedKeys();
@@ -337,9 +339,10 @@ public class Users {
 		String current = new java.io.File(".").getCanonicalPath();
 		
 		String query = "select id, name, surname, " + "email, phoneNumber, gendre," + " birthday, city, state, img"
-				+ "  from users limit 10 offset " + view.MainComponent.offset;
+				+ "  from users limit 10 offset ?";
 
 		PreparedStatement preparedStatement = DatabaseConfig.getConnection().prepareStatement(query);
+		preparedStatement.setInt(1, MainComponent.offset);
 		ResultSet resultSet = preparedStatement.executeQuery();
 
 		while (resultSet.next()) {
@@ -407,7 +410,7 @@ public class Users {
 //		ArrayList<String> ret = new ArrayList<String>();
 //		boolean ret = false;
 		String res = "";
-		String query = "select id, roleId, name, surname, password from users where email = ? ";
+		String query = "select id, roleId, name, surname, password, img from users where email = ? ";
 		
 		PreparedStatement stm = DatabaseConfig.getConnection().prepareStatement(query);
 		stm.setString(1, email);
@@ -420,7 +423,7 @@ public class Users {
 			String encPw = helpers.PasswordEncrypt.encrypt(password);
 			
 			if(r.getString(5).equals(encPw)) {
-				res = JWT.generateJWTToken(r.getInt(1), r.getInt(2), r.getString(3), r.getString(4), email);				
+				res = JWT.generateJWTToken(r.getInt(1), r.getInt(2), r.getString(3), r.getString(4), email, r.getString(6));				
 			}
 		}
 		

@@ -23,7 +23,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
-import models.DeleteUserController;
+import controller.DeleteUserController;
 
 public class UserInfo extends VBox {
 

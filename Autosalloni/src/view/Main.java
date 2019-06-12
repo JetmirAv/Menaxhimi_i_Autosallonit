@@ -16,12 +16,16 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class Main extends Application {
+	;
+
+	
 	public static String token = null; 
 	public static int loggedId = 0;
 	public static String loggedName = null;
 	public static String loggedSurname = null;
 	public static int loggedRole = 0;
 	public static String loggedEmail = null;
+	public static String loggedImg = null;
 	public static BorderPane mainWindow = new BorderPane();
 	public static ArrayList<String> history = new ArrayList<String>();
 	public static ArrayList<Node> nodeHistory = new ArrayList<Node>();

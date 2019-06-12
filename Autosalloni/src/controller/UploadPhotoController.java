@@ -50,6 +50,7 @@ public class UploadPhotoController implements EventHandler<MouseEvent> {
 			String joinName = randomNumber+timeStamp; 
 			String finalName = joinName + "." + extType;
 			System.out.println(finalName);
+			SignUp.imgField.setText(finalName);
 			SignUp.imageView1.setImage(SignUp.image1);
 			SignUp.imageView1.setFitHeight(150);
 			SignUp.imageView1.setFitWidth(100);

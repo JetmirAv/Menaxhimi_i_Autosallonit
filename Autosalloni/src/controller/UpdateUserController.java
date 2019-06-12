@@ -28,6 +28,9 @@ public class UpdateUserController implements EventHandler<ActionEvent>{
 		System.out.println(event.getId());
 		System.out.println("Mbrijtem");
 		
+		String password = helpers.PasswordEncrypt.decrypt(UserInfo.passField.getText());
+
+		
 		DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		Date myDate = null;
 		try {
@@ -41,7 +44,7 @@ public class UpdateUserController implements EventHandler<ActionEvent>{
 		System.out.println("Mbrijtem2");
 			try {
 				if (Users.update(Integer.parseInt(event.getId()), UserInfo.firstNameField.getText(), UserInfo.lastNameField.getText(),
-						UserInfo.emailField.getText(), UserInfo.passField.getText(), sqlDate,
+						UserInfo.emailField.getText(), password, sqlDate,
 						UserInfo.gendre.getSelectionModel().getSelectedItem(), UserInfo.addressField.getText(),
 						UserInfo.cityField.getText(), UserInfo.stateField.getText(), UserInfo.postalField.getText(),
 						UserInfo.numberField.getText())) {
@@ -51,6 +54,8 @@ public class UpdateUserController implements EventHandler<ActionEvent>{
 					Modal.display(2, "Success", "User updated sucessfully", "OK", "");
 					Main.content.getChildren().clear();
 					MainComponent.vbox.getChildren().clear();
+					MainComponent.vboxWithScroll.getChildren().clear();
+					MainComponent.offset = 0;
 					MainComponent.count = 0;
 					Header.labelBox.getChildren().remove(Header.labelBox.getChildren().size()-1);
 					Main.content.getChildren().addAll(new Filter(""), new MainComponent());

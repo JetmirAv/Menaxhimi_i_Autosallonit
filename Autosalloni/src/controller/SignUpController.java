@@ -31,7 +31,7 @@ public class SignUpController implements EventHandler<ActionEvent> {
 			int userId = models.Users.create(SignUp.nameField.getText(), SignUp.lastnameField.getText(),
 					SignUp.emailField.getText(), password, sqlDate, SignUp.gendre.getValue(),
 					SignUp.addressField.getText(), SignUp.cityField.getText(), SignUp.stateField.getText(),
-					SignUp.postalField.getText(), SignUp.phoneField.getText());
+					SignUp.postalField.getText(), SignUp.phoneField.getText(), SignUp.imgField.getText());
 
 			if (userId > 0) {
 				boolean result = models.Card.insertCard(userId, SignUp.cardField.getText(),

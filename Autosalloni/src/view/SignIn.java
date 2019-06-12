@@ -32,16 +32,15 @@ public class SignIn extends HBox {
 	public static ComboBox<String> languagesCbo;
 
 	public static void display() throws IOException {
-		
+
 		final ComboBox<String> languagesCbo = new ComboBox<>();
 //		languagesCbo.getItems().addAll(Main.allowedLanguages);
 //		languagesCbo.setValue(I18N.getDefaultLocale().getLanguage());
 //		languagesCbo.setOnAction(e -> switchLanguage());
-		
+
 		modal.initModality(Modality.APPLICATION_MODAL);
 		modal.setTitle("Sign In");
-		
-		
+
 		String current = new java.io.File(".").getCanonicalPath();
 		FileInputStream autoPath = new FileInputStream(current + "/src/img/auto.png");
 		FileInputStream bentleyPath = new FileInputStream(current + "/src/img/bentley.png");
@@ -58,7 +57,7 @@ public class SignIn extends HBox {
 		vbox.setPadding(new Insets(0, 30, 0, 60));
 		Image logoImg = new Image(bentleyPath, 200, 100, false, false);
 		ImageView logoView = new ImageView(logoImg);
-		vbox.getChildren().addAll(languagesCbo,logoView);
+		vbox.getChildren().addAll(languagesCbo, logoView);
 
 		Text welcomeTxt = new Text("Welcome Back,");
 
@@ -114,14 +113,14 @@ public class SignIn extends HBox {
 		});
 		signUpBtn.setOnAction(e -> {
 			try {
-				 SignUp.display();
+				SignUp.display();
 //				 modal.close();
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 		});
-		
+
 		signUpBtn.getStyleClass().addAll("signUpBtn");
 		signUpBox.getChildren().addAll(newUserTxt, signUpBtn);
 		vbox.getChildren().add(signUpBox);
@@ -133,13 +132,12 @@ public class SignIn extends HBox {
 		Scene scene = new Scene(hbox);
 		modal.setScene(scene);
 		modal.showAndWait();
-		
-		
+
 //		getChildren().add(hbox);
 	}
+
 	public static void switchLanguage() {
 		I18N.setLocale(new Locale(languagesCbo.getValue()));
 	}
-
 
 }

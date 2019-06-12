@@ -19,7 +19,7 @@ public class CreateUserController implements EventHandler<ActionEvent> {
 	@Override
 	public void handle(ActionEvent e) {
 
-		
+		String password = helpers.PasswordEncrypt.decrypt(UserInfo.passField.getText());
 
 		DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		Date myDate = null;
@@ -33,10 +33,10 @@ public class CreateUserController implements EventHandler<ActionEvent> {
 
 		try {
 			if (Users.create(UserInfo.firstNameField.getText(), UserInfo.lastNameField.getText(),
-					UserInfo.emailField.getText(), UserInfo.passField.getText(), sqlDate,
+					UserInfo.emailField.getText(), password, sqlDate,
 					UserInfo.gendre.getSelectionModel().getSelectedItem(), UserInfo.addressField.getText(),
 					UserInfo.cityField.getText(), UserInfo.stateField.getText(), UserInfo.postalField.getText(),
-					UserInfo.numberField.getText()) > 0) {
+					UserInfo.numberField.getText(), "") > 0) {
 
 				Modal.display(2, "Success", "User created sucessfully", "OK", "");
 				Main.content.getChildren().clear();

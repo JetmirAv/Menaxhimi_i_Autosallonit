@@ -27,6 +27,9 @@ public class Header extends HBox{
 	public static Label userRole = new Label("Avdullahu");
 	
 	public Header() throws IOException {
+		
+		helpers.JWT.decodeJWT(Main.token);
+		
 		String current = new java.io.File(".").getCanonicalPath();
 
 //		bttnBack.setDisable(true);

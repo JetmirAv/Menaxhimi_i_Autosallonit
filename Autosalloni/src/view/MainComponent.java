@@ -16,12 +16,14 @@ public class MainComponent extends VBox {
 
 	public static VBox vbox = new VBox(5);
 	public static VBox vboxWithScroll = new VBox(5);
-
+	public static ScrollPane s = null;
+	
 	public static int count = 0;
 	public static int offset = 0;
 	public static Button createUser = I18N.getButton("create");
 	public static Button showMore = I18N.getButton("showMore");
-
+	
+	
 
 	public MainComponent() throws SQLException, IOException {
 
@@ -85,16 +87,17 @@ public class MainComponent extends VBox {
 			
 			vbox.getChildren().addAll();
 			count++;
-		}
-		ScrollPane s = new ScrollPane(vbox);  
-		
-
+			s = new ScrollPane(vbox);
+			
+			
+			
 //      vbox.setLeft(new ScrollPane(vbox));
-      s.setStyle(" -fx-background-color:transparent;");
- //     s.setBorder(null);
-      vboxWithScroll.getChildren().addAll(vbox,s);
-		getChildren().addAll(headerBox,vboxWithScroll,createUser,showMore);
+			s.setStyle(" -fx-background-color:transparent;");
+			//     s.setBorder(null);
+			vboxWithScroll.getChildren().addAll(vbox, s);
+		}
 
+		getChildren().addAll(headerBox,vboxWithScroll,createUser,showMore);
 	}
 
 	public void destroyObject(){
