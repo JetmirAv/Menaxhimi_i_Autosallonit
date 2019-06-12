@@ -47,14 +47,15 @@ public class SignUp {
 	public static TextField stateField = new TextField();
 	public static TextField postalField = new TextField();
 	public static TextField cardField = new TextField();
+	public static TextField cardCodeField = new TextField();
 	public static TextField expMonthField = new TextField();
 	public static TextField expYearField = new TextField();
 	public static BufferedImage bImage = null;
+	public static TextField imgField = new TextField();
 	
 	
 	public static Image image1;
 	public static ImageView imageView1 = new ImageView();
-	public static TextField imgField;
 	public static Stage modal = new Stage();
 
 	public static Stage stage = new Stage();
@@ -99,7 +100,7 @@ public class SignUp {
 		// VBox vbox2 = new VBox();
 		HBox hbox2 = new HBox();
 
-		birthdayField.setPromptText("Birthday");
+		birthdayField.setPromptText("YYYY-MM-DD");
 		birthdayField.setPrefWidth(220);
 		
 		gendre.getItems().add("M");
@@ -147,24 +148,31 @@ public class SignUp {
 		HBox hbox5 = new HBox();
 		
 		postalField.setPromptText("Postal Number");
-		postalField.setPrefWidth(160);
+		postalField.setPrefWidth(250);
 		// emailField.setMaxWidth(500);
 		
-		cardField.setPromptText("Card Number");
-		cardField.setPrefWidth(250);
+		
 		hbox5.getChildren().addAll(stateField, postalField);
 		hbox5.setSpacing(20);
 		hbox5.setAlignment(Pos.CENTER_LEFT);
 		vbox.getChildren().add(hbox5);
-
+		cardField.setPromptText("Card Number");
+		cardField.setPrefWidth(250);
+		cardCodeField.setPromptText("Card Code");
+		cardCodeField.setPrefWidth(250);
+		HBox hbox7 = new HBox();
+		hbox7.setSpacing(20);
+		hbox7.setAlignment(Pos.CENTER);
+		hbox7.getChildren().addAll(cardField, cardCodeField);
+		vbox.getChildren().add(hbox7);
 		HBox hbox6 = new HBox();
 		
 		expMonthField.setPromptText("expMonth");
-		expMonthField.setPrefWidth(249);
+		expMonthField.setPrefWidth(250);
 		// emailField.setMaxWidth(500);
 		
 		expYearField.setPromptText("expYear");
-		expYearField.setPrefWidth(249);
+		expYearField.setPrefWidth(250);
 		hbox6.getChildren().addAll(expMonthField, expYearField);
 		hbox6.setSpacing(20);
 		hbox6.setAlignment(Pos.CENTER);

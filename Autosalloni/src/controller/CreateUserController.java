@@ -36,7 +36,7 @@ public class CreateUserController implements EventHandler<ActionEvent> {
 					UserInfo.emailField.getText(), UserInfo.passField.getText(), sqlDate,
 					UserInfo.gendre.getSelectionModel().getSelectedItem(), UserInfo.addressField.getText(),
 					UserInfo.cityField.getText(), UserInfo.stateField.getText(), UserInfo.postalField.getText(),
-					UserInfo.numberField.getText())) {
+					UserInfo.numberField.getText()) > 0) {
 
 				Modal.display(2, "Success", "User created sucessfully", "OK", "");
 				Main.content.getChildren().clear();

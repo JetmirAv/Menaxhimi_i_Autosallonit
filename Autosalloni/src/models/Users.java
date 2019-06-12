@@ -6,6 +6,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -208,13 +209,13 @@ public class Users {
 				+ createdAt + ", updatetimedAt=" + updatetimedAt + "]";
 	}
 
-	public static boolean create(String name, String surname, String email, String password, Date birthday,
+	public static int create(String name, String surname, String email, String password, Date birthday,
 			String gendre, String address, String city, String state, String postal, String phoneNumber)
 			throws SQLException {
 
 		String query = "insert into users (roleId, name, surname, email, password,"
 				+ " birthday, gendre, address, city, state, postal, phoneNumber) values (?,?,?,?,?,?,?,?,?,?,?,?)";
-		PreparedStatement stm = DatabaseConfig.getConnection().prepareStatement(query);
+		PreparedStatement stm = DatabaseConfig.getConnection().prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
 
 		stm.setInt(1, 2);
 		stm.setString(2, name);
@@ -229,8 +230,11 @@ public class Users {
 		stm.setString(11, postal);
 		stm.setString(12, phoneNumber);
 
-		return stm.executeUpdate() > 0;
-
+		stm.executeUpdate();
+		ResultSet result =  stm.getGeneratedKeys();
+		result.next();
+		
+		return result.getInt(1);
 	}
 
 	public static boolean update(int id, String name, String surname, String email, String password, Date birthday,
@@ -413,7 +417,9 @@ public class Users {
 			System.out.println(r.getString(5).getClass());
 			System.out.println(password.getClass());
 			System.out.println(r.getString(5).equals(password));
-			if(r.getString(5).equals(password)) {
+			String encPw = helpers.PasswordEncrypt.encrypt(password);
+			
+			if(r.getString(5).equals(encPw)) {
 				res = JWT.generateJWTToken(r.getInt(1), r.getInt(2), r.getString(3), r.getString(4), email);				
 			}
 		}
