@@ -50,7 +50,7 @@ public class CarClickedController implements EventHandler<MouseEvent> {
 
 			UpdateCars.fuelTypeIdComboBox.getSelectionModel().select(c.getNameOfFuelTypeSQL());
 			//UpdateCars.storesComboBox.getSelectionModel().select(FXCollections.observableArrayList(Store.getStore(c.getId())));
-			UpdateCars. manufacturerComboBox.getSelectionModel().select(c.getNameOFManufacturerSQL());
+			UpdateCars. manufacturerComboBox.getSelectionModel().select(c.getNameAndId(c.getId()));
 			UpdateCars.updateBtn.setId(String.valueOf(c.getId()));
 			UpdateCars.deleteBtn.setId(String.valueOf(c.getId()));
 			UpdateCars.txtForModel = new TextField(c.getModel());

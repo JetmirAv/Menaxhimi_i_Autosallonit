@@ -19,7 +19,7 @@ import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import models.DatabaseConfig;
 
-public class CreateStore 
+public class CreateStore extends HBox
 {
 	
 	public static Label nameLbl = new Label("Name");
@@ -34,7 +34,7 @@ public class CreateStore
 
 
 
-	public static HBox display() throws IOException
+	public  CreateStore() throws IOException
 	{
 		String current = new java.io.File(".").getCanonicalPath();
 		
@@ -93,7 +93,7 @@ public class CreateStore
                 "-fx-border-width: 2;\n" +
                 "-fx-border-style: solid;\n");
 		mainHbox.getChildren().addAll(leftVbox,middleVbox,rightVbox);
-		return mainHbox;
+		getChildren().add(mainHbox);
 		
 		
 	}

@@ -77,7 +77,7 @@ public class MainComponentStores extends VBox {
 		}
 
 		Button createStore = new Button("Create Store");
-		createStore.setOnAction(new controller.ShowCreateUserController());
+		createStore.setOnAction(new controller.ShowStoreCreateController());
 		createStore.getStyleClass().add("updateBtn");
 		createStore.getStyleClass().add("btnFormat");
 		createStore.setTranslateX(360);
