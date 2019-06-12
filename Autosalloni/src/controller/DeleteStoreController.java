@@ -7,17 +7,15 @@ import javafx.event.EventHandler;
 import javafx.scene.Node;
 import view.Modal;
 
-public class DeleteCarController implements EventHandler<ActionEvent>{
+public class DeleteStoreController implements EventHandler<ActionEvent>{
 	
 	@Override
 	public void handle(ActionEvent e) {
 		
 		Node event =  (Node) e.getSource();
-		
-		System.out.println("Delete??");
 		try {
-			models.Store.delete(Integer.parseInt(event.getId()));
-			Modal.display(2, "Success", "Store deleted sucessfully", "OK", "");
+			models.Car.delete(Integer.parseInt(event.getId()));
+			Modal.display(2, "Success", "Car deleted sucessfully", "OK", "");
 
 		} catch (NumberFormatException | SQLException e1) {
 			e1.printStackTrace();

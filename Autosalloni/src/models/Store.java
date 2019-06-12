@@ -8,12 +8,15 @@ import java.util.Date;
 import java.util.List;
 
 import controller.CarClickedController;
+import controller.StoreClickedController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
+import view.UpdateStore;
+import view.UserInfo;
 
 
 public class Store {
@@ -141,6 +144,30 @@ public class Store {
 	}
 	
 	
+	public static void findByPk(int id) throws SQLException {
+		String query = "select id , name , address , city , state , postal , phoneNumber from stores where id=" + id ;
+		
+		
+		PreparedStatement stm = DatabaseConfig.getConnection().prepareStatement(query);
+		
+		java.sql.ResultSet resultSet = stm.executeQuery();
+		while (resultSet.next()) {
+		
+		UpdateStore.nameField.setText(resultSet.getString(2));
+		UpdateStore.addressField.setText(resultSet.getString(3));
+		UpdateStore.cityField.setText(resultSet.getString(4));
+		UpdateStore.stateField.setText(resultSet.getString(5));
+		UpdateStore.postalField.setText(resultSet.getString(6));
+	    UpdateStore.phonenumberField.setText(resultSet.getString(7));
+		}
+	    
+	}
+	
+	
+	
+	
+	
+	
 	public static boolean create(String name , String address , String city , String postal 
 			, String state , String phoneNumber) throws SQLException {
 
@@ -161,7 +188,7 @@ public class Store {
 	}
 	
 	
-	public static boolean update(String name , String address , String city , String postal , String state , 
+	public static boolean update(int id , String name , String address , String city , String postal , String state , 
 			String phoneNumber ) throws SQLException {
 		
 		String query = "update stores set name=?, address=?, city=?, postal=?," + 
@@ -174,7 +201,7 @@ public class Store {
 		stm.setString(4, postal);
 		stm.setString(5, state);
 		stm.setString(6, phoneNumber);
-		
+		stm.setInt(7, id);
 		
 		return stm.executeUpdate() > 0;
 		
@@ -209,9 +236,8 @@ public class Store {
 			headerBox.setPrefHeight(20);
 			headerBox.getStyleClass().add("carList");
 			headerBox.setId(String.valueOf(resultSet.getInt(1)));
-//			headerBox.setOnMouseClicked(new StoreClickedController());
-
-			
+            headerBox.setOnMouseClicked(new StoreClickedController());
+            
 			Label lblName = new Label(resultSet.getString(2));
 			Label lblAddress = new Label(resultSet.getString(3));
 			Label lblCity = new Label(resultSet.getString(4));

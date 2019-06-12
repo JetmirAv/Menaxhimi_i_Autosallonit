@@ -18,9 +18,11 @@ public class UserClickedController implements EventHandler<MouseEvent> {
 
 	@Override
 	public void handle(MouseEvent e) {
+		
+		
 		HBox box = (HBox) e.getSource();
-		System.out.println(box.getId());
 
+		
 		Label lblCreateUser = new Label("/Edit User");
 		Header.lblLocation.getStyleClass().clear();
 		Header.lblLocation.getStyleClass().add("lblHistory");

@@ -23,16 +23,15 @@ import models.Store;
 import models.Users;
 
 public class MainComponentStores extends VBox {
-	private static TableView table = new TableView();
-	private static int count = 0;
-
+	public static int count = 0;
+	public static VBox formatVbox = new VBox();
+	
 	public MainComponentStores() throws SQLException, IOException {
 		String current = new java.io.File(".").getCanonicalPath();
 
 		HBox hbox = new HBox(50);
 		VBox vbox = new VBox(5);
-		VBox formatVbox = new VBox();
-		HBox tHeader = new HBox(10);
+		
 		vbox.getStylesheets().add(MainComponentStores.class.getResource("mainComponent.css").toExternalForm());
 		FileInputStream userPath;
 		userPath = new FileInputStream(current + "/src/img/user.png");
@@ -67,26 +66,27 @@ public class MainComponentStores extends VBox {
 		lblState.setPrefWidth(120);
 		lblPostal.setPrefWidth(90);
 
-		headerBox.getChildren().addAll(lblName, lblAddress, lblPhone, lblPostal, lblCity, lblState);
-
-		vbox.getChildren().add(headerBox);
-
-		List<HBox> stores = Store.getStores();
-		for (int i = 0; i < stores.size(); i++) {
-			vbox.getChildren().add(stores.get(i));
+		if(count == 0) {
+			headerBox.getChildren().addAll(lblName, lblAddress, lblPhone, lblPostal, lblCity, lblState);
+			vbox.getChildren().add(headerBox);
+			
+			List<HBox> stores = Store.getStores();
+			for (int i = 0; i < stores.size(); i++) {
+				vbox.getChildren().add(stores.get(i));
+			}
+			
+			Button createStore = new Button("Create Store");
+			createStore.setOnAction(new controller.ShowStoreCreateController());
+			createStore.getStyleClass().add("updateBtn");
+			createStore.getStyleClass().add("btnFormat");
+			createStore.setTranslateX(360);
+			
+			vbox.getChildren().add(createStore);
+			formatVbox.getChildren().add(vbox);
+			formatVbox.setPadding(new Insets(0, 120, 0, 120));
+			count++;			
 		}
-
-		Button createStore = new Button("Create Store");
-		createStore.setOnAction(new controller.ShowStoreCreateController());
-		createStore.getStyleClass().add("updateBtn");
-		createStore.getStyleClass().add("btnFormat");
-		createStore.setTranslateX(360);
-
-		vbox.getChildren().add(createStore);
-		count++;
-
-		formatVbox.getChildren().add(vbox);
-		formatVbox.setPadding(new Insets(0, 120, 0, 120));
+		
 		getChildren().add(formatVbox);
 
 	}

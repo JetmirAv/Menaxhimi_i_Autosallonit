@@ -2,6 +2,9 @@ package view;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+
+import controller.DeleteCarController;
+import controller.UpdateStoreController;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
@@ -15,7 +18,8 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
-public class UpdateStore {
+public class UpdateStore extends HBox {
+	
 	public static Label nameLbl = new Label("Name");
 	public static TextField nameField = new TextField();
 	public static Label cityLbl = new Label("City");
@@ -28,13 +32,17 @@ public class UpdateStore {
 	public static TextField addressField = new TextField();
 	public static Label stateLbl = new Label("State");
 	public static TextField stateField = new TextField();
+	public static VBox middleVbox = new VBox(30);
+	public static HBox mainHbox = new HBox(25);
+	public static VBox leftVbox = new VBox(30);
+	public static VBox rightVbox = new VBox(30);
+	public static Button deleteStoreBtn = new Button("Delete Store");
+	public static Button updateStoreBtn = new Button("Update Store");
 
-	public static HBox display() throws IOException {
+	public  UpdateStore() throws IOException
+	{
 		String current = new java.io.File(".").getCanonicalPath();
 
-		HBox mainHbox = new HBox(25);
-
-		VBox leftVbox = new VBox(30);
 		nameField.setPromptText("Store Name");
 
 		cityField.setPromptText("Store City");
@@ -43,22 +51,25 @@ public class UpdateStore {
 		leftVbox.setAlignment(Pos.CENTER_LEFT);
 		leftVbox.getChildren().addAll(nameLbl, nameField, cityLbl, cityField);
 
-		VBox middleVbox = new VBox(30);
+		
 		phonenumberField.setPromptText("Store Phone");
 		postalField.setPromptText("Postal");
-		Button updateStoreBtn = new Button("Update Store");
+		
 		updateStoreBtn.setOnMouseEntered(e -> {
 			updateStoreBtn.setCursor(Cursor.HAND);
 		});
 		updateStoreBtn.setStyle("-fx-text-fill:white ;  -fx-background-color:#5DA4C7;");
 		updateStoreBtn.setPrefWidth(220);
-		updateStoreBtn.setMaxWidth(220);
+		updateStoreBtn.setMaxWidth(90);
+		updateStoreBtn.setOnAction(new UpdateStoreController());
+		deleteStoreBtn.setOnAction(new DeleteCarController());
+		
 		middleVbox.getStyleClass().add("photoToCenter");
 		middleVbox.setPadding(new Insets(170, 0, 0, 0));
 		middleVbox.setAlignment(Pos.CENTER_LEFT);
-		middleVbox.getChildren().addAll(phonenumberLbl, phonenumberField, postalLbl, postalField, updateStoreBtn);
+		middleVbox.getChildren().addAll(phonenumberLbl, phonenumberField, postalLbl, postalField);
 
-		VBox rightVbox = new VBox(30);
+		
 		addressField.setPromptText("Store Address");
 		stateField.setPromptText("Store State");
 
@@ -69,7 +80,7 @@ public class UpdateStore {
 		mainHbox.setStyle("-fx-border-color: black;\n" + "-fx-border-insets: 5;\n" + "-fx-border-width: 2;\n"
 				+ "-fx-border-style: solid;\n");
 		mainHbox.getChildren().addAll(leftVbox, middleVbox, rightVbox);
-		return mainHbox;
+		getChildren().add(mainHbox);
 
 	}
 

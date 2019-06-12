@@ -12,8 +12,12 @@ import view.Main;
 
 public class ShowStoreCreateController implements EventHandler<ActionEvent>{
 	@Override
+	
+	
 	public void handle(ActionEvent e) {
 
+		
+		
 		Main.content.getChildren().clear();
 		try {
 			Main.content.getChildren().add(new CreateStore());
