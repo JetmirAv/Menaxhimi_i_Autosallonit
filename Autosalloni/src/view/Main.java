@@ -61,7 +61,7 @@ public class Main extends Application {
 			if(Main.loggedRole == 1) {
 				content.getChildren().add(new Dashboard());
 			} else {
-				content.getChildren().add(Cars.display());
+				content.getChildren().add(new Cars());
 			}
 			mainWindow.setCenter(content);				
 			mainWindow.setTop(new Header());
