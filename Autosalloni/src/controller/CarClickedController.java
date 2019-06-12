@@ -47,7 +47,8 @@ public class CarClickedController implements EventHandler<MouseEvent> {
 		Car c;
 		try {
 			c = Car.getAllDetailsOfCar(Integer.parseInt(box.getId()));
-
+			String imgFound = models.Photos.find(Integer.parseInt(box.getId()));
+			UpdateCars.imgField.setText(imgFound);
 			// Fillimi
 
 			ArrayList<Integer> years = new ArrayList<Integer>();

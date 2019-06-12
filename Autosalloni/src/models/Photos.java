@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
 
@@ -88,6 +89,26 @@ public class Photos {
 		return stm.executeUpdate() > 0;
 			
 	}
-
+	public static boolean updatePhoto(Integer carId, String path) throws SQLException , FileNotFoundException,IOException
+	{
+		String query = "update photos set path = ? where carId = ?  ";
+		PreparedStatement stm = DatabaseConfig.getConnection().prepareStatement(query);
+		stm.setString(1, path);
+		stm.setInt(2, carId);
+		
+		return stm.executeUpdate() > 0;
+			
+	}
+	
+	public static String find(Integer carId) throws SQLException , FileNotFoundException,IOException
+	{
+		String query = "select path from photos where carId = ?";
+		PreparedStatement stm = DatabaseConfig.getConnection().prepareStatement(query);
+		stm.setInt(1, carId);
+		
+		ResultSet rs = stm.executeQuery();;
+		rs.next();
+		return rs.getString(1);
+	}
 	
 }

@@ -276,6 +276,8 @@ public class CarsInfo extends VBox{
 		yearOfProdComboBox.setPrefWidth(100);
 		txtForPrice.setPrefWidth(100);
 		
+		
+		
 		manufacturerComboBox.getSelectionModel().selectFirst();
 		yearOfProdComboBox.getSelectionModel().selectFirst();
 
@@ -423,13 +425,10 @@ public class CarsInfo extends VBox{
 		Manufacturer manufacturer = (Manufacturer) manufacturerComboBox.getSelectionModel().getSelectedItem();
 		FuelType fuelType = (FuelType) fuelTypeIdComboBox.getSelectionModel().getSelectedItem();			
 		Store store = (Store) storesComboBox.getSelectionModel().getSelectedItem();			
-		if (Validations.validateBodyNumber(txtForbodyNumber.getText()) ) {
+		if (!Validations.validateBodyNumber(txtForbodyNumber.getText()) || Validations.textFieldValidations(imgField.getText())) {
+			Modal.display(2, "Error!", "Only numbers and uppercase letters are allowed", "Ok", "");		
 		}
-		else 
-		{
-			Modal.display(2, "Error!", "Only numbers and uppercase letters are allowed", "Ok", "");
 
-		} 
 		
 		int carId = Car.addCar(store.getId(), 
 				manufacturer.getId(),

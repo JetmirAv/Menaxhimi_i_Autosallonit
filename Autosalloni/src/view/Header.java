@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import controller.LogOutController;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Cursor;
@@ -67,6 +68,8 @@ public class Header extends HBox {
 		labelLogOut.setOnMouseEntered(e -> {
 			labelLogOut.setCursor(Cursor.HAND);
 		});
+		
+		labelLogOut.setOnMouseClicked(new LogOutController());
 
 		// Users Image load and styling
 		Image userImg = new Image(UserImgPath);
@@ -107,8 +110,8 @@ public class Header extends HBox {
 		historyBox.setSpacing(30);
 		historyBox.setAlignment(Pos.CENTER_LEFT);
 		historyBox.getChildren().add(labelBox);
-		historyBox.setPrefWidth(900);
-		historyBox.setMaxWidth(901);
+		historyBox.setPrefWidth(870);
+		historyBox.setMaxWidth(871);
 
 		// Main Box that will be returned;
 		HBox header = new HBox(100);

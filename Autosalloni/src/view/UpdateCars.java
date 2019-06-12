@@ -8,6 +8,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import controller.CarsInfoController;
+import controller.UploadPhotoController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -21,12 +22,14 @@ import javafx.scene.control.Spinner;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import javafx.stage.Stage;
 import javafx.util.StringConverter;
 import models.Car;
 import models.FuelType;
@@ -38,7 +41,7 @@ import models.Store;
 
 public class UpdateCars {
 	public static Button updateBtn = I18N.getButton("update");
-	public static Button deleteBtn =  I18N.getButton("delete");
+	public static Button deleteBtn = I18N.getButton("delete");
 	public static ComboBox<Manufacturer> manufacturerComboBox = new ComboBox(showData());
 	public static TextField txtForModel = new TextField();
 	public static TextField txtForbodyNumber;
@@ -73,6 +76,15 @@ public class UpdateCars {
 	public static TextField additionalDesc;
 	public static ComboBox is4x4ComboBox = new ComboBox(FXCollections.observableArrayList(trueFalse));
 	public static int id;
+
+	public static TextField imgField = new TextField();
+
+	public static Image image1;
+	public static ImageView imageView1 = new ImageView();
+	public static Stage modal = new Stage();
+
+	public static Stage stage = new Stage();
+	
 	
 
 	public static VBox display() throws IOException, SQLException {
@@ -81,18 +93,17 @@ public class UpdateCars {
 		VBox vbox = new VBox();
 		vbox.getStylesheets().add(MainComponent.class.getResource("CarsForm.css").toExternalForm());
 
+		
+		FileInputStream UserImgPath = new FileInputStream(current + "/uploads/car-img/" + imgField.getText());
+		image1 = new Image(UserImgPath, 100, 150, true, true);
+		imageView1.setImage(image1);
+		imageView1.setId("carsupdate");
+		imageView1.setOnMouseClicked(new UploadPhotoController());
+		
+		
 		HBox photoHBox = new HBox();
 
-		FileInputStream userPath;
-		userPath = new FileInputStream(current + "/src/img/user.png");
-
-		Image img = new Image(userPath);
-
-		Circle store1Circle = new Circle();
-		store1Circle.setRadius(50);
-		store1Circle.setFill(new ImagePattern(img));
-
-		photoHBox.getChildren().add(store1Circle);
+		photoHBox.getChildren().add(imageView1);
 		photoHBox.getStyleClass().add("photoToCenter");
 		photoHBox.setPadding(new Insets(20, 0, 0, 0));
 
@@ -100,7 +111,7 @@ public class UpdateCars {
 		Label storeLabel = I18N.getLabel("storeSB");
 		storeLabel.setMinWidth(60);
 
-		Label manufacturerIdLabel =  I18N.getLabel("manufacturerC");
+		Label manufacturerIdLabel = I18N.getLabel("manufacturerC");
 		manufacturerIdLabel.setMinWidth(60);
 
 		Label storeNameLabel = I18N.getLabel("modelC");
@@ -218,10 +229,7 @@ public class UpdateCars {
 		secondCarsData.add(txtForbodyNumber, 3, 1);
 		secondCarsData.add(yearOfProdComboBox, 4, 1);
 		secondCarsData.add(txtForPrice, 5, 1);
-		
-		
 
-		
 		manufacturerComboBox.setPrefWidth(100);
 		txtForModel.setPrefWidth(100);
 		txtForbodyNumber.setPrefWidth(100);
@@ -320,12 +328,11 @@ public class UpdateCars {
 		additionalDesc.setPrefWidth(100);
 		is4x4ComboBox.setPrefWidth(100);
 
-		
 		updateBtn.getStyleClass().add("photoToCenter");
 		HBox btnHbox = new HBox(30);
 		btnHbox.setPrefWidth(100);
 		btnHbox.setPrefHeight(40);
-		btnHbox.getChildren().addAll(updateBtn,deleteBtn);
+		btnHbox.getChildren().addAll(updateBtn, deleteBtn);
 		btnHbox.setPadding(new Insets(60, 0, 0, 24));
 		btnHbox.setTranslateX(350);
 		carsData.setAlignment(Pos.CENTER);
@@ -342,18 +349,17 @@ public class UpdateCars {
 		updateBtn.setPrefWidth(100);
 		deleteBtn.setPrefHeight(100);
 		updateBtn.setPrefHeight(100);
-		
-		
+
 //		manufacturerComboBox.setOnAction(event -> {
 //			Manufacturer manufacturer = (Manufacturer) manufacturerComboBox.getSelectionModel().getSelectedItem();
-			// FuelType fuelType = (FuelType)
-			// fuelTypeIdComboBox.getSelectionModel().getSelectedItem();
-			// Stores store = (Stores)
-			// manufacturerComboBox.getSelectionModel().getSelectedItem();
+		// FuelType fuelType = (FuelType)
+		// fuelTypeIdComboBox.getSelectionModel().getSelectedItem();
+		// Stores store = (Stores)
+		// manufacturerComboBox.getSelectionModel().getSelectedItem();
 
 //		});
 
-		showData();
+//		showData();
 		vbox.getChildren().addAll(photoHBox, carsData, secondCarsData, btnHbox);
 		return vbox;
 

@@ -75,7 +75,9 @@ public class UpdateCarController implements EventHandler<ActionEvent> {
 				boolean res2 = models.Car.updateCarByPrice(Integer.parseInt(UpdateCars.txtForPrice.getText()),
 						Integer.parseInt(event.getId()));
 				
-				if (!res1 || !res2) {
+				boolean res3 = models.Photos.updatePhoto(Integer.parseInt(event.getId()), UpdateCars.imgField.getText());
+				
+				if (!res1 || !res2 || !res3) {
 					Modal.display(2, "Error", "Users was not updated", "OK", "");
 					return;
 

@@ -15,6 +15,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.FileChooser;
 import view.CarsInfo;
 import view.SignUp;
+import view.UpdateCars;
 
 
 public class UploadPhotoController implements EventHandler<MouseEvent> {
@@ -66,7 +67,24 @@ public class UploadPhotoController implements EventHandler<MouseEvent> {
 				CarsInfo.imageView1.setFitWidth(100);
 				CarsInfo.imageView1.setPreserveRatio(true);
 				CarsInfo.imgField.setText(finalName);
-			} else {
+				try {
+					ImageIO.write(SignUp.bImage, extType, new File(current + "/uploads/car-img/" + finalName));
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+			} else if(img.getId().equals("carsupdate") ) {
+				UpdateCars.image1 = new Image(file.toURI().toString(), 100, 150, true, true);
+				UpdateCars.imageView1.setImage(CarsInfo.image1);
+				UpdateCars.imageView1.setFitHeight(150);
+				UpdateCars.imageView1.setFitWidth(100);
+				UpdateCars.imageView1.setPreserveRatio(true);
+				UpdateCars.imgField.setText(finalName);
+				try {
+					ImageIO.write(SignUp.bImage, extType, new File(current + "/uploads/car-img/" + finalName));
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
+			}else {
 				System.out.println("joooo");
 				SignUp.image1 = new Image(file.toURI().toString(), 100, 150, true, true);				
 				SignUp.imageView1.setImage(SignUp.image1);
@@ -74,15 +92,15 @@ public class UploadPhotoController implements EventHandler<MouseEvent> {
 				SignUp.imageView1.setFitWidth(100);
 				SignUp.imageView1.setPreserveRatio(true);
 				SignUp.imgField.setText(finalName);
+				try {
+					ImageIO.write(SignUp.bImage, extType, new File(current + "/uploads/user-img/" + finalName));
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
 			}
 
-			System.out.println(finalName);
-
-			try {
-				ImageIO.write(SignUp.bImage, extType, new File(current + "/uploads/user-img/" + finalName));
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
+			
+			
 		}
 		
 	}
