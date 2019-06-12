@@ -334,6 +334,8 @@ public class UpdateCars {
 		deleteBtn.setOnAction(new controller.DeleteCarController());
 		updateBtn.getStyleClass().add("btnFormat");
 		deleteBtn.getStyleClass().add("btnFormat");
+		updateBtn.getStyleClass().add("updateBtn");
+		deleteBtn.getStyleClass().add("updateBtn");
 
 		deleteBtn.setPrefWidth(100);
 		updateBtn.setPrefWidth(100);

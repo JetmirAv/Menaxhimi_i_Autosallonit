@@ -66,7 +66,10 @@ public class MainComponent extends VBox {
 			}
 			Button createUser = new Button("Create User");
 			createUser.setOnAction(new controller.ShowCreateUserController());
-			
+			createUser.getStyleClass().add("updateBtn");
+			createUser.getStyleClass().add("btnFormat");
+			createUser.setTranslateX(550);
+
 			vbox.getChildren().add(createUser);
 			count++;
 		}

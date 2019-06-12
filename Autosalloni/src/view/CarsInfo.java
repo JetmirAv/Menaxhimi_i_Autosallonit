@@ -34,8 +34,10 @@ import models.Photos;
 import helpers.helpers;
 import models.FuelType;
 import models.Store;
+import helpers.Validations;
 
 public class CarsInfo extends VBox{
+	public static Circle store1Circle;
 	public static ComboBox manufacturerComboBox = new ComboBox(showData());
 	public static ComboBox storesComboBox = new ComboBox(stores());
 	public static TextField txtForModel = new TextField();
@@ -55,14 +57,14 @@ public class CarsInfo extends VBox{
 	public static ComboBox navigatorComboBox = new ComboBox(FXCollections.observableArrayList(trueFalse));
 	public static ComboBox climateComboBox = new ComboBox(FXCollections.observableArrayList(trueFalse));
 	public static ComboBox fuelTypeIdComboBox = new ComboBox(fuelTypes());
-	private static Spinner<Integer> fuelCapacity = new Spinner<>(0, 300, 0, 1);
-	public static Spinner<Double> fuelConsumption = new Spinner<>(0, 300, 0, 1);// min , max , start , increase
+	public static Spinner<Integer> fuelCapacity = new Spinner<>(0, 150, 45, 1);
+	public static Spinner<Double> fuelConsumption = new Spinner<>(0, 20, 4, 1);// min , max , start , increase
 	public static ComboBox hidraulicComboBox = new ComboBox(FXCollections.observableArrayList(trueFalse));
 	public static TextField engineModel = new TextField();
-	public static Spinner<Double> enginePower = new Spinner<>(0, 300, 0, 1);
-	public static Spinner<Integer> hoursePowerCapacity = new Spinner<>(0, 300, 0, 1);
-	public static Spinner<Integer> maxspeed = new Spinner<>(0, 350, 0, 1);
-	public static Spinner<Double> seconds0to100 = new Spinner<>(0, 300, 0, 1);
+	public static Spinner<Double> enginePower = new Spinner<>(0, 60000, 80, 1);
+	public static Spinner<Integer> hoursePowerCapacity = new Spinner<>(0, 7000, 200, 1);
+	public static Spinner<Integer> maxspeed = new Spinner<>(0, 500, 80, 1);
+	public static Spinner<Double> seconds0to100 = new Spinner<>(0, 50, 0, 1);
 	public static ComboBox isAutomaticComboBox = new ComboBox(FXCollections.observableArrayList(trueFalse));
 	public static Spinner<Integer> gears = new Spinner<>(4, 7, 4, 1);
 	public static String tireModel[] = { "summer", "winter" };
@@ -154,6 +156,7 @@ public class CarsInfo extends VBox{
 
 		VBox vbox = new VBox();
 		vbox.getStylesheets().add(MainComponent.class.getResource("CarsForm.css").toExternalForm());
+		vbox.getStylesheets().add(MainComponent.class.getResource("header.css").toExternalForm());
 
 		HBox photoHBox = new HBox();
 
@@ -162,7 +165,7 @@ public class CarsInfo extends VBox{
 
 		Image img = new Image(userPath);
 
-		Circle store1Circle = new Circle();
+		store1Circle = new Circle();
 		store1Circle.setRadius(50);
 		store1Circle.setFill(new ImagePattern(img));
 
@@ -239,7 +242,7 @@ public class CarsInfo extends VBox{
 		Label enginePowerLabel = new Label("Engine Power");
 		enginePowerLabel.setMinWidth(60);
 
-		Label hoursePowerLabel = new Label("Fuel capacity");
+		Label hoursePowerLabel = new Label("Hourse Power");
 		hoursePowerLabel.setMinWidth(60);
 
 		Label maxspeedLabel = new Label("Max speed");
@@ -424,7 +427,8 @@ public class CarsInfo extends VBox{
 		btnHbox.setAlignment(Pos.CENTER);
 		carsData.setAlignment(Pos.CENTER);
 		vbox.setPadding(new Insets(0, 30, 0, 30));
-		
+		insertBtn.getStyleClass().add("updateBtn");
+
 		
 		manufacturerComboBox.setOnAction(event -> {
 				Manufacturer manufacturer = (Manufacturer) manufacturerComboBox.getSelectionModel().getSelectedItem();			
@@ -447,6 +451,13 @@ public class CarsInfo extends VBox{
 		Manufacturer manufacturer = (Manufacturer) manufacturerComboBox.getSelectionModel().getSelectedItem();
 		FuelType fuelType = (FuelType) fuelTypeIdComboBox.getSelectionModel().getSelectedItem();			
 		Store store = (Store) storesComboBox.getSelectionModel().getSelectedItem();			
+		if (Validations.validateBodyNumber(txtForbodyNumber.getText())) {
+		}
+		else 
+		{
+			Modal.display(2, "Error!", "Only numbers and uppercase letters are allowed", "Ok", "");
+
+		} 
 		
 		int carId = Car.addCar(store.getId(), 
 				manufacturer.getId(),
@@ -474,7 +485,9 @@ public class CarsInfo extends VBox{
 			
 			return Photos.insertPhoto(carId, imgField.getText());
 
+	
 	}
+	
 
 	public static boolean emer(Object s) {
 

@@ -141,6 +141,7 @@ public class CarsDetails   {
 		String current = new java.io.File(".").getCanonicalPath();
 		VBox vbox = new VBox();
 		vbox.getStylesheets().add(MainComponent.class.getResource("CarsForm.css").toExternalForm());
+		vbox.getStylesheets().add(MainComponent.class.getResource("header.css").toExternalForm());
 
 		HBox photoHBox = new HBox();
 
@@ -379,6 +380,10 @@ public class CarsDetails   {
 	});
 		
 		buyBtn.setOnAction(new CarsDetailsController());
+		buyBtn.getStyleClass().add("updateBtn");
+		buyBtn.getStyleClass().add("btnFormat");
+		buyBtn.setPrefWidth(70);
+
 		
 		
 		

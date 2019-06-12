@@ -208,9 +208,14 @@ public class UserInfo extends VBox {
 		signUpBtn.setOnAction(new CreateUserController());
 		updateBtn.setOnAction(new UpdateUserController());
 		deleteBtn.setOnAction(new DeleteUserController());
-		signUpBtn.setStyle("-fx-text-fill:white ;  -fx-background-color:#5DA4C7;");
-		updateBtn.setStyle("-fx-text-fill:white ;  -fx-background-color:#5DA4C7;");
-		deleteBtn.setStyle("-fx-text-fill:white ;  -fx-background-color:#5DA4C7;");
+
+		signUpBtn.getStyleClass().add("updateBtn");
+		signUpBtn.getStyleClass().add("btnFormat");
+		updateBtn.getStyleClass().add("updateBtn");
+		updateBtn.getStyleClass().add("btnFormat");
+		deleteBtn.getStyleClass().add("updateBtn");
+		deleteBtn.getStyleClass().add("btnFormat");
+
 
 		rightVbox.setPrefWidth(300);
 		mainHbox.setAlignment(Pos.CENTER);
