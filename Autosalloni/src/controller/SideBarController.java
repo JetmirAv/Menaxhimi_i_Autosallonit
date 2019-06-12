@@ -32,7 +32,7 @@ public class SideBarController implements EventHandler<ActionEvent> {
 				if(Main.loggedRole == 1) {
 					Main.content.getChildren().addAll(new Filter("Car"), new MainComponentCars());					
 				} else {
-					Main.content.getChildren().addAll(Cars.display());
+					Main.content.getChildren().addAll(new Cars());
 				}
 				Header.labelBox.getChildren().clear();
 				Header.lblLocation.setText("Cars");
@@ -109,7 +109,7 @@ public class SideBarController implements EventHandler<ActionEvent> {
 				if(Main.loggedRole == 1) {
 					Main.content.getChildren().addAll(new Filter("Car"), new MainComponentCars());					
 				} else {
-					Main.content.getChildren().addAll(Cars.display());
+					Main.content.getChildren().addAll(new Cars());
 				}
 				Header.labelBox.getChildren().clear();
 				Header.lblLocation.setText("Cars");
