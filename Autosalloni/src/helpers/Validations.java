@@ -1,5 +1,8 @@
 package helpers;
 
+import com.sun.org.apache.xalan.internal.xsltc.compiler.Pattern;
+import com.sun.org.apache.xerces.internal.impl.xs.identity.Selector.Matcher;
+
 public class Validations {
 
 	public static boolean emailValidation(String email) {
@@ -7,6 +10,11 @@ public class Validations {
 		return email.matches(regex);
 	}
 
+
+	
+	
+	
+	
 	public static boolean passwordValidation(String password) {
 		String regex = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$";
 		return password.matches(regex);
@@ -88,12 +96,7 @@ public class Validations {
 		  
 	}
 	
-	public static String capitalize(String str)
-	{
-	    return str.substring(0, 1).toUpperCase() + str.substring(1);
-	}
-	
-	
+
 	
 	public static boolean postalValidation(String postal) {
 		
@@ -118,6 +121,24 @@ public class Validations {
 		return s != null && (s.matches("[\\p{Digit}\\p{Lu}]+" ) || s.matches( "[A-Z][a-z]*" ));
 		
 		
-	}  
+	} 
+   
+   
+   public static boolean textFieldValidations(String str) {
+	   
+	   if (str != null && !str.isEmpty()) {
+		   if(str.length()<50) {
+			    return true;}
+	   }
+		   
+		return false;
+   }
 
+  
+	   
+   
+   
 }
+   
+   
+   
