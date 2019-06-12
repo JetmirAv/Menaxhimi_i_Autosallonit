@@ -12,6 +12,8 @@ buy = Buy
 car = Car
 showMore = Show More
 chooseAfile = Choose a File
+button.english = English
+button.al = Albanian
 
 
 storeSB = Stores
