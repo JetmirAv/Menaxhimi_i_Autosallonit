@@ -949,5 +949,16 @@ public class Car {
 		}
 		return result;
 	}
+	
+	public static boolean updateCarByPrice(int price , int carId) throws SQLException {
+		String query = "update stock set price = ? where carId = ?";
+
+		System.out.println("Ketu");
+		PreparedStatement stm = DatabaseConfig.getConnection().prepareStatement(query);
+		stm.setInt(1,price);
+		stm.setInt(2, carId);
+		return stm.executeUpdate() > 0;
+	}
+
 
 }
