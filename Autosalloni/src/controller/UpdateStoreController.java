@@ -57,7 +57,7 @@ public class UpdateStoreController implements EventHandler<ActionEvent>{
 					UpdateStore.leftVbox.getChildren().clear();
 					
 					Header.labelBox.getChildren().remove(Header.labelBox.getChildren().size()-1);
-					Main.content.getChildren().addAll(new Filter("Car"), new MainComponentCars());
+					Main.content.getChildren().addAll(new Filter("Car"), new MainComponentStores());
 					Main.nodeHistory.clear();
 
 				} else {

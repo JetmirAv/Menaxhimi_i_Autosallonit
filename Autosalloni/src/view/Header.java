@@ -20,7 +20,8 @@ public class Header extends HBox{
 
 	public static HBox historyBox = new HBox();
 	public static HBox labelBox = new HBox();
-	public static Label lblLocation = I18N.getLabel("dashboardSB");
+	public static Label lblLocation = new Label("Dashboard");
+//			I18N.getLabel("dashboardSB");
 //	public static Button bttnBack = new Button("Back"); 
 	public static Label userFullName = new Label("Jetmir");
 	public static Label userRole = new Label("Avdullahu");
