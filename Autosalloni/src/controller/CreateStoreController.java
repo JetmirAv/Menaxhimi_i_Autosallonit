@@ -11,8 +11,10 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import models.Users;
 import view.CreateStore;
+import view.Header;
 import view.Main;
 import view.MainComponent;
+import view.MainComponentStores;
 import view.Modal;
 import view.UserInfo;
 import helpers.*;
@@ -68,10 +70,19 @@ public class CreateStoreController implements EventHandler<ActionEvent> {
 			else if(models.Store.createStoreQuery(storeName,storeAddress, storeCity,storeState,storePostal,storePhoneNumber)) {
 				Modal.display(2, "Sukses", "Store has been registered successfully", "Ok", "");
 	
-				}
+			}
+			
+			Main.content.getChildren().clear();
+			Main.content.getChildren().addAll( new MainComponentStores());
+			Header.labelBox.getChildren().clear();
+			Main.nodeHistory.clear();
+			Header.lblLocation.setText("Stores");
+			Header.labelBox.getChildren().addAll(Header.lblLocation);
+			Main.history.clear();
+			Main.history.add("_Stores");
 			
 	
-		} catch (SQLException e1) {
+		} catch (SQLException | IOException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}

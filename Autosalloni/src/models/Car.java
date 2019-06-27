@@ -613,7 +613,7 @@ public class Car {
 		String query = "select id , model , bodyNumber , engineModel from car limit ? offset ? ";
 		PreparedStatement preparedStatement = DatabaseConfig.getConnection().prepareStatement(query);
 		preparedStatement.setInt(1, limit);
-		preparedStatement.setInt(2, limit);
+		preparedStatement.setInt(2, offset);
 		
 		java.sql.ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -660,7 +660,8 @@ public class Car {
 					e1.printStackTrace();
 				}
 				try {
-					Main.mainWindow.setCenter(CarsDetails.display());
+					Main.content.getChildren().clear();
+					Main.content.getChildren().add(CarsDetails.display());
 				} catch (IOException | SQLException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
@@ -673,7 +674,7 @@ public class Car {
 			detailsCar.setHgap(17);
 
 			// Model Of the Car
-			Label modelOfCar = new Label("Car Model");
+			Label modelOfCar = new Label(resultSet.getString(2));
 			modelOfCar.setFont(Font.font("Arial", FontWeight.BOLD, 15));
 			detailsCar.getStyleClass().add("firstContent");
 			detailsCar.setConstraints(modelOfCar, 0, 0);

@@ -52,13 +52,15 @@ public class UpdateUserController implements EventHandler<ActionEvent>{
 
 					System.out.println("Mbrijtem3");
 					Modal.display(2, "Success", "User updated sucessfully", "OK", "");
-					Main.content.getChildren().clear();
-					MainComponent.vbox.getChildren().clear();
-					MainComponent.vboxWithScroll.getChildren().clear();
-					MainComponent.offset = 0;
-					MainComponent.count = 0;
-					Header.labelBox.getChildren().remove(Header.labelBox.getChildren().size()-1);
-					Main.content.getChildren().addAll(new Filter(""), new MainComponent());
+					if(Main.loggedRole == 1) {
+						Main.content.getChildren().clear();
+						MainComponent.vbox.getChildren().clear();
+						MainComponent.vboxWithScroll.getChildren().clear();
+						MainComponent.offset = 0;
+						MainComponent.count = 0;
+						Header.labelBox.getChildren().remove(Header.labelBox.getChildren().size()-1);
+						Main.content.getChildren().addAll(new MainComponent());						
+					}
 					Main.nodeHistory.clear();
 
 					UserInfo.firstNameField.clear();

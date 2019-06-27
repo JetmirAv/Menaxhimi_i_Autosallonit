@@ -92,7 +92,7 @@ public class Validations {
 	
 	public static boolean validateInput(String str) {
 		str.trim();
-		return str.matches( "[A-Z][a-z]*" );
+		return str.matches( "[a-zA-Z]*" );
 		  
 	}
 	

@@ -30,8 +30,13 @@ public class SideBarController implements EventHandler<ActionEvent> {
 			try {
 				Main.content.getChildren().clear();
 				if(Main.loggedRole == 1) {
-					Main.content.getChildren().addAll(new Filter("Car"), new MainComponentCars());					
+					Main.content.getChildren().addAll( new MainComponentCars());					
 				} else {
+					Cars.count = 0;
+					Cars.button.getChildren().clear();
+					Cars.main.getChildren().clear();
+					Cars.mainPane1.getChildren().clear();
+					Cars.mainPane2.getChildren().clear();
 					Main.content.getChildren().addAll(new Cars());
 				}
 				Header.labelBox.getChildren().clear();
@@ -47,7 +52,7 @@ public class SideBarController implements EventHandler<ActionEvent> {
 		case "Stores":
 			try {
 				Main.content.getChildren().clear();
-				Main.content.getChildren().addAll(new Filter(""), new MainComponentStores());
+				Main.content.getChildren().addAll( new MainComponentStores());
 				Header.labelBox.getChildren().clear();
 				Main.nodeHistory.clear();
 				Header.lblLocation.setText("Stores");
@@ -61,7 +66,7 @@ public class SideBarController implements EventHandler<ActionEvent> {
 		case "Users":
 			try {
 				Main.content.getChildren().clear();
-				Main.content.getChildren().addAll(new Filter(""), new MainComponent());
+				Main.content.getChildren().addAll( new MainComponent());
 				System.out.println(Main.content.getChildren().toString());
 				Header.labelBox.getChildren().clear();
 				Header.lblLocation.setText("Users");
@@ -107,8 +112,13 @@ public class SideBarController implements EventHandler<ActionEvent> {
 			try {
 				Main.content.getChildren().clear();
 				if(Main.loggedRole == 1) {
-					Main.content.getChildren().addAll(new Filter("Car"), new MainComponentCars());					
+					Main.content.getChildren().addAll( new MainComponentCars());					
 				} else {
+					Cars.count = 0;
+					Cars.button.getChildren().clear();
+					Cars.main.getChildren().clear();
+					Cars.mainPane1.getChildren().clear();
+					Cars.mainPane2.getChildren().clear();
 					Main.content.getChildren().addAll(new Cars());
 				}
 				Header.labelBox.getChildren().clear();
@@ -124,7 +134,7 @@ public class SideBarController implements EventHandler<ActionEvent> {
 		case "Dyqanet":
 			try {
 				Main.content.getChildren().clear();
-				Main.content.getChildren().addAll(new Filter(""), new MainComponentStores());
+				Main.content.getChildren().addAll( new MainComponentStores());
 				Header.labelBox.getChildren().clear();
 				Main.nodeHistory.clear();
 				Header.lblLocation.setText("Stores");
@@ -138,7 +148,7 @@ public class SideBarController implements EventHandler<ActionEvent> {
 		case "Perdoruesit":
 			try {
 				Main.content.getChildren().clear();
-				Main.content.getChildren().addAll(new Filter(""), new MainComponent());
+				Main.content.getChildren().addAll(new MainComponent());
 				System.out.println(Main.content.getChildren().toString());
 				Header.labelBox.getChildren().clear();
 				Header.lblLocation.setText("Users");
@@ -150,12 +160,13 @@ public class SideBarController implements EventHandler<ActionEvent> {
 			}
 			break;
 		case "Profili":
+
 			Header.labelBox.getChildren().clear();
 			Header.lblLocation.setText("Edit Profile");
 			Header.labelBox.getChildren().addAll(Header.lblLocation);
 			Main.history.clear();
 			Main.history.add("_Edit Profile");
-
+			Main.history.add("Edit User");
 			try {
 				Users.findByPk(Main.loggedId);
 				Main.nodeHistory.addAll(Main.content.getChildren());
@@ -168,7 +179,6 @@ public class SideBarController implements EventHandler<ActionEvent> {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-
 			break;
 		default:
 			break;

@@ -39,6 +39,10 @@ public class Dashboard extends VBox{
 			PieChart usersPieChart = new PieChart(usersChartData);
 			usersPieChart.setTitle("Users");
 
+			
+			
+			
+			
 			// Cars Pie Chart
 			ObservableList<PieChart.Data> carsChartData = FXCollections.observableArrayList();
 			carsChartData.add(new PieChart.Data("Total", 75));
